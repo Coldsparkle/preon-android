@@ -65,12 +65,6 @@ data class ContextMenuCandidate(
                 snackBarParentView,
                 snackbarDelegate,
             ),
-            createOpenInPrivateTabCandidate(
-                context,
-                tabsUseCases,
-                snackBarParentView,
-                snackbarDelegate,
-            ),
             createCopyLinkCandidate(context, snackBarParentView, snackbarDelegate),
             createDownloadLinkCandidate(context, contextMenuUseCases),
             createShareLinkCandidate(context),
