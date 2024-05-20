@@ -9,44 +9,80 @@ package mozilla.components.concept.engine
  * an element.
  */
 @Suppress("ClassNaming", "ClassName")
-sealed class HitResult(open val src: String) {
+sealed class HitResult(open val src: String, open val screenX: Int = 0, open val screenY: Int = 0) {
     /**
      * Default type if we're unable to match the type to anything. It may or may not have a src.
      */
-    data class UNKNOWN(override val src: String) : HitResult(src)
+    data class UNKNOWN(
+        override val src: String,
+        override val screenX: Int = 0,
+        override val screenY: Int = 0
+    ) : HitResult(src, screenX, screenY)
 
     /**
      * If the HTML element was of type 'HTMLImageElement'.
      */
-    data class IMAGE(override val src: String, val title: String? = null) : HitResult(src)
+    data class IMAGE(
+        override val src: String,
+        val title: String? = null,
+        override val screenX: Int = 0,
+        override val screenY: Int = 0,
+    ) : HitResult(src, screenX, screenY)
 
     /**
      * If the HTML element was of type 'HTMLVideoElement'.
      */
-    data class VIDEO(override val src: String, val title: String? = null) : HitResult(src)
+    data class VIDEO(
+        override val src: String,
+        val title: String? = null,
+        override val screenX: Int = 0,
+        override val screenY: Int = 0,
+    ) : HitResult(src, screenX, screenY)
 
     /**
      * If the HTML element was of type 'HTMLAudioElement'.
      */
-    data class AUDIO(override val src: String, val title: String? = null) : HitResult(src)
+    data class AUDIO(
+        override val src: String,
+        val title: String? = null,
+        override val screenX: Int = 0,
+        override val screenY: Int = 0,
+    ) : HitResult(src, screenX, screenY)
 
     /**
      * If the HTML element was of type 'HTMLImageElement' and contained a URI.
      */
-    data class IMAGE_SRC(override val src: String, val uri: String) : HitResult(src)
+    data class IMAGE_SRC(
+        override val src: String,
+        val uri: String,
+        override val screenX: Int = 0,
+        override val screenY: Int = 0,
+    ) : HitResult(src, screenX, screenY)
 
     /**
      * The type used if the URI is prepended with 'tel:'.
      */
-    data class PHONE(override val src: String) : HitResult(src)
+    data class PHONE(
+        override val src: String,
+        override val screenX: Int = 0,
+        override val screenY: Int = 0
+    ) : HitResult(src, screenX, screenY)
 
     /**
      * The type used if the URI is prepended with 'mailto:'.
      */
-    data class EMAIL(override val src: String) : HitResult(src)
+    data class EMAIL(
+        override val src: String,
+        override val screenX: Int = 0,
+        override val screenY: Int = 0
+    ) : HitResult(src, screenX, screenY)
 
     /**
      * The type used if the URI is prepended with 'geo:'.
      */
-    data class GEO(override val src: String) : HitResult(src)
+    data class GEO(
+        override val src: String,
+        override val screenX: Int = 0,
+        override val screenY: Int = 0
+    ) : HitResult(src, screenX, screenY)
 }

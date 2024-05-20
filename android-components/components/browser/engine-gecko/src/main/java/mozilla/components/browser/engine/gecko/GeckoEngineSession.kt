@@ -1488,7 +1488,7 @@ class GeckoEngineSession(
             screenY: Int,
             element: GeckoSession.ContentDelegate.ContextElement,
         ) {
-            val hitResult = handleLongClick(element.srcUri, element.type, element.linkUri, element.title)
+            val hitResult = handleLongClick(element.srcUri, element.type, element.linkUri, element.title, screenX, screenY)
             hitResult?.let {
                 notifyObservers { onLongPress(it) }
             }
@@ -1746,38 +1746,45 @@ class GeckoEngineSession(
     }
 
     @Suppress("ComplexMethod")
-    fun handleLongClick(elementSrc: String?, elementType: Int, uri: String? = null, title: String? = null): HitResult? {
+    fun handleLongClick(
+        elementSrc: String?,
+        elementType: Int,
+        uri: String? = null,
+        title: String? = null,
+        screenX: Int = 0,
+        screenY: Int = 0
+    ): HitResult? {
         return when (elementType) {
             GeckoSession.ContentDelegate.ContextElement.TYPE_AUDIO ->
                 elementSrc?.let {
-                    HitResult.AUDIO(it, title)
+                    HitResult.AUDIO(it, title, screenX, screenY)
                 }
             GeckoSession.ContentDelegate.ContextElement.TYPE_VIDEO ->
                 elementSrc?.let {
-                    HitResult.VIDEO(it, title)
+                    HitResult.VIDEO(it, title, screenX, screenY)
                 }
             GeckoSession.ContentDelegate.ContextElement.TYPE_IMAGE -> {
                 when {
                     elementSrc != null && uri != null ->
-                        HitResult.IMAGE_SRC(elementSrc, uri)
+                        HitResult.IMAGE_SRC(elementSrc, uri, screenX, screenY)
                     elementSrc != null ->
-                        HitResult.IMAGE(elementSrc, title)
+                        HitResult.IMAGE(elementSrc, title, screenX, screenY)
                     else -> HitResult.UNKNOWN("")
                 }
             }
             GeckoSession.ContentDelegate.ContextElement.TYPE_NONE -> {
                 elementSrc?.let {
                     when {
-                        it.isPhone() -> HitResult.PHONE(it)
-                        it.isEmail() -> HitResult.EMAIL(it)
-                        it.isGeoLocation() -> HitResult.GEO(it)
-                        else -> HitResult.UNKNOWN(it)
+                        it.isPhone() -> HitResult.PHONE(it, screenX, screenY)
+                        it.isEmail() -> HitResult.EMAIL(it, screenX, screenY)
+                        it.isGeoLocation() -> HitResult.GEO(it, screenX, screenY)
+                        else -> HitResult.UNKNOWN(it, screenX, screenY)
                     }
                 } ?: uri?.let {
-                    HitResult.UNKNOWN(it)
+                    HitResult.UNKNOWN(it, screenX, screenY)
                 }
             }
-            else -> HitResult.UNKNOWN("")
+            else -> HitResult.UNKNOWN("", screenX, screenY)
         }
     }
 
