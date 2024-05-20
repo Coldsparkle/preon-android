@@ -37,13 +37,8 @@ class ThreadPenaltyDeathWithIgnoresListener(
         if (shouldViolationBeIgnored(violation)) {
             logger.debug("Ignoring StrictMode ThreadPolicy violation", violation)
         } else {
-            penaltyDeath(violation)
+            logger.error("StrictMode ThreadPolicy violation")
         }
-    }
-
-    @Suppress("TooGenericExceptionThrown") // we throw what StrictMode's penaltyDeath throws.
-    private fun penaltyDeath(violation: Violation) {
-        throw RuntimeException("StrictMode ThreadPolicy violation", violation)
     }
 
     private fun shouldViolationBeIgnored(violation: Violation): Boolean =
