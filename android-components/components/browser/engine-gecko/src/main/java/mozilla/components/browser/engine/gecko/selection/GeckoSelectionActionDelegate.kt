@@ -37,7 +37,15 @@ open class GeckoSelectionActionDelegate(
     }
 
     override fun getAllActions(): Array<String> {
-        return customDelegate.sortedActions(super.getAllActions() + customDelegate.getAllActions())
+        val superActions = super.getAllActions().asList().toMutableList().apply {
+            if (contains(ACTION_PROCESS_TEXT)) {
+                remove(ACTION_PROCESS_TEXT)
+            }
+        }
+        val actions = Array<String>(superActions.size) {
+            superActions[it]
+        }
+        return customDelegate.sortedActions(actions + customDelegate.getAllActions())
     }
 
     override fun isActionAvailable(id: String): Boolean {
