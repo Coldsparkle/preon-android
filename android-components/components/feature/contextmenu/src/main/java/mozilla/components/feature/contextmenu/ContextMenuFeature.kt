@@ -24,8 +24,6 @@ import mozilla.components.feature.contextmenu.facts.emitDisplayFact
 import mozilla.components.lib.state.ext.flowScoped
 import mozilla.components.support.base.feature.LifecycleAwareFeature
 
-@VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
-internal const val FRAGMENT_TAG = "mozac_feature_contextmenu_dialog"
 
 /**
  * Feature for displaying a context menu after long-pressing web content.
@@ -46,7 +44,6 @@ internal const val FRAGMENT_TAG = "mozac_feature_contextmenu_dialog"
  * @param additionalNote which it will be attached to the bottom of context menu but for a specific [HitResult]
  */
 class ContextMenuFeature(
-    private val fragmentManager: FragmentManager,
     private val store: BrowserStore,
     private val candidates: List<ContextMenuCandidate>,
     private val engineView: EngineView,
@@ -83,13 +80,6 @@ class ContextMenuFeature(
 
     @VisibleForTesting(otherwise = PRIVATE)
     internal fun showContextMenu(tab: SessionState, hitResult: HitResult) {
-        fragmentManager.findFragmentByTag(FRAGMENT_TAG)?.let { fragment ->
-            // There's already a ContextMenuFragment being displayed. Let's only make sure it has
-            // a reference to this feature instance.
-            (fragment as ContextMenuFragment).feature = this
-            return
-        }
-
         val (ids, labels) = candidates
             .filter { candidate -> candidate.showFor(tab, hitResult) }
             .fold(Pair(mutableListOf<String>(), mutableListOf<String>())) { items, candidate ->
@@ -107,19 +97,14 @@ class ContextMenuFeature(
         // We know that we are going to show a context menu. Now is the time to perform the haptic feedback.
         engineView.asView().performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
 
-        val fragment = ContextMenuFragment.create(tab, hitResult.getLink(), ids, labels, additionalNote(hitResult))
-        fragment.feature = this
         emitDisplayFact(labels.joinToString())
-        fragment.show(fragmentManager, FRAGMENT_TAG)
+        val popup = ContextMenuPopup(ids, labels, tab.id, hitResult.getLink())
+        popup.feature = this
+        popup.show(engineView.asView(), hitResult.screenX, hitResult.screenY)
     }
 
     private fun hideContextMenu() {
         emitCancelMenuFact()
-        fragmentManager.findFragmentByTag(FRAGMENT_TAG)?.let { fragment ->
-            fragmentManager.beginTransaction()
-                .remove(fragment)
-                .commitAllowingStateLoss()
-        }
     }
 
     internal fun onMenuItemSelected(tabId: String, itemId: String) {

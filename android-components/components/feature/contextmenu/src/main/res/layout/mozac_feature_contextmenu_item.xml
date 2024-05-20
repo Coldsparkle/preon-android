@@ -6,7 +6,7 @@
     android:id="@+id/labelView"
     style="@android:style/TextAppearance.Material.Menu"
     android:layout_width="match_parent"
-    android:layout_height="48dp"
+    android:layout_height="@dimen/mozac_feature_contextmenu_popup_menu_item_height"
     android:background="?android:attr/selectableItemBackground"
     android:clickable="true"
     android:ellipsize="end"

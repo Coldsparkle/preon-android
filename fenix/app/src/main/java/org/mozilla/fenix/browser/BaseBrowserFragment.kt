@@ -588,7 +588,6 @@ abstract class BaseBrowserFragment :
 
         contextMenuFeature.set(
             feature = ContextMenuFeature(
-                fragmentManager = parentFragmentManager,
                 store = store,
                 candidates = getContextMenuCandidates(context, binding.dynamicSnackbarContainer),
                 engineView = binding.engineView,

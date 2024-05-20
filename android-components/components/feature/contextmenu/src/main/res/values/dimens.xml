@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="mozac_feature_contextmenu_popup_elevation">4dp</dimen>
+    <dimen name="mozac_feature_contextmenu_popup_menu_item_height">48dp</dimen>
+    <dimen name="mozac_feature_contextmenu_popup_radius">4dp</dimen>
+    <dimen name="mozac_feature_contextmenu_popup_padding_vertical">10dp</dimen>
+</resources>
