@@ -31,7 +31,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "org.mozilla"
+        applicationId "ml.areos"
         minSdkVersion config.minSdkVersion
         compileSdk config.compileSdkVersion
         targetSdkVersion config.targetSdkVersion
@@ -111,14 +111,14 @@ android {
         debug {
             shrinkResources false
             minifyEnabled false
-            applicationIdSuffix ".fenix.debug"
+            applicationIdSuffix ".preon.debug"
             resValue "bool", "IS_DEBUG", "true"
             pseudoLocalesEnabled true
         }
         nightly releaseTemplate >> {
-            applicationIdSuffix ".fenix"
+            applicationIdSuffix ".preon"
             buildConfigField "boolean", "USE_RELEASE_VERSIONING", "true"
-            def deepLinkSchemeValue = "fenix-nightly"
+            def deepLinkSchemeValue = "preon-nightly"
             buildConfigField "String", "DEEP_LINK_SCHEME", "\"$deepLinkSchemeValue\""
             manifestPlaceholders.putAll([
                     "deepLinkScheme": deepLinkSchemeValue
@@ -126,8 +126,8 @@ android {
         }
         beta releaseTemplate >> {
             buildConfigField "boolean", "USE_RELEASE_VERSIONING", "true"
-            applicationIdSuffix ".firefox_beta"
-            def deepLinkSchemeValue = "fenix-beta"
+            applicationIdSuffix ".preon_beta"
+            def deepLinkSchemeValue = "preon-beta"
             buildConfigField "String", "DEEP_LINK_SCHEME", "\"$deepLinkSchemeValue\""
             manifestPlaceholders.putAll([
                     // This release type is meant to replace Firefox (Beta channel) and therefore needs to inherit
@@ -143,8 +143,8 @@ android {
         }
         release releaseTemplate >> {
             buildConfigField "boolean", "USE_RELEASE_VERSIONING", "true"
-            applicationIdSuffix ".firefox"
-            def deepLinkSchemeValue = "fenix"
+            applicationIdSuffix ".preon"
+            def deepLinkSchemeValue = "preon"
             buildConfigField "String", "DEEP_LINK_SCHEME", "\"$deepLinkSchemeValue\""
             manifestPlaceholders.putAll([
                     // This release type is meant to replace Firefox (Release channel) and therefore needs to inherit
@@ -160,7 +160,7 @@ android {
         }
         benchmark releaseTemplate >> {
             initWith buildTypes.nightly
-            applicationIdSuffix ".fenix"
+            applicationIdSuffix ".preon"
             debuggable false
         }
     }
