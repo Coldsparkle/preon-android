@@ -849,13 +849,10 @@ class Settings(private val appContext: Context) : PreferencesHolder {
      *
      * This is automatically inferred based on the current system status. Not a setting in our app.
      */
-    val shouldUseFixedTopToolbar: Boolean
-        get() {
-            return touchExplorationIsEnabled || switchServiceIsEnabled
-        }
+    val shouldUseFixedTopToolbar: Boolean = false
 
-    private val isTablet: Boolean
-        get() = appContext.resources.getBoolean(R.bool.tablet)
+    private val isTablet: Boolean = false
+//        get() = appContext.resources.getBoolean(R.bool.tablet)
 
     /**
      * Indicates if the user has enabled the tab strip feature.

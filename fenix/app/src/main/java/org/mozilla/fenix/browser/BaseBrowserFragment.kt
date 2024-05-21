@@ -141,15 +141,12 @@ import org.mozilla.fenix.components.toolbar.DefaultBrowserToolbarMenuController
 import org.mozilla.fenix.components.toolbar.IncompleteRedesignToolbarFeature
 import org.mozilla.fenix.components.toolbar.ToolbarIntegration
 import org.mozilla.fenix.components.toolbar.ToolbarMenu
-import org.mozilla.fenix.components.toolbar.ToolbarPosition
 import org.mozilla.fenix.components.toolbar.interactor.BrowserToolbarInteractor
 import org.mozilla.fenix.components.toolbar.interactor.DefaultBrowserToolbarInteractor
 import org.mozilla.fenix.components.toolbar.navbar.BottomToolbarContainerView
 import org.mozilla.fenix.components.toolbar.navbar.BrowserNavBar
-import org.mozilla.fenix.components.toolbar.navbar.EngineViewClippingBehavior
 import org.mozilla.fenix.components.toolbar.navbar.NavbarIntegration
 import org.mozilla.fenix.components.toolbar.navbar.ToolbarContainerView
-import org.mozilla.fenix.compose.Divider
 import org.mozilla.fenix.crashes.CrashContentIntegration
 import org.mozilla.fenix.customtabs.ExternalAppBrowserActivity
 import org.mozilla.fenix.databinding.FragmentBrowserBinding
@@ -185,8 +182,6 @@ import org.mozilla.fenix.utils.allowUndo
 import org.mozilla.fenix.wifi.SitePermissionsWifiIntegration
 import java.lang.ref.WeakReference
 import kotlin.coroutines.cancellation.CancellationException
-import mozilla.components.ui.widgets.behavior.EngineViewClippingBehavior as OldEngineViewClippingBehavior
-import mozilla.components.ui.widgets.behavior.ToolbarPosition as OldToolbarPosition
 
 /**
  * Base fragment extended by [BrowserFragment].
@@ -475,13 +470,10 @@ abstract class BaseBrowserFragment :
                     ),
                 )
             }
-
-            val shouldHideOnScroll =
-                !context.settings().shouldUseFixedTopToolbar
             _bottomToolbarContainerView = BottomToolbarContainerView(
                 context = context,
                 parent = binding.browserLayout,
-                hideOnScroll = shouldHideOnScroll,
+                hideOnScroll = false,
                 composableContent = {
                     FirefoxTheme {
                         Column {
@@ -1260,40 +1252,13 @@ abstract class BaseBrowserFragment :
         topToolbarHeight: Int,
         bottomToolbarHeight: Int,
     ) {
-        val context = requireContext()
+        // Ensure webpage's bottom elements are aligned to the very bottom of the engineView.
+        getEngineView().setDynamicToolbarMaxHeight(0)
 
-        if (!context.settings().shouldUseFixedTopToolbar) {
-            getEngineView().setDynamicToolbarMaxHeight(topToolbarHeight + bottomToolbarHeight)
-
-            if (IncompleteRedesignToolbarFeature(context.settings()).isEnabled) {
-                (getSwipeRefreshLayout().layoutParams as CoordinatorLayout.LayoutParams).behavior =
-                    EngineViewClippingBehavior(
-                        context = context,
-                        attrs = null,
-                        engineViewParent = getSwipeRefreshLayout(),
-                        topToolbarHeight = topToolbarHeight,
-                    )
-            } else {
-                val toolbarHeight = resources.getDimensionPixelSize(R.dimen.browser_toolbar_height)
-                val toolbarPosition = OldToolbarPosition.BOTTOM
-                (getSwipeRefreshLayout().layoutParams as CoordinatorLayout.LayoutParams).behavior =
-                    OldEngineViewClippingBehavior(
-                        context,
-                        null,
-                        getSwipeRefreshLayout(),
-                        toolbarHeight,
-                        toolbarPosition,
-                    )
-            }
-        } else {
-            // Ensure webpage's bottom elements are aligned to the very bottom of the engineView.
-            getEngineView().setDynamicToolbarMaxHeight(0)
-
-            // Effectively place the engineView on top/below of the toolbars if that is not dynamic.
-            val swipeRefreshParams = getSwipeRefreshLayout().layoutParams as CoordinatorLayout.LayoutParams
-            swipeRefreshParams.topMargin = topToolbarHeight
-            swipeRefreshParams.bottomMargin = bottomToolbarHeight
-        }
+        // Effectively place the engineView on top/below of the toolbars if that is not dynamic.
+        val swipeRefreshParams = getSwipeRefreshLayout().layoutParams as CoordinatorLayout.LayoutParams
+        swipeRefreshParams.topMargin = topToolbarHeight
+        swipeRefreshParams.bottomMargin = bottomToolbarHeight
     }
 
     /**
