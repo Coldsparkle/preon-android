@@ -720,34 +720,32 @@ class SearchDialogFragment : AppCompatDialogFragment(), UserInteractionHandler {
     }
 
     private fun setupConstraints(view: View) {
-        if (view.context.settings().toolbarPosition == ToolbarPosition.BOTTOM) {
-            ConstraintSet().apply {
-                clone(binding.searchWrapper)
+        ConstraintSet().apply {
+            clone(binding.searchWrapper)
 
-                clear(binding.toolbar.id, TOP)
-                connect(binding.toolbar.id, BOTTOM, PARENT_ID, BOTTOM)
+            clear(binding.toolbar.id, TOP)
+            connect(binding.toolbar.id, BOTTOM, PARENT_ID, BOTTOM)
 
-                clear(binding.keyboardDivider.id, BOTTOM)
-                connect(binding.keyboardDivider.id, BOTTOM, binding.toolbar.id, TOP)
+            clear(binding.keyboardDivider.id, BOTTOM)
+            connect(binding.keyboardDivider.id, BOTTOM, binding.toolbar.id, TOP)
 
-                clear(binding.awesomeBar.id, TOP)
-                clear(binding.awesomeBar.id, BOTTOM)
-                connect(binding.awesomeBar.id, TOP, binding.searchSuggestionsHint.id, BOTTOM)
-                connect(binding.awesomeBar.id, BOTTOM, binding.keyboardDivider.id, TOP)
+            clear(binding.awesomeBar.id, TOP)
+            clear(binding.awesomeBar.id, BOTTOM)
+            connect(binding.awesomeBar.id, TOP, binding.searchSuggestionsHint.id, BOTTOM)
+            connect(binding.awesomeBar.id, BOTTOM, binding.keyboardDivider.id, TOP)
 
-                clear(binding.searchSuggestionsHint.id, TOP)
-                clear(binding.searchSuggestionsHint.id, BOTTOM)
-                connect(binding.searchSuggestionsHint.id, TOP, PARENT_ID, TOP)
-                connect(binding.searchSuggestionsHint.id, BOTTOM, binding.searchHintBottomBarrier.id, TOP)
+            clear(binding.searchSuggestionsHint.id, TOP)
+            clear(binding.searchSuggestionsHint.id, BOTTOM)
+            connect(binding.searchSuggestionsHint.id, TOP, PARENT_ID, TOP)
+            connect(binding.searchSuggestionsHint.id, BOTTOM, binding.searchHintBottomBarrier.id, TOP)
 
-                clear(binding.fillLinkFromClipboard.id, TOP)
-                connect(binding.fillLinkFromClipboard.id, BOTTOM, binding.keyboardDivider.id, TOP)
+            clear(binding.fillLinkFromClipboard.id, TOP)
+            connect(binding.fillLinkFromClipboard.id, BOTTOM, binding.keyboardDivider.id, TOP)
 
-                clear(binding.fillLinkDivider.id, TOP)
-                connect(binding.fillLinkDivider.id, BOTTOM, binding.fillLinkFromClipboard.id, TOP)
+            clear(binding.fillLinkDivider.id, TOP)
+            connect(binding.fillLinkDivider.id, BOTTOM, binding.fillLinkFromClipboard.id, TOP)
 
-                applyTo(binding.searchWrapper)
-            }
+            applyTo(binding.searchWrapper)
         }
     }
 

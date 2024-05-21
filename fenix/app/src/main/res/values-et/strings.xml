@@ -407,8 +407,7 @@
     <!-- Preference category for account information -->
     <string name="preferences_category_account">Konto</string>
     <!-- Preference for changing where the toolbar is positioned -->
-    <string name="preferences_toolbar">Tööriistariba</string>
-    <!-- Preference for changing default theme to dark or light mode -->
+   <!-- Preference for changing default theme to dark or light mode -->
     <string name="preferences_theme">Teema</string>
     <!-- Preference for customizing the home screen -->
     <string name="preferences_home_2">Avaleht</string>
@@ -593,11 +592,9 @@
 
     <!-- Toolbar Preferences -->
     <!-- Preference for using top toolbar -->
-    <string name="preference_top_toolbar">Üleval</string>
     <!-- Preference for using bottom toolbar -->
-    <string name="preference_bottom_toolbar">All</string>
 
-    <!-- Theme Preferences -->
+   <!-- Theme Preferences -->
     <!-- Preference for using light theme -->
     <string name="preference_light_theme">Hele</string>
     <!-- Preference for using dark theme -->

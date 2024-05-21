@@ -501,8 +501,7 @@
     <!-- Preference category for account information -->
     <string name="preferences_category_account">ගිණුම</string>
     <!-- Preference for changing where the toolbar is positioned -->
-    <string name="preferences_toolbar">මෙවලම් තීරුව</string>
-    <!-- Preference for changing default theme to dark or light mode -->
+  <!-- Preference for changing default theme to dark or light mode -->
     <string name="preferences_theme">තේමාව</string>
     <!-- Preference for customizing the home screen -->
     <string name="preferences_home_2">මුල් පිටුව</string>
@@ -759,11 +758,9 @@
 
     <!-- Toolbar Preferences -->
     <!-- Preference for using top toolbar -->
-    <string name="preference_top_toolbar">මුදුන</string>
     <!-- Preference for using bottom toolbar -->
-    <string name="preference_bottom_toolbar">පතුළ</string>
 
-    <!-- Theme Preferences -->
+  <!-- Theme Preferences -->
     <!-- Preference for using light theme -->
     <string name="preference_light_theme">දීප්ත</string>
     <!-- Preference for using dark theme -->

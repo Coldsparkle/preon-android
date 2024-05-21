@@ -513,7 +513,6 @@ Tiktiwin tigejdanin yuzzlen ur nṣeḥḥi ara
     <!-- Preference category for account information -->
     <string name="preferences_category_account">Amiḍan</string>
     <!-- Preference for changing where the toolbar is positioned -->
-    <string name="preferences_toolbar">Afeggag n yifecka</string>
     <!-- Preference for changing default theme to dark or light mode -->
     <string name="preferences_theme">Asentel</string>
     <!-- Preference for customizing the home screen -->
@@ -778,9 +777,7 @@ Tiktiwin tigejdanin yuzzlen ur nṣeḥḥi ara
 
     <!-- Toolbar Preferences -->
     <!-- Preference for using top toolbar -->
-    <string name="preference_top_toolbar">Afella</string>
     <!-- Preference for using bottom toolbar -->
-    <string name="preference_bottom_toolbar">Adda</string>
 
     <!-- Theme Preferences -->
     <!-- Preference for using light theme -->

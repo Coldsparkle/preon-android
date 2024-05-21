@@ -5,6 +5,7 @@
 package org.mozilla.fenix.settings.quicksettings
 
 import android.content.Context
+import android.view.Gravity
 import androidx.annotation.VisibleForTesting
 import androidx.navigation.NavController
 import kotlinx.coroutines.CoroutineScope
@@ -223,7 +224,7 @@ class DefaultQuickSettingsController(
                 url = state.url,
                 trackingProtectionEnabled = state.isTrackingProtectionEnabled,
                 cookieBannerUIMode = state.cookieBannerUIMode,
-                gravity = context.components.settings.toolbarPosition.androidGravity,
+                gravity = Gravity.BOTTOM,
                 sitePermissions = sitePermissions,
             )
         navController.navigate(directions)
@@ -239,7 +240,7 @@ class DefaultQuickSettingsController(
                 url = state.url,
                 trackingProtectionEnabled = state.isTrackingProtectionEnabled,
                 cookieBannerUIMode = state.cookieBannerUIMode,
-                gravity = context.components.settings.toolbarPosition.androidGravity,
+                gravity = Gravity.BOTTOM,
                 sitePermissions = sitePermissions,
             )
         navController.navigate(directions)
@@ -256,7 +257,7 @@ class DefaultQuickSettingsController(
                 url = state.websiteUrl,
                 isSecured = state.websiteSecurityUiValues == WebsiteSecurityUiValues.SECURE,
                 certificateName = state.certificateName,
-                gravity = context.components.settings.toolbarPosition.androidGravity,
+                gravity = Gravity.BOTTOM,
                 sitePermissions = sitePermissions,
             )
         navController.navigate(directions)

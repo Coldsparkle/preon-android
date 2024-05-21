@@ -22,6 +22,7 @@ import mozilla.components.browser.state.selector.selectedTab
 import mozilla.components.browser.state.state.TabSessionState
 import mozilla.components.browser.state.store.BrowserStore
 import mozilla.components.feature.tabs.TabsUseCases
+import mozilla.components.support.base.log.logger.Logger
 import mozilla.components.support.ktx.android.view.getRectWithViewLocation
 import mozilla.components.support.utils.ext.bottom
 import mozilla.components.support.utils.ext.mandatorySystemGestureInsets
@@ -51,6 +52,8 @@ class ToolbarGestureHandler(
     private val onSwipeStarted: () -> Unit,
 ) : SwipeGestureListener {
 
+    private val logger = Logger("ToolbarGestureHandler")
+
     private enum class GestureDirection {
         LEFT_TO_RIGHT, RIGHT_TO_LEFT
     }
@@ -74,6 +77,7 @@ class ToolbarGestureHandler(
     override fun onSwipeStarted(start: PointF, next: PointF): Boolean {
         val dx = next.x - start.x
         val dy = next.y - start.y
+        logger.debug("onSwipeStarted: start: $start, next: $next")
         gestureDirection = if (dx < 0) {
             GestureDirection.RIGHT_TO_LEFT
         } else {
@@ -96,6 +100,7 @@ class ToolbarGestureHandler(
     }
 
     override fun onSwipeUpdate(distanceX: Float, distanceY: Float) {
+        logger.debug("onSwipeUpdate, x: $distanceX, y: $distanceY")
         when (getDestination()) {
             is Destination.Tab -> {
                 // Restrict the range of motion for the views so you can't start a swipe in one direction

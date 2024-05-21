@@ -534,7 +534,6 @@
     <!-- Preference category for account information -->
     <string name="preferences_category_account">帳號</string>
     <!-- Preference for changing where the toolbar is positioned -->
-    <string name="preferences_toolbar">工具列</string>
     <!-- Preference for changing default theme to dark or light mode -->
     <string name="preferences_theme">佈景主題</string>
     <!-- Preference for customizing the home screen -->
@@ -798,9 +797,7 @@
 
     <!-- Toolbar Preferences -->
     <!-- Preference for using top toolbar -->
-    <string name="preference_top_toolbar">頂端</string>
     <!-- Preference for using bottom toolbar -->
-    <string name="preference_bottom_toolbar">底端</string>
 
     <!-- Theme Preferences -->
     <!-- Preference for using light theme -->

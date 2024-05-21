@@ -114,9 +114,7 @@ class FenixSnackbarKtTest {
             id = R.id.dynamicSnackbarContainer
             layoutParams = CoordinatorLayout.LayoutParams(0, 0)
         }
-        val settings: Settings = mockk(relaxed = true) {
-            every { toolbarPosition } returns ToolbarPosition.BOTTOM
-        }
+        val settings: Settings = mockk(relaxed = true)
         mockkStatic("org.mozilla.fenix.ext.ContextKt") {
             every { any<Context>().settings() } returns settings
 
@@ -124,7 +122,6 @@ class FenixSnackbarKtTest {
 
             val behavior = (container.layoutParams as? CoordinatorLayout.LayoutParams)?.behavior
             assertTrue(behavior is FenixSnackbarBehavior)
-            assertEquals(ToolbarPosition.BOTTOM, (behavior as? FenixSnackbarBehavior)?.toolbarPosition)
         }
     }
 }

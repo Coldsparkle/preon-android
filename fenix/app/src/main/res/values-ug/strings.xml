@@ -521,7 +521,6 @@
     <!-- Preference category for account information -->
     <string name="preferences_category_account">ھېسابات</string>
     <!-- Preference for changing where the toolbar is positioned -->
-    <string name="preferences_toolbar">قورال بالداق</string>
     <!-- Preference for changing default theme to dark or light mode -->
     <string name="preferences_theme">ئۇسلۇب</string>
     <!-- Preference for customizing the home screen -->
@@ -781,10 +780,8 @@
 
     <!-- Toolbar Preferences -->
     <!-- Preference for using top toolbar -->
-    <string name="preference_top_toolbar">چوققا</string>
 
     <!-- Preference for using bottom toolbar -->
-    <string name="preference_bottom_toolbar">ئاستى</string>
 
     <!-- Theme Preferences -->
     <!-- Preference for using light theme -->

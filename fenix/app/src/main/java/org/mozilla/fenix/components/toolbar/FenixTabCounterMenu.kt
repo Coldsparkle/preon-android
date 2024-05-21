@@ -26,7 +26,7 @@ class FenixTabCounterMenu(
     }
 
     @VisibleForTesting
-    internal fun menuItems(toolbarPosition: ToolbarPosition): List<MenuCandidate> {
+    internal fun menuItems(): List<MenuCandidate> {
         val items = listOf(
             newTabItem,
             newPrivateTabItem,
@@ -34,10 +34,7 @@ class FenixTabCounterMenu(
             closeTabItem,
         )
 
-        return when (toolbarPosition) {
-            ToolbarPosition.BOTTOM -> items.reversed()
-            ToolbarPosition.TOP -> items
-        }
+        return items.reversed()
     }
 
     /**
@@ -52,9 +49,8 @@ class FenixTabCounterMenu(
 
     /**
      * Update the displayed menu items.
-     * @param toolbarPosition Return a list that is ordered based on the given [ToolbarPosition].
      */
-    fun updateMenu(toolbarPosition: ToolbarPosition) {
-        menuController.submitList(menuItems(toolbarPosition))
+    fun updateMenu() {
+        menuController.submitList(menuItems())
     }
 }

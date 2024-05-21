@@ -167,7 +167,6 @@
     <!-- Preference category for account information -->
     <string name="preferences_category_account">Conto</string>
     <!-- Preference for changing where the toolbar is positioned -->
-    <string name="preferences_toolbar">Bara di atressi</string>
     <!-- Preference for changing default theme to dark or light mode -->
     <string name="preferences_theme">Tema</string>
     <!-- Preference for settings related to visual options -->
@@ -275,9 +274,7 @@
 
     <!-- Toolbar Preferences -->
     <!-- Preference for using top toolbar -->
-    <string name="preference_top_toolbar">In çimma</string>
     <!-- Preference for using bottom toolbar -->
-    <string name="preference_bottom_toolbar">In fondo</string>
 
     <!-- Theme Preferences -->
     <!-- Preference for using light theme -->

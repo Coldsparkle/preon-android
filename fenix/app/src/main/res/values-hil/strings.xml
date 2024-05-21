@@ -40,7 +40,6 @@
     <!-- Preference for accessibility -->
     <string name="preferences_accessibility">Kasayuran</string>
     <!-- Preference for changing where the toolbar is positioned -->
-    <string name="preferences_toolbar">Toolbar</string>
     <!-- Preference for changing default theme to dark or light mode -->
     <string name="preferences_theme">Tema</string>
     <!-- Preference for customizing the home screen -->
@@ -72,9 +71,7 @@
 
     <!-- Toolbar Preferences -->
     <!-- Preference for using top toolbar -->
-    <string name="preference_top_toolbar">Ibabaw</string>
     <!-- Preference for using bottom toolbar -->
-    <string name="preference_bottom_toolbar">Idalum</string>
 
     <!-- Theme Preferences -->
     <!-- Preference for using light theme -->

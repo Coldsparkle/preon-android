@@ -310,7 +310,6 @@ class DefaultQuickSettingsControllerTest {
         every { context.components.core.store } returns browserStore
         every { store.state.protectionsState } returns mockk(relaxed = true)
         every { context.components.settings } returns appSettings
-        every { context.components.settings.toolbarPosition.androidGravity } returns mockk(relaxed = true)
 
         controller.handleCookieBannerHandlingDetailsClicked()
 
@@ -359,7 +358,6 @@ class DefaultQuickSettingsControllerTest {
     fun `handleBlockedItemsClicked should call popBackStack and navigate to the tracking protection panel dialog`() = runTestOnMain {
         every { context.components.core.store } returns browserStore
         every { context.components.settings } returns appSettings
-        every { context.components.settings.toolbarPosition.androidGravity } returns mockk(relaxed = true)
 
         val isTrackingProtectionEnabled = true
         val state = QuickSettingsFragmentStore.createTrackingProtectionState(
@@ -385,7 +383,6 @@ class DefaultQuickSettingsControllerTest {
     fun `WHEN handleConnectionDetailsClicked THEN call popBackStack and navigate to the connection details dialog`() = runTestOnMain {
         every { context.components.core.store } returns browserStore
         every { context.components.settings } returns appSettings
-        every { context.components.settings.toolbarPosition.androidGravity } returns mockk(relaxed = true)
 
         val state = WebsiteInfoState.createWebsiteInfoState(
             websiteUrl = tab.content.url,

@@ -239,7 +239,6 @@
     <!-- Preference shown on banner to sign into account -->
     <string name="preferences_sign_in">साइन इन करा</string>
     <!-- Preference for changing where the toolbar is positioned -->
-    <string name="preferences_toolbar">साधनपट्टी</string>
     <!-- Preference for changing default theme to dark or light mode -->
     <string name="preferences_theme">रंगयोजना</string>
     <!-- Preference for settings related to visual options -->
@@ -397,9 +396,7 @@
 
     <!-- Toolbar Preferences -->
     <!-- Preference for using top toolbar -->
-    <string name="preference_top_toolbar">वरती</string>
     <!-- Preference for using bottom toolbar -->
-    <string name="preference_bottom_toolbar">खाली</string>
 
     <!-- Theme Preferences -->
     <!-- Preference for using light theme -->

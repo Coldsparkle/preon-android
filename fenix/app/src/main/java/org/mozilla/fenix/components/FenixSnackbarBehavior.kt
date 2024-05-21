@@ -19,12 +19,10 @@ import org.mozilla.fenix.components.toolbar.ToolbarPosition
  * such that it will be shown on top (vertically) of other siblings that may obstruct it's view.
  *
  * @param context [Context] used for various system interactions.
- * @property toolbarPosition Where the toolbar is positioned on the screen.
  * Depending on it's position (top / bottom) the snackbar will be shown below / above the toolbar.
  */
 class FenixSnackbarBehavior<V : View>(
     context: Context,
-    @get:VisibleForTesting internal val toolbarPosition: ToolbarPosition,
 ) : CoordinatorLayout.Behavior<V>(context, null) {
 
     private val dependenciesIds = listOf(
@@ -61,7 +59,7 @@ class FenixSnackbarBehavior<V : View>(
         val params = snackbar.layoutParams as CoordinatorLayout.LayoutParams
 
         snackbar.post {
-            if (dependency == null || (dependency.id == R.id.toolbar && toolbarPosition == ToolbarPosition.TOP)) {
+            if (dependency == null) {
                 // Position the snackbar at the bottom of the screen.
                 params.anchorId = View.NO_ID
                 params.anchorGravity = Gravity.NO_GRAVITY

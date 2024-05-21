@@ -54,15 +54,6 @@ class CustomizationFragment : PreferenceFragmentCompat() {
         bindAutoBatteryTheme()
         setupRadioGroups()
         val tabletAndTabStripEnabled = requireContext().settings().isTabletAndTabStripEnabled
-        if (tabletAndTabStripEnabled) {
-            val preferenceScreen: PreferenceScreen =
-                requirePreference(R.string.pref_key_customization_preference_screen)
-            val toolbarPrefCategory: PreferenceCategory =
-                requirePreference(R.string.pref_key_customization_category_toolbar)
-            preferenceScreen.removePreference(toolbarPrefCategory)
-        } else {
-            setupToolbarCategory()
-        }
         // if tab strip is enabled, swipe toolbar to switch tabs should not be enabled so the
         // preference is not shown
         setupGesturesCategory(isSwipeToolbarToSwitchTabsVisible = !tabletAndTabStripEnabled)
@@ -125,32 +116,6 @@ class CustomizationFragment : PreferenceFragmentCompat() {
             engine.settings.preferredColorScheme = getPreferredColorScheme()
         }
         requireComponents.useCases.sessionUseCases.reload.invoke()
-    }
-
-    private fun setupToolbarCategory() {
-        val topPreference = requirePreference<RadioButtonPreference>(R.string.pref_key_toolbar_top)
-        topPreference.onClickListener {
-            ToolbarSettings.changedPosition.record(
-                ToolbarSettings.ChangedPositionExtra(
-                    Position.TOP.name,
-                ),
-            )
-        }
-
-        val bottomPreference = requirePreference<RadioButtonPreference>(R.string.pref_key_toolbar_bottom)
-        bottomPreference.onClickListener {
-            ToolbarSettings.changedPosition.record(
-                ToolbarSettings.ChangedPositionExtra(
-                    Position.BOTTOM.name,
-                ),
-            )
-        }
-
-        val toolbarPosition = requireContext().settings().toolbarPosition
-        topPreference.setCheckedWithoutClickListener(toolbarPosition == ToolbarPosition.TOP)
-        bottomPreference.setCheckedWithoutClickListener(toolbarPosition == ToolbarPosition.BOTTOM)
-
-        addToRadioGroup(topPreference, bottomPreference)
     }
 
     private fun setupGesturesCategory(isSwipeToolbarToSwitchTabsVisible: Boolean) {

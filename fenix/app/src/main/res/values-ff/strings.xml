@@ -245,7 +245,6 @@
     <!-- Preference category for account information -->
     <string name="preferences_category_account">Konte</string>
     <!-- Preference for changing where the toolbar is positioned -->
-    <string name="preferences_toolbar">Palal kuutorɗe</string>
     <!-- Preference for changing default theme to dark or light mode -->
     <string name="preferences_theme">Siŋkoore</string>
     <!-- Preference for customizing the home screen -->
@@ -405,9 +404,7 @@
 
     <!-- Toolbar Preferences -->
     <!-- Preference for using top toolbar -->
-    <string name="preference_top_toolbar">Dow</string>
     <!-- Preference for using bottom toolbar -->
-    <string name="preference_bottom_toolbar">Les</string>
 
     <!-- Theme Preferences -->
     <!-- Preference for using light theme -->

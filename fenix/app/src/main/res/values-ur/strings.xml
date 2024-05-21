@@ -258,7 +258,6 @@
     <!-- Preference category for account information -->
     <string name="preferences_category_account">اکائونٹ</string>
     <!-- Preference for changing where the toolbar is positioned -->
-    <string name="preferences_toolbar">ٹول بار</string>
     <!-- Preference for changing default theme to dark or light mode -->
     <string name="preferences_theme">تھیم</string>
     <!-- Preference for customizing the home screen -->
@@ -424,9 +423,7 @@
 
     <!-- Toolbar Preferences -->
     <!-- Preference for using top toolbar -->
-    <string name="preference_top_toolbar">اوپر</string>
     <!-- Preference for using bottom toolbar -->
-    <string name="preference_bottom_toolbar">نیچے</string>
 
     <!-- Theme Preferences -->
     <!-- Preference for using light theme -->

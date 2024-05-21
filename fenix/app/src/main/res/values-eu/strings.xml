@@ -534,7 +534,6 @@ zure pasahitzak, laster-markak eta gehiago zifratzen du.</string>
     <!-- Preference category for account information -->
     <string name="preferences_category_account">Kontua</string>
     <!-- Preference for changing where the toolbar is positioned -->
-    <string name="preferences_toolbar">Tresna-barra</string>
     <!-- Preference for changing default theme to dark or light mode -->
     <string name="preferences_theme">Itxura</string>
     <!-- Preference for customizing the home screen -->
@@ -797,9 +796,7 @@ zure pasahitzak, laster-markak eta gehiago zifratzen du.</string>
 
     <!-- Toolbar Preferences -->
     <!-- Preference for using top toolbar -->
-    <string name="preference_top_toolbar">Goian</string>
     <!-- Preference for using bottom toolbar -->
-    <string name="preference_bottom_toolbar">Behean</string>
 
     <!-- Theme Preferences -->
     <!-- Preference for using light theme -->

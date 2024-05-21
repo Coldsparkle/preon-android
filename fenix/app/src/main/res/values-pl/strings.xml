@@ -530,7 +530,6 @@
     <!-- Preference category for account information -->
     <string name="preferences_category_account">Konto</string>
     <!-- Preference for changing where the toolbar is positioned -->
-    <string name="preferences_toolbar">Pasek narzędzi</string>
     <!-- Preference for changing default theme to dark or light mode -->
     <string name="preferences_theme">Motyw</string>
     <!-- Preference for customizing the home screen -->
@@ -793,9 +792,7 @@
 
     <!-- Toolbar Preferences -->
     <!-- Preference for using top toolbar -->
-    <string name="preference_top_toolbar">Na górze</string>
     <!-- Preference for using bottom toolbar -->
-    <string name="preference_bottom_toolbar">Na dole</string>
 
     <!-- Theme Preferences -->
     <!-- Preference for using light theme -->

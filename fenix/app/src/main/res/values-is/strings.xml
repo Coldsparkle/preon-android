@@ -528,8 +528,7 @@
     <!-- Preference category for account information -->
     <string name="preferences_category_account">Reikningur</string>
     <!-- Preference for changing where the toolbar is positioned -->
-    <string name="preferences_toolbar">Verkfæraslá</string>
-    <!-- Preference for changing default theme to dark or light mode -->
+   <!-- Preference for changing default theme to dark or light mode -->
     <string name="preferences_theme">Þema</string>
     <!-- Preference for customizing the home screen -->
     <string name="preferences_home_2">Upphafssíða</string>
@@ -787,11 +786,9 @@
 
     <!-- Toolbar Preferences -->
     <!-- Preference for using top toolbar -->
-    <string name="preference_top_toolbar">Efst</string>
     <!-- Preference for using bottom toolbar -->
-    <string name="preference_bottom_toolbar">Neðst</string>
 
-    <!-- Theme Preferences -->
+   <!-- Theme Preferences -->
     <!-- Preference for using light theme -->
     <string name="preference_light_theme">Ljóst</string>
     <!-- Preference for using dark theme -->

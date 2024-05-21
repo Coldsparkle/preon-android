@@ -125,7 +125,7 @@ class DefaultToolbarIntegration(
                     null
                 },
             ).also {
-                it.updateMenu(context.settings().toolbarPosition)
+                it.updateMenu()
             }
 
             val tabsAction = TabCounterToolbarButton(

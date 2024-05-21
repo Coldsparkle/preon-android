@@ -173,7 +173,6 @@ class FenixSnackbar private constructor(
                     (parent.layoutParams as? CoordinatorLayout.LayoutParams)?.apply {
                         behavior = FenixSnackbarBehavior<FrameLayout>(
                             context = view.context,
-                            toolbarPosition = view.context.settings().toolbarPosition,
                         )
                     }
                 }

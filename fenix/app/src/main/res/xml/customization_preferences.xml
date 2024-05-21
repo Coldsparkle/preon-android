@@ -34,19 +34,6 @@
 
     <androidx.preference.PreferenceCategory
         android:layout="@layout/preference_cat_style"
-        android:title="@string/preferences_toolbar"
-        android:key="@string/pref_key_customization_category_toolbar"
-        app:iconSpaceReserved="false">
-        <org.mozilla.fenix.settings.RadioButtonPreference
-            android:key="@string/pref_key_toolbar_top"
-            android:title="@string/preference_top_toolbar" />
-        <org.mozilla.fenix.settings.RadioButtonPreference
-            android:key="@string/pref_key_toolbar_bottom"
-            android:title="@string/preference_bottom_toolbar" />
-    </androidx.preference.PreferenceCategory>
-
-    <androidx.preference.PreferenceCategory
-        android:layout="@layout/preference_cat_style"
         android:title="@string/preferences_gestures"
         app:iconSpaceReserved="false">
         <androidx.preference.SwitchPreference

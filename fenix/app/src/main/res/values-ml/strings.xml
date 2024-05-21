@@ -236,7 +236,6 @@
     <!-- Preference shown on banner to sign into account -->
     <string name="preferences_sign_in">പ്രവേശിക്കുക</string>
     <!-- Preference for changing where the toolbar is positioned -->
-    <string name="preferences_toolbar">ടൂള്‍ബാര്‍</string>
     <!-- Preference for changing default theme to dark or light mode -->
     <string name="preferences_theme">കെട്ടും മട്ടും</string>
     <!-- Preference for settings related to visual options -->
@@ -392,9 +391,7 @@
 
     <!-- Toolbar Preferences -->
     <!-- Preference for using top toolbar -->
-    <string name="preference_top_toolbar">മുകളിൽ</string>
     <!-- Preference for using bottom toolbar -->
-    <string name="preference_bottom_toolbar">താഴെ</string>
 
     <!-- Theme Preferences -->
     <!-- Preference for using light theme -->

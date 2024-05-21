@@ -929,20 +929,7 @@ class Settings(private val appContext: Context) : PreferencesHolder {
         default = true,
     )
 
-    var shouldUseBottomToolbar by lazyFeatureFlagPreference(
-        appContext.getPreferenceKey(R.string.pref_key_toolbar_bottom),
-        featureFlag = true,
-        default = { shouldDefaultToBottomToolbar() },
-    )
-
-    val toolbarPosition: ToolbarPosition
-        get() = if (isTabletAndTabStripEnabled) {
-            ToolbarPosition.TOP
-        } else if (shouldUseBottomToolbar) {
-            ToolbarPosition.BOTTOM
-        } else {
-            ToolbarPosition.TOP
-        }
+    var shouldUseBottomToolbar = shouldDefaultToBottomToolbar()
 
     /**
      * Check each active accessibility service to see if it can perform gestures, if any can,
@@ -982,11 +969,7 @@ class Settings(private val appContext: Context) : PreferencesHolder {
     /**
      * Checks if we should default to bottom toolbar.
      */
-    fun shouldDefaultToBottomToolbar(): Boolean {
-        // Default accessibility users to top toolbar
-        return (!touchExplorationIsEnabled && !switchServiceIsEnabled) &&
-            !toolbarPositionTop
-    }
+    fun shouldDefaultToBottomToolbar() = true
 
     fun getDeleteDataOnQuit(type: DeleteBrowsingDataOnQuitType): Boolean =
         preferences.getBoolean(type.getPreferenceKey(appContext), false)

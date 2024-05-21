@@ -527,7 +527,6 @@
     <!-- Preference category for account information -->
     <string name="preferences_category_account">Llogari</string>
     <!-- Preference for changing where the toolbar is positioned -->
-    <string name="preferences_toolbar">Panel</string>
     <!-- Preference for changing default theme to dark or light mode -->
     <string name="preferences_theme">Temë</string>
     <!-- Preference for customizing the home screen -->
@@ -787,9 +786,7 @@
 
     <!-- Toolbar Preferences -->
     <!-- Preference for using top toolbar -->
-    <string name="preference_top_toolbar">Sipër</string>
     <!-- Preference for using bottom toolbar -->
-    <string name="preference_bottom_toolbar">Poshtë</string>
 
     <!-- Theme Preferences -->
     <!-- Preference for using light theme -->

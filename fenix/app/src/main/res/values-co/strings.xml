@@ -534,8 +534,7 @@
     <!-- Preference category for account information -->
     <string name="preferences_category_account">Contu</string>
     <!-- Preference for changing where the toolbar is positioned -->
-    <string name="preferences_toolbar">Barra d’attrezzi</string>
-    <!-- Preference for changing default theme to dark or light mode -->
+   <!-- Preference for changing default theme to dark or light mode -->
     <string name="preferences_theme">Tema</string>
     <!-- Preference for customizing the home screen -->
     <string name="preferences_home_2">Pagina d’accolta</string>
@@ -798,11 +797,9 @@
 
     <!-- Toolbar Preferences -->
     <!-- Preference for using top toolbar -->
-    <string name="preference_top_toolbar">Insù</string>
     <!-- Preference for using bottom toolbar -->
-    <string name="preference_bottom_toolbar">Inghjò</string>
 
-    <!-- Theme Preferences -->
+   <!-- Theme Preferences -->
     <!-- Preference for using light theme -->
     <string name="preference_light_theme">Chjaru</string>
     <!-- Preference for using dark theme -->

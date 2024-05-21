@@ -115,7 +115,6 @@ class FenixApplicationTest {
         every { settings.enabledAddonsList } returns "test1,test2"
         every { settings.desktopBookmarksSize } returns 4
         every { settings.mobileBookmarksSize } returns 5
-        every { settings.toolbarPosition } returns ToolbarPosition.BOTTOM
         every { settings.getTabViewPingString() } returns "test"
         every { settings.getTabTimeoutPingString() } returns "test"
         every { settings.shouldShowSearchSuggestions } returns true

@@ -215,7 +215,6 @@
     <!-- Preference category for account information -->
     <string name="preferences_category_account">অ্যাকাউন্ট</string>
     <!-- Preference for changing where the toolbar is positioned -->
-    <string name="preferences_toolbar">টুলবার</string>
     <!-- Preference for changing default theme to dark or light mode -->
     <string name="preferences_theme">থিম</string>
     <!-- Preference for settings related to visual options -->
@@ -336,9 +335,7 @@
 
     <!-- Toolbar Preferences -->
     <!-- Preference for using top toolbar -->
-    <string name="preference_top_toolbar">উপরে</string>
     <!-- Preference for using bottom toolbar -->
-    <string name="preference_bottom_toolbar">নিচে</string>
 
     <!-- Theme Preferences -->
     <!-- Preference for using light theme -->

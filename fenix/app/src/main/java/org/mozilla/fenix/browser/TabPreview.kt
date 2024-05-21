@@ -49,17 +49,10 @@ class TabPreview @JvmOverloads constructor(
     private val thumbnailLoader = ThumbnailLoader(context.components.core.thumbnailStorage)
 
     init {
-        val isToolbarAtTop = context.settings().toolbarPosition == ToolbarPosition.TOP
-        if (isToolbarAtTop) {
-            binding.fakeToolbar.updateLayoutParams<LayoutParams> {
-                gravity = Gravity.TOP
-            }
-
-            binding.fakeToolbar.background = AppCompatResources.getDrawable(
-                context,
-                ThemeManager.resolveAttribute(R.attr.bottomBarBackgroundTop, context),
-            )
-        }
+        binding.fakeToolbar.background = AppCompatResources.getDrawable(
+            context,
+            ThemeManager.resolveAttribute(R.attr.bottomBarBackgroundTop, context),
+        )
 
         val isNavBarEnabled = IncompleteRedesignToolbarFeature(context.settings()).isEnabled
         binding.tabButton.isVisible = !isNavBarEnabled
@@ -73,11 +66,7 @@ class TabPreview @JvmOverloads constructor(
                 composableContent = {
                     FirefoxTheme {
                         Column {
-                            if (!isToolbarAtTop) {
-                                AndroidView(factory = { _ -> binding.fakeToolbar })
-                            } else {
-                                Divider()
-                            }
+                            AndroidView(factory = { _ -> binding.fakeToolbar })
 
                             BrowserNavBar(
                                 isPrivateMode = browserStore.state.selectedTab?.content?.private ?: false,
@@ -124,11 +113,7 @@ class TabPreview @JvmOverloads constructor(
             binding.tabButton.setCount(count)
         }
 
-        binding.previewThumbnail.translationY = if (context.settings().toolbarPosition == ToolbarPosition.TOP) {
-            binding.fakeToolbar.height.toFloat()
-        } else {
-            0f
-        }
+        binding.previewThumbnail.translationY = 0f
     }
 
     /**

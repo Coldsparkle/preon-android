@@ -492,7 +492,6 @@
     <!-- Preference category for account information -->
     <string name="preferences_category_account">Cunntas</string>
     <!-- Preference for changing where the toolbar is positioned -->
-    <string name="preferences_toolbar">Bàr-inneal</string>
     <!-- Preference for changing default theme to dark or light mode -->
     <string name="preferences_theme">An t-ùrlar</string>
     <!-- Preference for customizing the home screen -->
@@ -715,9 +714,7 @@
 
     <!-- Toolbar Preferences -->
     <!-- Preference for using top toolbar -->
-    <string name="preference_top_toolbar">Bàrr</string>
     <!-- Preference for using bottom toolbar -->
-    <string name="preference_bottom_toolbar">Bonn</string>
 
     <!-- Theme Preferences -->
     <!-- Preference for using light theme -->

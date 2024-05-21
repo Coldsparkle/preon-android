@@ -251,11 +251,7 @@ class BrowserToolbarCFRPresenter(
                 ),
                 popupVerticalOffset = CFR_TO_ANCHOR_VERTICAL_PADDING.dp,
                 dismissButtonColor = getColor(context, R.color.fx_mobile_icon_color_oncolor),
-                indicatorDirection = if (settings.toolbarPosition == ToolbarPosition.TOP) {
-                    CFRPopup.IndicatorDirection.UP
-                } else {
-                    CFRPopup.IndicatorDirection.DOWN
-                },
+                indicatorDirection = CFRPopup.IndicatorDirection.DOWN,
             ),
             onDismiss = {
                 when (it) {
@@ -295,11 +291,7 @@ class BrowserToolbarCFRPresenter(
                 ),
                 popupVerticalOffset = CFR_TO_ANCHOR_VERTICAL_PADDING.dp,
                 dismissButtonColor = getColor(context, R.color.fx_mobile_icon_color_oncolor),
-                indicatorDirection = if (settings.toolbarPosition == ToolbarPosition.TOP) {
-                    CFRPopup.IndicatorDirection.UP
-                } else {
-                    CFRPopup.IndicatorDirection.DOWN
-                },
+                indicatorDirection = CFRPopup.IndicatorDirection.DOWN,
             ),
             onDismiss = {
                 when (it) {
@@ -373,11 +365,7 @@ class BrowserToolbarCFRPresenter(
                 ),
                 popupVerticalOffset = CFR_TO_ANCHOR_VERTICAL_PADDING.dp,
                 dismissButtonColor = getColor(context, R.color.fx_mobile_icon_color_oncolor),
-                indicatorDirection = if (settings.toolbarPosition == ToolbarPosition.TOP) {
-                    CFRPopup.IndicatorDirection.UP
-                } else {
-                    CFRPopup.IndicatorDirection.DOWN
-                },
+                indicatorDirection = CFRPopup.IndicatorDirection.DOWN,
             ),
             onDismiss = {
                 CookieBanners.cfrDismissal.record(NoExtras())
@@ -434,11 +422,7 @@ class BrowserToolbarCFRPresenter(
                 ),
                 popupVerticalOffset = CFR_TO_ANCHOR_VERTICAL_PADDING.dp,
                 dismissButtonColor = getColor(context, R.color.fx_mobile_icon_color_oncolor),
-                indicatorDirection = if (settings.toolbarPosition == ToolbarPosition.TOP) {
-                    CFRPopup.IndicatorDirection.UP
-                } else {
-                    CFRPopup.IndicatorDirection.DOWN
-                },
+                indicatorDirection = CFRPopup.IndicatorDirection.DOWN,
                 dismissOnBackPress = true,
                 dismissOnClickOutside = true,
             ),

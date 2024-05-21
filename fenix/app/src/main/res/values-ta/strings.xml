@@ -216,7 +216,6 @@
     <string name="preferences_category_account">கணக்கு</string>
 
     <!-- Preference for changing where the toolbar is positioned -->
-    <string name="preferences_toolbar">கருவிப்பட்டி</string>
     <!-- Preference for changing default theme to dark or light mode -->
     <string name="preferences_theme">கருப்பொருள்</string>
     <!-- Preference for gestures based actions -->
@@ -339,9 +338,7 @@
 
     <!-- Toolbar Preferences -->
     <!-- Preference for using top toolbar -->
-    <string name="preference_top_toolbar">மேல்</string>
     <!-- Preference for using bottom toolbar -->
-    <string name="preference_bottom_toolbar">கீழ்</string>
 
     <!-- Theme Preferences -->
     <!-- Preference for using light theme -->

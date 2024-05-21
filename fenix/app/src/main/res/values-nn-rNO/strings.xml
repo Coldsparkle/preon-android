@@ -500,7 +500,6 @@
     <string name="preferences_category_account">Konto</string>
 
     <!-- Preference for changing where the toolbar is positioned -->
-    <string name="preferences_toolbar">Verktøylinje</string>
     <!-- Preference for changing default theme to dark or light mode -->
     <string name="preferences_theme">Tema</string>
     <!-- Preference for customizing the home screen -->
@@ -763,9 +762,7 @@
 
     <!-- Toolbar Preferences -->
     <!-- Preference for using top toolbar -->
-    <string name="preference_top_toolbar">Øvst</string>
     <!-- Preference for using bottom toolbar -->
-    <string name="preference_bottom_toolbar">Nedst</string>
 
     <!-- Theme Preferences -->
     <!-- Preference for using light theme -->

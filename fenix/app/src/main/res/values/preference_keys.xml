@@ -135,10 +135,6 @@
     <string name="pref_key_phone_feature_notification" translatable="false">pref_key_phone_feature_notification</string>
     <string name="pref_key_exceptions_clear_site_permissions" translatable="false">pref_key_exceptions_clear_site_permissions</string>
 
-    <!-- Toolbar Settings -->
-    <string name="pref_key_toolbar_top" translatable="false">pref_key_toolbar_top</string>
-    <string name="pref_key_toolbar_bottom" translatable="false">pref_key_toolbar_bottom</string>
-
     <!-- Toolbar Redesign -->
     <string name="pref_key_toolbar_use_redesign" translatable="false">pref_key_toolbar_use_redesign</string>
     <string name="pref_key_toolbar_use_redesign_incomplete" translatable="false">pref_key_toolbar_use_redesign_incomplete</string>
@@ -162,7 +158,6 @@
     <string name="pref_key_swipe_toolbar_show_tabs" translatable="false">pref_key_swipe_toolbar_show_tabs</string>
     <string name="pref_key_recent_tabs" translatable="false">pref_key_recent_tabs</string>
     <string name="pref_key_recent_bookmarks" translatable="false">pref_key_recent_bookmarks</string>
-    <string name="pref_key_customization_category_toolbar" translatable="false">pref_key_customization_category_toolbar</string>
 
     <!-- HTTPS Only Settings -->
     <string name="pref_key_https_only_settings" translatable="false">pref_key_https_only_settings</string>

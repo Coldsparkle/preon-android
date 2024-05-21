@@ -47,10 +47,7 @@ class BrowserToolbarView(
 ) {
 
     @LayoutRes
-    private val toolbarLayout = when (settings.toolbarPosition) {
-        ToolbarPosition.BOTTOM -> R.layout.component_bottom_browser_toolbar
-        ToolbarPosition.TOP -> R.layout.component_browser_top_toolbar
-    }
+    private val toolbarLayout = R.layout.component_bottom_browser_toolbar
 
     private val layout = LayoutInflater.from(context)
         .inflate(toolbarLayout, container, true)
@@ -105,10 +102,7 @@ class BrowserToolbarView(
                     false
                 }
 
-                display.progressGravity = when (settings.toolbarPosition) {
-                    ToolbarPosition.BOTTOM -> DisplayToolbar.Gravity.TOP
-                    ToolbarPosition.TOP -> DisplayToolbar.Gravity.BOTTOM
-                }
+                display.progressGravity = DisplayToolbar.Gravity.TOP
 
                 val primaryTextColor = ContextCompat.getColor(
                     context,
@@ -152,7 +146,7 @@ class BrowserToolbarView(
                     context = this,
                     store = components.core.store,
                     sessionId = customTabSession?.id,
-                    shouldReverseItems = settings.toolbarPosition == ToolbarPosition.TOP,
+                    shouldReverseItems = false,
                     isSandboxCustomTab = false,
                     onItemTapped = {
                         it.performHapticIfNeeded(view)
@@ -242,23 +236,10 @@ class BrowserToolbarView(
      * @param shouldDisableScroll force disable of the dynamic behavior irrespective of the intrinsic checks.
      */
     fun setToolbarBehavior(shouldDisableScroll: Boolean = false) {
-        when (settings.toolbarPosition) {
-            ToolbarPosition.BOTTOM -> {
-                if (!isPwaTabOrTwaTab && !settings.shouldUseFixedTopToolbar) {
-                    setDynamicToolbarBehavior(MozacToolbarPosition.BOTTOM)
-                } else {
-                    expandToolbarAndMakeItFixed()
-                }
-            }
-            ToolbarPosition.TOP -> {
-                if (settings.shouldUseFixedTopToolbar ||
-                    shouldDisableScroll
-                ) {
-                    expandToolbarAndMakeItFixed()
-                } else {
-                    setDynamicToolbarBehavior(MozacToolbarPosition.TOP)
-                }
-            }
+        if (!isPwaTabOrTwaTab && !settings.shouldUseFixedTopToolbar) {
+            setDynamicToolbarBehavior(MozacToolbarPosition.BOTTOM)
+        } else {
+            expandToolbarAndMakeItFixed()
         }
     }
 

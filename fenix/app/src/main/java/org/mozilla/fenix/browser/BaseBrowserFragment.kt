@@ -457,15 +457,12 @@ abstract class BaseBrowserFragment :
 
         if (IncompleteRedesignToolbarFeature(context.settings()).isEnabled) {
             browserToolbar.showPageActionSeparator()
-            val isToolbarAtBottom = context.components.settings.toolbarPosition == ToolbarPosition.BOTTOM
 
             // The toolbar view has already been added directly to the container.
             // We should remove it and add the view to the navigation bar container.
             // Should refactor this so there is no added view to remove to begin with:
             // https://bugzilla.mozilla.org/show_bug.cgi?id=1870976
-            if (isToolbarAtBottom) {
-                binding.browserLayout.removeView(browserToolbar)
-            }
+            binding.browserLayout.removeView(browserToolbar)
 
             // We need a second menu button, but we could reuse the existing builder.
             val menuButton = MenuButton(requireContext()).apply {
@@ -488,11 +485,7 @@ abstract class BaseBrowserFragment :
                 composableContent = {
                     FirefoxTheme {
                         Column {
-                            if (isToolbarAtBottom) {
-                                AndroidView(factory = { _ -> browserToolbar })
-                            } else {
-                                Divider()
-                            }
+                            AndroidView(factory = { _ -> browserToolbar })
 
                             BrowserNavBar(
                                 isPrivateMode = activity.browsingModeManager.mode.isPrivate,
@@ -574,7 +567,7 @@ abstract class BaseBrowserFragment :
                 toolbarInfo = FindInPageIntegration.ToolbarInfo(
                     browserToolbarView.view,
                     false,
-                    context.settings().toolbarPosition == ToolbarPosition.TOP,
+                    false,
                 ),
             ),
             owner = this,
@@ -910,7 +903,7 @@ abstract class BaseBrowserFragment :
                 browserStore = requireComponents.core.store,
                 appStore = requireComponents.appStore,
                 toolbar = browserToolbarView.view,
-                isToolbarPlacedAtTop = context.settings().toolbarPosition == ToolbarPosition.TOP,
+                isToolbarPlacedAtTop = false,
                 crashReporterView = binding.crashReporterView,
                 components = requireComponents,
                 settings = context.settings(),
@@ -1282,10 +1275,7 @@ abstract class BaseBrowserFragment :
                     )
             } else {
                 val toolbarHeight = resources.getDimensionPixelSize(R.dimen.browser_toolbar_height)
-                val toolbarPosition = when (context.settings().toolbarPosition) {
-                    ToolbarPosition.BOTTOM -> OldToolbarPosition.BOTTOM
-                    ToolbarPosition.TOP -> OldToolbarPosition.TOP
-                }
+                val toolbarPosition = OldToolbarPosition.BOTTOM
                 (getSwipeRefreshLayout().layoutParams as CoordinatorLayout.LayoutParams).behavior =
                     OldEngineViewClippingBehavior(
                         context,
@@ -1533,8 +1523,7 @@ abstract class BaseBrowserFragment :
     /**
      * Returns the layout [android.view.Gravity] for the quick settings and ETP dialog.
      */
-    protected fun getAppropriateLayoutGravity(): Int =
-        requireComponents.settings.toolbarPosition.androidGravity
+    protected fun getAppropriateLayoutGravity(): Int = Gravity.BOTTOM
 
     /**
      * Updates the site permissions rules based on user settings.

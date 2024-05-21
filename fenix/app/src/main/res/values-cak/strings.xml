@@ -502,7 +502,6 @@
     <!-- Preference category for account information -->
     <string name="preferences_category_account">Rub\'i\' taqoya\'l</string>
     <!-- Preference for changing where the toolbar is positioned -->
-    <string name="preferences_toolbar">Cholsamajib\'äl</string>
     <!-- Preference for changing default theme to dark or light mode -->
     <string name="preferences_theme">Wachinel</string>
     <!-- Preference for customizing the home screen -->
@@ -761,9 +760,7 @@
 
     <!-- Toolbar Preferences -->
     <!-- Preference for using top toolbar -->
-    <string name="preference_top_toolbar">Ajsik</string>
     <!-- Preference for using bottom toolbar -->
-    <string name="preference_bottom_toolbar">Ikim</string>
 
     <!-- Theme Preferences -->
     <!-- Preference for using light theme -->

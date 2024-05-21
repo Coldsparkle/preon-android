@@ -162,10 +162,7 @@ class HomeFragment : Fragment() {
     private val homeViewModel: HomeScreenViewModel by activityViewModels()
 
     private val snackbarAnchorView: View?
-        get() = when (requireContext().settings().toolbarPosition) {
-            ToolbarPosition.BOTTOM -> binding.toolbarLayout
-            ToolbarPosition.TOP -> null
-        }
+        get() = binding.toolbarLayout
 
     private var _bottomToolbarContainerView: BottomToolbarContainerView? = null
     private val bottomToolbarContainerView: BottomToolbarContainerView
@@ -452,15 +449,12 @@ class HomeFragment : Fragment() {
         )
 
         if (IncompleteRedesignToolbarFeature(requireContext().settings()).isEnabled) {
-            val isToolbarAtBottom = requireContext().components.settings.toolbarPosition == ToolbarPosition.BOTTOM
 
             // The toolbar view has already been added directly to the container.
             // We should remove it and add the view to the navigation bar container.
             // Should refactor this so there is no added view to remove to begin with:
             // https://bugzilla.mozilla.org/show_bug.cgi?id=1870976
-            if (isToolbarAtBottom) {
-                binding.root.removeView(binding.toolbarLayout)
-            }
+            binding.root.removeView(binding.toolbarLayout)
 
             val menuButton = MenuButton(requireContext())
             HomeMenuView(
@@ -479,11 +473,7 @@ class HomeFragment : Fragment() {
                 composableContent = {
                     FirefoxTheme {
                         Column {
-                            if (isToolbarAtBottom) {
-                                AndroidView(factory = { _ -> binding.toolbarLayout })
-                            } else {
-                                Divider()
-                            }
+                            AndroidView(factory = { _ -> binding.toolbarLayout })
 
                             HomeNavBar(
                                 isPrivateMode = activity.browsingModeManager.mode.isPrivate,
