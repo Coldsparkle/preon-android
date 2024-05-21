@@ -19,7 +19,7 @@ import mozilla.components.browser.state.state.createCustomTab
 import mozilla.components.browser.state.state.createTab
 import mozilla.components.browser.state.store.BrowserStore
 import mozilla.components.concept.toolbar.Toolbar
-import mozilla.components.feature.toolbar.internal.URLRenderer
+import mozilla.components.feature.toolbar.internal.URLAndTitleRenderer
 import mozilla.components.support.test.any
 import mozilla.components.support.test.ext.joinBlocking
 import mozilla.components.support.test.mock
@@ -473,7 +473,7 @@ class ToolbarPresenterTest {
         val store = BrowserStore()
         val presenter = ToolbarPresenter(mock(), store)
 
-        val renderer: URLRenderer = mock()
+        val renderer: URLAndTitleRenderer = mock()
         presenter.renderer = renderer
 
         presenter.start()

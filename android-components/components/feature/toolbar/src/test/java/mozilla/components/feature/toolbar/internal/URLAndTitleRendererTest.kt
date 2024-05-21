@@ -28,14 +28,14 @@ import org.junit.runner.RunWith
 import org.mockito.Mockito.verify
 
 @RunWith(AndroidJUnit4::class)
-class URLRendererTest {
+class URLAndTitleRendererTest {
 
     @get:Rule
     val coroutinesTestRule = MainCoroutineRule()
 
     @Test
     fun `Lifecycle methods start and stop job`() {
-        val renderer = URLRenderer(mock(), mock())
+        val renderer = URLAndTitleRenderer(mock(), mock())
 
         assertNull(renderer.job)
 
@@ -61,7 +61,7 @@ class URLRendererTest {
 
             val toolbar: Toolbar = mock()
 
-            val renderer = URLRenderer(toolbar, configuration)
+            val renderer = URLAndTitleRenderer(toolbar, configuration)
 
             renderer.updateUrl("https://www.mozilla.org/")
 

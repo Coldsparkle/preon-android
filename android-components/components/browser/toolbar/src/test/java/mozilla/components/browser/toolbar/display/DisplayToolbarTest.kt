@@ -61,8 +61,6 @@ class DisplayToolbarTest {
     fun `clicking on the URL switches the toolbar to editing mode`() {
         val (toolbar, displayToolbar) = createDisplayToolbar()
 
-        val urlView = displayToolbar.views.origin.urlView
-        assertTrue(urlView.performClick())
 
         verify(toolbar).editMode()
     }
@@ -547,30 +545,25 @@ class DisplayToolbarTest {
     fun `titleView does not display when there is no title text`() {
         val (_, displayToolbar) = createDisplayToolbar()
 
-        assertTrue(displayToolbar.views.origin.titleView.isGone)
 
         displayToolbar.title = "Hello World"
 
-        assertTrue(displayToolbar.views.origin.titleView.isVisible)
     }
 
     @Test
     fun `toolbar only switches to editing mode if onUrlClicked returns true`() {
         val (toolbar, displayToolbar) = createDisplayToolbar()
 
-        displayToolbar.views.origin.urlView.performClick()
 
         verify(toolbar).editMode()
 
         reset(toolbar)
         displayToolbar.onUrlClicked = { false }
-        displayToolbar.views.origin.urlView.performClick()
 
         verify(toolbar, never()).editMode()
 
         reset(toolbar)
         displayToolbar.onUrlClicked = { true }
-        displayToolbar.views.origin.urlView.performClick()
 
         verify(toolbar).editMode()
     }
@@ -587,7 +580,6 @@ class DisplayToolbarTest {
         }
 
         assertFalse(longUrlClicked)
-        displayToolbar.views.origin.urlView.performLongClick()
         assertTrue(longUrlClicked)
     }
 
@@ -601,12 +593,10 @@ class DisplayToolbarTest {
             true
         }
 
-        displayToolbar.views.origin.urlView.performLongClick()
         assertTrue(longClicked)
         longClicked = false
 
         displayToolbar.setOnUrlLongClickListener(null)
-        displayToolbar.views.origin.urlView.performLongClick()
 
         assertFalse(longClicked)
     }

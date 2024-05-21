@@ -16,7 +16,7 @@ import mozilla.components.browser.state.store.BrowserStore
 import mozilla.components.concept.toolbar.Toolbar
 import mozilla.components.concept.toolbar.Toolbar.Highlight
 import mozilla.components.concept.toolbar.Toolbar.SiteTrackingProtection
-import mozilla.components.feature.toolbar.internal.URLRenderer
+import mozilla.components.feature.toolbar.internal.URLAndTitleRenderer
 import mozilla.components.lib.state.ext.flowScoped
 
 /**
@@ -31,7 +31,7 @@ class ToolbarPresenter(
     urlRenderConfiguration: ToolbarFeature.UrlRenderConfiguration? = null,
 ) {
     @VisibleForTesting
-    internal var renderer = URLRenderer(toolbar, urlRenderConfiguration)
+    internal var renderer = URLAndTitleRenderer(toolbar, urlRenderConfiguration)
 
     private var scope: CoroutineScope? = null
 
@@ -62,7 +62,7 @@ class ToolbarPresenter(
             if (shouldDisplaySearchTerms && tab.content.searchTerms.isNotBlank()) {
                 toolbar.url = tab.content.searchTerms
             } else {
-                renderer.post(tab.content.url)
+                renderer.post(tab.content.url, tab.content.title)
             }
 
             toolbar.setSearchTerms(tab.content.searchTerms)
@@ -83,7 +83,6 @@ class ToolbarPresenter(
 
                 else -> SiteTrackingProtection.OFF_GLOBALLY
             }
-
             updateHighlight(tab)
         } else {
             clear()
@@ -101,7 +100,7 @@ class ToolbarPresenter(
 
     @VisibleForTesting(otherwise = PRIVATE)
     internal fun clear() {
-        renderer.post("")
+        renderer.post("", "")
 
         toolbar.setSearchTerms("")
         toolbar.displayProgress(0)

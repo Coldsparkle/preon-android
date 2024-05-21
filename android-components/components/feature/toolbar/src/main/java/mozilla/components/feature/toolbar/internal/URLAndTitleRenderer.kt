@@ -24,7 +24,7 @@ import mozilla.components.feature.toolbar.ToolbarFeature
  *
  * This "renderer" will create a (potentially) colored URL (using spans) in a coroutine and set it on the [Toolbar].
  */
-internal class URLRenderer(
+internal class URLAndTitleRenderer(
     private val toolbar: Toolbar,
     private val configuration: ToolbarFeature.UrlRenderConfiguration?,
 ) {
@@ -32,15 +32,16 @@ internal class URLRenderer(
 
     @VisibleForTesting internal var job: Job? = null
 
-    @VisibleForTesting internal val channel = Channel<String>(capacity = Channel.CONFLATED)
+    @VisibleForTesting internal val channel = Channel<Pair<String, String>>(capacity = Channel.CONFLATED)
 
     /**
      * Starts this renderer which will listen for incoming URLs to render.
      */
     fun start() {
         job = scope.launch {
-            for (url in channel) {
+            for ((url, title) in channel) {
                 updateUrl(url)
+                updateTitle(title, url)
             }
         }
     }
@@ -55,9 +56,9 @@ internal class URLRenderer(
     /**
      * Posts this [url] to the renderer.
      */
-    fun post(url: String) {
+    fun post(url: String, title: String) {
         try {
-            channel.trySendBlocking(url)
+            channel.trySendBlocking(url to title)
         } catch (e: InterruptedException) {
             // Ignore
         }
@@ -84,6 +85,10 @@ internal class URLRenderer(
             // Display the full URL, uncolored
             ToolbarFeature.RenderStyle.UncoloredUrl -> url
         }
+    }
+
+    internal suspend fun updateTitle(title: String, url: String) {
+        toolbar.title = if (title.isNotEmpty()) title else url
     }
 }
 

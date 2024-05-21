@@ -187,7 +187,7 @@ class DisplayToolbar internal constructor(
             views.menu.setColorFilter(value.menu)
             views.origin.hintColor = value.hint
             views.origin.titleColor = value.title
-            views.origin.textColor = value.text
+            views.origin.setTextColor(value.text)
             views.separator.setColorFilter(value.separator)
             views.pageActionSeparator.setBackgroundColor(value.pageActionSeparator)
 
@@ -351,9 +351,9 @@ class DisplayToolbar internal constructor(
      * Sets the text to be displayed when the URL of the toolbar is empty.
      */
     var hint: String
-        get() = views.origin.hint
+        get() = views.origin.hintString
         set(value) {
-            views.origin.hint = value
+            views.origin.hintString = value
         }
 
     /**
