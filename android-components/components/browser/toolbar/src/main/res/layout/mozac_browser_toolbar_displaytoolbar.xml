@@ -7,7 +7,6 @@
     xmlns:mozac="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:paddingHorizontal="@dimen/mozac_browser_toolbar_padding_horizontal"
     android:layout_height="56dp"
     android:orientation="vertical">
 
@@ -18,7 +17,9 @@
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginTop="4dp"
+        android:layout_marginHorizontal="@dimen/mozac_browser_toolbar_padding_horizontal"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/mozac_browser_toolbar_background"
         app:layout_constraintTop_toTopOf="parent"
         mozac:actionContainerItemSize="48dp"
         tools:layout_width="48dp" />
@@ -145,6 +146,8 @@
         android:layout_width="36dp"
         android:layout_height="48dp"
         android:layout_marginTop="4dp"
+        android:layout_marginHorizontal="@dimen/mozac_browser_toolbar_padding_horizontal"
+        app:layout_constraintStart_toEndOf="@id/mozac_browser_toolbar_background"
         android:background="?android:attr/selectableItemBackgroundBorderless"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -7,6 +7,7 @@ package mozilla.components.browser.toolbar.display
 import android.animation.LayoutTransition
 import android.content.Context
 import android.graphics.Typeface
+import android.text.TextUtils
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.Gravity
@@ -48,6 +49,7 @@ internal class OriginView @JvmOverloads constructor(
         gravity = Gravity.CENTER_VERTICAL
 
         setSingleLine()
+        ellipsize = TextUtils.TruncateAt.END
         isClickable = true
         isFocusable = true
 
@@ -74,9 +76,10 @@ internal class OriginView @JvmOverloads constructor(
             TypedValue.COMPLEX_UNIT_PX,
             textSizeTitle,
         )
-        gravity = Gravity.CENTER_VERTICAL
+        gravity = Gravity.CENTER
 
         setSingleLine()
+        ellipsize = TextUtils.TruncateAt.END
 
         val fadingEdgeSize = resources.getDimensionPixelSize(
             R.dimen.mozac_browser_toolbar_url_fading_edge_size,
