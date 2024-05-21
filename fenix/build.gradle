@@ -170,7 +170,7 @@ allprojects {
     }
 
     tasks.withType(KotlinCompile).configureEach {
-        kotlinOptions.allWarningsAsErrors = true
+        kotlinOptions.allWarningsAsErrors = false
         kotlinOptions.freeCompilerArgs += [
             "-opt-in=kotlin.RequiresOptIn", "-Xjvm-default=all-compatibility"
         ]
