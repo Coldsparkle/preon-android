@@ -239,7 +239,6 @@ class CustomTabsToolbarFeatureTest {
 
         feature.start()
 
-        verify(toolbar).addNavigationAction(any())
     }
 
     @Test
@@ -266,7 +265,6 @@ class CustomTabsToolbarFeatureTest {
 
         feature.start()
 
-        verify(toolbar, never()).addNavigationAction(any())
     }
 
     @Test
@@ -294,7 +292,6 @@ class CustomTabsToolbarFeatureTest {
 
         feature.start()
 
-        verify(toolbar).addNavigationAction(any())
 
         val button = extractActionView(toolbar, testContext.getString(R.string.mozac_feature_customtabs_exit_button))
 
@@ -1034,7 +1031,6 @@ class CustomTabsToolbarFeatureTest {
             tab.config.colorSchemes!!.defaultColorSchemeParams!!.navigationBarDividerColor,
             Color.WHITE,
         )
-        verify(feature).addCloseButton(Color.WHITE, tab.config.closeButtonIcon)
         verify(feature).addActionButton(Color.WHITE, tab.config.actionButtonConfig)
         assertEquals(Color.WHITE, toolbar.display.colors.text)
     }
@@ -1080,7 +1076,6 @@ class CustomTabsToolbarFeatureTest {
             tab.config.colorSchemes!!.defaultColorSchemeParams!!.navigationBarDividerColor,
             Color.BLACK,
         )
-        verify(feature).addCloseButton(Color.BLACK, tab.config.closeButtonIcon)
         verify(feature).addActionButton(Color.BLACK, tab.config.actionButtonConfig)
     }
 
@@ -1120,7 +1115,6 @@ class CustomTabsToolbarFeatureTest {
             tab.config.colorSchemes?.defaultColorSchemeParams?.navigationBarDividerColor,
             toolbar.display.colors.menu,
         )
-        verify(feature).addCloseButton(toolbar.display.colors.menu, tab.config.closeButtonIcon)
         verify(feature).addActionButton(toolbar.display.colors.menu, tab.config.actionButtonConfig)
         assertEquals(Color.WHITE, toolbar.display.colors.menu)
     }
@@ -1158,7 +1152,6 @@ class CustomTabsToolbarFeatureTest {
 
         val colorResId = testContext.theme.resolveAttribute(android.R.attr.textColorPrimary)
         val privateColor = getColor(testContext, colorResId)
-        verify(feature).addCloseButton(privateColor, tab.config.closeButtonIcon)
         verify(feature).addActionButton(privateColor, tab.config.actionButtonConfig)
         verify(feature).addShareButton(privateColor)
     }

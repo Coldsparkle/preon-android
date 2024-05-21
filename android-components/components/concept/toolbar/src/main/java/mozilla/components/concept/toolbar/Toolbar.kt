@@ -132,14 +132,6 @@ interface Toolbar {
     fun removePageAction(action: Action)
 
     /**
-     * Removes a previously added navigation action (see [addNavigationAction]). If the the provided
-     * actions was never added, this method has no effect.
-     *
-     * @param action the action to remove.
-     */
-    fun removeNavigationAction(action: Action)
-
-    /**
      * Declare that the actions (navigation actions, browser actions, page actions) have changed and
      * should be updated if needed.
      */
@@ -152,11 +144,6 @@ interface Toolbar {
      * https://developer.mozilla.org/en-US/Add-ons/WebExtensions/user_interface/Page_actions
      */
     fun addPageAction(action: Action)
-
-    /**
-     * Adds an action to be displayed on the far left side of the URL in display mode.
-     */
-    fun addNavigationAction(action: Action)
 
     /**
      * Adds an action to be displayed at the start of the URL in edit mode.

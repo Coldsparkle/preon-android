@@ -329,12 +329,10 @@ class BrowserFragmentTest {
         browserFragment._browserToolbarView = null
         browserFragment.onConfigurationChanged(mockk(relaxed = true))
         verify(exactly = 0) { browserFragment.onUpdateToolbarForConfigurationChange(any()) }
-        verify(exactly = 0) { browserFragment.updateToolbarActions(any()) }
 
         browserFragment._browserToolbarView = browserToolbarView
         browserFragment.onConfigurationChanged(mockk(relaxed = true))
         verify(exactly = 1) { browserFragment.onUpdateToolbarForConfigurationChange(any()) }
-        verify(exactly = 1) { browserFragment.updateToolbarActions(any()) }
     }
 
     @Test
@@ -363,11 +361,9 @@ class BrowserFragmentTest {
 
         every { browserFragment.resources.getBoolean(R.bool.tablet) } returns true
         browserFragment.onConfigurationChanged(mockk(relaxed = true))
-        verify(exactly = 3) { browserToolbar.addNavigationAction(any()) }
 
         every { browserFragment.resources.getBoolean(R.bool.tablet) } returns false
         browserFragment.onConfigurationChanged(mockk(relaxed = true))
-        verify(exactly = 3) { browserToolbar.removeNavigationAction(any()) }
 
         unmockkObject(ThemeManager.Companion)
         unmockkStatic(AppCompatResources::class)
@@ -388,10 +384,8 @@ class BrowserFragmentTest {
 
         every { browserFragment.resources.getBoolean(R.bool.tablet) } returns true
         browserFragment.onConfigurationChanged(mockk(relaxed = true))
-        verify(exactly = 3) { browserToolbar.addNavigationAction(any()) }
 
         browserFragment.onConfigurationChanged(mockk(relaxed = true))
-        verify(exactly = 3) { browserToolbar.addNavigationAction(any()) }
 
         unmockkObject(ThemeManager.Companion)
         unmockkStatic(AppCompatResources::class)
@@ -412,12 +406,8 @@ class BrowserFragmentTest {
 
         every { browserFragment.resources.getBoolean(R.bool.tablet) } returns false
         browserFragment.onConfigurationChanged(mockk(relaxed = true))
-        verify(exactly = 0) { browserToolbar.addNavigationAction(any()) }
-        verify(exactly = 0) { browserToolbar.removeNavigationAction(any()) }
 
         browserFragment.onConfigurationChanged(mockk(relaxed = true))
-        verify(exactly = 0) { browserToolbar.addNavigationAction(any()) }
-        verify(exactly = 0) { browserToolbar.removeNavigationAction(any()) }
 
         unmockkObject(ThemeManager.Companion)
         unmockkStatic(AppCompatResources::class)

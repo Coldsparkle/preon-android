@@ -171,11 +171,6 @@ class CustomTabsToolbarFeature(
             }
         }
 
-        // Add navigation close action
-        if (config.showCloseButton) {
-            addCloseButton(readableColor, config.closeButtonIcon)
-        }
-
         // Add action button
         addActionButton(readableColor, config.actionButtonConfig)
 
@@ -219,30 +214,6 @@ class CustomTabsToolbarFeature(
         if (navigationBarColor != null || navigationBarDividerColor != null) {
             window?.setNavigationBarTheme(navigationBarColor, navigationBarDividerColor)
         }
-    }
-
-    /**
-     * Display a close button at the start of the toolbar.
-     * When clicked, it calls [closeListener].
-     */
-    @VisibleForTesting
-    internal fun addCloseButton(@ColorInt readableColor: Int, bitmap: Bitmap?) {
-        val drawableIcon = bitmap?.toDrawable(context.resources)
-            ?: getDrawable(context, iconsR.drawable.mozac_ic_cross_24)!!.mutate()
-
-        drawableIcon.setTint(readableColor)
-
-        val button = Toolbar.ActionButton(
-            drawableIcon,
-            context.getString(R.string.mozac_feature_customtabs_exit_button),
-        ) {
-            emitCloseFact()
-            session?.let {
-                useCases.remove(it.id)
-            }
-            closeListener.invoke()
-        }
-        toolbar.addNavigationAction(button)
     }
 
     /**

@@ -297,24 +297,6 @@ class BrowserToolbar @JvmOverloads constructor(
     }
 
     /**
-     * Adds an action to be display on the far left side of the toolbar. This area is usually used
-     * on larger devices for navigation actions like "back" and "forward".
-     */
-    override fun addNavigationAction(action: Toolbar.Action) {
-        display.addNavigationAction(action)
-    }
-
-    /**
-     * Removes a previously added navigation action (see [addNavigationAction]). If the provided
-     * action was never added, this method has no effect.
-     *
-     * @param action the action to remove.
-     */
-    override fun removeNavigationAction(action: Toolbar.Action) {
-        display.removeNavigationAction(action)
-    }
-
-    /**
      * Adds an action to be displayed at the start of the URL in edit mode.
      */
     override fun addEditActionStart(action: Toolbar.Action) {

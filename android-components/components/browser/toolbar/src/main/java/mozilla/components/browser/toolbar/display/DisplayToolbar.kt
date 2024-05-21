@@ -147,7 +147,6 @@ class DisplayToolbar internal constructor(
     internal val views = DisplayToolbarViews(
         browserActions = rootView.findViewById(R.id.mozac_browser_toolbar_browser_actions),
         pageActions = rootView.findViewById(R.id.mozac_browser_toolbar_page_actions),
-        navigationActions = rootView.findViewById(R.id.mozac_browser_toolbar_navigation_actions),
         background = rootView.findViewById(R.id.mozac_browser_toolbar_background),
         separator = rootView.findViewById(R.id.mozac_browser_toolbar_separator),
         pageActionSeparator = rootView.findViewById(R.id.mozac_browser_toolbar_action_separator),
@@ -589,7 +588,6 @@ class DisplayToolbar internal constructor(
 
         views.browserActions.invalidateActions()
         views.pageActions.invalidateActions()
-        views.navigationActions.invalidateActions()
     }
 
     /**
@@ -637,24 +635,6 @@ class DisplayToolbar internal constructor(
     }
 
     /**
-     * Adds an action to be display on the far left side of the toolbar. This area is usually used
-     * on larger devices for navigation actions like "back" and "forward".
-     */
-    internal fun addNavigationAction(action: Toolbar.Action) {
-        views.navigationActions.addAction(action)
-    }
-
-    /**
-     * Removes a previously added navigation action (see [addNavigationAction]). If the provided
-     * action was never added, this method has no effect.
-     *
-     * @param action the action to remove.
-     */
-    internal fun removeNavigationAction(action: Toolbar.Action) {
-        views.navigationActions.removeAction(action)
-    }
-
-    /**
      * Hides the menu button in display mode.
      */
     fun hideMenuButton() {
@@ -690,7 +670,6 @@ class DisplayToolbar internal constructor(
 internal class DisplayToolbarViews(
     val browserActions: ActionContainer,
     val pageActions: ActionContainer,
-    val navigationActions: ActionContainer,
     val background: ImageView,
     val separator: ImageView,
     val pageActionSeparator: View,

@@ -348,13 +348,6 @@ class DisplayToolbarTest {
 
         val action = BrowserToolbar.Button(mock(), contentDescription) {}
         // Removing action which was never added has no effect
-        displayToolbar.removeNavigationAction(action)
-
-        displayToolbar.addNavigationAction(action)
-        assertEquals(1, displayToolbar.views.navigationActions.childCount)
-
-        displayToolbar.removeNavigationAction(action)
-        assertEquals(0, displayToolbar.views.navigationActions.childCount)
     }
 
     @Test
@@ -414,12 +407,8 @@ class DisplayToolbarTest {
     fun `navigation actions will be added as view to the toolbar`() {
         val (_, displayToolbar) = createDisplayToolbar()
 
-        assertEquals(0, displayToolbar.views.navigationActions.childCount)
 
-        displayToolbar.addNavigationAction(BrowserToolbar.Button(mock(), "Back") {})
-        displayToolbar.addNavigationAction(BrowserToolbar.Button(mock(), "Forward") {})
 
-        assertEquals(2, displayToolbar.views.navigationActions.childCount)
     }
 
     @Test
@@ -431,13 +420,9 @@ class DisplayToolbarTest {
             listenerExecuted = true
         }
 
-        displayToolbar.addNavigationAction(action)
 
         assertFalse(listenerExecuted)
 
-        assertEquals(1, displayToolbar.views.navigationActions.childCount)
-        val view = displayToolbar.views.navigationActions.getChildAt(0)
-        view.performClick()
 
         assertTrue(listenerExecuted)
     }
@@ -454,19 +439,15 @@ class DisplayToolbarTest {
             visible = { shouldActionBeDisplayed },
         ) { /* Do nothing */ }
 
-        displayToolbar.addNavigationAction(action)
 
-        assertEquals(1, displayToolbar.views.navigationActions.childCount)
 
         shouldActionBeDisplayed = false
         displayToolbar.invalidateActions()
 
-        assertEquals(0, displayToolbar.views.navigationActions.childCount)
 
         shouldActionBeDisplayed = true
         displayToolbar.invalidateActions()
 
-        assertEquals(1, displayToolbar.views.navigationActions.childCount)
     }
 
     @Test
@@ -538,13 +519,8 @@ class DisplayToolbarTest {
             visible = { false },
         ) {}
 
-        displayToolbar.addNavigationAction(visibleAction)
-        displayToolbar.addNavigationAction(invisibleAction)
 
-        assertEquals(1, displayToolbar.views.navigationActions.childCount)
 
-        val view = displayToolbar.views.navigationActions.getChildAt(0)
-        assertEquals("Forward", view.contentDescription)
     }
 
     @Test

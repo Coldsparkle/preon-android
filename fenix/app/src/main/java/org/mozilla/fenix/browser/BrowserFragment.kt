@@ -84,11 +84,6 @@ class BrowserFragment : BaseBrowserFragment(), UserInteractionHandler {
 
     private var pwaOnboardingObserver: PwaOnboardingObserver? = null
 
-    private var forwardAction: BrowserToolbar.TwoStateButton? = null
-    private var backAction: BrowserToolbar.TwoStateButton? = null
-    private var refreshAction: BrowserToolbar.TwoStateButton? = null
-    private var isTablet: Boolean = false
-
     @Suppress("LongMethod")
     override fun initializeUI(view: View, tab: SessionState) {
         super.initializeUI(view, tab)
@@ -115,36 +110,6 @@ class BrowserFragment : BaseBrowserFragment(), UserInteractionHandler {
                 ),
             )
         }
-
-        val isPrivate = (activity as HomeActivity).browsingModeManager.mode.isPrivate
-
-        if (!IncompleteRedesignToolbarFeature(context.settings()).isEnabled) {
-            val leadingAction = if (isPrivate && context.settings().feltPrivateBrowsingEnabled) {
-                BrowserToolbar.Button(
-                    imageDrawable = AppCompatResources.getDrawable(
-                        context,
-                        R.drawable.mozac_ic_data_clearance_24,
-                    )!!,
-                    contentDescription = context.getString(R.string.browser_toolbar_erase),
-                    iconTintColorResource = ThemeManager.resolveAttribute(R.attr.textPrimary, context),
-                    listener = browserToolbarInteractor::onEraseButtonClicked,
-                )
-            } else {
-                BrowserToolbar.Button(
-                    imageDrawable = AppCompatResources.getDrawable(
-                        context,
-                        R.drawable.mozac_ic_home_24,
-                    )!!,
-                    contentDescription = context.getString(R.string.browser_toolbar_home),
-                    iconTintColorResource = ThemeManager.resolveAttribute(R.attr.textPrimary, context),
-                    listener = browserToolbarInteractor::onHomeButtonClicked,
-                )
-            }
-
-            browserToolbarView.view.addNavigationAction(leadingAction)
-        }
-
-        updateToolbarActions(isTablet = resources.getBoolean(R.bool.tablet))
 
         val readerModeAction =
             BrowserToolbar.ToggleButton(
@@ -173,7 +138,6 @@ class BrowserFragment : BaseBrowserFragment(), UserInteractionHandler {
         initTranslationsAction(context, view)
         initSharePageAction(context)
         initReviewQualityCheck(context, view)
-        initReloadAction(context)
 
         thumbnailsFeature.set(
             feature = BrowserThumbnails(context, binding.engineView, components.core.store),
@@ -370,48 +334,6 @@ class BrowserFragment : BaseBrowserFragment(), UserInteractionHandler {
         }
     }
 
-    private fun initReloadAction(context: Context) {
-        if (!IncompleteRedesignToolbarFeature(context.settings()).isEnabled || refreshAction != null) {
-            return
-        }
-
-        refreshAction =
-            BrowserToolbar.TwoStateButton(
-                primaryImage = AppCompatResources.getDrawable(
-                    context,
-                    R.drawable.mozac_ic_arrow_clockwise_24,
-                )!!,
-                primaryContentDescription = context.getString(R.string.browser_menu_refresh),
-                primaryImageTintResource = ThemeManager.resolveAttribute(R.attr.textPrimary, context),
-                isInPrimaryState = {
-                    getCurrentTab()?.content?.loading == false
-                },
-                secondaryImage = AppCompatResources.getDrawable(
-                    context,
-                    R.drawable.mozac_ic_stop,
-                )!!,
-                secondaryContentDescription = context.getString(R.string.browser_menu_stop),
-                disableInSecondaryState = false,
-                longClickListener = {
-                    browserToolbarInteractor.onBrowserToolbarMenuItemTapped(
-                        ToolbarMenu.Item.Reload(bypassCache = true),
-                    )
-                },
-                listener = {
-                    if (getCurrentTab()?.content?.loading == true) {
-                        browserToolbarInteractor.onBrowserToolbarMenuItemTapped(ToolbarMenu.Item.Stop)
-                    } else {
-                        browserToolbarInteractor.onBrowserToolbarMenuItemTapped(
-                            ToolbarMenu.Item.Reload(bypassCache = false),
-                        )
-                    }
-                },
-            )
-
-        refreshAction?.let {
-            browserToolbarView.view.addPageAction(it)
-        }
-    }
 
     private fun initReviewQualityCheck(context: Context, view: View) {
         val reviewQualityCheck =
@@ -468,141 +390,6 @@ class BrowserFragment : BaseBrowserFragment(), UserInteractionHandler {
         )
     }
 
-    override fun onUpdateToolbarForConfigurationChange(toolbar: BrowserToolbarView) {
-        super.onUpdateToolbarForConfigurationChange(toolbar)
-
-        updateToolbarActions(isTablet = resources.getBoolean(R.bool.tablet))
-    }
-
-    @VisibleForTesting
-    internal fun updateToolbarActions(isTablet: Boolean) {
-        if (isTablet == this.isTablet) return
-
-        if (isTablet) {
-            addTabletActions(requireContext())
-        } else {
-            removeTabletActions()
-        }
-
-        this.isTablet = isTablet
-    }
-
-    @Suppress("LongMethod")
-    private fun addTabletActions(context: Context) {
-        val enableTint = ThemeManager.resolveAttribute(R.attr.textPrimary, context)
-        val disableTint = ThemeManager.resolveAttribute(R.attr.textDisabled, context)
-
-        if (backAction == null) {
-            backAction = BrowserToolbar.TwoStateButton(
-                primaryImage = AppCompatResources.getDrawable(
-                    context,
-                    R.drawable.mozac_ic_back_24,
-                )!!,
-                primaryContentDescription = context.getString(R.string.browser_menu_back),
-                primaryImageTintResource = enableTint,
-                isInPrimaryState = { getCurrentTab()?.content?.canGoBack ?: false },
-                secondaryImageTintResource = disableTint,
-                disableInSecondaryState = true,
-                longClickListener = {
-                    browserToolbarInteractor.onBrowserToolbarMenuItemTapped(
-                        ToolbarMenu.Item.Back(viewHistory = true),
-                    )
-                },
-                listener = {
-                    browserToolbarInteractor.onBrowserToolbarMenuItemTapped(
-                        ToolbarMenu.Item.Back(viewHistory = false),
-                    )
-                },
-            )
-        }
-
-        backAction?.let {
-            browserToolbarView.view.addNavigationAction(it)
-        }
-
-        if (forwardAction == null) {
-            forwardAction = BrowserToolbar.TwoStateButton(
-                primaryImage = AppCompatResources.getDrawable(
-                    context,
-                    R.drawable.mozac_ic_forward_24,
-                )!!,
-                primaryContentDescription = context.getString(R.string.browser_menu_forward),
-                primaryImageTintResource = enableTint,
-                isInPrimaryState = { getCurrentTab()?.content?.canGoForward ?: false },
-                secondaryImageTintResource = disableTint,
-                disableInSecondaryState = true,
-                longClickListener = {
-                    browserToolbarInteractor.onBrowserToolbarMenuItemTapped(
-                        ToolbarMenu.Item.Forward(viewHistory = true),
-                    )
-                },
-                listener = {
-                    browserToolbarInteractor.onBrowserToolbarMenuItemTapped(
-                        ToolbarMenu.Item.Forward(viewHistory = false),
-                    )
-                },
-            )
-        }
-
-        forwardAction?.let {
-            browserToolbarView.view.addNavigationAction(it)
-        }
-
-        if (refreshAction == null) {
-            refreshAction = BrowserToolbar.TwoStateButton(
-                primaryImage = AppCompatResources.getDrawable(
-                    context,
-                    R.drawable.mozac_ic_arrow_clockwise_24,
-                )!!,
-                primaryContentDescription = context.getString(R.string.browser_menu_refresh),
-                primaryImageTintResource = enableTint,
-                isInPrimaryState = {
-                    getCurrentTab()?.content?.loading == false
-                },
-                secondaryImage = AppCompatResources.getDrawable(
-                    context,
-                    R.drawable.mozac_ic_stop,
-                )!!,
-                secondaryContentDescription = context.getString(R.string.browser_menu_stop),
-                disableInSecondaryState = false,
-                longClickListener = {
-                    browserToolbarInteractor.onBrowserToolbarMenuItemTapped(
-                        ToolbarMenu.Item.Reload(bypassCache = true),
-                    )
-                },
-                listener = {
-                    if (getCurrentTab()?.content?.loading == true) {
-                        browserToolbarInteractor.onBrowserToolbarMenuItemTapped(ToolbarMenu.Item.Stop)
-                    } else {
-                        browserToolbarInteractor.onBrowserToolbarMenuItemTapped(
-                            ToolbarMenu.Item.Reload(bypassCache = false),
-                        )
-                    }
-                },
-            )
-        }
-
-        refreshAction?.let {
-            browserToolbarView.view.addNavigationAction(it)
-        }
-
-        browserToolbarView.view.invalidateActions()
-    }
-
-    private fun removeTabletActions() {
-        forwardAction?.let {
-            browserToolbarView.view.removeNavigationAction(it)
-        }
-        backAction?.let {
-            browserToolbarView.view.removeNavigationAction(it)
-        }
-        refreshAction?.let {
-            browserToolbarView.view.removeNavigationAction(it)
-        }
-
-        browserToolbarView.view.invalidateActions()
-    }
-
     override fun onStart() {
         super.onStart()
         val context = requireContext()
@@ -629,11 +416,6 @@ class BrowserFragment : BaseBrowserFragment(), UserInteractionHandler {
         updateLastBrowseActivity()
         updateHistoryMetadata()
         pwaOnboardingObserver?.stop()
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        isTablet = false
     }
 
     private fun updateHistoryMetadata() {

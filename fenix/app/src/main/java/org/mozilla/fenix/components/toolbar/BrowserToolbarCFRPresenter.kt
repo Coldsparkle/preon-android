@@ -241,7 +241,7 @@ class BrowserToolbarCFRPresenter(
     internal fun showEraseCfr() {
         CFRPopup(
             anchor = toolbar.findViewById(
-                R.id.mozac_browser_toolbar_navigation_actions,
+                R.id.mozac_browser_toolbar_menu,
             ),
             properties = CFRPopupProperties(
                 popupAlignment = INDICATOR_CENTERED_IN_ANCHOR,
