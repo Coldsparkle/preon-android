@@ -699,7 +699,6 @@
     <string name="preference_gestures_website_pull_to_refresh">تازہ کرݨ کیتے چھِکو</string>
 
     <!-- Preference for using the dynamic toolbar -->
-    <string name="preference_gestures_dynamic_toolbar">ٹول بار لُکاوݨ کیتے سکرول کرو</string>
 
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
     <string name="preference_gestures_swipe_toolbar_switch_tabs">ٹیباں تبدیل کرݨ کیتے ٹول بار تے پاسے ول انگل پھیرو</string>

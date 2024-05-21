@@ -816,7 +816,6 @@
     <!-- Preferences for using pull to refresh in a webpage -->
     <string name="preference_gestures_website_pull_to_refresh">向下滑動即可重新整理</string>
     <!-- Preference for using the dynamic toolbar -->
-    <string name="preference_gestures_dynamic_toolbar">滾動畫面即可隱藏工具列</string>
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
     <string name="preference_gestures_swipe_toolbar_switch_tabs">橫向滑動工具列來切換分頁</string>
     <!-- Preference for showing the opened tabs by swiping up on the toolbar-->
@@ -1692,10 +1691,10 @@
     <string name="browser_toolbar_long_press_popup_paste_and_go">貼上並瀏覽</string>
     <!-- Paste the text in the clipboard -->
     <string name="browser_toolbar_long_press_popup_paste">貼上</string>
-  
+
     <!-- Snackbar message shown after an URL has been copied to clipboard. -->
     <string name="browser_toolbar_url_copied_to_clipboard_snackbar">已將網址複製至剪貼簿</string>
-  
+
     <!-- Title text for the Add To Homescreen dialog -->
     <string name="add_to_homescreen_title">新增至裝置主畫面</string>
     <!-- Cancel button text for the Add to Homescreen dialog -->

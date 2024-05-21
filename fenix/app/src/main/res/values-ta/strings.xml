@@ -357,7 +357,6 @@
     <!-- Preferences for using pull to refresh in a webpage -->
     <string name="preference_gestures_website_pull_to_refresh">புதுப்பிக்க இழுங்கள்</string>
     <!-- Preference for using the dynamic toolbar -->
-    <string name="preference_gestures_dynamic_toolbar">கருவிப்பட்டியை மறைக்க உருட்டுங்கள்</string>
 
     <!-- Library -->
     <!-- Option in Library to open Downloads page -->

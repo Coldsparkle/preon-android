@@ -74,7 +74,6 @@ class CrashContentIntegrationTest {
         browserStore.waitUntilIdle()
 
         verify {
-            toolbar.expand()
             crashReporterLayoutParams.topMargin = 33
             crashReporterView.show(capture(controllerCaptor))
         }

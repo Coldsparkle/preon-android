@@ -55,8 +55,6 @@ class CrashContentIntegration(
             .distinctUntilChangedBy { tab -> tab.engineState.crashed }
             .collect { tab ->
                 if (tab.engineState.crashed) {
-                    toolbar.expand()
-
                     crashReporterView.apply {
                         val controller = CrashReporterController(
                             sessionId = tab.id,

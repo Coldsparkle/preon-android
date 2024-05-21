@@ -824,7 +824,6 @@
     <!-- Preferences for using pull to refresh in a webpage -->
     <string name="preference_gestures_website_pull_to_refresh">Tirar pro actualisar</string>
     <!-- Preference for using the dynamic toolbar -->
-    <string name="preference_gestures_dynamic_toolbar">Rolar pro celar le barra de instrumentos</string>
 
 
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->

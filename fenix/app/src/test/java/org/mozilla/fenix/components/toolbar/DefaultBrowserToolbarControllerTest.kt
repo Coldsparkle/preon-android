@@ -342,7 +342,6 @@ class DefaultBrowserToolbarControllerTest {
     @Test
     fun `handleScroll for dynamic toolbars`() {
         val controller = createController()
-        every { activity.settings().isDynamicToolbarEnabled } returns true
 
         controller.handleScroll(10)
         verify { engineView.setVerticalClipping(10) }
@@ -351,7 +350,6 @@ class DefaultBrowserToolbarControllerTest {
     @Test
     fun `handleScroll for static toolbars`() {
         val controller = createController()
-        every { activity.settings().isDynamicToolbarEnabled } returns false
 
         controller.handleScroll(10)
         verify(exactly = 0) { engineView.setVerticalClipping(10) }

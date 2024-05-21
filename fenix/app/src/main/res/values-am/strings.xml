@@ -784,7 +784,6 @@
     <!-- Preferences for using pull to refresh in a webpage -->
     <string name="preference_gestures_website_pull_to_refresh">ለማደስ ይጎትቱ</string>
     <!-- Preference for using the dynamic toolbar -->
-    <string name="preference_gestures_dynamic_toolbar">የመሳሪያ አሞሌን ለመደበቅ ያሸብልሉ</string>
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
     <string name="preference_gestures_swipe_toolbar_switch_tabs">ትሮችን ለመቀየር የመሳሪያ አሞሌን ወደ ጎን ያንሸራትቱ</string>
     <!-- Preference for showing the opened tabs by swiping up on the toolbar-->

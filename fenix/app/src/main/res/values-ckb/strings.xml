@@ -410,7 +410,6 @@
     <!-- Preferences for using pull to refresh in a webpage -->
     <string name="preference_gestures_website_pull_to_refresh">بیخزێنە بۆ نوێکردنەوە</string>
     <!-- Preference for using the dynamic toolbar -->
-    <string name="preference_gestures_dynamic_toolbar">بیخزێنە بۆ شاردنەوەی توڵامراز</string>
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
     <string name="preference_gestures_swipe_toolbar_switch_tabs">توڵامراز ببە بۆ لاکان بۆ گۆڕین لە نێوان بازدەرەکان</string>
 

@@ -80,7 +80,6 @@ class BaseBrowserFragmentTest {
     @Test
     fun `initializeEngineView should setDynamicToolbarMaxHeight to toolbar height if dynamic toolbar is enabled`() {
         every { settings.shouldUseFixedTopToolbar } returns false
-        every { settings.isDynamicToolbarEnabled } returns true
 
         fragment.initializeEngineView(
             topToolbarHeight = 13,
@@ -93,7 +92,6 @@ class BaseBrowserFragmentTest {
     @Test
     fun `initializeEngineView should setDynamicToolbarMaxHeight to 0 if dynamic toolbar is disabled`() {
         every { settings.shouldUseFixedTopToolbar } returns false
-        every { settings.isDynamicToolbarEnabled } returns false
 
         fragment.initializeEngineView(
             topToolbarHeight = 13,
@@ -106,7 +104,6 @@ class BaseBrowserFragmentTest {
     @Test
     fun `initializeEngineView should set EngineViewClippingBehavior when dynamic toolbar is enabled`() {
         every { settings.shouldUseFixedTopToolbar } returns false
-        every { settings.isDynamicToolbarEnabled } returns true
         every { settings.enableIncompleteToolbarRedesign } returns true
         val params: CoordinatorLayout.LayoutParams = mockk(relaxed = true)
         every { params.behavior } returns mockk(relaxed = true)
@@ -125,7 +122,6 @@ class BaseBrowserFragmentTest {
 
     @Test
     fun `initializeEngineView should set toolbar height as EngineView parent's bottom margin when using bottom toolbar`() {
-        every { settings.isDynamicToolbarEnabled } returns false
         every { settings.shouldUseBottomToolbar } returns true
 
         fragment.initializeEngineView(
@@ -228,7 +224,6 @@ class BaseBrowserFragmentTest {
     @Test
     fun `WHEN initializeEngineView is called  THEN setDynamicToolbarMaxHeight sets max height to the engine view as a sum of two toolbars heights`() {
         every { settings.shouldUseFixedTopToolbar } returns false
-        every { settings.isDynamicToolbarEnabled } returns true
 
         fragment.initializeEngineView(
             topToolbarHeight = 13,

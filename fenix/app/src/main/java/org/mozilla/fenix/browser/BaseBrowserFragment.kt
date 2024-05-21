@@ -480,7 +480,7 @@ abstract class BaseBrowserFragment :
             }
 
             val shouldHideOnScroll =
-                !context.settings().shouldUseFixedTopToolbar && context.settings().isDynamicToolbarEnabled
+                !context.settings().shouldUseFixedTopToolbar
             _bottomToolbarContainerView = BottomToolbarContainerView(
                 context = context,
                 parent = binding.browserLayout,
@@ -573,7 +573,7 @@ abstract class BaseBrowserFragment :
                 engineView = binding.engineView,
                 toolbarInfo = FindInPageIntegration.ToolbarInfo(
                     browserToolbarView.view,
-                    !context.settings().shouldUseFixedTopToolbar && context.settings().isDynamicToolbarEnabled,
+                    false,
                     context.settings().toolbarPosition == ToolbarPosition.TOP,
                 ),
             ),
@@ -1269,7 +1269,7 @@ abstract class BaseBrowserFragment :
     ) {
         val context = requireContext()
 
-        if (!context.settings().shouldUseFixedTopToolbar && context.settings().isDynamicToolbarEnabled) {
+        if (!context.settings().shouldUseFixedTopToolbar) {
             getEngineView().setDynamicToolbarMaxHeight(topToolbarHeight + bottomToolbarHeight)
 
             if (IncompleteRedesignToolbarFeature(context.settings()).isEnabled) {

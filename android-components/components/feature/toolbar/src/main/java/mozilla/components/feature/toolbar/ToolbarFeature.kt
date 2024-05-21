@@ -40,19 +40,11 @@ class ToolbarFeature(
         urlRenderConfiguration,
     )
 
-    @VisibleForTesting
-    internal var interactor = ToolbarInteractor(toolbar, loadUrlUseCase, searchUseCase)
-
-    @VisibleForTesting
-    internal var controller = ToolbarBehaviorController(toolbar, store, customTabId)
-
     /**
      * Start feature: App is in the foreground.
      */
     override fun start() {
-        interactor.start()
         presenter.start()
-        controller.start()
     }
 
     /**
@@ -67,7 +59,6 @@ class ToolbarFeature(
      */
     override fun stop() {
         presenter.stop()
-        controller.stop()
         toolbar.onStop()
     }
 

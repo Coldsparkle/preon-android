@@ -805,7 +805,6 @@
     <!-- Preferences for using pull to refresh in a webpage -->
     <string name="preference_gestures_website_pull_to_refresh">Tërhiqeni, që të rifreskohet</string>
     <!-- Preference for using the dynamic toolbar -->
-    <string name="preference_gestures_dynamic_toolbar">Rrëshqiteni, që të fshihet paneli</string>
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
     <string name="preference_gestures_swipe_toolbar_switch_tabs">Fërkojeni panelin anash, që të këmbeni skeda</string>
     <!-- Preference for showing the opened tabs by swiping up on the toolbar-->

@@ -807,7 +807,6 @@
     <string name="preference_gestures_website_pull_to_refresh">Пацягнуць, каб абнавіць</string>
 
     <!-- Preference for using the dynamic toolbar -->
-    <string name="preference_gestures_dynamic_toolbar">Пракруціць, каб схаваць панэль інструментаў</string>
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
     <string name="preference_gestures_swipe_toolbar_switch_tabs">Пасунуць убок панэль інструментаў, каб пераключыць карткі</string>
 

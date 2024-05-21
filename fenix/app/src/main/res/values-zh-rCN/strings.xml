@@ -826,7 +826,6 @@
     <!-- Preferences for using pull to refresh in a webpage -->
     <string name="preference_gestures_website_pull_to_refresh">下拉刷新</string>
     <!-- Preference for using the dynamic toolbar -->
-    <string name="preference_gestures_dynamic_toolbar">滚动时隐藏工具栏</string>
 
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
     <string name="preference_gestures_swipe_toolbar_switch_tabs">横向滑动工具栏切换标签页</string>
@@ -1707,10 +1706,10 @@
     <string name="browser_toolbar_long_press_popup_paste_and_go">粘贴并前往</string>
     <!-- Paste the text in the clipboard -->
     <string name="browser_toolbar_long_press_popup_paste">粘贴</string>
-  
+
     <!-- Snackbar message shown after an URL has been copied to clipboard. -->
     <string name="browser_toolbar_url_copied_to_clipboard_snackbar">网址已复制到剪贴板</string>
-  
+
     <!-- Title text for the Add To Homescreen dialog -->
     <string name="add_to_homescreen_title">添加到主屏幕</string>
     <!-- Cancel button text for the Add to Homescreen dialog -->

@@ -819,7 +819,6 @@
     <!-- Preferences for using pull to refresh in a webpage -->
     <string name="preference_gestures_website_pull_to_refresh">Potiahnutím obnoviť</string>
     <!-- Preference for using the dynamic toolbar -->
-    <string name="preference_gestures_dynamic_toolbar">Skryť panel s nástrojmi posunutím stránky</string>
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
     <string name="preference_gestures_swipe_toolbar_switch_tabs">Prepínať medzi kartami posunutím panela nástrojov do strán</string>
     <!-- Preference for showing the opened tabs by swiping up on the toolbar-->
@@ -1672,10 +1671,10 @@
     <string name="browser_toolbar_long_press_popup_paste_and_go">Prilepiť a prejsť</string>
     <!-- Paste the text in the clipboard -->
     <string name="browser_toolbar_long_press_popup_paste">Prilepiť</string>
-  
+
     <!-- Snackbar message shown after an URL has been copied to clipboard. -->
     <string name="browser_toolbar_url_copied_to_clipboard_snackbar">Adresa bola skopírovaná do schránky</string>
-  
+
     <!-- Title text for the Add To Homescreen dialog -->
     <string name="add_to_homescreen_title">Pridať na úvodnú obrazovku</string>
     <!-- Cancel button text for the Add to Homescreen dialog -->

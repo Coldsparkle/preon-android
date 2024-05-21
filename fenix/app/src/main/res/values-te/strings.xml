@@ -449,7 +449,6 @@
     <string name="preference_gestures_website_pull_to_refresh">రిఫ్రెష్ చేయడానికి లాగండి</string>
 
     <!-- Preference for using the dynamic toolbar -->
-    <string name="preference_gestures_dynamic_toolbar">పనిముట్లపట్టీని దాచడానికి స్క్రోల్ చేయండి</string>
 
     <!-- Library -->
     <!-- Option in Library to open Downloads page -->

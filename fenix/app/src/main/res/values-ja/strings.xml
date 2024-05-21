@@ -818,7 +818,6 @@
     <!-- Preferences for using pull to refresh in a webpage -->
     <string name="preference_gestures_website_pull_to_refresh">プルダウンで更新</string>
     <!-- Preference for using the dynamic toolbar -->
-    <string name="preference_gestures_dynamic_toolbar">スクロール時にツールバーを隠す</string>
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
     <string name="preference_gestures_swipe_toolbar_switch_tabs">ツールバーの横スワイプでタブ切り替え</string>
     <!-- Preference for showing the opened tabs by swiping up on the toolbar-->
@@ -1672,7 +1671,7 @@
         The first parameter is number of long clicks left to enable the menu -->
     <string name="about_debug_menu_toast_progress">デバッグメニュー: 有効にするには %1$d 回クリックしてください</string>
     <string name="about_debug_menu_toast_done">デバッグメニューが有効です</string>
-  
+
     <!-- Browser long press popup menu -->
     <!-- Copy the current url -->
     <string name="browser_toolbar_long_press_popup_copy">コピー</string>
@@ -1680,10 +1679,10 @@
     <string name="browser_toolbar_long_press_popup_paste_and_go">貼り付けて移動</string>
     <!-- Paste the text in the clipboard -->
     <string name="browser_toolbar_long_press_popup_paste">貼り付け</string>
-  
+
     <!-- Snackbar message shown after an URL has been copied to clipboard. -->
     <string name="browser_toolbar_url_copied_to_clipboard_snackbar">URL をクリップボードにコピーしました</string>
-  
+
     <!-- Title text for the Add To Homescreen dialog -->
     <string name="add_to_homescreen_title">ホーム画面に追加</string>
 

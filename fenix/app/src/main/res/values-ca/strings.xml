@@ -790,7 +790,6 @@
     <!-- Preferences for using pull to refresh in a webpage -->
     <string name="preference_gestures_website_pull_to_refresh">Estira per actualitzar</string>
     <!-- Preference for using the dynamic toolbar -->
-    <string name="preference_gestures_dynamic_toolbar">Amaga la barra d’eines en desplaçar-me</string>
 
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
     <string name="preference_gestures_swipe_toolbar_switch_tabs">Canvia de pestanya en fer lliscar la barra d’eines cap als costats</string>
@@ -1582,7 +1581,7 @@
     <string name="etp_cryptominers_description">Impedeix que els scripts maliciosos tinguin accés al dispositiu per a la mineria de diners digitals.</string>
     <!-- Category of trackers (fingerprinters) that can be blocked by Enhanced Tracking Protection -->
     <string name="etp_fingerprinters_title">Generadors d’empremtes digitals</string>
-  
+
     <!-- Description of fingerprinters that can be blocked by Enhanced Tracking Protection -->
     <string name="etp_fingerprinters_description">Impedeix la recollida de dades sobre el vostre dispositiu que us podrien identificar, i que es poden utilitzar per fer-vos el seguiment.</string>
     <!-- Category of trackers (tracking content) that can be blocked by Enhanced Tracking Protection -->

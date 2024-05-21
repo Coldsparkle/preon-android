@@ -717,7 +717,6 @@
     <!-- Preferences for using pull to refresh in a webpage -->
     <string name="preference_gestures_website_pull_to_refresh">Tarik untuk menyegarkan</string>
     <!-- Preference for using the dynamic toolbar -->
-    <string name="preference_gestures_dynamic_toolbar">Gulir untuk menyembunyikan bilah alat</string>
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
     <string name="preference_gestures_swipe_toolbar_switch_tabs">Geser bilah alat ke samping untuk beralih tab</string>
     <!-- Preference for showing the opened tabs by swiping up on the toolbar-->
@@ -1569,10 +1568,10 @@
     <string name="browser_toolbar_long_press_popup_paste_and_go">Tempelkan &amp; Kunjungi</string>
     <!-- Paste the text in the clipboard -->
     <string name="browser_toolbar_long_press_popup_paste">Tempel</string>
-  
+
     <!-- Snackbar message shown after an URL has been copied to clipboard. -->
     <string name="browser_toolbar_url_copied_to_clipboard_snackbar">URL disalin ke papan klip</string>
-  
+
     <!-- Title text for the Add To Homescreen dialog -->
     <string name="add_to_homescreen_title">Tambahkan ke Beranda</string>
     <!-- Cancel button text for the Add to Homescreen dialog -->

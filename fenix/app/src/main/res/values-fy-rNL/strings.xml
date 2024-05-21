@@ -62,9 +62,9 @@
         The first parameter is the name of the app defined in app_name (for example: Fenix) -->
     <string name="private_browsing_placeholder_description_2">%1$s wisket jo syk- en browserskiednis sa gau as jo de tapassing ôfslute of alle priveeljepblêden slute. Hoewol dit jo net anonym makket foar websites of jo ynternetprovider, makket dit it makliker om wat jo online dogge privee te hâlden tsjinoer oaren dy’t dit apparaat brûke.</string>
     <string name="private_browsing_common_myths">
-       
+
        Faaks hearde myten oer priveenavigaasje
-    
+
     </string>
 
     <!-- True Private Browsing Mode -->
@@ -806,7 +806,6 @@
     <!-- Preferences for using pull to refresh in a webpage -->
     <string name="preference_gestures_website_pull_to_refresh">Lûk om te fernijen</string>
     <!-- Preference for using the dynamic toolbar -->
-    <string name="preference_gestures_dynamic_toolbar">Scroll om de wurkbalke te ferstopjen</string>
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
     <string name="preference_gestures_swipe_toolbar_switch_tabs">Fei de wurkbalke op side om fan ljepblêd te wikseljen</string>
     <!-- Preference for showing the opened tabs by swiping up on the toolbar-->

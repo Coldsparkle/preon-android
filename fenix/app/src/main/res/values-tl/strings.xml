@@ -536,7 +536,6 @@
     <!-- Preferences for using pull to refresh in a webpage -->
     <string name="preference_gestures_website_pull_to_refresh">Hilahin pababa para mag-refresh</string>
     <!-- Preference for using the dynamic toolbar -->
-    <string name="preference_gestures_dynamic_toolbar">Mag-scroll para maitago ang toolbar</string>
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
     <string name="preference_gestures_swipe_toolbar_switch_tabs">Mag-swipe patagilid sa toolbar para makalipat ng tab</string>
     <!-- Preference for showing the opened tabs by swiping up on the toolbar-->

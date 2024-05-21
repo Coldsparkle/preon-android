@@ -748,7 +748,6 @@
     <!-- Preferences for using pull to refresh in a webpage -->
     <string name="preference_gestures_website_pull_to_refresh">کشیدن برای بازخوانی</string>
     <!-- Preference for using the dynamic toolbar -->
-    <string name="preference_gestures_dynamic_toolbar">برای پنهان‌ کردن نوار ابزار پیمایش کنید</string>
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
     <string name="preference_gestures_swipe_toolbar_switch_tabs">برای جابجایی بین زبانه‌ها، نوار ابزار را به طرفین بکشید</string>
     <!-- Preference for showing the opened tabs by swiping up on the toolbar-->

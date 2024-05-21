@@ -475,7 +475,6 @@
     <!-- Preferences for using pull to refresh in a webpage -->
     <string name="preference_gestures_website_pull_to_refresh">اسحب للإنعاش</string>
     <!-- Preference for using the dynamic toolbar -->
-    <string name="preference_gestures_dynamic_toolbar">مرّر لإخفاء شريط الأدوات</string>
 
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
     <string name="preference_gestures_swipe_toolbar_switch_tabs">مرّر شريط الأدوات إلى اليمين واليسار للتبديل بين الألسنة</string>

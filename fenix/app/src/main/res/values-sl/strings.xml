@@ -811,7 +811,6 @@
     <string name="preference_gestures_website_pull_to_refresh">Osvežitev s potegom navzdol</string>
 
     <!-- Preference for using the dynamic toolbar -->
-    <string name="preference_gestures_dynamic_toolbar">Skritje orodne vrstice ob pomiku</string>
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
     <string name="preference_gestures_swipe_toolbar_switch_tabs">Preklop med zavihki s potegom orodne vrstice vstran</string>
 

@@ -811,7 +811,6 @@
     <!-- Preferences for using pull to refresh in a webpage -->
     <string name="preference_gestures_website_pull_to_refresh">Pociągnięcie w dół odświeża</string>
     <!-- Preference for using the dynamic toolbar -->
-    <string name="preference_gestures_dynamic_toolbar">Przewinięcie ukrywa pasek narzędzi</string>
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
     <string name="preference_gestures_swipe_toolbar_switch_tabs">Przeciągnięcie paska narzędzi w bok przełącza karty</string>
     <!-- Preference for showing the opened tabs by swiping up on the toolbar-->
@@ -1668,10 +1667,10 @@
     <string name="browser_toolbar_long_press_popup_paste_and_go">Wklej i przejdź</string>
     <!-- Paste the text in the clipboard -->
     <string name="browser_toolbar_long_press_popup_paste">Wklej</string>
-  
+
     <!-- Snackbar message shown after an URL has been copied to clipboard. -->
     <string name="browser_toolbar_url_copied_to_clipboard_snackbar">Skopiowano adres do schowka</string>
-  
+
     <!-- Title text for the Add To Homescreen dialog -->
     <string name="add_to_homescreen_title">Dodaj do ekranu głównego</string>
     <!-- Cancel button text for the Add to Homescreen dialog -->

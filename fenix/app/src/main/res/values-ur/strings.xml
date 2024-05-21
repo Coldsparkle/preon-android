@@ -443,7 +443,6 @@
     <!-- Preferences for using pull to refresh in a webpage -->
     <string name="preference_gestures_website_pull_to_refresh">تازہ کرنے کے لیے کھینچیں</string>
     <!-- Preference for using the dynamic toolbar -->
-    <string name="preference_gestures_dynamic_toolbar">ٹول بار کو چھپانے کے لئے اسکرول کریں</string>
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
     <string name="preference_gestures_swipe_toolbar_switch_tabs">ٹیبز کو تبدیل کرنے کے لیے ٹول بار کو ادھر ادھر سوائپ کریں۔</string>
     <!-- Preference for showing the opened tabs by swiping up on the toolbar-->

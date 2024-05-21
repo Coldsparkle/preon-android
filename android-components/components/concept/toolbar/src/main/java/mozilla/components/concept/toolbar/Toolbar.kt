@@ -26,7 +26,7 @@ import java.lang.ref.WeakReference
  * Interface to be implemented by components that provide browser toolbar functionality.
  */
 @Suppress("TooManyFunctions")
-interface Toolbar : ScrollableToolbar {
+interface Toolbar {
     /**
      * Sets/Gets the title to be displayed on the toolbar.
      */

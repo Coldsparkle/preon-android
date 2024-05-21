@@ -198,9 +198,7 @@ class DefaultBrowserToolbarController(
     }
 
     override fun handleScroll(offset: Int) {
-        if (activity.settings().isDynamicToolbarEnabled) {
-            engineView.setVerticalClipping(offset)
-        }
+
     }
 
     override fun handleHomeButtonClick() {

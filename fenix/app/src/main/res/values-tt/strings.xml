@@ -587,7 +587,6 @@
     <string name="preference_gestures_website_pull_to_refresh">Яңарту өчен тартыгыз</string>
 
     <!-- Preference for using the dynamic toolbar -->
-    <string name="preference_gestures_dynamic_toolbar">Кораллар панелен яшерү өчен әйләндерегез</string>
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
     <string name="preference_gestures_swipe_toolbar_switch_tabs">Табларны алыштыру өчен кораллар панелен кырыйга сөйрәгез</string>
     <!-- Preference for showing the opened tabs by swiping up on the toolbar-->

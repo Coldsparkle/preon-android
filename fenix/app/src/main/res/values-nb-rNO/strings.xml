@@ -808,7 +808,6 @@
     <string name="preference_gestures_website_pull_to_refresh">Trekk for å oppdatere</string>
 
     <!-- Preference for using the dynamic toolbar -->
-    <string name="preference_gestures_dynamic_toolbar">Bla for å skjule verktøylinjen</string>
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
     <string name="preference_gestures_swipe_toolbar_switch_tabs">Sveip verktøylinjen sidelengs for å bytte fane</string>
     <!-- Preference for showing the opened tabs by swiping up on the toolbar-->

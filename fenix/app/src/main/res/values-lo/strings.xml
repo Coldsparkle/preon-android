@@ -744,7 +744,6 @@
     <string name="preference_gestures_website_pull_to_refresh">ດຶງເພື່ອລີເຟລສ</string>
 
     <!-- Preference for using the dynamic toolbar -->
-    <string name="preference_gestures_dynamic_toolbar">ເລື່ອນເພື່ອເຊື່ອງແທັບເຄືອງມື</string>
 
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
     <string name="preference_gestures_swipe_toolbar_switch_tabs">ປັດແຖບເຄື່ອງມືໄປທາງຂ້າງເພື່ອປ່ຽນແທັບ</string>

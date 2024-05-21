@@ -400,32 +400,6 @@ class BrowserToolbar @JvmOverloads constructor(
         display.views.menu.dismissMenu()
     }
 
-    override fun enableScrolling() {
-        // Behavior can be changed without us knowing. Not safe to use a memoized value.
-        (layoutParams as? CoordinatorLayout.LayoutParams)?.apply {
-            (behavior as? EngineViewScrollingBehavior)?.enableScrolling()
-        }
-    }
-
-    override fun disableScrolling() {
-        // Behavior can be changed without us knowing. Not safe to use a memoized value.
-        (layoutParams as? CoordinatorLayout.LayoutParams)?.apply {
-            (behavior as? EngineViewScrollingBehavior)?.disableScrolling()
-        }
-    }
-
-    override fun expand() {
-        (layoutParams as? CoordinatorLayout.LayoutParams)?.apply {
-            (behavior as? EngineViewScrollingBehavior)?.forceExpand(this@BrowserToolbar)
-        }
-    }
-
-    override fun collapse() {
-        (layoutParams as? CoordinatorLayout.LayoutParams)?.apply {
-            (behavior as? EngineViewScrollingBehavior)?.forceCollapse(this@BrowserToolbar)
-        }
-    }
-
     internal fun onUrlEntered(url: String) {
         if (urlCommitListener?.invoke(url) != false) {
             // Return to display mode if there's no urlCommitListener or if it returned true. This lets

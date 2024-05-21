@@ -817,7 +817,6 @@
     <!-- Preferences for using pull to refresh in a webpage -->
     <string name="preference_gestures_website_pull_to_refresh">Потяните, чтобы обновить</string>
     <!-- Preference for using the dynamic toolbar -->
-    <string name="preference_gestures_dynamic_toolbar">Прокрутите страницу, чтобы скрыть панель инструментов</string>
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
     <string name="preference_gestures_swipe_toolbar_switch_tabs">Проведите в сторону по панели инструментов, чтобы переключить вкладки</string>
     <!-- Preference for showing the opened tabs by swiping up on the toolbar-->
@@ -1689,10 +1688,10 @@
     <string name="browser_toolbar_long_press_popup_paste_and_go">Вставить и перейти</string>
     <!-- Paste the text in the clipboard -->
     <string name="browser_toolbar_long_press_popup_paste">Вставить</string>
-  
+
     <!-- Snackbar message shown after an URL has been copied to clipboard. -->
     <string name="browser_toolbar_url_copied_to_clipboard_snackbar">Ссылка скопирована в буфер обмена</string>
-  
+
     <!-- Title text for the Add To Homescreen dialog -->
     <string name="add_to_homescreen_title">Добавить на домашний экран</string>
     <!-- Cancel button text for the Add to Homescreen dialog -->

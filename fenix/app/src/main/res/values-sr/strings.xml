@@ -849,7 +849,6 @@
     <string name="preference_gestures_website_pull_to_refresh">Повуците да освежите</string>
 
     <!-- Preference for using the dynamic toolbar -->
-    <string name="preference_gestures_dynamic_toolbar">Скролујте да сакријете траку с алаткама</string>
 
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
     <string name="preference_gestures_swipe_toolbar_switch_tabs">Превуците траку с алаткама у страну да промените језичке</string>

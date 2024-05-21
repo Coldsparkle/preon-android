@@ -733,7 +733,6 @@
     <!-- Preferences for using pull to refresh in a webpage -->
     <string name="preference_gestures_website_pull_to_refresh">Tarraing airson ath-nuadhachadh</string>
     <!-- Preference for using the dynamic toolbar -->
-    <string name="preference_gestures_dynamic_toolbar">Dèan sgroladh airson am bàr-inneal a chur am falach</string>
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
     <string name="preference_gestures_swipe_toolbar_switch_tabs">Grad-shlaighd am bàr-inneal gun taobh airson leum a ghearradh gu taba eile</string>
     <!-- Preference for showing the opened tabs by swiping up on the toolbar-->

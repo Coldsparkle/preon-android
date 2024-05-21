@@ -803,7 +803,6 @@
     <!-- Preferences for using pull to refresh in a webpage -->
     <string name="preference_gestures_website_pull_to_refresh">Træk for at genindlæse</string>
     <!-- Preference for using the dynamic toolbar -->
-    <string name="preference_gestures_dynamic_toolbar">Scroll for at skjule værktøjslinje</string>
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
     <string name="preference_gestures_swipe_toolbar_switch_tabs">Stryg værktøjslinje sidelæns for at skifte faneblade</string>
     <!-- Preference for showing the opened tabs by swiping up on the toolbar-->

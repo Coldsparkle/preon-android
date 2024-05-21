@@ -837,7 +837,6 @@
     <!-- Preferences for using pull to refresh in a webpage -->
     <string name="preference_gestures_website_pull_to_refresh">رفرش اوچون چک</string>
     <!-- Preference for using the dynamic toolbar -->
-    <string name="preference_gestures_dynamic_toolbar">آلت‌لر چوبوغونو گیزلتمک اوچون اسکرول ائله‌</string>
 
 
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->

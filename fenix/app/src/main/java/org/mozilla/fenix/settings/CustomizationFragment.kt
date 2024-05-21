@@ -159,10 +159,6 @@ class CustomizationFragment : PreferenceFragmentCompat() {
             isChecked = context.settings().isPullToRefreshEnabledInBrowser
             onPreferenceChangeListener = SharedPreferenceUpdater()
         }
-        requirePreference<SwitchPreference>(R.string.pref_key_dynamic_toolbar).apply {
-            isChecked = context.settings().isDynamicToolbarEnabled
-            onPreferenceChangeListener = SharedPreferenceUpdater()
-        }
         requirePreference<SwitchPreference>(R.string.pref_key_swipe_toolbar_switch_tabs).apply {
             isChecked = context.settings().isSwipeToolbarToSwitchTabsEnabled
             isVisible = isSwipeToolbarToSwitchTabsVisible

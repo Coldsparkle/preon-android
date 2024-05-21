@@ -725,7 +725,6 @@
     <!-- Preferences for using pull to refresh in a webpage -->
     <string name="preference_gestures_website_pull_to_refresh">Sachit da azgrenaat</string>
     <!-- Preference for using the dynamic toolbar -->
-    <string name="preference_gestures_dynamic_toolbar">Dibunit da guzhat ar varrenn-ostilhoù</string>
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
     <string name="preference_gestures_swipe_toolbar_switch_tabs">Riklit ar varrenn-ostilhoù war ar c’hostez evit cheñch ivinell</string>
     <!-- Preference for showing the opened tabs by swiping up on the toolbar-->
