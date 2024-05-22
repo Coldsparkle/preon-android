@@ -13,7 +13,7 @@
         android:id="@+id/browserWindow"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        
+
         <androidx.compose.ui.platform.ComposeView
             android:id="@+id/tabStripView"
             app:layout_constraintBottom_toTopOf="@+id/browserLayout"
@@ -128,6 +128,34 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/loginSelectBar" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <FrameLayout
+        android:id="@+id/actionBack"
+        android:visibility="gone"
+        android:layout_gravity="center_vertical|start"
+        android:background="@drawable/ic_action_back_background"
+        android:layout_width="32dp"
+        android:layout_height="64dp">
+        <androidx.appcompat.widget.AppCompatImageView
+            app:srcCompat="@drawable/mozac_ic_back_24"
+            android:layout_gravity="center"
+            android:layout_width="24dp"
+            android:layout_height="24dp" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/actionForward"
+        android:visibility="gone"
+        android:layout_gravity="center_vertical|end"
+        android:background="@drawable/ic_action_forward_background"
+        android:layout_width="32dp"
+        android:layout_height="64dp">
+        <androidx.appcompat.widget.AppCompatImageView
+            app:srcCompat="@drawable/mozac_ic_forward_24"
+            android:layout_gravity="center"
+            android:layout_width="24dp"
+            android:layout_height="24dp" />
+    </FrameLayout>
 
     <org.mozilla.fenix.browser.TabPreview
         android:id="@+id/tabPreview"

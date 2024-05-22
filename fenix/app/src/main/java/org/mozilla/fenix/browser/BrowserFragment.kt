@@ -111,6 +111,26 @@ class BrowserFragment : BaseBrowserFragment(), UserInteractionHandler {
             )
         }
 
+        if (!isTabletAndTabStripEnabled) {
+            binding.gestureLayout.addGestureListener(
+                BackForwardActionGestureHandler(
+                    activity = requireActivity(),
+                    actionBackView = binding.actionBack,
+                    actionForwardView = binding.actionForward,
+                    onBackAction = {
+                        browserToolbarInteractor.onBrowserToolbarMenuItemTapped(
+                            ToolbarMenu.Item.Back(viewHistory = false),
+                        )
+                    },
+                    onForwardAction = {
+                        browserToolbarInteractor.onBrowserToolbarMenuItemTapped(
+                            ToolbarMenu.Item.Forward(viewHistory = false),
+                        )
+                    }
+                )
+            )
+        }
+
         val readerModeAction =
             BrowserToolbar.ToggleButton(
                 image = AppCompatResources.getDrawable(
