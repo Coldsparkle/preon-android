@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewConfiguration
 import androidx.core.animation.doOnEnd
 import androidx.interpolator.view.animation.LinearOutSlowInInterpolator
+import mozilla.components.browser.state.selector.selectedTab
+import mozilla.components.browser.state.store.BrowserStore
 import mozilla.components.support.base.log.logger.Logger
 import org.mozilla.fenix.R
 import org.mozilla.fenix.ext.isKeyboardVisible
@@ -19,6 +21,7 @@ class BackForwardActionGestureHandler(
     private val activity: Activity,
     private val actionBackView: View,
     private val actionForwardView: View,
+    private val store: BrowserStore,
     private val onBackAction: () -> Unit,
     private val onForwardAction: () -> Unit
 ): SwipeGestureListener {
@@ -38,6 +41,9 @@ class BackForwardActionGestureHandler(
 
     private var action = Actions.ACTION_NONE
 
+    private val canGoForward get() =  store.state.selectedTab?.content?.canGoForward ?: false
+    private val canGoBack get() =  store.state.selectedTab?.content?.canGoBack ?: false
+
     override fun onSwipeStarted(start: PointF, next: PointF): Boolean {
         val dx = abs(start.x - next.x)
         val dy = abs(start.y - next.y)
@@ -45,9 +51,12 @@ class BackForwardActionGestureHandler(
             return false
         }
         action = getAction(start)
-        return if (action != Actions.ACTION_NONE &&
-                !activity.window.decorView.isKeyboardVisible() &&
-                abs(start.x - next.x) >= touchSlop) {
+
+
+        return if (abs(start.x - next.x) >= touchSlop &&
+            (action == Actions.ACTION_BACK && canGoBack || action == Actions.ACTION_FORWARD && canGoForward) &&
+                !activity.window.decorView.isKeyboardVisible()
+            ) {
             prepareActionView()
             true
         } else {
@@ -103,16 +112,31 @@ class BackForwardActionGestureHandler(
     private fun performAction() {
         when (action) {
             Actions.ACTION_FORWARD -> {
-                actionForwardView.visibility = View.GONE
+                animateActionGesture(actionForwardView)
                 onForwardAction()
             }
             Actions.ACTION_BACK -> {
-                actionBackView.visibility = View.GONE
+                animateActionGesture(actionBackView)
                 onBackAction()
             }
             Actions.ACTION_NONE -> {
 
             }
+        }
+    }
+
+    private fun animateActionGesture(view: View) {
+        ValueAnimator.ofFloat(1f, 0f).apply {
+            duration = PERFORM_GESTURE_ANIMATION_DURATION
+            addUpdateListener { animator ->
+                val value = animator.animatedValue as Float
+                view.alpha = value
+            }
+            doOnEnd {
+                view.visibility = View.GONE
+                view.alpha = 1f
+            }
+            start()
         }
     }
 
@@ -158,5 +182,10 @@ class BackForwardActionGestureHandler(
          * Animation duration gesture is canceled due to a swipe in the opposite direction
          */
         private const val CANCELED_FLING_ANIMATION_DURATION = 150L
+
+        /**
+         * Animation duration gesture is canceled due to the swipe not being far enough
+         */
+        private const val PERFORM_GESTURE_ANIMATION_DURATION = 250L
     }
 }

@@ -111,6 +111,7 @@ class BrowserFragment : BaseBrowserFragment(), UserInteractionHandler {
                 activity = requireActivity(),
                 actionBackView = binding.actionBack,
                 actionForwardView = binding.actionForward,
+                store = components.core.store,
                 onBackAction = {
                     browserToolbarInteractor.onBrowserToolbarMenuItemTapped(
                         ToolbarMenu.Item.Back(viewHistory = false),
