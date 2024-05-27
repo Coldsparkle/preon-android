@@ -90,46 +90,39 @@ class BrowserFragment : BaseBrowserFragment(), UserInteractionHandler {
 
         val context = requireContext()
         val components = context.components
-        val isTabletAndTabStripEnabled = context.settings().isTabletAndTabStripEnabled
-        if (isTabletAndTabStripEnabled) {
-            initTabStrip()
-        }
 
-        if (!isTabletAndTabStripEnabled && context.settings().isSwipeToolbarToSwitchTabsEnabled) {
-            binding.gestureLayout.addGestureListener(
-                ToolbarGestureHandler(
-                    activity = requireActivity(),
-                    contentLayout = binding.browserLayout,
-                    tabPreview = binding.tabPreview,
-                    toolbarLayout = browserToolbarView.view,
-                    store = components.core.store,
-                    selectTabUseCase = components.useCases.tabsUseCases.selectTab,
-                    onSwipeStarted = {
-                        thumbnailsFeature.get()?.requestScreenshot()
-                    },
-                ),
+        binding.gestureLayout.addGestureListener(
+            ToolbarGestureHandler(
+                activity = requireActivity(),
+                contentLayout = binding.browserLayout,
+                tabPreview = binding.tabPreview,
+                toolbarLayout = browserToolbarView.view,
+//                    homeActionView = binding.homeAction,
+                store = components.core.store,
+                selectTabUseCase = components.useCases.tabsUseCases.selectTab,
+                onSwipeStarted = {
+                    thumbnailsFeature.get()?.requestScreenshot()
+                },
+//                onHomeAction = browserToolbarInteractor::onHomeButtonClicked
+            ),
+        )
+        binding.gestureLayout.addGestureListener(
+            BackForwardActionGestureHandler(
+                activity = requireActivity(),
+                actionBackView = binding.actionBack,
+                actionForwardView = binding.actionForward,
+                onBackAction = {
+                    browserToolbarInteractor.onBrowserToolbarMenuItemTapped(
+                        ToolbarMenu.Item.Back(viewHistory = false),
+                    )
+                },
+                onForwardAction = {
+                    browserToolbarInteractor.onBrowserToolbarMenuItemTapped(
+                        ToolbarMenu.Item.Forward(viewHistory = false),
+                    )
+                }
             )
-        }
-
-        if (!isTabletAndTabStripEnabled) {
-            binding.gestureLayout.addGestureListener(
-                BackForwardActionGestureHandler(
-                    activity = requireActivity(),
-                    actionBackView = binding.actionBack,
-                    actionForwardView = binding.actionForward,
-                    onBackAction = {
-                        browserToolbarInteractor.onBrowserToolbarMenuItemTapped(
-                            ToolbarMenu.Item.Back(viewHistory = false),
-                        )
-                    },
-                    onForwardAction = {
-                        browserToolbarInteractor.onBrowserToolbarMenuItemTapped(
-                            ToolbarMenu.Item.Forward(viewHistory = false),
-                        )
-                    }
-                )
-            )
-        }
+        )
 
         val readerModeAction =
             BrowserToolbar.ToggleButton(
@@ -237,38 +230,6 @@ class BrowserFragment : BaseBrowserFragment(), UserInteractionHandler {
                     )
                         .setText(requireContext().getString(R.string.translation_in_progress_snackbar))
                         .show()
-                }
-            }
-        }
-    }
-
-    private fun initTabStrip() {
-        binding.tabStripView.isVisible = true
-        binding.tabStripView.apply {
-            setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
-            setContent {
-                FirefoxTheme {
-                    TabStrip(
-                        onAddTabClick = {
-                            findNavController().navigate(
-                                NavGraphDirections.actionGlobalHome(
-                                    focusOnAddressBar = true,
-                                ),
-                            )
-                        },
-                        onLastTabClose = { isPrivate ->
-                            requireComponents.appStore.dispatch(
-                                AppAction.TabStripAction.UpdateLastTabClosed(isPrivate),
-                            )
-                            findNavController().navigate(
-                                BrowserFragmentDirections.actionGlobalHome(),
-                            )
-                        },
-                        onSelectedTabClick = {},
-                        onCloseTabClick = { isPrivate ->
-                            showUndoSnackbar(requireContext().tabClosedUndoMessage(isPrivate))
-                        },
-                    )
                 }
             }
         }
