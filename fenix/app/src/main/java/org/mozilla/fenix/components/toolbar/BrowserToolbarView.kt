@@ -32,8 +32,6 @@ import org.mozilla.fenix.ext.components
 import org.mozilla.fenix.ext.settings
 import org.mozilla.fenix.theme.ThemeManager
 import org.mozilla.fenix.utils.Settings
-import org.mozilla.fenix.utils.ToolbarPopupWindow
-import java.lang.ref.WeakReference
 import mozilla.components.ui.widgets.behavior.ViewPosition as MozacToolbarPosition
 
 @SuppressWarnings("LargeClass")
@@ -65,16 +63,6 @@ class BrowserToolbarView(
 
     init {
         val isCustomTabSession = customTabSession != null
-
-        view.display.setOnUrlLongClickListener {
-            ToolbarPopupWindow.show(
-                WeakReference(view),
-                customTabSession?.id,
-                interactor::onBrowserToolbarPasteAndGo,
-                interactor::onBrowserToolbarPaste,
-            )
-            true
-        }
 
         with(context) {
             val isPinningSupported = components.useCases.webAppUseCases.isPinningSupported()

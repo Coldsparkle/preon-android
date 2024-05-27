@@ -9,7 +9,6 @@ import android.text.TextUtils
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.Gravity
-import android.view.View
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.view.isVisible
 import mozilla.components.browser.toolbar.BrowserToolbar
@@ -66,12 +65,6 @@ internal class OriginView @JvmOverloads constructor(
         }
 
     internal var onUrlClicked: () -> Boolean = { true }
-
-    fun setOnUrlLongClickListener(handler: ((View) -> Boolean)?) {
-        isLongClickable = true
-
-        setOnLongClickListener(handler)
-    }
 
     internal var url: CharSequence
         get() = urlText

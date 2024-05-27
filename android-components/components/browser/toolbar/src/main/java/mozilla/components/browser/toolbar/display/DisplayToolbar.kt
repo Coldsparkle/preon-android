@@ -404,11 +404,6 @@ class DisplayToolbar internal constructor(
             views.menu.menuController = value
         }
 
-    /**
-     * Set a LongClickListener to the urlView of the toolbar.
-     */
-    fun setOnUrlLongClickListener(handler: ((View) -> Boolean)?) = views.origin.setOnUrlLongClickListener(handler)
-
     private fun updateIndicatorVisibility() {
         val urlEmpty = url.isEmpty()
 
