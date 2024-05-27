@@ -807,7 +807,6 @@
     <string name="preference_gestures_website_pull_to_refresh">ดึงเพื่อรีเฟรช</string>
     <!-- Preference for using the dynamic toolbar -->
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
-    <string name="preference_gestures_swipe_toolbar_switch_tabs">ปัดแถบเครื่องมือไปด้านข้างเพื่อสลับแท็บ</string>
     <!-- Preference for showing the opened tabs by swiping up on the toolbar-->
     <string name="preference_gestures_swipe_toolbar_show_tabs">ปัดแถบเครื่องมือไปด้านบนเพื่อเปิดแท็บ</string>
 

@@ -809,7 +809,6 @@
     <string name="preference_gestures_website_pull_to_refresh">Pociągnięcie w dół odświeża</string>
     <!-- Preference for using the dynamic toolbar -->
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
-    <string name="preference_gestures_swipe_toolbar_switch_tabs">Przeciągnięcie paska narzędzi w bok przełącza karty</string>
     <!-- Preference for showing the opened tabs by swiping up on the toolbar-->
     <string name="preference_gestures_swipe_toolbar_show_tabs">Przeciągnięcie paska narzędzi do góry wyświetla otwarte karty</string>
 

@@ -769,7 +769,6 @@
 
     <!-- Preference for using the dynamic toolbar -->
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
-    <string name="preference_gestures_swipe_toolbar_switch_tabs">Dūguaché ānèj ané dukuán màn rasūun da’ gā’hue nādunā rakïj ñanj</string>
     <!-- Preference for showing the opened tabs by swiping up on the toolbar-->
     <string name="preference_gestures_swipe_toolbar_show_tabs">Dūguaché nāhuī dukuán màn rasūun da’ gā’hue nā’nï̄nt rakïj ñanj</string>
 

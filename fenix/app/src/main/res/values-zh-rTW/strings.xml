@@ -814,7 +814,6 @@
     <string name="preference_gestures_website_pull_to_refresh">向下滑動即可重新整理</string>
     <!-- Preference for using the dynamic toolbar -->
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
-    <string name="preference_gestures_swipe_toolbar_switch_tabs">橫向滑動工具列來切換分頁</string>
     <!-- Preference for showing the opened tabs by swiping up on the toolbar-->
     <string name="preference_gestures_swipe_toolbar_show_tabs">向上滑動工具列來開新分頁</string>
 

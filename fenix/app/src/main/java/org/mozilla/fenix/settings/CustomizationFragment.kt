@@ -124,11 +124,6 @@ class CustomizationFragment : PreferenceFragmentCompat() {
             isChecked = context.settings().isPullToRefreshEnabledInBrowser
             onPreferenceChangeListener = SharedPreferenceUpdater()
         }
-        requirePreference<SwitchPreference>(R.string.pref_key_swipe_toolbar_switch_tabs).apply {
-            isChecked = context.settings().isSwipeToolbarToSwitchTabsEnabled
-            isVisible = isSwipeToolbarToSwitchTabsVisible
-            onPreferenceChangeListener = SharedPreferenceUpdater()
-        }
     }
 
     override fun onPreferenceTreeClick(preference: Preference): Boolean {

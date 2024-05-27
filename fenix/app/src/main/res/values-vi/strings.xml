@@ -802,7 +802,6 @@
     <string name="preference_gestures_website_pull_to_refresh">Kéo trang để làm mới</string>
     <!-- Preference for using the dynamic toolbar -->
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
-    <string name="preference_gestures_swipe_toolbar_switch_tabs">Vuốt thanh công cụ sang hai bên để chuyển đổi các thẻ</string>
     <!-- Preference for showing the opened tabs by swiping up on the toolbar-->
     <string name="preference_gestures_swipe_toolbar_show_tabs">Vuốt thanh công cụ lên để mở các thẻ</string>
 

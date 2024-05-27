@@ -817,7 +817,6 @@
     <string name="preference_gestures_website_pull_to_refresh">Potiahnutím obnoviť</string>
     <!-- Preference for using the dynamic toolbar -->
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
-    <string name="preference_gestures_swipe_toolbar_switch_tabs">Prepínať medzi kartami posunutím panela nástrojov do strán</string>
     <!-- Preference for showing the opened tabs by swiping up on the toolbar-->
     <string name="preference_gestures_swipe_toolbar_show_tabs">Potiahnutím panela nástrojov smerom hore otvoríte karty</string>
 

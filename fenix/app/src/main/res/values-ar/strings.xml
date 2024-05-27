@@ -474,7 +474,6 @@
     <!-- Preference for using the dynamic toolbar -->
 
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
-    <string name="preference_gestures_swipe_toolbar_switch_tabs">مرّر شريط الأدوات إلى اليمين واليسار للتبديل بين الألسنة</string>
     <!-- Preference for showing the opened tabs by swiping up on the toolbar-->
     <string name="preference_gestures_swipe_toolbar_show_tabs">مرّر شريط الأدوات إلى أعلى لفتح الألسنة</string>
 

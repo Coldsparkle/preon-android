@@ -824,7 +824,6 @@
 
 
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
-    <string name="preference_gestures_swipe_toolbar_switch_tabs">Glissa lateralmente le barra del instrumentos pro mutar schedas</string>
 
 
     <!-- Preference for showing the opened tabs by swiping up on the toolbar-->

@@ -812,7 +812,6 @@
     <string name="preference_gestures_website_pull_to_refresh">Zum Aktualisieren ziehen</string>
     <!-- Preference for using the dynamic toolbar -->
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
-    <string name="preference_gestures_swipe_toolbar_switch_tabs">Symbolleiste zur Seite wischen, um Tabs zu wechseln</string>
     <!-- Preference for showing the opened tabs by swiping up on the toolbar-->
     <string name="preference_gestures_swipe_toolbar_show_tabs">Nach oben wischen, ob Tabs zu öffnen</string>
 

@@ -1480,11 +1480,6 @@ class Settings(private val appContext: Context) : PreferencesHolder {
         default = true,
     )
 
-    var isSwipeToolbarToSwitchTabsEnabled by booleanPreference(
-        appContext.getPreferenceKey(R.string.pref_key_swipe_toolbar_switch_tabs),
-        default = true,
-    )
-
     var addressFeature by featureFlagPreference(
         appContext.getPreferenceKey(R.string.pref_key_show_address_feature),
         default = true,

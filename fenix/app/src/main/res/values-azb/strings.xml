@@ -837,7 +837,6 @@
 
 
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
-    <string name="preference_gestures_swipe_toolbar_switch_tabs">تاغ‌لاریْ دگیشدیرمک اوچون ادوات چوُبوغونو یانالار طرف چکین</string>
     <!-- Preference for showing the opened tabs by swiping up on the toolbar-->
     <string name="preference_gestures_swipe_toolbar_show_tabs">تاغ‌لاریْ آچماق اوچون ادوات چوُبوغونو یوخاریا چکین</string>
 

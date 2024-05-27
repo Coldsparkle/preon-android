@@ -41,9 +41,6 @@
             android:title="@string/preference_gestures_website_pull_to_refresh"
             app:isPreferenceVisible="false" />
         <androidx.preference.SwitchPreference
-            android:key="@string/pref_key_swipe_toolbar_switch_tabs"
-            android:title="@string/preference_gestures_swipe_toolbar_switch_tabs" />
-        <androidx.preference.SwitchPreference
             android:key="@string/pref_key_swipe_toolbar_show_tabs"
             android:title="@string/preference_gestures_swipe_toolbar_show_tabs"
             app:isPreferenceVisible="false" />

@@ -534,7 +534,6 @@
     <string name="preference_gestures_website_pull_to_refresh">Hilahin pababa para mag-refresh</string>
     <!-- Preference for using the dynamic toolbar -->
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
-    <string name="preference_gestures_swipe_toolbar_switch_tabs">Mag-swipe patagilid sa toolbar para makalipat ng tab</string>
     <!-- Preference for showing the opened tabs by swiping up on the toolbar-->
     <string name="preference_gestures_swipe_toolbar_show_tabs">Mag-swipe pataas sa toolbar para maipakita ang mga tab</string>
 

@@ -814,7 +814,6 @@
     <!-- Preference for using the dynamic toolbar -->
 
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
-    <string name="preference_gestures_swipe_toolbar_switch_tabs">Changer d’onglet en glissant la barre d’outils latéralement</string>
     <!-- Preference for showing the opened tabs by swiping up on the toolbar-->
     <string name="preference_gestures_swipe_toolbar_show_tabs">Ouvrir des onglets en glissant la barre d’outils vers le haut</string>
 

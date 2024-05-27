@@ -501,7 +501,6 @@
     <string name="preference_gestures_website_pull_to_refresh">Įkelti iš naujo, patempiant žemyn</string>
     <!-- Preference for using the dynamic toolbar -->
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
-    <string name="preference_gestures_swipe_toolbar_switch_tabs">Pereiti tarp kortelių, braukiant priemonių juostą į šoną</string>
     <!-- Preference for showing the opened tabs by swiping up on the toolbar-->
     <string name="preference_gestures_swipe_toolbar_show_tabs">Atverti korteles, braukiant priemonių juostą į viršų</string>
 

@@ -600,7 +600,6 @@
     <string name="preference_gestures_website_pull_to_refresh">Fàá láti sọ́dọ̀tun</string>
     <!-- Preference for using the dynamic toolbar -->
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
-    <string name="preference_gestures_swipe_toolbar_switch_tabs">Fa pẹpẹ irinṣẹ́ sí ẹ̀gbẹ́ kan láti yí àwọn táàbù </string>
     <!-- Preference for showing the opened tabs by swiping up on the toolbar-->
     <string name="preference_gestures_swipe_toolbar_show_tabs">Fa pẹpẹ irinṣẹ́ sí òkè láti ṣí àwọn táàbù</string>
 

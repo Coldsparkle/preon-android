@@ -425,7 +425,6 @@
     <string name="preference_gestures_website_pull_to_refresh">ताजा गर्नको लागि तान्नुहोस्</string>
     <!-- Preference for using the dynamic toolbar -->
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
-    <string name="preference_gestures_swipe_toolbar_switch_tabs">ट्याबहरू परिवर्तन गर्न औजारपट्टी छेउबाट स्वाइप गर्नुहोस्</string>
     <!-- Preference for showing the opened tabs by swiping up on the toolbar-->
     <string name="preference_gestures_swipe_toolbar_show_tabs">ट्याबहरू खोल्न औजारपट्टी माथि स्वाइप गर्नुहोस्</string>
 

@@ -798,7 +798,6 @@
     <!-- Preference for using the dynamic toolbar -->
 
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
-    <string name="preference_gestures_swipe_toolbar_switch_tabs">Cambiar d’onglet en lisant la barra d’aisinas cap las costats</string>
     <!-- Preference for showing the opened tabs by swiping up on the toolbar-->
     <string name="preference_gestures_swipe_toolbar_show_tabs">Dobrir los ligams en lisant la barra d’aisina amont</string>
 

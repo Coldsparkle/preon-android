@@ -802,7 +802,6 @@
     <string name="preference_gestures_website_pull_to_refresh">Śěgniśo, aby aktualizěrował</string>
     <!-- Preference for using the dynamic toolbar -->
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
-    <string name="preference_gestures_swipe_toolbar_switch_tabs">Trějśo symbolowu rědku na bok, aby rejtariki pśešaltował</string>
     <!-- Preference for showing the opened tabs by swiping up on the toolbar-->
     <string name="preference_gestures_swipe_toolbar_show_tabs">Trějśo symbolowu rědku górjej, aby rejtariki wócynił</string>
 

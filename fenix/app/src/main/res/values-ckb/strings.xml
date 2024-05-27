@@ -408,7 +408,6 @@
     <string name="preference_gestures_website_pull_to_refresh">بیخزێنە بۆ نوێکردنەوە</string>
     <!-- Preference for using the dynamic toolbar -->
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
-    <string name="preference_gestures_swipe_toolbar_switch_tabs">توڵامراز ببە بۆ لاکان بۆ گۆڕین لە نێوان بازدەرەکان</string>
 
 
     <!-- Preference for showing the opened tabs by swiping up on the toolbar-->

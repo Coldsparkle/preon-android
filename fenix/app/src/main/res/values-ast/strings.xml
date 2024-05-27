@@ -461,7 +461,6 @@
 
     <!-- Preference for using the dynamic toolbar -->
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
-    <string name="preference_gestures_swipe_toolbar_switch_tabs">Eslizar pa un llau pa cambiar de llingüeta</string>
 
     <!-- Library -->
     <!-- Option in Library to open Downloads page -->

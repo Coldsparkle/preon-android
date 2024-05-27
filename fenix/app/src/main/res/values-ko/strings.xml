@@ -818,7 +818,6 @@
     <string name="preference_gestures_website_pull_to_refresh">당겨서 새로 고침</string>
     <!-- Preference for using the dynamic toolbar -->
     <!-- Preference for switching tabs by swiping horizontally on the toolbar -->
-    <string name="preference_gestures_swipe_toolbar_switch_tabs">도구 모음을 옆으로 밀어서 탭 전환</string>
     <!-- Preference for showing the opened tabs by swiping up on the toolbar-->
     <string name="preference_gestures_swipe_toolbar_show_tabs">도구 모음을 위로 밀어서 탭 열기</string>
 
