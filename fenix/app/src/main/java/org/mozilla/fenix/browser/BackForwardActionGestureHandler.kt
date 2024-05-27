@@ -9,7 +9,6 @@ import androidx.core.animation.doOnEnd
 import androidx.interpolator.view.animation.LinearOutSlowInInterpolator
 import mozilla.components.browser.state.selector.selectedTab
 import mozilla.components.browser.state.store.BrowserStore
-import mozilla.components.support.base.log.logger.Logger
 import org.mozilla.fenix.R
 import org.mozilla.fenix.ext.isKeyboardVisible
 import kotlin.math.abs
@@ -29,8 +28,6 @@ class BackForwardActionGestureHandler(
     private enum class Actions {
         ACTION_BACK, ACTION_FORWARD, ACTION_NONE
     }
-
-    private val logger = Logger("BackForwardActionGestureHandler")
 
     private val touchSlop = ViewConfiguration.get(activity).scaledTouchSlop
     private val previewOffset =
@@ -73,7 +70,6 @@ class BackForwardActionGestureHandler(
     }
 
     override fun onSwipeFinished(velocityX: Float, velocityY: Float) {
-        logger.debug("onSwipeFinished, action: $action")
         if (isGestureComplete(velocityX)) {
             performAction()
         } else {

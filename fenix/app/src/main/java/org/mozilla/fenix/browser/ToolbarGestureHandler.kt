@@ -22,7 +22,6 @@ import mozilla.components.browser.state.selector.selectedTab
 import mozilla.components.browser.state.state.TabSessionState
 import mozilla.components.browser.state.store.BrowserStore
 import mozilla.components.feature.tabs.TabsUseCases
-import mozilla.components.support.base.log.logger.Logger
 import mozilla.components.support.ktx.android.view.getRectWithViewLocation
 import mozilla.components.support.utils.ext.bottom
 import mozilla.components.support.utils.ext.mandatorySystemGestureInsets
@@ -47,15 +46,19 @@ class ToolbarGestureHandler(
     private val contentLayout: View,
     private val tabPreview: TabPreview,
     private val toolbarLayout: View,
+    private val homeActionView: View,
     private val store: BrowserStore,
     private val selectTabUseCase: TabsUseCases.SelectTabUseCase,
     private val onSwipeStarted: () -> Unit,
+    private val onHomeAction: (() -> Unit)? = null
 ) : SwipeGestureListener {
-
-    private val logger = Logger("ToolbarGestureHandler")
 
     private enum class GestureDirection {
         LEFT_TO_RIGHT, RIGHT_TO_LEFT
+    }
+
+    private enum class HomeActionDirection {
+        BOTTOM_TO_TOP, TOP_TO_BOTTOM
     }
 
     private sealed class Destination {
@@ -72,35 +75,126 @@ class ToolbarGestureHandler(
     private val touchSlop = ViewConfiguration.get(activity).scaledTouchSlop
     private val minimumFlingVelocity = ViewConfiguration.get(activity).scaledMinimumFlingVelocity
 
+    private val homeActionToolBarMargin = activity.resources.getDimension(R.dimen.browser_home_action_toolbar_margin)
+
     private var gestureDirection = GestureDirection.LEFT_TO_RIGHT
+    private var homeActionDirection = HomeActionDirection.BOTTOM_TO_TOP
+    private var isHomeAction = false
 
     override fun onSwipeStarted(start: PointF, next: PointF): Boolean {
         val dx = next.x - start.x
         val dy = next.y - start.y
-        logger.debug("onSwipeStarted: start: $start, next: $next")
         gestureDirection = if (dx < 0) {
             GestureDirection.RIGHT_TO_LEFT
         } else {
             GestureDirection.LEFT_TO_RIGHT
         }
+        homeActionDirection = if (dy > 0) {
+            HomeActionDirection.BOTTOM_TO_TOP
+        } else {
+            HomeActionDirection.TOP_TO_BOTTOM
+        }
 
         @Suppress("ComplexCondition")
-        return if (
-            !activity.window.decorView.isKeyboardVisible() &&
-            start.isInToolbar() &&
-            abs(dx) > touchSlop &&
-            abs(dy) < abs(dx)
-        ) {
-            preparePreview(getDestination())
-            onSwipeStarted.invoke()
-            true
+        return if (!activity.window.decorView.isKeyboardVisible() && start.isInToolbar()) {
+            if (
+                abs(dx) > touchSlop &&
+                abs(dy) < abs(dx)
+            ) {
+                isHomeAction = false
+                preparePreview(getDestination())
+                onSwipeStarted.invoke()
+                true
+            } else if (abs(dy) > touchSlop && abs(dy) > abs(dx)) {
+                isHomeAction = true
+                true
+            } else {
+                false
+            }
         } else {
             false
         }
     }
 
     override fun onSwipeUpdate(distanceX: Float, distanceY: Float) {
-        logger.debug("onSwipeUpdate, x: $distanceX, y: $distanceY")
+        if (isHomeAction) {
+            performHomeActionGesture(distanceY)
+        } else {
+            performTabSwitchGesture(distanceX)
+        }
+
+    }
+
+    override fun onSwipeFinished(
+        velocityX: Float,
+        velocityY: Float,
+    ) {
+        if (isHomeAction) {
+            if (isHomeActionGestureComplete()) {
+                animateHomeActionFinish()
+            } else {
+                animateHomeActionCancel(velocityY)
+            }
+        } else {
+            val destination = getDestination()
+            if (destination is Destination.Tab && isGestureComplete(velocityX)) {
+                animateToNextTab(destination.tab)
+            } else {
+                animateCanceledGesture(velocityX)
+            }
+        }
+    }
+
+    private fun performHomeActionGesture(distanceY: Float) {
+        homeActionView.visibility = View.VISIBLE
+        val atLeastY = -toolbarLayout.height - homeActionToolBarMargin
+        homeActionView.translationY = max(atLeastY, homeActionView.translationY - distanceY).coerceAtMost(0f)
+        if (isHomeActionGestureComplete()) {
+            homeActionView.setBackgroundResource(R.drawable.mozac_browser_toolbar_home_action_background_valid)
+        } else {
+            homeActionView.setBackgroundResource(R.drawable.mozac_browser_toolbar_home_action_background_invalid)
+        }
+    }
+
+    private fun isHomeActionGestureComplete() =
+        homeActionView.translationY <= -toolbarLayout.height - homeActionToolBarMargin
+
+    private fun animateHomeActionFinish() {
+        ValueAnimator.ofFloat(1f, 0f).apply {
+            addUpdateListener { animator ->
+                duration = FINISHED_GESTURE_ANIMATION_DURATION
+                homeActionView.alpha = animator.animatedValue as Float
+            }
+            doOnEnd {
+                homeActionView.translationY = 0f
+                homeActionView.visibility = View.GONE
+                homeActionView.alpha = 1f
+                onHomeAction?.invoke()
+            }
+            start()
+        }
+    }
+
+    private fun animateHomeActionCancel(velocityY: Float) {
+        val duration = if (abs(velocityY) >= minimumFlingVelocity) {
+            CANCELED_FLING_ANIMATION_DURATION
+        } else {
+            CANCELED_GESTURE_ANIMATION_DURATION
+        }
+        ValueAnimator.ofFloat(homeActionView.translationY, 0f).apply {
+            this.duration = duration
+            addUpdateListener {
+                homeActionView.translationY = it.animatedValue as Float
+            }
+            doOnEnd {
+                homeActionView.visibility = View.GONE
+                homeActionView.setBackgroundResource(R.drawable.mozac_browser_toolbar_home_action_background_invalid)
+            }
+            start()
+        }
+    }
+
+    private fun performTabSwitchGesture(distanceX: Float) {
         when (getDestination()) {
             is Destination.Tab -> {
                 // Restrict the range of motion for the views so you can't start a swipe in one direction
@@ -142,18 +236,6 @@ class ToolbarGestureHandler(
                     ).coerceAtLeast(0f)
                 }
             }
-        }
-    }
-
-    override fun onSwipeFinished(
-        velocityX: Float,
-        velocityY: Float,
-    ) {
-        val destination = getDestination()
-        if (destination is Destination.Tab && isGestureComplete(velocityX)) {
-            animateToNextTab(destination.tab)
-        } else {
-            animateCanceledGesture(velocityX)
         }
     }
 

@@ -94,6 +94,21 @@
                 android:layout_height="wrap_content"
                 android:elevation="@dimen/browser_fragment_toolbar_elevation"/>
 
+            <FrameLayout
+                android:id="@+id/homeAction"
+                android:visibility="gone"
+                android:layout_gravity="center_horizontal|bottom"
+                android:background="@drawable/mozac_browser_toolbar_home_action_background_invalid"
+                android:layout_width="@dimen/browser_home_action_height"
+                android:layout_height="@dimen/browser_home_action_height">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    app:srcCompat="@drawable/mozac_ic_home_24"
+                    android:layout_gravity="center"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp" />
+            </FrameLayout>
+
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
         <mozilla.components.feature.prompts.address.AddressSelectBar
