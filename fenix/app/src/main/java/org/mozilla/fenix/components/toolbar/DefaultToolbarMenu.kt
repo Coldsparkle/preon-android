@@ -17,7 +17,6 @@ import kotlinx.coroutines.launch
 import mozilla.components.browser.menu.BrowserMenuHighlight
 import mozilla.components.browser.menu.BrowserMenuItem
 import mozilla.components.browser.menu.WebExtensionBrowserMenuBuilder
-import mozilla.components.browser.menu.item.BrowserMenuDivider
 import mozilla.components.browser.menu.item.BrowserMenuHighlightableItem
 import mozilla.components.browser.menu.item.BrowserMenuImageSwitch
 import mozilla.components.browser.menu.item.BrowserMenuImageText
@@ -412,15 +411,12 @@ open class DefaultToolbarMenu(
     val coreMenuItems by lazy {
         val menuItems =
             listOfNotNull(
-                if (shouldUseBottomToolbar || !shouldShowMenuToolbar) null else menuToolbar,
                 newTabItem,
-                BrowserMenuDivider(),
                 bookmarksItem,
                 historyItem,
                 downloadsItem,
                 extensionsItem,
                 syncMenuItem(),
-                BrowserMenuDivider(),
                 findInPageItem,
                 translationsItem.apply { visible = ::shouldShowTranslations },
                 desktopSiteItem,
@@ -428,16 +424,13 @@ open class DefaultToolbarMenu(
                 customizeReaderView.apply { visible = ::shouldShowReaderViewCustomization },
                 openInApp.apply { visible = ::shouldShowOpenInApp },
                 reportSiteIssuePlaceholder,
-                BrowserMenuDivider(),
                 addToHomeScreenItem.apply { visible = ::canAddToHomescreen },
                 installToHomescreen.apply { visible = ::canInstall },
                 if (shouldShowTopSites) addRemoveTopSitesItem else null,
                 saveToCollectionItem,
                 if (FxNimbus.features.print.value().browserPrintEnabled) printPageItem else null,
-                BrowserMenuDivider(),
                 settingsItem,
                 if (shouldDeleteDataOnQuit) deleteDataOnQuit else null,
-                if (shouldUseBottomToolbar) BrowserMenuDivider() else null,
                 if (shouldUseBottomToolbar && shouldShowMenuToolbar) menuToolbar else null,
             )
 

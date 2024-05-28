@@ -15,7 +15,6 @@ import mozilla.components.browser.menu.BrowserMenuBuilder
 import mozilla.components.browser.menu.BrowserMenuHighlight
 import mozilla.components.browser.menu.BrowserMenuItem
 import mozilla.components.browser.menu.ext.getHighlight
-import mozilla.components.browser.menu.item.BrowserMenuDivider
 import mozilla.components.browser.menu.item.BrowserMenuHighlightableItem
 import mozilla.components.browser.menu.item.BrowserMenuImageSwitch
 import mozilla.components.browser.menu.item.BrowserMenuImageText
@@ -221,9 +220,7 @@ class HomeMenu(
             syncSignInMenuItem,
             accountAuthItem,
             if (Config.channel.isMozillaOnline) manageAccountAndDevicesItem else null,
-            BrowserMenuDivider(),
             desktopItem,
-            BrowserMenuDivider(),
             whatsNewItem,
             helpItem,
             customizeHomeItem,

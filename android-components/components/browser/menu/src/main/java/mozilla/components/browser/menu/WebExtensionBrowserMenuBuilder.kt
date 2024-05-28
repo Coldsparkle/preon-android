@@ -8,7 +8,6 @@ import android.content.Context
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import mozilla.components.browser.menu.item.BackPressMenuItem
-import mozilla.components.browser.menu.item.BrowserMenuDivider
 import mozilla.components.browser.menu.item.BrowserMenuImageText
 import mozilla.components.browser.menu.item.NO_ID
 import mozilla.components.browser.menu.item.ParentBrowserMenuItem
@@ -106,13 +105,10 @@ class WebExtensionBrowserMenuBuilder(
             }
 
             val webExtSubMenuItems = if (appendExtensionSubMenuAtStart) {
-                listOf(backPressMenuItem) + BrowserMenuDivider() +
-                    filteredExtensionMenuItems +
-                    BrowserMenuDivider() + addonsManagerMenuItem
+                listOf(backPressMenuItem) +
+                    filteredExtensionMenuItems + addonsManagerMenuItem
             } else {
-                listOf(addonsManagerMenuItem) + BrowserMenuDivider() +
-                    filteredExtensionMenuItems +
-                    BrowserMenuDivider() + backPressMenuItem
+                listOf(addonsManagerMenuItem) + filteredExtensionMenuItems + backPressMenuItem
             }
 
             val webExtBrowserMenuAdapter = BrowserMenuAdapter(context, webExtSubMenuItems)
