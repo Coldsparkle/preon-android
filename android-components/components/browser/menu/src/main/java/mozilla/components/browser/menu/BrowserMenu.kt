@@ -18,6 +18,7 @@ import androidx.annotation.VisibleForTesting
 import androidx.cardview.widget.CardView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.widget.PopupWindowCompat
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import mozilla.components.browser.menu.BrowserMenu.Orientation.DOWN
@@ -67,11 +68,12 @@ open class BrowserMenu internal constructor(
         adapter.menu = this
 
         menuList = view.findViewById<DynamicWidthRecyclerView>(R.id.mozac_browser_menu_recyclerView).apply {
-            layoutManager = StickyItemsLinearLayoutManager.get<BrowserMenuAdapter>(
-                anchor.context,
-                StickyItemPlacement.BOTTOM,
-                false,
-            )
+//            layoutManager = StickyItemsLinearLayoutManager.get<BrowserMenuAdapter>(
+//                anchor.context,
+//                StickyItemPlacement.BOTTOM,
+//                false,
+//            )
+            layoutManager = GridLayoutManager(anchor.context, 4)
 
             adapter = this@BrowserMenu.adapter
             minWidth = style?.minWidth ?: resources.getDimensionPixelSize(R.dimen.mozac_browser_menu_width_min)
@@ -112,7 +114,7 @@ open class BrowserMenu internal constructor(
             MenuPositioningData(askedOrientation = orientation),
         )
 
-        view = configureExpandableMenu(view, endOfMenuAlwaysVisible)
+//        view = configureExpandableMenu(view, endOfMenuAlwaysVisible)
         return getNewPopupWindow(view).apply {
             setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             isFocusable = true
