@@ -63,17 +63,17 @@ open class BrowserMenu internal constructor(
         endOfMenuAlwaysVisible: Boolean = false,
         onDismiss: () -> Unit = {},
     ): PopupWindow {
-        var view = LayoutInflater.from(anchor.context).inflate(R.layout.mozac_browser_menu, null)
+        val view = LayoutInflater.from(anchor.context).inflate(R.layout.mozac_browser_menu, null)
 
         adapter.menu = this
 
         menuList = view.findViewById<DynamicWidthRecyclerView>(R.id.mozac_browser_menu_recyclerView).apply {
-//            layoutManager = StickyItemsLinearLayoutManager.get<BrowserMenuAdapter>(
-//                anchor.context,
-//                StickyItemPlacement.BOTTOM,
-//                false,
-//            )
-            layoutManager = GridLayoutManager(anchor.context, 4)
+            layoutManager = StickyItemsLinearLayoutManager.get<BrowserMenuAdapter>(
+                anchor.context,
+                StickyItemPlacement.BOTTOM,
+                false,
+            )
+//            layoutManager = GridLayoutManager(anchor.context, 4)
 
             adapter = this@BrowserMenu.adapter
             minWidth = style?.minWidth ?: resources.getDimensionPixelSize(R.dimen.mozac_browser_menu_width_min)
@@ -177,21 +177,11 @@ open class BrowserMenu internal constructor(
 
     @VisibleForTesting
     internal fun getNewPopupWindow(view: ViewGroup): PopupWindow {
-        // If the menu is expandable we need to give it all the possible space to expand.
-        // Also, by setting MATCH_PARENT, expanding the menu will not expand the Window
-        // of the PopupWindow which for a bottom anchored menu means glitchy animations.
-        val popupHeight = if (view is ExpandableLayout) {
-            WindowManager.LayoutParams.MATCH_PARENT
-        } else {
-            // Otherwise wrap the menu. Allowing it to be as big as the parent would result in
-            // layout issues if the menu is smaller than the available screen estate.
-            WindowManager.LayoutParams.WRAP_CONTENT
-        }
 
         return PopupWindow(
             view,
             WindowManager.LayoutParams.WRAP_CONTENT,
-            popupHeight,
+            WindowManager.LayoutParams.WRAP_CONTENT,
         )
     }
 
