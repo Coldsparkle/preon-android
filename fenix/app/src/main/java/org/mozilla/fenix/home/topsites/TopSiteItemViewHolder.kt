@@ -116,14 +116,10 @@ class TopSiteItemViewHolder(
                         val color = Color(textColor).toArgb()
                         val colorList = ColorStateList.valueOf(color)
                         binding.topSiteTitle.setTextColor(color)
-                        binding.topSiteSubtitle.setTextColor(color)
                         TextViewCompat.setCompoundDrawableTintList(binding.topSiteTitle, colorList)
                     } else {
                         binding.topSiteTitle.setTextColor(
                             view.context.getColorFromAttr(R.attr.textPrimary),
-                        )
-                        binding.topSiteSubtitle.setTextColor(
-                            view.context.getColorFromAttr(R.attr.textSecondary),
                         )
                         TextViewCompat.setCompoundDrawableTintList(binding.topSiteTitle, null)
                     }
@@ -146,8 +142,6 @@ class TopSiteItemViewHolder(
         }
 
         if (topSite is TopSite.Provided) {
-            binding.topSiteSubtitle.isVisible = true
-
             viewLifecycleOwner.lifecycleScope.launch(IO) {
                 itemView.context.components.core.client.bitmapForUrl(topSite.imageUrl)?.let { bitmap ->
                     withContext(Main) {
