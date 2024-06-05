@@ -70,12 +70,6 @@ class SecretSettingsFragment : PreferenceFragmentCompat() {
             onPreferenceChangeListener = SharedPreferenceUpdater()
         }
 
-        requirePreference<SwitchPreference>(R.string.pref_key_enable_compose_top_sites).apply {
-            isVisible = Config.channel.isNightlyOrDebug
-            isChecked = context.settings().enableComposeTopSites
-            onPreferenceChangeListener = SharedPreferenceUpdater()
-        }
-
         requirePreference<SwitchPreference>(R.string.pref_key_enable_fxsuggest).apply {
             isVisible = FeatureFlags.fxSuggest
             isChecked = context.settings().enableFxSuggest
