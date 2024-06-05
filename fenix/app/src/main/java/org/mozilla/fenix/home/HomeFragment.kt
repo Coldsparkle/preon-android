@@ -121,7 +121,6 @@ import org.mozilla.fenix.home.sessioncontrol.SessionControlInteractor
 import org.mozilla.fenix.home.sessioncontrol.SessionControlView
 import org.mozilla.fenix.home.sessioncontrol.viewholders.CollectionHeaderViewHolder
 import org.mozilla.fenix.home.toolbar.DefaultToolbarController
-import org.mozilla.fenix.home.toolbar.SearchSelectorBinding
 import org.mozilla.fenix.home.toolbar.SearchSelectorMenuBinding
 import org.mozilla.fenix.home.topsites.DefaultTopSitesView
 import org.mozilla.fenix.messaging.DefaultMessageController
@@ -223,7 +222,6 @@ class HomeFragment : Fragment() {
     private val recentTabsListFeature = ViewBoundFeatureWrapper<RecentTabsListFeature>()
     private val recentSyncedTabFeature = ViewBoundFeatureWrapper<RecentSyncedTabFeature>()
     private val historyMetadataFeature = ViewBoundFeatureWrapper<RecentVisitsFeature>()
-    private val searchSelectorBinding = ViewBoundFeatureWrapper<SearchSelectorBinding>()
     private val searchSelectorMenuBinding = ViewBoundFeatureWrapper<SearchSelectorMenuBinding>()
     private val navbarIntegration = ViewBoundFeatureWrapper<NavbarIntegration>()
 
@@ -653,17 +651,6 @@ class HomeFragment : Fragment() {
                 }
             }
         }
-
-        searchSelectorBinding.set(
-            feature = SearchSelectorBinding(
-                context = view.context,
-                binding = binding,
-                browserStore = requireComponents.core.store,
-                searchSelectorMenu = searchSelectorMenu,
-            ),
-            owner = viewLifecycleOwner,
-            view = binding.root,
-        )
 
         searchSelectorMenuBinding.set(
             feature = SearchSelectorMenuBinding(
