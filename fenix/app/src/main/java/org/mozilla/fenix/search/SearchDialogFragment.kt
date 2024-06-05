@@ -76,7 +76,6 @@ import mozilla.components.ui.widgets.withCenterAlignedButtons
 import org.mozilla.fenix.BrowserDirection
 import org.mozilla.fenix.GleanMetrics.Awesomebar
 import org.mozilla.fenix.GleanMetrics.Events
-import org.mozilla.fenix.GleanMetrics.VoiceSearch
 import org.mozilla.fenix.HomeActivity
 import org.mozilla.fenix.R
 import org.mozilla.fenix.components.Core.Companion.BOOKMARKS_SEARCH_ENGINE_ID
@@ -84,7 +83,6 @@ import org.mozilla.fenix.components.Core.Companion.HISTORY_SEARCH_ENGINE_ID
 import org.mozilla.fenix.components.Core.Companion.TABS_SEARCH_ENGINE_ID
 import org.mozilla.fenix.components.appstate.AppAction
 import org.mozilla.fenix.components.toolbar.IncompleteRedesignToolbarFeature
-import org.mozilla.fenix.components.toolbar.ToolbarPosition
 import org.mozilla.fenix.databinding.FragmentSearchDialogBinding
 import org.mozilla.fenix.databinding.SearchSuggestionsHintBinding
 import org.mozilla.fenix.ext.components
@@ -127,13 +125,11 @@ class SearchDialogFragment : AppCompatDialogFragment(), UserInteractionHandler {
     }
 
     private val qrFeature = ViewBoundFeatureWrapper<QrFeature>()
-    private val speechIntent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
 
     private var isPrivateButtonClicked = false
     private var dialogHandledAction = false
     private var searchSelectorAlreadyAdded = false
     private var qrButtonAction: Toolbar.Action? = null
-    private var voiceSearchButtonAction: Toolbar.Action? = null
 
     override fun onStart() {
         super.onStart()
@@ -472,7 +468,6 @@ class SearchDialogFragment : AppCompatDialogFragment(), UserInteractionHandler {
 
             addSearchSelector()
             updateQrButton(it)
-            updateVoiceSearchButton()
         }
     }
 
@@ -801,50 +796,6 @@ class SearchDialogFragment : AppCompatDialogFragment(), UserInteractionHandler {
         searchSelectorAlreadyAdded = true
     }
 
-    private fun updateVoiceSearchButton() {
-        when (isSpeechAvailable() && requireContext().settings().shouldShowVoiceSearch) {
-            true -> {
-                if (voiceSearchButtonAction == null) {
-                    voiceSearchButtonAction = IncreasedTapAreaActionDecorator(
-                        BrowserToolbar.Button(
-                            AppCompatResources.getDrawable(requireContext(), R.drawable.ic_microphone)!!,
-                            requireContext().getString(R.string.voice_search_content_description),
-                            visible = { true },
-                            listener = ::launchVoiceSearch,
-                        ),
-                    ).also { action ->
-                        toolbarView.view.run {
-                            addEditActionEnd(action)
-                            invalidateActions()
-                        }
-                    }
-                }
-            }
-            false -> {
-                voiceSearchButtonAction?.let { action ->
-                    toolbarView.view.removeEditActionEnd(action)
-                    voiceSearchButtonAction = null
-                }
-            }
-        }
-    }
-
-    private fun launchVoiceSearch() {
-        // Note if a user disables speech while the app is on the search fragment
-        // the voice button will still be available and *will* cause a crash if tapped,
-        // since the `visible` call is only checked on create. In order to avoid extra complexity
-        // around such a small edge case, we make the button have no functionality in this case.
-        if (!isSpeechAvailable()) { return }
-
-        VoiceSearch.tapped.record(NoExtras())
-        speechIntent.apply {
-            putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
-            putExtra(RecognizerIntent.EXTRA_PROMPT, requireContext().getString(R.string.voice_search_explainer))
-        }
-
-        startForResult.launch(speechIntent)
-    }
-
     private fun updateQrButton(searchFragmentState: SearchFragmentState) {
         val searchEngine = searchFragmentState.searchEngineSource.searchEngine
         when (
@@ -901,8 +852,6 @@ class SearchDialogFragment : AppCompatDialogFragment(), UserInteractionHandler {
 
         requireContext().settings().setCameraPermissionNeededState = false
     }
-
-    private fun isSpeechAvailable(): Boolean = speechIntent.resolveActivity(requireContext().packageManager) != null
 
     private fun updateClipboardSuggestion(
         shouldShowView: Boolean,

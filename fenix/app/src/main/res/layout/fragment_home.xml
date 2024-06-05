@@ -197,15 +197,6 @@
             app:layout_constraintTop_toTopOf="@id/bottom_bar"
             app:layout_constraintBottom_toBottomOf="@id/bottom_bar"/>
 
-        <View
-            android:id="@+id/bottomBarShadow"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:background="@color/bottom_bar_shadow"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/bottom_bar" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
