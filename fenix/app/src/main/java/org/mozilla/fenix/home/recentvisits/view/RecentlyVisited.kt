@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,7 +20,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Text
@@ -40,13 +38,11 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.testTag
 import androidx.compose.ui.semantics.testTagsAsResourceId
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import mozilla.components.support.ktx.kotlin.trimmed
 import org.mozilla.fenix.R
 import org.mozilla.fenix.compose.ContextualMenu
-import org.mozilla.fenix.compose.Divider
 import org.mozilla.fenix.compose.Favicon
 import org.mozilla.fenix.compose.MenuItem
 import org.mozilla.fenix.compose.annotation.LightDarkPreview
@@ -54,32 +50,16 @@ import org.mozilla.fenix.home.recentvisits.RecentlyVisitedItem
 import org.mozilla.fenix.home.recentvisits.RecentlyVisitedItem.RecentHistoryGroup
 import org.mozilla.fenix.home.recentvisits.RecentlyVisitedItem.RecentHistoryHighlight
 import org.mozilla.fenix.theme.FirefoxTheme
+import kotlin.math.min
 
 // Number of recently visited items per column.
 private const val VISITS_PER_COLUMN = 3
 
 private val itemRowHeight = 56.dp
-private val horizontalArrangementSpacing = 32.dp
 private val contentPadding = 16.dp
 private val imageSize = 24.dp
 private val imageSpacer = 16.dp
 private val textSpacer = 2.dp
-
-/**
- * The [Dp] width of UI elements to deduct from the screen width for a single column.
- *
- * Box start padding, Row start padding, Box end padding, Row end padding.
- */
-private val singleColumnWidth: Dp = contentPadding * 4
-
-/**
- * The [Dp] width of UI elements to deduct from the screen width for multiple columns to show (peek) the
- * second column icons.
- *
- * Box start padding, Row start padding, Spacer, Image size, Image spacer.
- */
-private val multipleColumnsWidth: Dp =
-    contentPadding + contentPadding + horizontalArrangementSpacing + imageSize + imageSpacer
 
 /**
  * A list of recently visited items.
@@ -97,50 +77,25 @@ fun RecentlyVisited(
     backgroundColor: Color = FirefoxTheme.colors.layer2,
     onRecentVisitClick: (RecentlyVisitedItem, Int) -> Unit = { _, _ -> },
 ) {
-    val itemsMatrix: List<List<RecentlyVisitedItem>> = recentVisits.chunked(VISITS_PER_COLUMN)
+    val items = recentVisits.subList(0, min(recentVisits.size, VISITS_PER_COLUMN))
 
     BoxWithConstraints(
         modifier = Modifier
             .fillMaxWidth()
+            .padding(contentPadding)
             .semantics {
                 testTagsAsResourceId = true
                 testTag = "recent.visits"
             },
     ) {
-        val boxWithConstraintsScope = this
-
-        val isSingleColumn = itemsMatrix.size == 1
-        val widthToDeduct = if (isSingleColumn) {
-            singleColumnWidth
-        } else {
-            multipleColumnsWidth
-        }
-        val rowWidth = boxWithConstraintsScope.maxWidth - widthToDeduct
-
-        LazyRow(
-            modifier = Modifier.fillMaxWidth(),
-            contentPadding = PaddingValues(horizontal = contentPadding),
-        ) {
-            item {
-                RecentlyVisitedCard(backgroundColor) {
-                    Row(modifier = Modifier.padding(contentPadding)) {
-                        itemsMatrix.mapIndexed { pageIndex, items ->
-                            RecentlyVisitedColumn(
-                                modifier = Modifier.width(rowWidth),
-                                menuItems = menuItems,
-                                items = items,
-                                pageIndex = pageIndex,
-                                onRecentVisitClick = onRecentVisitClick,
-                            )
-
-                            val isLastColumn = pageIndex == itemsMatrix.lastIndex
-                            if (!isLastColumn) {
-                                Spacer(modifier = Modifier.width(horizontalArrangementSpacing))
-                            }
-                        }
-                    }
-                }
-            }
+        RecentlyVisitedCard(backgroundColor) {
+            RecentlyVisitedColumn(
+                modifier = Modifier.fillMaxWidth().padding(horizontal = contentPadding),
+                menuItems = menuItems,
+                items = items,
+                pageIndex = 0,
+                onRecentVisitClick = onRecentVisitClick,
+            )
         }
     }
 }
@@ -171,7 +126,6 @@ private fun RecentlyVisitedColumn(
                 is RecentHistoryHighlight -> RecentlyVisitedHistoryHighlight(
                     recentVisit = recentVisit,
                     menuItems = menuItems,
-                    showDividerLine = index < items.size - 1,
                     onRecentVisitClick = {
                         onRecentVisitClick(it, pageIndex + 1)
                     },
@@ -180,7 +134,6 @@ private fun RecentlyVisitedColumn(
                 is RecentHistoryGroup -> RecentlyVisitedHistoryGroup(
                     recentVisit = recentVisit,
                     menuItems = menuItems,
-                    showDividerLine = index < items.size - 1,
                     onRecentVisitClick = {
                         onRecentVisitClick(it, pageIndex + 1)
                     },
@@ -206,7 +159,6 @@ private fun RecentlyVisitedColumn(
 private fun RecentlyVisitedHistoryGroup(
     recentVisit: RecentHistoryGroup,
     menuItems: List<RecentVisitMenuItem>,
-    showDividerLine: Boolean,
     onRecentVisitClick: (RecentHistoryGroup) -> Unit = { _ -> },
 ) {
     var isMenuExpanded by remember { mutableStateOf(false) }
@@ -258,10 +210,6 @@ private fun RecentlyVisitedHistoryGroup(
                         },
                 )
             }
-
-            if (showDividerLine) {
-                Divider(modifier = Modifier.align(Alignment.BottomCenter))
-            }
         }
 
         ContextualMenu(
@@ -292,7 +240,6 @@ private fun RecentlyVisitedHistoryGroup(
 private fun RecentlyVisitedHistoryHighlight(
     recentVisit: RecentHistoryHighlight,
     menuItems: List<RecentVisitMenuItem>,
-    showDividerLine: Boolean,
     onRecentVisitClick: (RecentHistoryHighlight) -> Unit = { _ -> },
 ) {
     var isMenuExpanded by remember { mutableStateOf(false) }
@@ -325,10 +272,6 @@ private fun RecentlyVisitedHistoryHighlight(
                         testTag = "recent.visits.highlight.title"
                     },
             )
-
-            if (showDividerLine) {
-                Divider(modifier = Modifier.align(Alignment.BottomCenter))
-            }
         }
 
         ContextualMenu(
