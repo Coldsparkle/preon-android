@@ -45,7 +45,6 @@ internal fun normalModeAdapterItems(
     firstFrameDrawn: Boolean = false,
 ): List<AdapterItem> {
     val items = mutableListOf<AdapterItem>()
-    var shouldShowCustomizeHome = false
 
     // Add a synchronous, unconditional and invisible placeholder so home is anchored to the top when created.
     items.add(AdapterItem.TopPlaceholderItem)
@@ -55,16 +54,14 @@ internal fun normalModeAdapterItems(
     }
 
     if (settings.showTopSitesFeature && topSites.isNotEmpty()) {
-        shouldShowCustomizeHome = true
-        if (settings.enableComposeTopSites) {
-            items.add(AdapterItem.TopSites)
-        } else {
-            items.add(AdapterItem.TopSitePager(topSites))
-        }
+        items.add(AdapterItem.TopSites(topSites))
+//        if (settings.enableComposeTopSites) {
+//        } else {
+//            items.add(AdapterItem.TopSitePager(topSites))
+//        }
     }
 
     if (showRecentTab) {
-        shouldShowCustomizeHome = true
         items.add(AdapterItem.RecentTabsHeader)
         items.add(AdapterItem.RecentTabItem)
         if (showRecentSyncedTab) {
@@ -73,13 +70,11 @@ internal fun normalModeAdapterItems(
     }
 
     if (settings.showRecentBookmarksFeature && recentBookmarks.isNotEmpty()) {
-        shouldShowCustomizeHome = true
         items.add(AdapterItem.RecentBookmarksHeader)
         items.add(AdapterItem.RecentBookmarks)
     }
 
     if (settings.historyMetadataUIFeature && recentVisits.isNotEmpty()) {
-        shouldShowCustomizeHome = true
         items.add(AdapterItem.RecentVisitsHeader)
         items.add(AdapterItem.RecentVisitsItems)
     }
@@ -97,14 +92,9 @@ internal fun normalModeAdapterItems(
     // This is only useful while we have a RecyclerView + Compose implementation. We can remove this
     // when we switch to a Compose-only home screen.
     if (firstFrameDrawn && settings.showPocketRecommendationsFeature && pocketStories.isNotEmpty()) {
-        shouldShowCustomizeHome = true
         items.add(AdapterItem.PocketStoriesItem)
         items.add(AdapterItem.PocketCategoriesItem)
         items.add(AdapterItem.PocketRecommendationsFooterItem)
-    }
-
-    if (shouldShowCustomizeHome) {
-        items.add(AdapterItem.CustomizeHomeButton)
     }
 
     items.add(AdapterItem.BottomSpacer)

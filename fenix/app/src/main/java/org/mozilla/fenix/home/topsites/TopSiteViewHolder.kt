@@ -11,8 +11,10 @@ import mozilla.components.feature.top.sites.TopSite
 import org.mozilla.fenix.R
 import org.mozilla.fenix.components.AppStore
 import org.mozilla.fenix.databinding.ComponentTopSitesBinding
+import org.mozilla.fenix.home.sessioncontrol.AdapterItem
 import org.mozilla.fenix.home.sessioncontrol.TopSiteInteractor
 import org.mozilla.fenix.utils.AccessibilityGridLayoutManager
+import kotlin.math.min
 
 class TopSiteViewHolder(
     view: View,
@@ -35,11 +37,14 @@ class TopSiteViewHolder(
     }
 
     fun bind(topSites: List<TopSite>) {
-        topSitesAdapter.submitList(topSites)
+        if (topSites.isNotEmpty()) {
+            topSitesAdapter.submitList(topSites.subList(0, min(topSites.size, SPAN_COUNT * ROW_COUNT)))
+        }
     }
 
     companion object {
         const val LAYOUT_ID = R.layout.component_top_sites
         const val SPAN_COUNT = 5
+        const val ROW_COUNT = 2
     }
 }

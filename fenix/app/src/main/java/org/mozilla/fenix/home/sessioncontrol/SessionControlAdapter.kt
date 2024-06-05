@@ -35,8 +35,7 @@ import org.mozilla.fenix.home.sessioncontrol.viewholders.CustomizeHomeButtonView
 import org.mozilla.fenix.home.sessioncontrol.viewholders.NoCollectionsMessageViewHolder
 import org.mozilla.fenix.home.sessioncontrol.viewholders.PrivateBrowsingDescriptionViewHolder
 import org.mozilla.fenix.home.sessioncontrol.viewholders.onboarding.MessageCardViewHolder
-import org.mozilla.fenix.home.topsites.TopSitePagerViewHolder
-import org.mozilla.fenix.home.topsites.TopSitesViewHolder
+import org.mozilla.fenix.home.topsites.TopSiteViewHolder
 import mozilla.components.feature.tab.collections.Tab as ComponentTab
 
 sealed class AdapterItem(@LayoutRes val viewType: Int) {
@@ -45,7 +44,15 @@ sealed class AdapterItem(@LayoutRes val viewType: Int) {
     /**
      * Top sites.
      */
-    object TopSites : AdapterItem(TopSitesViewHolder.LAYOUT_ID)
+    data class TopSites(val topSites: List<TopSite>) : AdapterItem(TopSiteViewHolder.LAYOUT_ID) {
+        override fun sameAs(other: AdapterItem): Boolean {
+            return other is TopSites
+        }
+
+        override fun contentsSameAs(other: AdapterItem): Boolean {
+            return topSites == (other as? TopSites)?.topSites
+        }
+    }
 
     /**
      * Contains a set of [Pair]s where [Pair.first] is the index of the changed [TopSite] and
@@ -54,53 +61,6 @@ sealed class AdapterItem(@LayoutRes val viewType: Int) {
     data class TopSitePagerPayload(
         val changed: Set<Pair<Int, TopSite>>,
     )
-
-    data class TopSitePager(val topSites: List<TopSite>) :
-        AdapterItem(TopSitePagerViewHolder.LAYOUT_ID) {
-        override fun sameAs(other: AdapterItem): Boolean {
-            return other is TopSitePager
-        }
-
-        override fun contentsSameAs(other: AdapterItem): Boolean {
-            val newTopSites = (other as? TopSitePager) ?: return false
-            if (newTopSites.topSites.size != this.topSites.size) return false
-            val newSitesSequence = newTopSites.topSites.asSequence()
-            val oldTopSites = this.topSites.asSequence()
-            return newSitesSequence.zip(oldTopSites).all { (new, old) -> new == old }
-        }
-
-        /**
-         * Returns a payload if there's been a change, or null if not, but adds a "dummy" item for
-         * each deleted [TopSite]. This is done in order to more easily identify the actual views
-         * that need to be removed in [TopSitesPagerAdapter.update].
-         *
-         * See https://github.com/mozilla-mobile/fenix/pull/20189#issuecomment-877124730
-         */
-        @Suppress("ComplexCondition")
-        override fun getChangePayload(newItem: AdapterItem): Any? {
-            val newTopSites = (newItem as? TopSitePager)
-            val oldTopSites = (this as? TopSitePager)
-
-            if (newTopSites == null || oldTopSites == null ||
-                newTopSites.topSites.size > oldTopSites.topSites.size ||
-                (newTopSites.topSites.size > TopSitePagerViewHolder.TOP_SITES_PER_PAGE)
-                != (oldTopSites.topSites.size > TopSitePagerViewHolder.TOP_SITES_PER_PAGE)
-            ) {
-                return null
-            }
-
-            val changed = mutableSetOf<Pair<Int, TopSite>>()
-
-            for ((index, item) in oldTopSites.topSites.withIndex()) {
-                val changedItem =
-                    newTopSites.topSites.getOrNull(index) ?: TopSite.Frecent(-1, "REMOVED", "", 0)
-                if (changedItem != item) {
-                    changed.add((Pair(index, changedItem)))
-                }
-            }
-            return if (changed.isNotEmpty()) TopSitePagerPayload(changed) else null
-        }
-    }
 
     object PrivateBrowsingDescription : AdapterItem(PrivateBrowsingDescriptionViewHolder.LAYOUT_ID)
     object NoCollectionsMessage : AdapterItem(NoCollectionsMessageViewHolder.LAYOUT_ID)
@@ -279,21 +239,16 @@ class SessionControlAdapter(
                 viewLifecycleOwner = viewLifecycleOwner,
                 interactor = interactor,
             )
-            TopSitesViewHolder.LAYOUT_ID -> return TopSitesViewHolder(
-                composeView = ComposeView(parent.context),
-                viewLifecycleOwner = viewLifecycleOwner,
-                interactor = interactor,
-            )
         }
 
         val view = LayoutInflater.from(parent.context).inflate(viewType, parent, false)
         return when (viewType) {
             TopPlaceholderViewHolder.LAYOUT_ID -> TopPlaceholderViewHolder(view)
-            TopSitePagerViewHolder.LAYOUT_ID -> TopSitePagerViewHolder(
+            TopSiteViewHolder.LAYOUT_ID -> return TopSiteViewHolder(
                 view = view,
                 appStore = components.appStore,
                 viewLifecycleOwner = viewLifecycleOwner,
-                interactor = interactor,
+                interactor = interactor
             )
             NoCollectionsMessageViewHolder.LAYOUT_ID ->
                 NoCollectionsMessageViewHolder(
@@ -323,7 +278,6 @@ class SessionControlAdapter(
             is PocketCategoriesViewHolder,
             is PocketRecommendationsHeaderViewHolder,
             is PocketStoriesViewHolder,
-            is TopSitesViewHolder,
             -> {
                 // no op
                 // This previously called "composeView.disposeComposition" which would have the
@@ -359,15 +313,6 @@ class SessionControlAdapter(
     ) {
         if (payloads.isNullOrEmpty()) {
             onBindViewHolder(holder, position)
-        } else {
-            when (holder) {
-                is TopSitePagerViewHolder -> {
-                    if (payloads[0] is AdapterItem.TopSitePagerPayload) {
-                        val payload = payloads[0] as AdapterItem.TopSitePagerPayload
-                        holder.update(payload)
-                    }
-                }
-            }
         }
     }
 
@@ -378,8 +323,8 @@ class SessionControlAdapter(
             is TopPlaceholderViewHolder -> {
                 holder.bind()
             }
-            is TopSitePagerViewHolder -> {
-                holder.bind((item as AdapterItem.TopSitePager).topSites)
+            is TopSiteViewHolder -> {
+                holder.bind((item as AdapterItem.TopSites).topSites)
             }
             is MessageCardViewHolder -> {
                 holder.bind((item as AdapterItem.NimbusMessageCard).message)
@@ -392,7 +337,6 @@ class SessionControlAdapter(
                 val (collection, tab, isLastTab) = item as AdapterItem.TabInCollectionItem
                 holder.bindSession(collection, tab, isLastTab)
             }
-            is TopSitesViewHolder,
             is RecentlyVisitedViewHolder,
             is RecentBookmarksViewHolder,
             is RecentTabViewHolder,
