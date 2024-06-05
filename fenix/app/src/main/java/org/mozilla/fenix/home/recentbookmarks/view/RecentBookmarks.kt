@@ -126,7 +126,7 @@ private fun RecentBookmarkItem(
             ),
         shape = cardShape,
         backgroundColor = backgroundColor,
-        elevation = 6.dp,
+        elevation = 0.dp,
     ) {
         Column(
             modifier = Modifier

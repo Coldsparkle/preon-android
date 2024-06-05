@@ -93,7 +93,7 @@ fun RecentSyncedTab(
             ),
         shape = RoundedCornerShape(8.dp),
         backgroundColor = backgroundColor,
-        elevation = 6.dp,
+        elevation = 0.dp,
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Row(modifier = Modifier.height(IntrinsicSize.Min)) {

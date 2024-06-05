@@ -99,7 +99,7 @@ fun CollectionItem(
                 .fillMaxWidth(),
             shape = if (isLastInCollection) BOTTOM_TAB_SHAPE else MIDDLE_TAB_SHAPE,
             backgroundColor = FirefoxTheme.colors.layer2,
-            elevation = 5.dp,
+            elevation = 0.dp,
         ) {
             FaviconListItem(
                 label = tab.title,

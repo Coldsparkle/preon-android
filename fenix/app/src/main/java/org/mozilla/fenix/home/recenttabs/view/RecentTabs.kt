@@ -138,7 +138,7 @@ private fun RecentTabItem(
             ),
         shape = RoundedCornerShape(8.dp),
         backgroundColor = backgroundColor,
-        elevation = 6.dp,
+        elevation = 0.dp,
     ) {
         Row(
             modifier = Modifier.padding(16.dp),

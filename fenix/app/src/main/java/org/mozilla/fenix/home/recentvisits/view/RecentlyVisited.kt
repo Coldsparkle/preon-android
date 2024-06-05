@@ -151,7 +151,7 @@ private fun RecentlyVisitedCard(backgroundColor: Color, content: @Composable () 
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(8.dp),
         backgroundColor = backgroundColor,
-        elevation = 6.dp,
+        elevation = 0.dp,
     ) {
         content()
     }

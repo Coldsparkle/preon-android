@@ -66,6 +66,7 @@ fun MessageCard(
             ),
         shape = RoundedCornerShape(8.dp),
         backgroundColor = messageColors.backgroundColor,
+        elevation = 0.dp
     ) {
         Column(
             Modifier

@@ -59,7 +59,7 @@ fun HomeSectionHeader(
 
         HomeSectionHeaderContent(
             headerText = headerText,
-            textColor = wallpaperAdaptedTextColor ?: FirefoxTheme.colors.textPrimary,
+            textColor = wallpaperAdaptedTextColor ?: FirefoxTheme.colors.textSecondary,
             description = description,
             showAllTextColor = if (isWallpaperDefault) {
                 FirefoxTheme.colors.textAccent
