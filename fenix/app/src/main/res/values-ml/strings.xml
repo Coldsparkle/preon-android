@@ -32,8 +32,6 @@
     <string name="private_browsing_title">താങ്കൾ ഒരു സ്വകാര്യ സെഷനിലാണ്</string>
     <!-- Explanation for private browsing displayed to users on home view when they first enable private mode
         The first parameter is the name of the app defined in app_name (for example: Fenix) -->
-    <string name="private_browsing_placeholder_description_2">%1$s നിങ്ങളുടെ തിരയലും ബ്രൗസിംഗ് ചരിത്രവും സ്വകാര്യ ടാബുകൾ അടയ്ക്കുമ്പോൾ അല്ലെങ്കിൽ അപ്ലിക്കേഷനിൽ നിന്ന് പുറത്തുകടക്കുമ്പോൾ അവ മായ്‌ക്കുന്നു. ഇത് നിങ്ങളെ വെബ്‌സൈറ്റുകളിലേക്കോ ഇൻറർനെറ്റ് സേവന ദാതാവിലേക്കോ അജ്ഞാതനാക്കില്ലെങ്കിലും, ഈ ഉപകരണം ഉപയോഗിക്കുന്ന മറ്റെതൊരാളിൽ നിന്നും നിങ്ങൾ ഓൺലൈനിൽ ചെയ്യുന്നത് സ്വകാര്യമായി സൂക്ഷിക്കുന്നത് എളുപ്പമാക്കുന്നു.</string>
-    <string name="private_browsing_common_myths">സ്വകാര്യ ബ്രൗസിങ്ങിനെക്കുറിച്ചുള്ള പൊതുവായ മിഥ്യാധാരണകൾ</string>
     <!-- Delete session button to erase your history in a private session -->
     <string name="private_browsing_delete_session">സെഷൻ നീക്കം ചെയ്യുക</string>
 

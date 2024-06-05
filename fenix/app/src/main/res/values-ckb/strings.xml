@@ -46,10 +46,6 @@
     <!-- About content. The first parameter is the name of the application. (For example: Fenix) -->
     <string name="about_content">%1$s بەرهەم هێنراوە لە لایەن مۆزیلاوە.</string>
 
-    <string name="private_browsing_common_myths">
-       چەند ئەفسانەییەک دەربارەی گەڕانی تایبەتیی
-    </string>
-
     <!-- Private mode shortcut "contextual feature recommendation" (CFR) -->
     <!-- Text for the main message -->
     <string name="cfr_message">قەدبڕێک درووستبکە بۆ کردنەوەی بازدەری تایبەتی شاراوە لە شاشەی سەرەکەییەوە.</string>

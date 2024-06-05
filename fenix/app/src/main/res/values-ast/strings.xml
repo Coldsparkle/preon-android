@@ -55,8 +55,6 @@
     <!-- Private Browsing -->
     <!-- Explanation for private browsing displayed to users on home view when they first enable private mode
         The first parameter is the name of the app defined in app_name (for example: Fenix) -->
-    <string name="private_browsing_placeholder_description_2">%1$s llimpia los historiales del mou de restolar en privao cuando coles de l\'aplicación o zarres toles llingüetes privaes. Magar qu\'esto nun t\'anonimiza n\'internet, fai que la to actividá en llinia seya fácil d\'anubrir a otros usuarios qu\'usen el preséu.</string>
-    <string name="private_browsing_common_myths">Mitos comunes tocante al restolar en privao</string>
 
     <!-- Private mode shortcut "contextual feature recommendation" (CFR) -->
     <!-- Text for the main message -->

@@ -5,7 +5,6 @@
 package org.mozilla.fenix.home.privatebrowsing.controller
 
 import androidx.navigation.NavController
-import org.mozilla.fenix.BrowserDirection
 import org.mozilla.fenix.HomeActivity
 import org.mozilla.fenix.R
 import org.mozilla.fenix.browser.BrowserFragmentDirections
@@ -14,16 +13,11 @@ import org.mozilla.fenix.components.AppStore
 import org.mozilla.fenix.components.appstate.AppAction
 import org.mozilla.fenix.ext.settings
 import org.mozilla.fenix.home.privatebrowsing.interactor.PrivateBrowsingInteractor
-import org.mozilla.fenix.settings.SupportUtils
 
 /**
  * An interface that handles the view manipulation of the private browsing mode.
  */
 interface PrivateBrowsingController {
-    /**
-     * @see [PrivateBrowsingInteractor.onLearnMoreClicked]
-     */
-    fun handleLearnMoreClicked()
 
     /**
      * @see [PrivateBrowsingInteractor.onPrivateModeButtonClicked]
@@ -40,16 +34,6 @@ class DefaultPrivateBrowsingController(
     private val navController: NavController,
 ) : PrivateBrowsingController {
 
-    override fun handleLearnMoreClicked() {
-        val learnMoreURL = SupportUtils.getGenericSumoURLForTopic(SupportUtils.SumoTopic.PRIVATE_BROWSING_MYTHS) +
-            "?as=u&utm_source=inproduct"
-
-        activity.openToBrowserAndLoad(
-            searchTermOrURL = learnMoreURL,
-            newTab = true,
-            from = BrowserDirection.FromHome,
-        )
-    }
 
     override fun handlePrivateModeButtonClicked(newMode: BrowsingMode) {
         if (newMode == BrowsingMode.Private) {

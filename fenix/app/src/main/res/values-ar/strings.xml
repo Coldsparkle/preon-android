@@ -47,8 +47,6 @@
     <!-- Private Browsing -->
     <!-- Explanation for private browsing displayed to users on home view when they first enable private mode
         The first parameter is the name of the app defined in app_name (for example: Fenix) -->
-    <string name="private_browsing_placeholder_description_2">يمسح %1$s تأريخ البحث والتصفح لديك عندما تُغلق الألسنة بوضع التصفح الخاص أو تُنهي التطبيق. على الرغم من أن هذا لا يجعلك مجهول الهوية إلى المواقع أو مقدّم خدمة الإنترنت لديك، إلا أنه يسهّل عليك إخفاء ما تفعله في الشبكة على أي شخص آخر يستخدم هذا الجهاز.</string>
-    <string name="private_browsing_common_myths">الخرافات الشائعة بخصوص التصفح الخاص</string>
 
     <!-- Text for the negative button to decline adding a Private Browsing shortcut to the Home screen -->
     <string name="cfr_neg_button_text">لا، شكرًا</string>

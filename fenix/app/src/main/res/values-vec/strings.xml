@@ -13,8 +13,6 @@
     <!-- No Open Tabs Message Description -->
     <string name="no_open_tabs_description">Ƚe schede vèrte ƚe vegnerà mostrà chive.</string>
 
-    <string name="private_browsing_common_myths">Miti da sfatare so ƚa navigasion anonima</string>
-
     <!-- Text for the negative button to decline adding a Private Browsing shortcut to the Home screen -->
     <string name="cfr_neg_button_text">Nò grasie</string>
 

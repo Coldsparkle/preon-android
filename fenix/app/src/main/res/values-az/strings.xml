@@ -15,7 +15,6 @@
     <!-- Private Browsing -->
     <!-- Title for private session option -->
     <string name="private_browsing_title">Məxfi sessiyadasınız</string>
-    <string name="private_browsing_common_myths">Məxfi səyahət haqqında olan əfsanələr</string>
     <!-- Delete session button to erase your history in a private session -->
     <string name="private_browsing_delete_session">Sessiyanı sil</string>
 

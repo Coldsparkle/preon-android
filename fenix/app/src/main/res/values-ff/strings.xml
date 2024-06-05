@@ -45,8 +45,6 @@
     <!-- About content. The first parameter is the name of the application. (For example: Fenix) -->
     <string name="about_content">Ko Mozilla jibini %1$s</string>
 
-    <string name="private_browsing_common_myths">Tinndi goowaaɗi baɗte banngogol suturo</string>
-
     <!-- Private mode shortcut "contextual feature recommendation" (CFR) -->
     <!-- Text for the main message -->
     <string name="cfr_message" moz:removedIn="109" tools:ignore="UnusedResources">Ɓeydu sodorde ngam udditde tabbe e Jaɓɓorgo maa.</string>

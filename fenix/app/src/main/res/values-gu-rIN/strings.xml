@@ -39,9 +39,6 @@
     <!-- Private Browsing -->
     <!-- Title for private session option -->
     <string name="private_browsing_title">તમે ખાનગી સત્રમાં છો</string>
-    <string name="private_browsing_common_myths">
-       ખાનગી બ્રાઉઝિંગ વિશે સામાન્ય માન્યતાઓ
-    </string>
     <!-- Delete session button to erase your history in a private session -->
     <string name="private_browsing_delete_session">સત્ર કાઢી નાખો </string>
 

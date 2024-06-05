@@ -102,7 +102,6 @@ private fun privateModeAdapterItems(
     if (settings.showTopSitesFeature && topSites.isNotEmpty()) {
         items.add(AdapterItem.TopSites(topSites))
     }
-    items.add(AdapterItem.PrivateBrowsingDescription)
     return items
 }
 

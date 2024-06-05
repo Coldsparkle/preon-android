@@ -65,8 +65,6 @@
     <!-- Private Browsing -->
     <!-- Explanation for private browsing displayed to users on home view when they first enable private mode
         The first parameter is the name of the app defined in app_name (for example: Fenix) -->
-    <string name="private_browsing_placeholder_description_2">%1$s nuyüj ri akanoxik chuqa\' runatab\'al awokem pa k\'amaya\'l toq yatel pa ri chokoy o ri  ichinan taq wi\'. Estape\' re re\' man yatrewaj ta pan ajk\'amaya\'l o chuwäch ri niya\'on ak\'amaya\'l, yatruto\' richin nichinäx ronojel ri nab\'än pan k\'amab\'ey chuwäch jun chik winäq nrokisaj ri awokisab\'al.</string>
-    <string name="private_browsing_common_myths">Ch\'ob\'on taq tzij chi rij ri ichinan okem pa k\'amaya\'l</string>
 
     <!-- True Private Browsing Mode -->
     <!-- Title for info card on private homescreen in True Private Browsing Mode. -->

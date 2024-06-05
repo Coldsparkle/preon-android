@@ -13,10 +13,6 @@
     <!-- No Open Tabs Message Description -->
     <string name="no_open_tabs_description">Taispeánfar do chluaisíní oscailte anseo.</string>
 
-    <string name="private_browsing_common_myths">
-       Gnáthmhiotais maidir le brabhsáil phríobháideach
-    </string>
-
     <!-- Private mode shortcut "contextual feature recommendation" (CFR) -->
     <!-- Text for the main message -->
     <string name="cfr_message">Cuir aicearra leis an scáileán Baile a osclaíonn cluaisíní príobáideacha.</string>

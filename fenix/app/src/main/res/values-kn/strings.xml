@@ -32,8 +32,6 @@
     <string name="private_browsing_title">ನೀವು ಖಾಸಗಿ ಅಧಿವೇಶನದಲ್ಲಿದ್ದೀರಿ</string>
     <!-- Explanation for private browsing displayed to users on home view when they first enable private mode
         The first parameter is the name of the app defined in app_name (for example: Fenix) -->
-    <string name="private_browsing_placeholder_description_2">%1$s ನಿಮ್ಮ ಹುಡುಕಾಟ ಮತ್ತು ಬ್ರೌಸಿಂಗ್ ಇತಿಹಾಸವನ್ನು ಖಾಸಗಿ ಟ್ಯಾಬ್‌ಗಳಿಂದ ನೀವು ಮುಚ್ಚಿದಾಗ ಅಥವಾ ಅಪ್ಲಿಕೇಶನ್‌ನಿಂದ ನಿರ್ಗಮಿಸಿದಾಗ ಅವುಗಳನ್ನು ತೆರವುಗೊಳಿಸುತ್ತದೆ. ಇದು ನಿಮ್ಮನ್ನು ವೆಬ್‌ಸೈಟ್‌ಗಳಿಗೆ ಅಥವಾ ನಿಮ್ಮ ಇಂಟರ್ನೆಟ್ ಸೇವಾ ಪೂರೈಕೆದಾರರಿಗೆ ಅನಾಮಧೇಯರನ್ನಾಗಿ ಮಾಡದಿದ್ದರೂ, ಈ ಸಾಧನವನ್ನು ಬಳಸುವ ಬೇರೆಯವರಿಂದ ನೀವು ಆನ್‌ಲೈನ್‌ನಲ್ಲಿ ಏನು ಮಾಡುತ್ತೀರಿ ಎಂಬುದನ್ನು ಖಾಸಗಿಯಾಗಿ ಇಡುವುದು ಸುಲಭಗೊಳಿಸುತ್ತದೆ.</string>
-    <string name="private_browsing_common_myths">ಖಾಸಗಿ ಬ್ರೌಸಿಂಗ್ ಬಗ್ಗೆ ಸಾಮಾನ್ಯ ಪುರಾಣಗಳು</string>
     <!-- Delete session button to erase your history in a private session -->
     <string name="private_browsing_delete_session">ಅಧಿವೇಶನವನ್ನು ಅಳಿಸಿ</string>
 

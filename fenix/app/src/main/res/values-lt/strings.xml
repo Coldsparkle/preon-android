@@ -59,8 +59,6 @@
     <!-- Private Browsing -->
     <!-- Explanation for private browsing displayed to users on home view when they first enable private mode
         The first parameter is the name of the app defined in app_name (for example: Fenix) -->
-    <string name="private_browsing_placeholder_description_2">„%1$s“ išvalo jūsų paieškos ir naršymo žurnalą iš privačiųjų kortelių kai jas užveriate, arba išjungiate programą. Nors tai ir nesuteikia jums anonimiškumo internete, taip lengviau galite išlaikyti savo privatumą nuo kitų šį įrenginį naudojančių asmenų.</string>
-    <string name="private_browsing_common_myths">Dažni mitai apie privatųjį naršymą</string>
 
     <!-- Text for the positive button to accept adding a Private Browsing shortcut to the Home screen -->
     <string name="private_mode_cfr_pos_button_text">Įtraukti į pradžios ekraną</string>

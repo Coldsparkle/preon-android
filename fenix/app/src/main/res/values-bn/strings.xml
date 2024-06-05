@@ -43,10 +43,6 @@
     <!-- About content. The first parameter is the name of the application. (For example: Fenix) -->
     <string name="about_content">%1$s হচ্ছে Mozilla দ্বারা তৈরি।</string>
 
-    <string name="private_browsing_common_myths">
-       ব্যাক্তিগত ব্রাউজিং সম্পর্কে কিছু ভুল ধারণা
-    </string>
-
     <!-- Private mode shortcut "contextual feature recommendation" (CFR) -->
     <!-- Text for the main message -->
     <string name="cfr_message">আপনার হোম স্ক্রীন থেকে ব্যক্তিগত ট্যাবগুলি খুলতে একটি শর্টকাট যোগ করুন।</string>

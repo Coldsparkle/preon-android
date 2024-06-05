@@ -306,10 +306,6 @@ class SessionControlInteractor(
         controller.handleCreateCollection()
     }
 
-    override fun onLearnMoreClicked() {
-        privateBrowsingController.handleLearnMoreClicked()
-    }
-
     override fun onPrivateModeButtonClicked(newMode: BrowsingMode) {
         privateBrowsingController.handlePrivateModeButtonClicked(newMode)
     }

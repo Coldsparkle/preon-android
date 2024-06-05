@@ -57,10 +57,6 @@
     <!-- About content. The first parameter is the name of the application. (For example: Fenix) -->
     <string name="about_content">%1$s Mozilla тарафыннан җитештерелә.</string>
 
-    <string name="private_browsing_common_myths">
-       Хосусый гизү турында киң таралган мифлар
-    </string>
-
     <!-- Text for the positive button to accept adding a Private Browsing shortcut to the Home screen -->
     <string name="private_mode_cfr_pos_button_text">Өй экранына өстәү</string>
     <!-- Text for the negative button to decline adding a Private Browsing shortcut to the Home screen -->

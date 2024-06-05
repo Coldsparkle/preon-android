@@ -62,8 +62,6 @@
     <!-- Private Browsing -->
     <!-- Explanation for private browsing displayed to users on home view when they first enable private mode
         The first parameter is the name of the app defined in app_name (for example: Fenix) -->
-    <string name="private_browsing_placeholder_description_2">%1$s изчиства вашата история на търсене и разглеждане от поверителните раздели, когато ги затворите или излезете от приложението. Това не ви прави невидими за уебсайтовете или мрежовите доставчици, но запазва поверителността на вашата дейност онлайн от други ползватели на същото устройството.</string>
-    <string name="private_browsing_common_myths">Разпространени легенди относно поверителното разглеждане</string>
 
     <!-- True Private Browsing Mode -->
     <!-- Title for info card on private homescreen in True Private Browsing Mode. -->
@@ -2411,7 +2409,6 @@
     <!-- Action label for links to a website containing documentation about a wallpaper collection. Talkback will append this to say "Double tap to open link to learn more about this collection". -->
     <string name="a11y_action_label_wallpaper_collection_learn_more">отворете връзката, за да научите повече за тази колекция</string>
     <!-- Action label for links that point to an article. Talkback will append this to say "Double tap to read the article". -->
-    <string name="a11y_action_label_read_article">прочетете статията</string>
     <!-- Action label for links to the Firefox Pocket website. Talkback will append this to say "Double tap to open link to learn more". -->
     <string name="a11y_action_label_pocket_learn_more">отворете препратката, за да научите повече</string>
     <!-- Content description for headings announced by accessibility service. The first parameter is the text of the heading. Talkback will announce the first parameter and then speak the word "Heading" indicating to the user that this text is a heading for a section. -->

@@ -52,8 +52,6 @@
     <!-- Private Browsing -->
     <!-- Explanation for private browsing displayed to users on home view when they first enable private mode
         The first parameter is the name of the app defined in app_name (for example: Fenix) -->
-    <string name="private_browsing_placeholder_description_2">%1$s जब आप ऐप को बंद करते हैं तो निजी टैब से आपका खोज और ब्राउज़िंग इतिहास को मिटाता हैं। हालांकि यह आपको वेबसाइटों या आपके इंटरनेट सेवा प्रदाता के लिए अज्ञात नहीं बनाता है, लेकिन यह आसान बनाता है कि आप इस कंप्यूटर का उपयोग करने वाले किसी अन्य व्यक्ति से ऑनलाइन निजी काम करें।</string>
-    <string name="private_browsing_common_myths">निजी ब्राउज़िंग के बारे में आम कथा</string>
 
     <!-- Private mode shortcut "contextual feature recommendation" (CFR) -->
     <!-- Text for the main message -->

@@ -28,7 +28,6 @@ import org.mozilla.fenix.home.recentvisits.view.RecentlyVisitedViewHolder
 import org.mozilla.fenix.home.sessioncontrol.viewholders.CollectionHeaderViewHolder
 import org.mozilla.fenix.home.sessioncontrol.viewholders.CustomizeHomeButtonViewHolder
 import org.mozilla.fenix.home.sessioncontrol.viewholders.NoCollectionsMessageViewHolder
-import org.mozilla.fenix.home.sessioncontrol.viewholders.PrivateBrowsingDescriptionViewHolder
 import org.mozilla.fenix.home.sessioncontrol.viewholders.onboarding.MessageCardViewHolder
 import org.mozilla.fenix.home.topsites.TopSiteViewHolder
 import mozilla.components.feature.tab.collections.Tab as ComponentTab
@@ -57,7 +56,6 @@ sealed class AdapterItem(@LayoutRes val viewType: Int) {
         val changed: Set<Pair<Int, TopSite>>,
     )
 
-    object PrivateBrowsingDescription : AdapterItem(PrivateBrowsingDescriptionViewHolder.LAYOUT_ID)
     object NoCollectionsMessage : AdapterItem(NoCollectionsMessageViewHolder.LAYOUT_ID)
 
     object CollectionHeader : AdapterItem(CollectionHeaderViewHolder.LAYOUT_ID)
@@ -158,11 +156,6 @@ class SessionControlAdapter(
                 viewLifecycleOwner = viewLifecycleOwner,
                 interactor = interactor,
             )
-            PrivateBrowsingDescriptionViewHolder.LAYOUT_ID -> return PrivateBrowsingDescriptionViewHolder(
-                composeView = ComposeView(parent.context),
-                viewLifecycleOwner = viewLifecycleOwner,
-                interactor = interactor,
-            )
             RecentTabViewHolder.LAYOUT_ID -> return RecentTabViewHolder(
                 composeView = ComposeView(parent.context),
                 viewLifecycleOwner = viewLifecycleOwner,
@@ -235,7 +228,6 @@ class SessionControlAdapter(
             is RecentTabViewHolder,
             is RecentSyncedTabViewHolder,
             is RecentTabsHeaderViewHolder,
-            is PrivateBrowsingDescriptionViewHolder,
             -> {
                 // no op
                 // This previously called "composeView.disposeComposition" which would have the

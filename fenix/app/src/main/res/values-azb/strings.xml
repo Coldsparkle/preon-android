@@ -72,11 +72,6 @@
     <!-- Private Browsing -->
     <!-- Explanation for private browsing displayed to users on home view when they first enable private mode
         The first parameter is the name of the app defined in app_name (for example: Fenix) -->
-    <string name="private_browsing_placeholder_description_2">
-        %1$s گیزلی تاغلاری باغلادیغینیز زامان ویا اپ‌دن چیخدیغینیز زامان آختاریش و مورور گئچمیشی پوزولار. بو سیزی سایتلارا ویا اینترنت خیدمت وئرنلره گیزلی ائتمه‌سه‌ده، بو جهازدان ایستیفاده ائدن هرکسدن آنلاین اولاراق نه ائتدیگینیزی گیزلی ساخلاماغی آسانلاشدیریر.</string>
-    <string name="private_browsing_common_myths">
-       گیزلی مورور حاقیندا یایقین اینانجلار
-    </string>
 
     <!-- True Private Browsing Mode -->
     <!-- Title for info card on private homescreen in True Private Browsing Mode. -->
