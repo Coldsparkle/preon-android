@@ -988,7 +988,6 @@ open class FenixApplication : LocaleAwareApplication(), Provider {
         // We break them out here so they can be recorded when
         // `nimbus.applyPendingExperiments()` is called.
         CustomizeHome.jumpBackIn.set(settings.showRecentTabsFeature)
-        CustomizeHome.recentlySaved.set(settings.showRecentBookmarksFeature)
         CustomizeHome.mostVisitedSites.set(settings.showTopSitesFeature)
         CustomizeHome.recentlyVisited.set(settings.historyMetadataUIFeature)
         CustomizeHome.contile.set(settings.showContileFeature)

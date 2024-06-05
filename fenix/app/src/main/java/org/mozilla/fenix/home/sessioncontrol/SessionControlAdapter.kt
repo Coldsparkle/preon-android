@@ -20,8 +20,6 @@ import org.mozilla.fenix.home.BottomSpacerViewHolder
 import org.mozilla.fenix.home.TopPlaceholderViewHolder
 import org.mozilla.fenix.home.collections.CollectionViewHolder
 import org.mozilla.fenix.home.collections.TabInCollectionViewHolder
-import org.mozilla.fenix.home.recentbookmarks.view.RecentBookmarksHeaderViewHolder
-import org.mozilla.fenix.home.recentbookmarks.view.RecentBookmarksViewHolder
 import org.mozilla.fenix.home.recentsyncedtabs.view.RecentSyncedTabViewHolder
 import org.mozilla.fenix.home.recenttabs.view.RecentTabViewHolder
 import org.mozilla.fenix.home.recenttabs.view.RecentTabsHeaderViewHolder
@@ -112,9 +110,6 @@ sealed class AdapterItem(@LayoutRes val viewType: Int) {
     object RecentVisitsHeader : AdapterItem(RecentVisitsHeaderViewHolder.LAYOUT_ID)
     object RecentVisitsItems : AdapterItem(RecentlyVisitedViewHolder.LAYOUT_ID)
 
-    object RecentBookmarksHeader : AdapterItem(RecentBookmarksHeaderViewHolder.LAYOUT_ID)
-    object RecentBookmarks : AdapterItem(RecentBookmarksViewHolder.LAYOUT_ID)
-
     object BottomSpacer : AdapterItem(BottomSpacerViewHolder.LAYOUT_ID)
 
     /**
@@ -168,11 +163,6 @@ class SessionControlAdapter(
                 viewLifecycleOwner = viewLifecycleOwner,
                 interactor = interactor,
             )
-            RecentBookmarksViewHolder.LAYOUT_ID -> return RecentBookmarksViewHolder(
-                composeView = ComposeView(parent.context),
-                viewLifecycleOwner = viewLifecycleOwner,
-                interactor = interactor,
-            )
             RecentTabViewHolder.LAYOUT_ID -> return RecentTabViewHolder(
                 composeView = ComposeView(parent.context),
                 viewLifecycleOwner = viewLifecycleOwner,
@@ -189,11 +179,6 @@ class SessionControlAdapter(
                 interactor = interactor,
             )
             RecentVisitsHeaderViewHolder.LAYOUT_ID -> return RecentVisitsHeaderViewHolder(
-                composeView = ComposeView(parent.context),
-                viewLifecycleOwner = viewLifecycleOwner,
-                interactor = interactor,
-            )
-            RecentBookmarksHeaderViewHolder.LAYOUT_ID -> return RecentBookmarksHeaderViewHolder(
                 composeView = ComposeView(parent.context),
                 viewLifecycleOwner = viewLifecycleOwner,
                 interactor = interactor,
@@ -247,8 +232,6 @@ class SessionControlAdapter(
             is CustomizeHomeButtonViewHolder,
             is RecentlyVisitedViewHolder,
             is RecentVisitsHeaderViewHolder,
-            is RecentBookmarksViewHolder,
-            is RecentBookmarksHeaderViewHolder,
             is RecentTabViewHolder,
             is RecentSyncedTabViewHolder,
             is RecentTabsHeaderViewHolder,
@@ -313,7 +296,6 @@ class SessionControlAdapter(
                 holder.bindSession(collection, tab, isLastTab)
             }
             is RecentlyVisitedViewHolder,
-            is RecentBookmarksViewHolder,
             is RecentTabViewHolder,
             is RecentSyncedTabViewHolder,
             -> {

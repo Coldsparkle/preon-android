@@ -326,7 +326,6 @@
     <string name="customize_addon_collection_user_hint">సేకరణ యజమాని (వాడుకరి ID)</string>
 
     <!-- Title for the customize home screen section with recently saved bookmarks. -->
-    <string name="customize_toggle_recent_bookmarks">ఇటీవలి ఇష్టాంశాలు</string>
     <!-- Title for the customize home screen section with recently visited. Recently visited is
     a section where users see a list of tabs that they have visited in the past few days -->
     <string name="customize_toggle_recently_visited">ఇటీవల చూసినవి</string>

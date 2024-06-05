@@ -15,7 +15,6 @@ import org.mozilla.fenix.browser.StandardSnackbarError
 import org.mozilla.fenix.browser.browsingmode.BrowsingMode
 import org.mozilla.fenix.components.AppStore
 import org.mozilla.fenix.components.appstate.shopping.ShoppingState
-import org.mozilla.fenix.home.recentbookmarks.RecentBookmark
 import org.mozilla.fenix.home.recentsyncedtabs.RecentSyncedTab
 import org.mozilla.fenix.home.recentsyncedtabs.RecentSyncedTabState
 import org.mozilla.fenix.home.recenttabs.RecentTab
@@ -45,7 +44,6 @@ sealed class AppAction : Action {
         val collections: List<TabCollection>,
         val showCollectionPlaceholder: Boolean,
         val recentTabs: List<RecentTab>,
-        val recentBookmarks: List<RecentBookmark>,
         val recentHistory: List<RecentlyVisitedItem>,
         val recentSyncedTabState: RecentSyncedTabState,
     ) :
@@ -59,8 +57,6 @@ sealed class AppAction : Action {
     data class TopSitesChange(val topSites: List<TopSite>) : AppAction()
     data class RecentTabsChange(val recentTabs: List<RecentTab>) : AppAction()
     data class RemoveRecentTab(val recentTab: RecentTab) : AppAction()
-    data class RecentBookmarksChange(val recentBookmarks: List<RecentBookmark>) : AppAction()
-    data class RemoveRecentBookmark(val recentBookmark: RecentBookmark) : AppAction()
     data class RecentHistoryChange(val recentHistory: List<RecentlyVisitedItem>) : AppAction()
     data class RemoveRecentHistoryHighlight(val highlightUrl: String) : AppAction()
     data class DisbandSearchGroupAction(val searchTerm: String) : AppAction()

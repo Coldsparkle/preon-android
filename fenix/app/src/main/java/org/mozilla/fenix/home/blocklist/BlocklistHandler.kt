@@ -8,7 +8,6 @@ import android.net.Uri
 import androidx.annotation.VisibleForTesting
 import mozilla.components.support.ktx.kotlin.sha1
 import org.mozilla.fenix.ext.containsQueryParameters
-import org.mozilla.fenix.home.recentbookmarks.RecentBookmark
 import org.mozilla.fenix.home.recentsyncedtabs.RecentSyncedTabState
 import org.mozilla.fenix.home.recenttabs.RecentTab
 import org.mozilla.fenix.home.recentvisits.RecentlyVisitedItem
@@ -31,18 +30,6 @@ class BlocklistHandler(private val settings: Settings) {
         val updatedBlocklist = settings.homescreenBlocklist + url.stripAndHash()
         settings.homescreenBlocklist = updatedBlocklist
     }
-
-    /**
-     * Filter a list of recent bookmarks by the blocklist. Requires this class to be contextually
-     * in a scope.
-     */
-    @JvmName("filterRecentBookmark")
-    fun List<RecentBookmark>.filteredByBlocklist(): List<RecentBookmark> =
-        settings.homescreenBlocklist.let { blocklist ->
-            filterNot {
-                it.url?.let { url -> blocklistContainsUrl(blocklist, url) } ?: false
-            }
-        }
 
     /**
      * Filter a list of recent tabs by the blocklist. Requires this class to be contextually

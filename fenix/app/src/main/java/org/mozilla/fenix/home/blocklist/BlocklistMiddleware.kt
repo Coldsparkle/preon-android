@@ -41,7 +41,6 @@ class BlocklistMiddleware(
         when (action) {
             is AppAction.Change -> {
                 action.copy(
-                    recentBookmarks = action.recentBookmarks.filteredByBlocklist(),
                     recentTabs = action.recentTabs.filteredByBlocklist().filterContile(),
                     recentHistory = action.recentHistory.filteredByBlocklist().filterContile(),
                     recentSyncedTabState = action.recentSyncedTabState.filteredByBlocklist().filterContile(),
@@ -50,11 +49,6 @@ class BlocklistMiddleware(
             is AppAction.RecentTabsChange -> {
                 action.copy(
                     recentTabs = action.recentTabs.filteredByBlocklist().filterContile(),
-                )
-            }
-            is AppAction.RecentBookmarksChange -> {
-                action.copy(
-                    recentBookmarks = action.recentBookmarks.filteredByBlocklist(),
                 )
             }
             is AppAction.RecentHistoryChange -> {
@@ -72,12 +66,6 @@ class BlocklistMiddleware(
                 } else {
                     action
                 }
-            }
-            is AppAction.RemoveRecentBookmark -> {
-                action.recentBookmark.url?.let { url ->
-                    addUrlToBlocklist(url)
-                    state.toActionFilteringAllState(this)
-                } ?: action
             }
             is AppAction.RemoveRecentHistoryHighlight -> {
                 addUrlToBlocklist(action.highlightUrl)
@@ -99,7 +87,6 @@ class BlocklistMiddleware(
         with(blocklistHandler) {
             AppAction.Change(
                 recentTabs = recentTabs.filteredByBlocklist().filterContile(),
-                recentBookmarks = recentBookmarks.filteredByBlocklist(),
                 recentHistory = recentHistory.filteredByBlocklist().filterContile(),
                 topSites = topSites,
                 mode = mode,

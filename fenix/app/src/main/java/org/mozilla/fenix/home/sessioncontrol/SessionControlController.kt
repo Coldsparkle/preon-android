@@ -551,6 +551,5 @@ class DefaultSessionControlController(
             RecentTabs.sectionVisible.set(true)
         }
 
-        RecentBookmarks.recentBookmarksCount.set(state.recentBookmarks.size.toLong())
     }
 }

@@ -1547,15 +1547,6 @@ class Settings(private val appContext: Context) : PreferencesHolder {
     )
 
     /**
-     * Indicates if the recent saved bookmarks functionality should be visible.
-     */
-    var showRecentBookmarksFeature by lazyFeatureFlagPreference(
-        appContext.getPreferenceKey(R.string.pref_key_recent_bookmarks),
-        default = { homescreenSections[HomeScreenSection.RECENTLY_SAVED] == true },
-        featureFlag = true,
-    )
-
-    /**
      * Storing desktop item checkbox value in the home screen menu.
      * If set to true, next opened tab from home screen will be opened in desktop mode.
      */

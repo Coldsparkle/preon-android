@@ -17,7 +17,6 @@ import org.mozilla.fenix.utils.Settings
 fun AppState.filterState(blocklistHandler: BlocklistHandler): AppState =
     with(blocklistHandler) {
         copy(
-            recentBookmarks = recentBookmarks.filteredByBlocklist(),
             recentTabs = recentTabs.filteredByBlocklist().filterContile(),
             recentHistory = recentHistory.filteredByBlocklist().filterContile(),
             recentSyncedTabState = recentSyncedTabState.filteredByBlocklist().filterContile(),

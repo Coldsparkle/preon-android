@@ -110,8 +110,6 @@ import org.mozilla.fenix.ext.scaleToBottomOfView
 import org.mozilla.fenix.ext.settings
 import org.mozilla.fenix.ext.tabClosedUndoMessage
 import org.mozilla.fenix.home.privatebrowsing.controller.DefaultPrivateBrowsingController
-import org.mozilla.fenix.home.recentbookmarks.RecentBookmarksFeature
-import org.mozilla.fenix.home.recentbookmarks.controller.DefaultRecentBookmarksController
 import org.mozilla.fenix.home.recentsyncedtabs.RecentSyncedTabFeature
 import org.mozilla.fenix.home.recentsyncedtabs.controller.DefaultRecentSyncedTabController
 import org.mozilla.fenix.home.recenttabs.RecentTabsListFeature
@@ -224,7 +222,6 @@ class HomeFragment : Fragment() {
     private val messagingFeature = ViewBoundFeatureWrapper<MessagingFeature>()
     private val recentTabsListFeature = ViewBoundFeatureWrapper<RecentTabsListFeature>()
     private val recentSyncedTabFeature = ViewBoundFeatureWrapper<RecentSyncedTabFeature>()
-    private val recentBookmarksFeature = ViewBoundFeatureWrapper<RecentBookmarksFeature>()
     private val historyMetadataFeature = ViewBoundFeatureWrapper<RecentVisitsFeature>()
     private val searchSelectorBinding = ViewBoundFeatureWrapper<SearchSelectorBinding>()
     private val searchSelectorMenuBinding = ViewBoundFeatureWrapper<SearchSelectorMenuBinding>()
@@ -318,20 +315,6 @@ class HomeFragment : Fragment() {
             )
         }
 
-        if (requireContext().settings().showRecentBookmarksFeature) {
-            recentBookmarksFeature.set(
-                feature = RecentBookmarksFeature(
-                    appStore = components.appStore,
-                    bookmarksUseCase = run {
-                        requireContext().components.useCases.bookmarksUseCases
-                    },
-                    scope = viewLifecycleOwner.lifecycleScope,
-                ),
-                owner = viewLifecycleOwner,
-                view = binding.root,
-            )
-        }
-
         if (requireContext().settings().historyMetadataUIFeature) {
             historyMetadataFeature.set(
                 feature = RecentVisitsFeature(
@@ -379,13 +362,6 @@ class HomeFragment : Fragment() {
                 navController = findNavController(),
                 accessPoint = TabsTrayAccessPoint.HomeRecentSyncedTab,
                 appStore = components.appStore,
-            ),
-            recentBookmarksController = DefaultRecentBookmarksController(
-                activity = activity,
-                navController = findNavController(),
-                appStore = components.appStore,
-                browserStore = components.core.store,
-                selectTabUseCase = components.useCases.tabsUseCases.selectTab,
             ),
             recentVisitsController = DefaultRecentVisitsController(
                 navController = findNavController(),
