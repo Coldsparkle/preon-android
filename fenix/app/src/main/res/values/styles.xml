@@ -684,7 +684,7 @@
         <item name="android:colorControlNormal">?accentHighContrast</item>
         <item name="android:colorControlActivated">?accentHighContrast</item>
         <item name="android:colorControlHighlight">?accentBright</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowBackground">?homeBackground</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowIsFloating">false</item>
         <item name="android:windowSoftInputMode">adjustResize</item>

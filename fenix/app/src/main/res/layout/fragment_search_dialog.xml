@@ -9,8 +9,7 @@
     android:id="@+id/search_wrapper"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:background="?attr/scrimBackground">
+    android:fitsSystemWindows="true">
     <mozilla.components.browser.toolbar.BrowserToolbar
         android:id="@+id/toolbar"
         android:layout_width="0dp"

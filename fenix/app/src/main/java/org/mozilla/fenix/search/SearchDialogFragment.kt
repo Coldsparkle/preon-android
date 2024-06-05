@@ -11,15 +11,12 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Color
 import android.graphics.Typeface
-import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.speech.RecognizerIntent
 import android.text.style.StyleSpan
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewStub
@@ -282,36 +279,6 @@ class SearchDialogFragment : AppCompatDialogFragment(), UserInteractionHandler {
         maybeSelectShortcutEngine(args.searchEngine)
 
         when (getPreviousDestination()?.destination?.id) {
-            R.id.homeFragment -> {
-                // When displayed above home, dispatches the touch events to scrim area to the HomeFragment
-                binding.searchWrapper.background = ColorDrawable(Color.TRANSPARENT)
-                dialog?.window?.decorView?.setOnTouchListener { _, event ->
-                    when (event?.action) {
-                        MotionEvent.ACTION_DOWN, MotionEvent.ACTION_MOVE -> {
-                            isPrivateButtonClicked = isTouchingPrivateButton(event.x, event.y)
-                            // Immediately drop Search Bar focus when the touch is not on the private button.
-                            if (!isPrivateButtonClicked) {
-                                toolbarView.view.clearFocus()
-                            }
-                        }
-                        MotionEvent.ACTION_UP -> {
-                            if (!isTouchingPrivateButton(
-                                    event.x,
-                                    event.y,
-                                ) && !isPrivateButtonClicked
-                            ) {
-                                findNavController().popBackStack()
-                                isPrivateButtonClicked = false
-                            }
-                        }
-                        else -> isPrivateButtonClicked = false
-                    }
-                    if (binding.awesomeBar.visibility != View.VISIBLE) {
-                        requireActivity().dispatchTouchEvent(event)
-                    }
-                    false
-                }
-            }
             R.id.historyFragment -> {
                 requireComponents.core.store.state.search.searchEngines.firstOrNull { searchEngine ->
                     searchEngine.id == HISTORY_SEARCH_ENGINE_ID
