@@ -20,9 +20,6 @@ import org.mozilla.fenix.home.BottomSpacerViewHolder
 import org.mozilla.fenix.home.TopPlaceholderViewHolder
 import org.mozilla.fenix.home.collections.CollectionViewHolder
 import org.mozilla.fenix.home.collections.TabInCollectionViewHolder
-import org.mozilla.fenix.home.pocket.PocketCategoriesViewHolder
-import org.mozilla.fenix.home.pocket.PocketRecommendationsHeaderViewHolder
-import org.mozilla.fenix.home.pocket.PocketStoriesViewHolder
 import org.mozilla.fenix.home.recentbookmarks.view.RecentBookmarksHeaderViewHolder
 import org.mozilla.fenix.home.recentbookmarks.view.RecentBookmarksViewHolder
 import org.mozilla.fenix.home.recentsyncedtabs.view.RecentSyncedTabViewHolder
@@ -118,10 +115,6 @@ sealed class AdapterItem(@LayoutRes val viewType: Int) {
     object RecentBookmarksHeader : AdapterItem(RecentBookmarksHeaderViewHolder.LAYOUT_ID)
     object RecentBookmarks : AdapterItem(RecentBookmarksViewHolder.LAYOUT_ID)
 
-    object PocketStoriesItem : AdapterItem(PocketStoriesViewHolder.LAYOUT_ID)
-    object PocketCategoriesItem : AdapterItem(PocketCategoriesViewHolder.LAYOUT_ID)
-    object PocketRecommendationsFooterItem : AdapterItem(PocketRecommendationsHeaderViewHolder.LAYOUT_ID)
-
     object BottomSpacer : AdapterItem(BottomSpacerViewHolder.LAYOUT_ID)
 
     /**
@@ -171,21 +164,6 @@ class SessionControlAdapter(
                 interactor = interactor,
             )
             PrivateBrowsingDescriptionViewHolder.LAYOUT_ID -> return PrivateBrowsingDescriptionViewHolder(
-                composeView = ComposeView(parent.context),
-                viewLifecycleOwner = viewLifecycleOwner,
-                interactor = interactor,
-            )
-            PocketStoriesViewHolder.LAYOUT_ID -> return PocketStoriesViewHolder(
-                composeView = ComposeView(parent.context),
-                viewLifecycleOwner = viewLifecycleOwner,
-                interactor = interactor,
-            )
-            PocketCategoriesViewHolder.LAYOUT_ID -> return PocketCategoriesViewHolder(
-                composeView = ComposeView(parent.context),
-                viewLifecycleOwner = viewLifecycleOwner,
-                interactor = interactor,
-            )
-            PocketRecommendationsHeaderViewHolder.LAYOUT_ID -> return PocketRecommendationsHeaderViewHolder(
                 composeView = ComposeView(parent.context),
                 viewLifecycleOwner = viewLifecycleOwner,
                 interactor = interactor,
@@ -275,9 +253,6 @@ class SessionControlAdapter(
             is RecentSyncedTabViewHolder,
             is RecentTabsHeaderViewHolder,
             is PrivateBrowsingDescriptionViewHolder,
-            is PocketCategoriesViewHolder,
-            is PocketRecommendationsHeaderViewHolder,
-            is PocketStoriesViewHolder,
             -> {
                 // no op
                 // This previously called "composeView.disposeComposition" which would have the
@@ -341,7 +316,6 @@ class SessionControlAdapter(
             is RecentBookmarksViewHolder,
             is RecentTabViewHolder,
             is RecentSyncedTabViewHolder,
-            is PocketStoriesViewHolder,
             -> {
                 // no-op. This ViewHolder receives the HomeStore as argument and will observe that
                 // without the need for us to manually update from here the data to be displayed.

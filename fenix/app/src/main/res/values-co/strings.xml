@@ -640,12 +640,9 @@
     <string name="customize_toggle_recently_visited">Visitati pocu fà</string>
 
     <!-- Title for the customize home screen section with Pocket. -->
-    <string name="customize_toggle_pocket_2">Storie chì facenu riflette</string>
     <!-- Summary for the customize home screen section with Pocket. The first parameter is product name Pocket -->
-    <string name="customize_toggle_pocket_summary">Articuli selezziunati da %s</string>
-    <!-- Title for the customize home screen section with sponsored Pocket stories. -->
-    <string name="customize_toggle_pocket_sponsored">Articuli finanziati</string>
-    <!-- Title for the opening wallpaper settings screen -->
+   <!-- Title for the customize home screen section with sponsored Pocket stories. -->
+   <!-- Title for the opening wallpaper settings screen -->
     <string name="customize_wallpapers">Sfonduli di screnu</string>
     <!-- Title for the customize home screen section with sponsored shortcuts. -->
     <string name="customize_toggle_contile">Accurtatoghji finanziati</string>

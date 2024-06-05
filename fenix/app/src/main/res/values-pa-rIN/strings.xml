@@ -644,11 +644,8 @@
     <string name="customize_toggle_recently_visited">ਤਾਜ਼ਾ ਖੋਲ੍ਹੇ ਗਏ</string>
 
     <!-- Title for the customize home screen section with Pocket. -->
-    <string name="customize_toggle_pocket_2">ਸੋਚਣ ਲਈ ਮਜ਼ਬੂਰ ਕਰਨ ਵਾਲੇ ਲੇਖ</string>
     <!-- Summary for the customize home screen section with Pocket. The first parameter is product name Pocket -->
-    <string name="customize_toggle_pocket_summary">%s ਵਲੋਂ ਤਿਆਰ ਕੀਤੇ ਲੇਖ</string>
     <!-- Title for the customize home screen section with sponsored Pocket stories. -->
-    <string name="customize_toggle_pocket_sponsored">ਸਪਾਂਸਰ ਕੀਤੀਆਂ ਕਹਾਣੀਆਂ</string>
     <!-- Title for the opening wallpaper settings screen -->
     <string name="customize_wallpapers">ਵਾਲਪੇਪਰ</string>
     <!-- Title for the customize home screen section with sponsored shortcuts. -->

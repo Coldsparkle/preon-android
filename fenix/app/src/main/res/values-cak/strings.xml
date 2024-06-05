@@ -606,11 +606,8 @@
     a section where users see a list of tabs that they have visited in the past few days -->
     <string name="customize_toggle_recently_visited">K\'a b\'a ketz\'et</string>
     <!-- Title for the customize home screen section with Pocket. -->
-    <string name="customize_toggle_pocket_2">B\'anob\'äl richin yach\'ob\'on</string>
     <!-- Summary for the customize home screen section with Pocket. The first parameter is product name Pocket -->
-    <string name="customize_toggle_pocket_summary">Taq cholna\'oj ruchilab\'en %s</string>
     <!-- Title for the customize home screen section with sponsored Pocket stories. -->
-    <string name="customize_toggle_pocket_sponsored">To\'on taq b\'anob\'äl</string>
     <!-- Title for the opening wallpaper settings screen -->
     <string name="customize_wallpapers">Rupam ruwäch</string>
     <!-- Title for the customize home screen section with sponsored shortcuts. -->

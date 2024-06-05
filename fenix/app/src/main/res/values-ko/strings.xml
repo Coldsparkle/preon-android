@@ -642,11 +642,8 @@
     <string name="customize_toggle_recently_visited">최근에 방문함</string>
 
     <!-- Title for the customize home screen section with Pocket. -->
-    <string name="customize_toggle_pocket_2">생각하게 하는 이야기</string>
     <!-- Summary for the customize home screen section with Pocket. The first parameter is product name Pocket -->
-    <string name="customize_toggle_pocket_summary">%s 제공 글</string>
     <!-- Title for the customize home screen section with sponsored Pocket stories. -->
-    <string name="customize_toggle_pocket_sponsored">스폰서 소식</string>
     <!-- Title for the opening wallpaper settings screen -->
     <string name="customize_wallpapers">배경 화면</string>
     <!-- Title for the customize home screen section with sponsored shortcuts. -->

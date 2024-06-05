@@ -27,17 +27,6 @@
         android:key="@string/pref_key_history_metadata_feature"
         android:title="@string/customize_toggle_recently_visited" />
 
-    <androidx.preference.SwitchPreference
-        android:key="@string/pref_key_pocket_homescreen_recommendations"
-        android:title="@string/customize_toggle_pocket_2"
-        android:summary="@string/customize_toggle_pocket_summary" />
-
-    <androidx.preference.CheckBoxPreference
-        android:dependency="@string/pref_key_pocket_homescreen_recommendations"
-        android:layout="@layout/checkbox_left_sub_preference"
-        android:key="@string/pref_key_pocket_sponsored_stories"
-        android:title="@string/customize_toggle_pocket_sponsored" />
-
     <androidx.preference.Preference
         android:key="@string/pref_key_wallpapers"
         android:title="@string/customize_wallpapers" />

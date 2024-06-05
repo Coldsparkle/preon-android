@@ -637,11 +637,8 @@
     <string name="customize_toggle_recently_visited">Kürzlich besucht</string>
 
     <!-- Title for the customize home screen section with Pocket. -->
-    <string name="customize_toggle_pocket_2">Geschichten, die zum Nachdenken anregen</string>
     <!-- Summary for the customize home screen section with Pocket. The first parameter is product name Pocket -->
-    <string name="customize_toggle_pocket_summary">Artikel unterstützt von %s</string>
     <!-- Title for the customize home screen section with sponsored Pocket stories. -->
-    <string name="customize_toggle_pocket_sponsored">Gesponserte Geschichten</string>
     <!-- Title for the opening wallpaper settings screen -->
     <string name="customize_wallpapers">Hintergrundbilder</string>
     <!-- Title for the customize home screen section with sponsored shortcuts. -->

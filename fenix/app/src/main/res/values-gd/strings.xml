@@ -580,11 +580,8 @@
     <string name="customize_toggle_recently_visited">Air tadhal orra o chionn goirid</string>
 
     <!-- Title for the customize home screen section with Pocket. -->
-    <string name="customize_toggle_pocket_2">Sgeulachdan smuainteachail</string>
     <!-- Summary for the customize home screen section with Pocket. The first parameter is product name Pocket -->
-    <string name="customize_toggle_pocket_summary">Artaigealan le cumhachd %s</string>
     <!-- Title for the customize home screen section with sponsored Pocket stories. -->
-    <string name="customize_toggle_pocket_sponsored">Sgeulachdan sponsairichte</string>
     <!-- Title for the opening wallpaper settings screen -->
     <string name="customize_wallpapers">Pàipearan-balla</string>
     <!-- Title for the customize home screen section with sponsored shortcuts. -->

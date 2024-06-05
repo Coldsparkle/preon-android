@@ -609,11 +609,8 @@
     a section where users see a list of tabs that they have visited in the past few days -->
     <string name="customize_toggle_recently_visited">በቅርብ ጊዜ የተጎበኙ</string>
     <!-- Title for the customize home screen section with Pocket. -->
-    <string name="customize_toggle_pocket_2">አነቃቂ ታሪኮች</string>
     <!-- Summary for the customize home screen section with Pocket. The first parameter is product name Pocket -->
-    <string name="customize_toggle_pocket_summary">በ%s የተጎላበተ መጣጥፎች</string>
     <!-- Title for the customize home screen section with sponsored Pocket stories. -->
-    <string name="customize_toggle_pocket_sponsored">ስፖንሰር የተደረጉ ታሪኮች</string>
 
     <!-- Title for the opening wallpaper settings screen -->
     <string name="customize_wallpapers">ልጣፎች</string>

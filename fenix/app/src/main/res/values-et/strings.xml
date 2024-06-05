@@ -490,7 +490,6 @@
     a section where users see a list of tabs that they have visited in the past few days -->
     <string name="customize_toggle_recently_visited">Hiljuti külastatud</string>
     <!-- Title for the customize home screen section with sponsored Pocket stories. -->
-    <string name="customize_toggle_pocket_sponsored">Sponsitud lood</string>
     <!-- Title for the opening wallpaper settings screen -->
     <string name="customize_wallpapers">Taustapildid</string>
     <!-- Title for the customize home screen section with sponsored shortcuts. -->

@@ -545,9 +545,7 @@
     a section where users see a list of tabs that they have visited in the past few days -->
     <string name="customize_toggle_recently_visited">Bisitadas de reghente</string>
     <!-- Summary for the customize home screen section with Pocket. The first parameter is product name Pocket -->
-    <string name="customize_toggle_pocket_summary">Artìculos seletzionados dae %s</string>
     <!-- Title for the customize home screen section with sponsored Pocket stories. -->
-    <string name="customize_toggle_pocket_sponsored">Istòrias patrotzinadas</string>
     <!-- Title for the opening wallpaper settings screen -->
     <string name="customize_wallpapers">Isfundos de ischermu</string>
     <!-- Title for the customize home screen section with sponsored shortcuts. -->

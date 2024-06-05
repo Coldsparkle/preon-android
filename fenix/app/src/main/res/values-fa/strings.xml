@@ -583,11 +583,8 @@
     <string name="customize_toggle_recently_visited">بازدید‌های اخیر</string>
 
     <!-- Title for the customize home screen section with Pocket. -->
-    <string name="customize_toggle_pocket_2">داستان‌های تأمل‌برانگیز</string>
     <!-- Summary for the customize home screen section with Pocket. The first parameter is product name Pocket -->
-    <string name="customize_toggle_pocket_summary">مقاله‌ها قدرت گرفته از %s</string>
     <!-- Title for the customize home screen section with sponsored Pocket stories. -->
-    <string name="customize_toggle_pocket_sponsored">داستان‌های حامیان</string>
     <!-- Title for the opening wallpaper settings screen -->
     <string name="customize_wallpapers">کاغذدیواری‌ها</string>
     <!-- Title for the customize home screen section with sponsored shortcuts. -->

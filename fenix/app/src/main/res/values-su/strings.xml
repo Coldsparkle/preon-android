@@ -629,11 +629,8 @@
     <string name="customize_toggle_recently_visited">Anyar dianjangan</string>
 
     <!-- Title for the customize home screen section with Pocket. -->
-    <string name="customize_toggle_pocket_2">Carita pikiraneun</string>
     <!-- Summary for the customize home screen section with Pocket. The first parameter is product name Pocket -->
-    <string name="customize_toggle_pocket_summary">Artikel dijalankeun ku %s</string>
     <!-- Title for the customize home screen section with sponsored Pocket stories. -->
-    <string name="customize_toggle_pocket_sponsored">Carita anu disponsoran</string>
     <!-- Title for the opening wallpaper settings screen -->
     <string name="customize_wallpapers">Latar</string>
     <!-- Title for the customize home screen section with sponsored shortcuts. -->

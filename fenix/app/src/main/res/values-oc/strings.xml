@@ -620,11 +620,8 @@
     <string name="customize_toggle_recently_visited">Visitats fa res</string>
 
     <!-- Title for the customize home screen section with Pocket. -->
-    <string name="customize_toggle_pocket_2">Articles suggerits</string>
     <!-- Summary for the customize home screen section with Pocket. The first parameter is product name Pocket -->
-    <string name="customize_toggle_pocket_summary">Articles provesits per %s</string>
     <!-- Title for the customize home screen section with sponsored Pocket stories. -->
-    <string name="customize_toggle_pocket_sponsored">Istòrias pairinejadas</string>
     <!-- Title for the opening wallpaper settings screen -->
     <string name="customize_wallpapers">Fonzes</string>
     <!-- Title for the customize home screen section with sponsored shortcuts. -->

@@ -461,7 +461,6 @@
     <!-- Title for the customize home screen section with Pocket. -->
     <string name="customize_toggle_pocket">Àpò</string>
     <!-- Title for the customize home screen section with sponsored Pocket stories. -->
-    <string name="customize_toggle_pocket_sponsored">Àwọn onígbọ̀wọ́ ìtan</string>
     <!-- Title for the opening wallpaper settings screen -->
     <string name="customize_wallpapers">Àwọn ìṣẹ̀ṣọ́ ògiri</string>
     <!-- Title for the customize home screen section with sponsored shortcuts. -->

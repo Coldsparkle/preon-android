@@ -607,11 +607,8 @@
     <string name="customize_toggle_recently_visited">Nedavno posjećeno</string>
 
     <!-- Title for the customize home screen section with Pocket. -->
-    <string name="customize_toggle_pocket_2">Priče koje potiču na razmišljanje</string>
     <!-- Summary for the customize home screen section with Pocket. The first parameter is product name Pocket -->
-    <string name="customize_toggle_pocket_summary">Članci pokretani od %s</string>
     <!-- Title for the customize home screen section with sponsored Pocket stories. -->
-    <string name="customize_toggle_pocket_sponsored">Sponzorirane priče</string>
     <!-- Title for the opening wallpaper settings screen -->
     <string name="customize_wallpapers">Pozadine</string>
     <!-- Title for the customize home screen section with sponsored shortcuts. -->

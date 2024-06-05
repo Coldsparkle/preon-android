@@ -549,11 +549,8 @@
     a section where users see a list of tabs that they have visited in the past few days -->
     <string name="customize_toggle_recently_visited">حالیہ ݙٹھے</string>
     <!-- Title for the customize home screen section with Pocket. -->
-    <string name="customize_toggle_pocket_2">فکر انگیز کہاݨیاں</string>
     <!-- Summary for the customize home screen section with Pocket. The first parameter is product name Pocket -->
-    <string name="customize_toggle_pocket_summary"> %s ولوں تکڑے تھئے مضمون</string>
     <!-- Title for the customize home screen section with sponsored Pocket stories. -->
-    <string name="customize_toggle_pocket_sponsored">سپانسر تھیاں کہاݨیاں</string>
     <!-- Title for the opening wallpaper settings screen -->
     <string name="customize_wallpapers">وال پیپرز</string>
 

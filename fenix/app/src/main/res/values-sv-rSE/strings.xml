@@ -639,11 +639,8 @@
     <string name="customize_toggle_recently_visited">Nyligen besökta</string>
 
     <!-- Title for the customize home screen section with Pocket. -->
-    <string name="customize_toggle_pocket_2">Tankeväckande berättelser</string>
     <!-- Summary for the customize home screen section with Pocket. The first parameter is product name Pocket -->
-    <string name="customize_toggle_pocket_summary">Artiklar tillhandahålls av %s</string>
     <!-- Title for the customize home screen section with sponsored Pocket stories. -->
-    <string name="customize_toggle_pocket_sponsored">Sponsrade berättelser</string>
     <!-- Title for the opening wallpaper settings screen -->
     <string name="customize_wallpapers">Bakgrundsbilder</string>
     <!-- Title for the customize home screen section with sponsored shortcuts. -->

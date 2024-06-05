@@ -530,11 +530,8 @@
     a section where users see a list of tabs that they have visited in the past few days -->
     <string name="customize_toggle_recently_visited">Jaqında kirilgenler</string>
     <!-- Title for the customize home screen section with Pocket. -->
-    <string name="customize_toggle_pocket_2">Oylandıratuǵın áńgimeler</string>
     <!-- Summary for the customize home screen section with Pocket. The first parameter is product name Pocket -->
-    <string name="customize_toggle_pocket_summary">%s tárepinen usınılǵan maqalalar</string>
     <!-- Title for the customize home screen section with sponsored Pocket stories. -->
-    <string name="customize_toggle_pocket_sponsored">Qáwenderlik maqalalar</string>
     <!-- Title for the opening wallpaper settings screen -->
     <string name="customize_wallpapers">Fon súwretleri</string>
     <!-- Title for the customize home screen section with sponsored shortcuts. -->

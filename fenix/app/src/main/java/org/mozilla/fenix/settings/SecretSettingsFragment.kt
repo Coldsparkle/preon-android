@@ -117,10 +117,6 @@ class SecretSettingsFragment : PreferenceFragmentCompat() {
             isVisible = Config.channel.isNightlyOrDebug && BuildConfig.GLEAN_CUSTOM_URL.isNullOrEmpty()
         }
 
-        requirePreference<Preference>(R.string.pref_key_custom_sponsored_stories_parameters).apply {
-            isVisible = Config.channel.isNightlyOrDebug
-        }
-
         requirePreference<SwitchPreference>(R.string.pref_key_remote_server_prod).apply {
             isVisible = true
             isChecked = context.settings().useProductionRemoteSettingsServer
@@ -134,16 +130,5 @@ class SecretSettingsFragment : PreferenceFragmentCompat() {
             isChecked = context.settings().isTabStripEnabled
             onPreferenceChangeListener = SharedPreferenceUpdater()
         }
-    }
-
-    override fun onPreferenceTreeClick(preference: Preference): Boolean {
-        when (preference.key) {
-            getString(R.string.pref_key_custom_sponsored_stories_parameters) ->
-                findNavController().nav(
-                    R.id.secretSettingsPreference,
-                    SecretSettingsFragmentDirections.actionSecretSettingsFragmentToSponsoredStoriesSettings(),
-                )
-        }
-        return super.onPreferenceTreeClick(preference)
     }
 }

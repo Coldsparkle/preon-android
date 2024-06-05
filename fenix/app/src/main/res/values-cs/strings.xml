@@ -636,11 +636,8 @@
     <string name="customize_toggle_recently_visited">Nedávno navštívené</string>
 
     <!-- Title for the customize home screen section with Pocket. -->
-    <string name="customize_toggle_pocket_2">Podnětné články</string>
     <!-- Summary for the customize home screen section with Pocket. The first parameter is product name Pocket -->
-    <string name="customize_toggle_pocket_summary">Články ze služby %s</string>
     <!-- Title for the customize home screen section with sponsored Pocket stories. -->
-    <string name="customize_toggle_pocket_sponsored">Sponzorované články</string>
     <!-- Title for the opening wallpaper settings screen -->
     <string name="customize_wallpapers">Tapety</string>
     <!-- Title for the customize home screen section with sponsored shortcuts. -->

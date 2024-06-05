@@ -618,11 +618,8 @@ Tiktiwin tigejdanin yuzzlen ur nṣeḥḥi ara
     <string name="customize_toggle_recently_visited">Yemmẓer melmi kan</string>
 
     <!-- Title for the customize home screen section with Pocket. -->
-    <string name="customize_toggle_pocket_2">Tiqsiḍin i ijebbden lwelha</string>
     <!-- Summary for the customize home screen section with Pocket. The first parameter is product name Pocket -->
-    <string name="customize_toggle_pocket_summary">Imagraden yellan ddaw leɛnaya n %s</string>
     <!-- Title for the customize home screen section with sponsored Pocket stories. -->
-    <string name="customize_toggle_pocket_sponsored">Tiqṣidin yettwarefden</string>
     <!-- Title for the opening wallpaper settings screen -->
     <string name="customize_wallpapers">Tugniwin n ugilal</string>
     <!-- Title for the customize home screen section with sponsored shortcuts. -->

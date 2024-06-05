@@ -109,8 +109,6 @@ import org.mozilla.fenix.ext.requireComponents
 import org.mozilla.fenix.ext.scaleToBottomOfView
 import org.mozilla.fenix.ext.settings
 import org.mozilla.fenix.ext.tabClosedUndoMessage
-import org.mozilla.fenix.home.pocket.DefaultPocketStoriesController
-import org.mozilla.fenix.home.pocket.PocketRecommendedStoriesCategory
 import org.mozilla.fenix.home.privatebrowsing.controller.DefaultPrivateBrowsingController
 import org.mozilla.fenix.home.recentbookmarks.RecentBookmarksFeature
 import org.mozilla.fenix.home.recentbookmarks.controller.DefaultRecentBookmarksController
@@ -270,26 +268,6 @@ class HomeFragment : Fragment() {
 
         components.appStore.dispatch(AppAction.ModeChange(browsingModeManager.mode))
 
-        lifecycleScope.launch(IO) {
-            if (requireContext().settings().showPocketRecommendationsFeature) {
-                val categories = components.core.pocketStoriesService.getStories()
-                    .groupBy { story -> story.category }
-                    .map { (category, stories) -> PocketRecommendedStoriesCategory(category, stories) }
-
-                components.appStore.dispatch(AppAction.PocketStoriesCategoriesChange(categories))
-
-                if (requireContext().settings().showPocketSponsoredStories) {
-                    components.appStore.dispatch(
-                        AppAction.PocketSponsoredStoriesChange(
-                            components.core.pocketStoriesService.getSponsoredStories(),
-                        ),
-                    )
-                }
-            } else {
-                components.appStore.dispatch(AppAction.PocketStoriesClean)
-            }
-        }
-
         if (requireContext().settings().isExperimentationEnabled) {
             messagingFeature.set(
                 feature = MessagingFeature(
@@ -416,10 +394,6 @@ class HomeFragment : Fragment() {
                 storage = components.core.historyStorage,
                 scope = viewLifecycleOwner.lifecycleScope,
                 store = components.core.store,
-            ),
-            pocketStoriesController = DefaultPocketStoriesController(
-                homeActivity = activity,
-                appStore = components.appStore,
             ),
             privateBrowsingController = DefaultPrivateBrowsingController(
                 activity = activity,

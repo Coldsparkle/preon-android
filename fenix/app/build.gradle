@@ -456,21 +456,6 @@ android.applicationVariants.configureEach { variant ->
     }
 
 // -------------------------------------------------------------------------------------------------
-// BuildConfig: Set the Pocket consumer key from a local file if it exists
-// -------------------------------------------------------------------------------------------------
-
-    print("Pocket consumer key: ")
-
-    try {
-        def token = new File("${rootDir}/.pocket_consumer_key").text.trim()
-        buildConfigField 'String', 'POCKET_CONSUMER_KEY', '"' + token + '"'
-        println "(Added from .pocket_consumer_key file)"
-    } catch (FileNotFoundException ignored) {
-        buildConfigField 'String', 'POCKET_CONSUMER_KEY', '""'
-        println("--")
-    }
-
-// -------------------------------------------------------------------------------------------------
 // BuildConfig: Set flag to disable LeakCanary in debug (on CI builds)
 // -------------------------------------------------------------------------------------------------
 
@@ -591,7 +576,6 @@ dependencies {
     implementation project(':feature-webnotifications')
     implementation project(':feature-webcompat-reporter')
 
-    implementation project(':service-pocket')
     implementation project(':service-contile')
     implementation project(':service-digitalassetlinks')
     implementation project(':service-sync-autofill')

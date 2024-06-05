@@ -632,11 +632,8 @@
     <string name="customize_toggle_recently_visited">เยี่ยมชมล่าสุด</string>
 
     <!-- Title for the customize home screen section with Pocket. -->
-    <string name="customize_toggle_pocket_2">เรื่องราวที่จุดประกายความคิด</string>
     <!-- Summary for the customize home screen section with Pocket. The first parameter is product name Pocket -->
-    <string name="customize_toggle_pocket_summary">บทความขับเคลื่อนโดย %s</string>
     <!-- Title for the customize home screen section with sponsored Pocket stories. -->
-    <string name="customize_toggle_pocket_sponsored">เรื่องราวที่ได้รับการสนับสนุน</string>
     <!-- Title for the opening wallpaper settings screen -->
     <string name="customize_wallpapers">รูปพื้นหลัง</string>
 

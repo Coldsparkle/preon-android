@@ -645,11 +645,8 @@
     <string name="customize_toggle_recently_visited">最近访问</string>
 
     <!-- Title for the customize home screen section with Pocket. -->
-    <string name="customize_toggle_pocket_2">精选文章</string>
     <!-- Summary for the customize home screen section with Pocket. The first parameter is product name Pocket -->
-    <string name="customize_toggle_pocket_summary">由 %s 提供的文章</string>
     <!-- Title for the customize home screen section with sponsored Pocket stories. -->
-    <string name="customize_toggle_pocket_sponsored">赞助内容</string>
     <!-- Title for the opening wallpaper settings screen -->
     <string name="customize_wallpapers">壁纸</string>
 

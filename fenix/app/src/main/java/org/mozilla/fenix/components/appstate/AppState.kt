@@ -9,15 +9,10 @@ import mozilla.components.feature.tab.collections.TabCollection
 import mozilla.components.feature.top.sites.TopSite
 import mozilla.components.lib.crash.Crash.NativeCodeCrash
 import mozilla.components.lib.state.State
-import mozilla.components.service.pocket.PocketStory
-import mozilla.components.service.pocket.PocketStory.PocketRecommendedStory
-import mozilla.components.service.pocket.PocketStory.PocketSponsoredStory
 import org.mozilla.fenix.browser.StandardSnackbarError
 import org.mozilla.fenix.browser.browsingmode.BrowsingMode
 import org.mozilla.fenix.components.appstate.shopping.ShoppingState
 import org.mozilla.fenix.home.HomeFragment
-import org.mozilla.fenix.home.pocket.PocketRecommendedStoriesCategory
-import org.mozilla.fenix.home.pocket.PocketRecommendedStoriesSelectedCategory
 import org.mozilla.fenix.home.recentbookmarks.RecentBookmark
 import org.mozilla.fenix.home.recentsyncedtabs.RecentSyncedTabState
 import org.mozilla.fenix.home.recenttabs.RecentTab
@@ -33,7 +28,6 @@ import org.mozilla.fenix.wallpapers.WallpaperState
  * @property isForeground Whether or not the app is in the foreground.
  * @property inactiveTabsExpanded A flag to know if the Inactive Tabs section of the Tabs Tray
  * should be expanded when the tray is opened.
- * @property firstFrameDrawn Flag indicating whether the first frame of the homescreen has been drawn.
  * @property isSearchDialogVisible Flag indicating whether the user is interacting with the [SearchDialogFragment].
  * @property nonFatalCrashes List of non-fatal crashes that allow the app to continue being used.
  * @property collections The list of [TabCollection] to display in the [HomeFragment].
@@ -64,7 +58,6 @@ import org.mozilla.fenix.wallpapers.WallpaperState
 data class AppState(
     val isForeground: Boolean = true,
     val inactiveTabsExpanded: Boolean = false,
-    val firstFrameDrawn: Boolean = false,
     val isSearchDialogVisible: Boolean = false,
     val nonFatalCrashes: List<NativeCodeCrash> = emptyList(),
     val collections: List<TabCollection> = emptyList(),
@@ -77,10 +70,6 @@ data class AppState(
     val recentSyncedTabState: RecentSyncedTabState = RecentSyncedTabState.None,
     val recentBookmarks: List<RecentBookmark> = emptyList(),
     val recentHistory: List<RecentlyVisitedItem> = emptyList(),
-    val pocketStories: List<PocketStory> = emptyList(),
-    val pocketStoriesCategories: List<PocketRecommendedStoriesCategory> = emptyList(),
-    val pocketStoriesCategoriesSelections: List<PocketRecommendedStoriesSelectedCategory> = emptyList(),
-    val pocketSponsoredStories: List<PocketSponsoredStory> = emptyList(),
     val messaging: MessagingState = MessagingState(),
     val pendingDeletionHistoryItems: Set<PendingDeletionHistory> = emptySet(),
     val wallpaperState: WallpaperState = WallpaperState.default,

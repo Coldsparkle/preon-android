@@ -602,12 +602,9 @@
     a section where users see a list of tabs that they have visited in the past few days -->
     <string name="customize_toggle_recently_visited">මෑතදී ගොඩවැදුණු</string>
     <!-- Title for the customize home screen section with Pocket. -->
-    <string name="customize_toggle_pocket_2">සිතුවිලි අවුස්සන කතා</string>
     <!-- Summary for the customize home screen section with Pocket. The first parameter is product name Pocket -->
-    <string name="customize_toggle_pocket_summary">%s මගින් ලිපි බලගැන්වේ</string>
-    <!-- Title for the customize home screen section with sponsored Pocket stories. -->
-    <string name="customize_toggle_pocket_sponsored">අනුග්‍රහය ලද කතා</string>
-    <!-- Title for the opening wallpaper settings screen -->
+  <!-- Title for the customize home screen section with sponsored Pocket stories. -->
+  <!-- Title for the opening wallpaper settings screen -->
     <string name="customize_wallpapers">බිතුපත්</string>
     <!-- Title for the customize home screen section with sponsored shortcuts. -->
     <string name="customize_toggle_contile">අනුග්‍රහය ලද කෙටිමං</string>

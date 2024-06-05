@@ -630,11 +630,8 @@
     <string name="customize_toggle_recently_visited">Đã xem gần đây</string>
 
     <!-- Title for the customize home screen section with Pocket. -->
-    <string name="customize_toggle_pocket_2">Những câu chuyện kích động tư tưởng</string>
     <!-- Summary for the customize home screen section with Pocket. The first parameter is product name Pocket -->
-    <string name="customize_toggle_pocket_summary">Các bài báo được cung cấp bởi %s</string>
     <!-- Title for the customize home screen section with sponsored Pocket stories. -->
-    <string name="customize_toggle_pocket_sponsored">Câu chuyện được tài trợ</string>
     <!-- Title for the opening wallpaper settings screen -->
     <string name="customize_wallpapers">Hình nền</string>
     <!-- Title for the customize home screen section with sponsored shortcuts. -->

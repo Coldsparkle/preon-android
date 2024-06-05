@@ -100,49 +100,6 @@ class HomeSettingsFragment : PreferenceFragmentCompat() {
             }
         }
 
-        requirePreference<SwitchPreference>(R.string.pref_key_pocket_homescreen_recommendations).apply {
-            isVisible = FeatureFlags.isPocketRecommendationsFeatureEnabled(context)
-            isChecked = context.settings().showPocketRecommendationsFeature
-            summary = context.getString(
-                R.string.customize_toggle_pocket_summary,
-                context.getString(R.string.pocket_product_name),
-            )
-            onPreferenceChangeListener = object : SharedPreferenceUpdater() {
-                override fun onPreferenceChange(preference: Preference, newValue: Any?): Boolean {
-                    CustomizeHome.preferenceToggled.record(
-                        CustomizeHome.PreferenceToggledExtra(
-                            newValue as Boolean,
-                            "pocket",
-                        ),
-                    )
-
-                    return super.onPreferenceChange(preference, newValue)
-                }
-            }
-        }
-
-        requirePreference<CheckBoxPreference>(R.string.pref_key_pocket_sponsored_stories).apply {
-            isVisible = FeatureFlags.isPocketSponsoredStoriesFeatureEnabled(context)
-            isChecked = context.settings().showPocketSponsoredStories
-            onPreferenceChangeListener = object : SharedPreferenceUpdater() {
-                override fun onPreferenceChange(preference: Preference, newValue: Any?): Boolean {
-                    when (newValue) {
-                        true -> {
-                            context.components.core.pocketStoriesService.startPeriodicSponsoredStoriesRefresh()
-                        }
-                        false -> {
-                            context.components.core.pocketStoriesService.deleteProfile()
-                            context.components.appStore.dispatch(
-                                AppAction.PocketSponsoredStoriesChange(emptyList()),
-                            )
-                        }
-                    }
-
-                    return super.onPreferenceChange(preference, newValue)
-                }
-            }
-        }
-
         requirePreference<SwitchPreference>(R.string.pref_key_history_metadata_feature).apply {
             isChecked = context.settings().historyMetadataUIFeature
             onPreferenceChangeListener = object : SharedPreferenceUpdater() {

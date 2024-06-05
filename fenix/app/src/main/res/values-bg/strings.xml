@@ -632,11 +632,8 @@
     <string name="customize_toggle_recently_visited">Наскоро посетени</string>
 
     <!-- Title for the customize home screen section with Pocket. -->
-    <string name="customize_toggle_pocket_2">Истории, навеждащи на размисъл</string>
     <!-- Summary for the customize home screen section with Pocket. The first parameter is product name Pocket -->
-    <string name="customize_toggle_pocket_summary">Статии, предоставени от %s</string>
     <!-- Title for the customize home screen section with sponsored Pocket stories. -->
-    <string name="customize_toggle_pocket_sponsored">Платени публикации</string>
     <!-- Title for the opening wallpaper settings screen -->
     <string name="customize_wallpapers">Тапети</string>
     <!-- Title for the customize home screen section with sponsored shortcuts. -->
