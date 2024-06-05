@@ -15,6 +15,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import mozilla.components.browser.state.search.SearchEngine
 import mozilla.components.browser.state.selector.getNormalOrPrivateTabs
+import mozilla.components.browser.state.selector.privateTabs
 import mozilla.components.browser.state.state.availableSearchEngines
 import mozilla.components.browser.state.state.searchEngines
 import mozilla.components.browser.state.state.selectedOrDefaultSearchEngine
@@ -345,6 +346,7 @@ class DefaultSessionControlController(
     }
 
     override fun handleSelectTopSite(topSite: TopSite, position: Int) {
+        val isPrivateMode = appStore.state.mode.isPrivate
         when (topSite) {
             is TopSite.Default -> TopSites.openDefault.record(NoExtras())
             is TopSite.Frecent -> TopSites.openFrecency.record(NoExtras())
@@ -375,19 +377,29 @@ class DefaultSessionControlController(
 
         val existingTabForUrl = when (topSite) {
             is TopSite.Frecent, is TopSite.Pinned -> {
-                store.state.tabs.firstOrNull { topSite.url == it.content.url }
+                val tabs = if (isPrivateMode) {
+                    store.state.privateTabs
+                } else {
+                    store.state.tabs
+                }
+                tabs.firstOrNull { topSite.url == it.content.url }
             }
 
             else -> null
         }
 
         if (existingTabForUrl == null) {
-            TopSites.openInNewTab.record(NoExtras())
+            if (isPrivateMode) {
+                TopSites.openInPrivateTab.record(NoExtras())
+            } else {
+                TopSites.openInNewTab.record(NoExtras())
+            }
 
             val tabId = addTabUseCase.invoke(
                 url = appendSearchAttributionToUrlIfNeeded(topSite.url),
                 selectTab = true,
                 startLoading = true,
+                private = isPrivateMode
             )
 
             if (settings.openNextTabInDesktopMode) {

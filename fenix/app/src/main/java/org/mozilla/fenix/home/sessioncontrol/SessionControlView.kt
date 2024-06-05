@@ -94,7 +94,17 @@ private fun showCollections(
     }
 }
 
-private fun privateModeAdapterItems() = listOf(AdapterItem.PrivateBrowsingDescription)
+private fun privateModeAdapterItems(
+    settings: Settings,
+    topSites: List<TopSite>
+): List<AdapterItem> {
+    val items = mutableListOf<AdapterItem>()
+    if (settings.showTopSitesFeature && topSites.isNotEmpty()) {
+        items.add(AdapterItem.TopSites(topSites))
+    }
+    items.add(AdapterItem.PrivateBrowsingDescription)
+    return items
+}
 
 private fun AppState.toAdapterList(settings: Settings): List<AdapterItem> = when (mode) {
     BrowsingMode.Normal -> normalModeAdapterItems(
@@ -108,7 +118,10 @@ private fun AppState.toAdapterList(settings: Settings): List<AdapterItem> = when
         shouldShowRecentSyncedTabs(),
         recentHistory,
     )
-    BrowsingMode.Private -> privateModeAdapterItems()
+    BrowsingMode.Private -> privateModeAdapterItems(
+        settings,
+        topSites,
+    )
 }
 
 private fun collectionTabItems(collection: TabCollection) =
