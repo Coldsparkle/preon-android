@@ -5,19 +5,10 @@
 package org.mozilla.fenix.home
 
 import android.content.Context
-import android.view.Gravity
 import android.view.View
-import android.view.ViewGroup
-import androidx.appcompat.content.res.AppCompatResources
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.constraintlayout.widget.ConstraintSet
-import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.isVisible
-import androidx.core.view.updateLayoutParams
-import mozilla.components.support.ktx.android.content.res.resolveAttribute
 import org.mozilla.fenix.R
 import org.mozilla.fenix.components.toolbar.IncompleteRedesignToolbarFeature
-import org.mozilla.fenix.components.toolbar.ToolbarPosition
 import org.mozilla.fenix.databinding.FragmentHomeBinding
 import org.mozilla.fenix.ext.settings
 import org.mozilla.fenix.home.toolbar.ToolbarInteractor
@@ -43,18 +34,21 @@ class ToolbarView(
         binding.toolbar.compoundDrawablePadding =
             context.resources.getDimensionPixelSize(R.dimen.search_bar_search_engine_icon_padding)
 
-        binding.toolbarWrapper.setOnClickListener {
-            interactor.onNavigateSearch()
-        }
-
-        binding.toolbarWrapper.setOnLongClickListener {
-            ToolbarPopupWindow.show(
-                WeakReference(it),
-                handlePasteAndGo = interactor::onPasteAndGo,
-                handlePaste = interactor::onPaste,
-                copyVisible = false,
-            )
-            true
+        binding.toolbar.apply {
+            compoundDrawablePadding =
+                context.resources.getDimensionPixelSize(R.dimen.search_bar_search_engine_icon_padding)
+            setOnClickListener {
+                interactor.onNavigateSearch()
+            }
+            setOnLongClickListener {
+                ToolbarPopupWindow.show(
+                    WeakReference(it),
+                    handlePasteAndGo = interactor::onPasteAndGo,
+                    handlePaste = interactor::onPaste,
+                    copyVisible = false,
+                )
+                true
+            }
         }
     }
 
