@@ -131,11 +131,10 @@ class SearchDialogFragment : AppCompatDialogFragment(), UserInteractionHandler {
     override fun onStart() {
         super.onStart()
 
-        // This will need to be handled for the update to R. We need to resize here in order to
-        // see the whole homescreen behind the search dialog.
-        @Suppress("DEPRECATION")
+        // Set soft input mode to SOFT_INPUT_ADJUST_NOTHING
+        // in case of activity shifting when keyboard is showing
         requireActivity().window.setSoftInputMode(
-            WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE,
+            WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING,
         )
 
         // Refocus the toolbar editing and show keyboard if the QR fragment isn't showing

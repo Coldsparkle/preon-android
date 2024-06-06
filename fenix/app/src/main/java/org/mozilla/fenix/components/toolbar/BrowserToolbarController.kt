@@ -126,30 +126,37 @@ class DefaultBrowserToolbarController(
 
     override fun handleToolbarClick() {
         Events.searchBarTapped.record(Events.SearchBarTappedExtra("BROWSER"))
+        // I don't want to see home screen at all
+        navController.navigate(
+            BrowserFragmentDirections.actionGlobalSearchDialog(
+                currentSession?.id,
+            ),
+            getToolbarNavOptions(activity),
+        )
         // If we're displaying awesomebar search results, Home screen will not be visible (it's
         // covered up with the search results). So, skip the navigation event in that case.
         // If we don't, there's a visual flickr as we navigate to Home and then display search
         // results on top it.
-        if (currentSession?.content?.searchTerms.isNullOrBlank()) {
-            browserAnimator.captureEngineViewAndDrawStatically {
-                navController.navigate(
-                    BrowserFragmentDirections.actionGlobalHome(),
-                )
-                navController.navigate(
-                    BrowserFragmentDirections.actionGlobalSearchDialog(
-                        currentSession?.id,
-                    ),
-                    getToolbarNavOptions(activity),
-                )
-            }
-        } else {
-            navController.navigate(
-                BrowserFragmentDirections.actionGlobalSearchDialog(
-                    currentSession?.id,
-                ),
-                getToolbarNavOptions(activity),
-            )
-        }
+//        if (currentSession?.content?.searchTerms.isNullOrBlank()) {
+//            browserAnimator.captureEngineViewAndDrawStatically {
+//                navController.navigate(
+//                    BrowserFragmentDirections.actionGlobalHome(),
+//                )
+//                navController.navigate(
+//                    BrowserFragmentDirections.actionGlobalSearchDialog(
+//                        currentSession?.id,
+//                    ),
+//                    getToolbarNavOptions(activity),
+//                )
+//            }
+//        } else {
+//            navController.navigate(
+//                BrowserFragmentDirections.actionGlobalSearchDialog(
+//                    currentSession?.id,
+//                ),
+//                getToolbarNavOptions(activity),
+//            )
+//        }
     }
 
     override fun handleTabCounterClick() {
