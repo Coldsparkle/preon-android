@@ -12,17 +12,17 @@ import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.core.content.getSystemService
 import androidx.preference.Preference
-import androidx.preference.PreferenceFragmentCompat
 import mozilla.components.support.base.feature.ViewBoundFeatureWrapper
 import org.mozilla.fenix.ext.registerForActivityResult
 import org.mozilla.fenix.ext.settings
+import org.mozilla.fenix.settings.BasePreferenceFragment
 import org.mozilla.fenix.settings.requirePreference
 
 /**
  * Helper for creating and implementing the [BiometricPromptFeature]. Currently used
  * for logins and credit cards.
  */
-abstract class BiometricPromptPreferenceFragment : PreferenceFragmentCompat() {
+abstract class BiometricPromptPreferenceFragment : BasePreferenceFragment() {
 
     private val biometricPromptFeature = ViewBoundFeatureWrapper<BiometricPromptFeature>()
     internal lateinit var startForResult: ActivityResultLauncher<Intent>

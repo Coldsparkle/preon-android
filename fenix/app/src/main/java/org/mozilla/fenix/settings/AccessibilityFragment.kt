@@ -5,7 +5,6 @@
 package org.mozilla.fenix.settings
 
 import android.os.Bundle
-import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
 import org.mozilla.fenix.R
 import org.mozilla.fenix.ext.components
@@ -18,7 +17,7 @@ import org.mozilla.fenix.ext.showToolbar
  * Includes an automatic font sizing toggle. When turned on, font sizing follows the Android device settings.
  * When turned off, the font sizing can be controlled manually within the app.
  */
-class AccessibilityFragment : PreferenceFragmentCompat() {
+class AccessibilityFragment : BasePreferenceFragment() {
     override fun onResume() {
         super.onResume()
         showToolbar(getString(R.string.preferences_accessibility))

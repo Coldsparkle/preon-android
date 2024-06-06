@@ -9,7 +9,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.preference.Preference
-import androidx.preference.PreferenceFragmentCompat
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import mozilla.components.concept.sync.AccountObserver
@@ -22,8 +21,9 @@ import org.mozilla.fenix.ext.getPreferenceKey
 import org.mozilla.fenix.ext.nav
 import org.mozilla.fenix.ext.requireComponents
 import org.mozilla.fenix.ext.showToolbar
+import org.mozilla.fenix.settings.BasePreferenceFragment
 
-class AccountProblemFragment : PreferenceFragmentCompat(), AccountObserver {
+class AccountProblemFragment : BasePreferenceFragment(), AccountObserver {
     private val args by navArgs<AccountProblemFragmentArgs>()
 
     private val signInClickListener = Preference.OnPreferenceClickListener {

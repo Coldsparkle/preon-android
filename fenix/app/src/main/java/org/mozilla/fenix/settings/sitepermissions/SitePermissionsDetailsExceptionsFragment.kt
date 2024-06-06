@@ -12,7 +12,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.preference.Preference
-import androidx.preference.PreferenceFragmentCompat
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
@@ -25,6 +24,7 @@ import org.mozilla.fenix.ext.components
 import org.mozilla.fenix.ext.requireComponents
 import org.mozilla.fenix.ext.settings
 import org.mozilla.fenix.ext.showToolbar
+import org.mozilla.fenix.settings.BasePreferenceFragment
 import org.mozilla.fenix.settings.PhoneFeature
 import org.mozilla.fenix.settings.PhoneFeature.AUTOPLAY
 import org.mozilla.fenix.settings.PhoneFeature.CAMERA
@@ -39,7 +39,7 @@ import org.mozilla.fenix.settings.requirePreference
 import org.mozilla.fenix.utils.Settings
 
 @SuppressWarnings("TooManyFunctions")
-class SitePermissionsDetailsExceptionsFragment : PreferenceFragmentCompat() {
+class SitePermissionsDetailsExceptionsFragment : BasePreferenceFragment() {
     @VisibleForTesting
     internal lateinit var sitePermissions: SitePermissions
 

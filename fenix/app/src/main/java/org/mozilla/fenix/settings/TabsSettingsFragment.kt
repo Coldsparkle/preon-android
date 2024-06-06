@@ -7,7 +7,6 @@ package org.mozilla.fenix.settings
 import android.os.Bundle
 import android.view.View
 import androidx.preference.PreferenceCategory
-import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
 import mozilla.telemetry.glean.private.NoExtras
 import org.mozilla.fenix.GleanMetrics.Events
@@ -20,7 +19,7 @@ import org.mozilla.fenix.utils.view.addToRadioGroup
 /**
  * Lets the user customize auto closing tabs.
  */
-class TabsSettingsFragment : PreferenceFragmentCompat() {
+class TabsSettingsFragment : BasePreferenceFragment() {
     private lateinit var listRadioButton: RadioButtonPreference
     private lateinit var gridRadioButton: RadioButtonPreference
     private lateinit var radioManual: RadioButtonPreference

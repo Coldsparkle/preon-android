@@ -8,7 +8,6 @@ import android.os.Bundle
 import androidx.preference.EditTextPreference
 import androidx.preference.Preference
 import androidx.preference.Preference.OnPreferenceClickListener
-import androidx.preference.PreferenceFragmentCompat
 import org.mozilla.fenix.R
 import org.mozilla.fenix.ext.settings
 import org.mozilla.fenix.ext.showToolbar
@@ -17,7 +16,7 @@ import kotlin.system.exitProcess
 /**
  * Lets the user customize Private browsing options.
  */
-class SyncDebugFragment : PreferenceFragmentCompat() {
+class SyncDebugFragment : BasePreferenceFragment() {
     private var hasChanges = false
 
     private val preferenceUpdater = object : StringSharedPreferenceUpdater() {

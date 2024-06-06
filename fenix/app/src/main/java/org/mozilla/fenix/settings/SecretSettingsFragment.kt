@@ -7,10 +7,8 @@ package org.mozilla.fenix.settings
 import android.os.Bundle
 import androidx.core.content.edit
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.preference.EditTextPreference
 import androidx.preference.Preference
-import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -20,12 +18,11 @@ import org.mozilla.fenix.FeatureFlags
 import org.mozilla.fenix.R
 import org.mozilla.fenix.debugsettings.data.DefaultDebugSettingsRepository
 import org.mozilla.fenix.ext.components
-import org.mozilla.fenix.ext.nav
 import org.mozilla.fenix.ext.settings
 import org.mozilla.fenix.ext.showToolbar
 import org.mozilla.fenix.GleanMetrics.DebugDrawer as DebugDrawerMetrics
 
-class SecretSettingsFragment : PreferenceFragmentCompat() {
+class SecretSettingsFragment : BasePreferenceFragment() {
 
     override fun onResume() {
         super.onResume()

@@ -10,16 +10,11 @@ import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.Preference
-import androidx.preference.PreferenceCategory
-import androidx.preference.PreferenceFragmentCompat
-import androidx.preference.PreferenceScreen
 import androidx.preference.SwitchPreference
 import org.mozilla.fenix.FeatureFlags
 import org.mozilla.fenix.GleanMetrics.AppTheme
 import org.mozilla.fenix.GleanMetrics.PullToRefreshInBrowser
-import org.mozilla.fenix.GleanMetrics.ToolbarSettings
 import org.mozilla.fenix.R
-import org.mozilla.fenix.components.toolbar.ToolbarPosition
 import org.mozilla.fenix.ext.requireComponents
 import org.mozilla.fenix.ext.settings
 import org.mozilla.fenix.ext.showToolbar
@@ -30,7 +25,7 @@ import org.mozilla.fenix.utils.view.addToRadioGroup
  */
 
 @Suppress("TooManyFunctions")
-class CustomizationFragment : PreferenceFragmentCompat() {
+class CustomizationFragment : BasePreferenceFragment() {
     private lateinit var radioLightTheme: RadioButtonPreference
     private lateinit var radioDarkTheme: RadioButtonPreference
     private lateinit var radioAutoBatteryTheme: RadioButtonPreference

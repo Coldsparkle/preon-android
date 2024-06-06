@@ -25,7 +25,9 @@
         android:id="@+id/action_global_browser"
         app:destination="@id/browserFragment"
         app:popUpTo="@id/homeFragment"
-        app:popUpToInclusive="false" />
+        app:popUpToInclusive="false"
+        app:enterAnim="@anim/fade_in"
+        app:popEnterAnim="@anim/fade_in"/>
 
     <action
         android:id="@+id/action_global_external_app_browser"
@@ -86,10 +88,14 @@
         app:destination="@id/webExtensionActionPopupFragment" />
     <action
         android:id="@+id/action_global_settingsFragment"
-        app:destination="@id/settingsFragment" />
+        app:destination="@id/settingsFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:popExitAnim="@anim/slide_out_right" />
     <action
         android:id="@+id/action_global_homeSettingsFragment"
-        app:destination="@id/homeSettingsFragment" />
+        app:destination="@id/homeSettingsFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:popExitAnim="@anim/slide_out_right"/>
     <action
         android:id="@+id/action_global_privateBrowsingFragment"
         app:destination="@id/privateBrowsingFragment" />
@@ -281,7 +287,9 @@
             app:nullable="true" />
         <action
             android:id="@+id/action_browserFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
+            app:destination="@id/settingsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_browserFragment_to_createShortcutFragment"
             app:destination="@id/createShortcutFragment" />

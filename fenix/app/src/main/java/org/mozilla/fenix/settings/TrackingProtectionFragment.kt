@@ -10,7 +10,6 @@ import androidx.navigation.findNavController
 import androidx.preference.CheckBoxPreference
 import androidx.preference.DropDownPreference
 import androidx.preference.Preference
-import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
 import org.mozilla.fenix.BrowserDirection
 import org.mozilla.fenix.GleanMetrics.TrackingProtection
@@ -27,7 +26,7 @@ import org.mozilla.fenix.utils.view.addToRadioGroup
  * Displays the toggle for tracking protection, options for tracking protection policy and a button
  * to open info about the tracking protection [org.mozilla.fenix.settings.TrackingProtectionFragment].
  */
-class TrackingProtectionFragment : PreferenceFragmentCompat() {
+class TrackingProtectionFragment : BasePreferenceFragment() {
 
     private val exceptionsClickListener = Preference.OnPreferenceClickListener {
         val directions =

@@ -7,7 +7,6 @@ package org.mozilla.fenix.settings
 import android.os.Bundle
 import androidx.navigation.findNavController
 import androidx.preference.Preference
-import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
 import org.mozilla.fenix.Config
 import org.mozilla.fenix.R
@@ -21,7 +20,7 @@ import org.mozilla.fenix.ext.showToolbar
 /**
  * Lets the user toggle telemetry on/off.
  */
-class DataChoicesFragment : PreferenceFragmentCompat() {
+class DataChoicesFragment : BasePreferenceFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

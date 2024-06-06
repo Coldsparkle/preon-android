@@ -5,7 +5,6 @@
 package org.mozilla.fenix.settings
 
 import android.os.Bundle
-import androidx.preference.PreferenceFragmentCompat
 import org.mozilla.fenix.R
 import org.mozilla.fenix.browser.browsingmode.BrowsingMode
 import org.mozilla.fenix.ext.settings
@@ -15,7 +14,7 @@ import org.mozilla.fenix.utils.view.addToRadioGroup
 /**
  * Lets the user choose how open links in apps feature behaves.
  */
-class OpenLinksInAppsFragment : PreferenceFragmentCompat() {
+class OpenLinksInAppsFragment : BasePreferenceFragment() {
     private lateinit var radioAlways: RadioButtonPreference
     private lateinit var radioAskBeforeOpening: RadioButtonPreference
     private lateinit var radioNever: RadioButtonPreference

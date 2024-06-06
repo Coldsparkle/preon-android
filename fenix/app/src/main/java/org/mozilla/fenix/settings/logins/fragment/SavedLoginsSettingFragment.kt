@@ -6,17 +6,17 @@ package org.mozilla.fenix.settings.logins.fragment
 
 import android.os.Bundle
 import androidx.preference.Preference
-import androidx.preference.PreferenceFragmentCompat
 import org.mozilla.fenix.GleanMetrics.Logins
 import org.mozilla.fenix.R
 import org.mozilla.fenix.ext.components
 import org.mozilla.fenix.ext.showToolbar
+import org.mozilla.fenix.settings.BasePreferenceFragment
 import org.mozilla.fenix.settings.RadioButtonPreference
 import org.mozilla.fenix.settings.SharedPreferenceUpdater
 import org.mozilla.fenix.settings.requirePreference
 import org.mozilla.fenix.utils.view.addToRadioGroup
 
-class SavedLoginsSettingFragment : PreferenceFragmentCompat() {
+class SavedLoginsSettingFragment : BasePreferenceFragment() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.save_logins_preferences, rootKey)
     }

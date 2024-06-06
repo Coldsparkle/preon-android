@@ -17,7 +17,6 @@ import androidx.core.content.getSystemService
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.preference.Preference
-import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.delay
@@ -38,13 +37,14 @@ import org.mozilla.fenix.ext.runIfFragmentIsAttached
 import org.mozilla.fenix.ext.secure
 import org.mozilla.fenix.ext.settings
 import org.mozilla.fenix.ext.showToolbar
+import org.mozilla.fenix.settings.BasePreferenceFragment
 import org.mozilla.fenix.settings.SharedPreferenceUpdater
 import org.mozilla.fenix.settings.SyncPreferenceView
 import org.mozilla.fenix.settings.biometric.BiometricPromptFeature
 import org.mozilla.fenix.settings.requirePreference
 
 @Suppress("TooManyFunctions")
-class SavedLoginsAuthFragment : PreferenceFragmentCompat() {
+class SavedLoginsAuthFragment : BasePreferenceFragment() {
     private val biometricPromptFeature = ViewBoundFeatureWrapper<BiometricPromptFeature>()
     private lateinit var startForResult: ActivityResultLauncher<Intent>
 

@@ -8,12 +8,9 @@ import android.os.Bundle
 import androidx.navigation.findNavController
 import androidx.preference.CheckBoxPreference
 import androidx.preference.Preference
-import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
-import org.mozilla.fenix.FeatureFlags
 import org.mozilla.fenix.GleanMetrics.CustomizeHome
 import org.mozilla.fenix.R
-import org.mozilla.fenix.components.appstate.AppAction
 import org.mozilla.fenix.ext.components
 import org.mozilla.fenix.ext.navigateWithBreadcrumb
 import org.mozilla.fenix.ext.settings
@@ -23,7 +20,7 @@ import org.mozilla.fenix.utils.view.addToRadioGroup
 /**
  * Lets the user customize the home screen.
  */
-class HomeSettingsFragment : PreferenceFragmentCompat() {
+class HomeSettingsFragment : BasePreferenceFragment() {
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.home_preferences, rootKey)

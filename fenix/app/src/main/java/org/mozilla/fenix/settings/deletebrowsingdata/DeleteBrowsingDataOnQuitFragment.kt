@@ -7,15 +7,15 @@ package org.mozilla.fenix.settings.deletebrowsingdata
 import android.os.Bundle
 import androidx.preference.CheckBoxPreference
 import androidx.preference.Preference
-import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
 import org.mozilla.fenix.R
 import org.mozilla.fenix.ext.settings
 import org.mozilla.fenix.ext.showToolbar
+import org.mozilla.fenix.settings.BasePreferenceFragment
 import org.mozilla.fenix.settings.SharedPreferenceUpdater
 import org.mozilla.fenix.settings.requirePreference
 
-class DeleteBrowsingDataOnQuitFragment : PreferenceFragmentCompat() {
+class DeleteBrowsingDataOnQuitFragment : BasePreferenceFragment() {
 
     private val checkboxes by lazy {
         val context = requireContext()

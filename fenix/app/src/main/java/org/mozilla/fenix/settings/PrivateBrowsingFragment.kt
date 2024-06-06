@@ -7,7 +7,6 @@ package org.mozilla.fenix.settings
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.preference.Preference
-import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
 import org.mozilla.fenix.HomeActivity
 import org.mozilla.fenix.R
@@ -18,7 +17,7 @@ import org.mozilla.fenix.ext.showToolbar
 /**
  * Lets the user customize Private browsing options.
  */
-class PrivateBrowsingFragment : PreferenceFragmentCompat() {
+class PrivateBrowsingFragment : BasePreferenceFragment() {
     override fun onResume() {
         super.onResume()
         showToolbar(getString(R.string.preferences_private_browsing_options))
