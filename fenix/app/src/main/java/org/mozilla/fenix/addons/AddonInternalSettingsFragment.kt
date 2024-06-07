@@ -13,7 +13,6 @@ import androidx.navigation.fragment.navArgs
 import mozilla.components.feature.addons.ui.translateName
 import org.mozilla.fenix.R
 import org.mozilla.fenix.databinding.FragmentAddOnInternalSettingsBinding
-import org.mozilla.fenix.ext.showToolbar
 
 /**
  * A fragment to show the internal settings of an add-on.

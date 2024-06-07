@@ -19,13 +19,13 @@ import org.mozilla.fenix.databinding.FragmentSearchShortcutsBinding
 import org.mozilla.fenix.ext.components
 import org.mozilla.fenix.ext.getRootView
 import org.mozilla.fenix.ext.requireComponents
-import org.mozilla.fenix.ext.showToolbar
 import org.mozilla.fenix.theme.FirefoxTheme
 import org.mozilla.fenix.theme.Theme
+import org.mozilla.fenix.toobar.BaseToolbarFragment
 import org.mozilla.fenix.utils.allowUndo
 
 /**
- * A [Fragment] that allows user to select what search engine shortcuts will be visible in the quick
+ * A [BaseToolbarFragment] that allows user to select what search engine shortcuts will be visible in the quick
  * search menu.
  */
 class SearchShortcutsFragment : Fragment(R.layout.fragment_search_shortcuts) {
@@ -105,6 +105,5 @@ class SearchShortcutsFragment : Fragment(R.layout.fragment_search_shortcuts) {
     override fun onResume() {
         super.onResume()
         view?.hideKeyboard()
-        showToolbar(getString(R.string.preferences_manage_search_shortcuts_2))
     }
 }

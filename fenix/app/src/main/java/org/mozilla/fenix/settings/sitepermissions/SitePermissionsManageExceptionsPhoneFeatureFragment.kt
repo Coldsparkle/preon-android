@@ -18,7 +18,6 @@ import androidx.annotation.IdRes
 import androidx.annotation.VisibleForTesting
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import kotlinx.coroutines.Dispatchers.Main
@@ -30,15 +29,15 @@ import mozilla.components.ui.widgets.withCenterAlignedButtons
 import org.mozilla.fenix.R
 import org.mozilla.fenix.ext.requireComponents
 import org.mozilla.fenix.ext.settings
-import org.mozilla.fenix.ext.showToolbar
 import org.mozilla.fenix.settings.PhoneFeature
 import org.mozilla.fenix.settings.quicksettings.AutoplayValue
 import org.mozilla.fenix.settings.setStartCheckedIndicator
 import org.mozilla.fenix.settings.update
+import org.mozilla.fenix.toobar.BaseToolbarFragment
 import org.mozilla.fenix.utils.Settings
 
 @SuppressWarnings("TooManyFunctions")
-class SitePermissionsManageExceptionsPhoneFeatureFragment : Fragment() {
+class SitePermissionsManageExceptionsPhoneFeatureFragment : BaseToolbarFragment() {
 
     private lateinit var radioAllow: RadioButton
     private lateinit var radioBlock: RadioButton

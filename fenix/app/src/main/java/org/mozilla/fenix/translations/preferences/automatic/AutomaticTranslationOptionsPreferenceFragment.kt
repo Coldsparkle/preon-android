@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
-import org.mozilla.fenix.ext.showToolbar
 import org.mozilla.fenix.theme.FirefoxTheme
 
 /**
@@ -19,11 +18,6 @@ import org.mozilla.fenix.theme.FirefoxTheme
  */
 class AutomaticTranslationOptionsPreferenceFragment : Fragment() {
     private val args by navArgs<AutomaticTranslationOptionsPreferenceFragmentArgs>()
-
-    override fun onResume() {
-        super.onResume()
-        showToolbar(args.selectedTranslationOptionPreference.displayName)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

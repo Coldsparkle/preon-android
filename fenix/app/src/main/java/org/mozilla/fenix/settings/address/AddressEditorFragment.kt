@@ -20,7 +20,6 @@ import org.mozilla.fenix.SecureFragment
 import org.mozilla.fenix.databinding.FragmentAddressEditorBinding
 import org.mozilla.fenix.ext.components
 import org.mozilla.fenix.ext.requireComponents
-import org.mozilla.fenix.ext.showToolbar
 import org.mozilla.fenix.settings.address.controller.DefaultAddressEditorController
 import org.mozilla.fenix.settings.address.interactor.AddressEditorInteractor
 import org.mozilla.fenix.settings.address.interactor.DefaultAddressEditorInteractor

@@ -14,7 +14,6 @@ import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityNodeInfo
 import androidx.annotation.VisibleForTesting
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -38,15 +37,15 @@ import org.mozilla.fenix.ext.components
 import org.mozilla.fenix.ext.requireComponents
 import org.mozilla.fenix.ext.runIfFragmentIsAttached
 import org.mozilla.fenix.ext.settings
-import org.mozilla.fenix.ext.showToolbar
 import org.mozilla.fenix.settings.SupportUtils
 import org.mozilla.fenix.theme.ThemeManager
+import org.mozilla.fenix.toobar.BaseToolbarFragment
 
 /**
  * Fragment use for managing add-ons.
  */
 @Suppress("TooManyFunctions", "LargeClass")
-class AddonsManagementFragment : Fragment(R.layout.fragment_add_ons_management) {
+class AddonsManagementFragment : BaseToolbarFragment(R.layout.fragment_add_ons_management) {
 
     private var binding: FragmentAddOnsManagementBinding? = null
 

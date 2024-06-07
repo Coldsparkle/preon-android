@@ -159,7 +159,6 @@ import org.mozilla.fenix.ext.accessibilityManager
 import org.mozilla.fenix.ext.breadcrumb
 import org.mozilla.fenix.ext.components
 import org.mozilla.fenix.ext.getPreferenceKey
-import org.mozilla.fenix.ext.hideToolbar
 import org.mozilla.fenix.ext.nav
 import org.mozilla.fenix.ext.navigateWithBreadcrumb
 import org.mozilla.fenix.ext.registerForActivityResult
@@ -1355,8 +1354,6 @@ abstract class BaseBrowserFragment :
             components.core.engine.settings.preferredColorScheme = preferredColorScheme
             components.useCases.sessionUseCases.reload()
         }
-        hideToolbar()
-
         context?.settings()?.shouldOpenLinksInApp(customTabSessionId != null)
             ?.let { openLinksInExternalApp ->
                 components.services.appLinksInterceptor.updateLaunchInApp {

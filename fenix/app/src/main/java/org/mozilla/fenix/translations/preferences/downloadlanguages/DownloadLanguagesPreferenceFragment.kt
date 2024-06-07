@@ -15,7 +15,6 @@ import mozilla.components.support.base.feature.ViewBoundFeatureWrapper
 import org.mozilla.fenix.R
 import org.mozilla.fenix.ext.components
 import org.mozilla.fenix.ext.settings
-import org.mozilla.fenix.ext.showToolbar
 import org.mozilla.fenix.theme.FirefoxTheme
 
 /**
@@ -25,11 +24,6 @@ class DownloadLanguagesPreferenceFragment : Fragment() {
     private val downloadLanguagesFeature =
         ViewBoundFeatureWrapper<DownloadLanguagesFeature>()
     private var isDataSaverEnabledAndWifiDisabled = false
-
-    override fun onResume() {
-        super.onResume()
-        showToolbar(getString(R.string.download_languages_toolbar_title_preference))
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -15,7 +15,6 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.paging.Pager
@@ -26,35 +25,34 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.Main
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import mozilla.components.concept.engine.permission.SitePermissions
 import mozilla.components.support.ktx.kotlin.stripDefaultPort
 import mozilla.components.ui.widgets.withCenterAlignedButtons
-import org.mozilla.fenix.NavHostActivity
 import org.mozilla.fenix.R
 import org.mozilla.fenix.ext.components
 import org.mozilla.fenix.ext.loadIntoView
 import org.mozilla.fenix.ext.nav
+import org.mozilla.fenix.toobar.BaseToolbarFragment
 
 private const val MAX_ITEMS_PER_PAGE = 50
 
 class SitePermissionsExceptionsFragment :
-    Fragment(R.layout.fragment_site_permissions_exceptions), View.OnClickListener {
+    BaseToolbarFragment(R.layout.fragment_site_permissions_exceptions), View.OnClickListener {
     private lateinit var emptyContainerMessage: View
     private lateinit var recyclerView: RecyclerView
     private lateinit var clearButton: Button
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        (activity as NavHostActivity).getSupportActionBarAndInflateIfNecessary().show()
-    }
 
     override fun onViewCreated(rootView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(rootView, savedInstanceState)
         bindEmptyContainerMess(rootView)
         bindClearButton(rootView)
         bindRecyclerView(rootView)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        showToolbar(resources.getString(R.string.preference_exceptions))
     }
 
     private fun bindRecyclerView(rootView: View) {

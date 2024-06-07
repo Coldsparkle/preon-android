@@ -22,16 +22,9 @@ import mozilla.components.browser.state.search.RegionState
 import mozilla.components.lib.state.ext.observeAsState
 import org.mozilla.fenix.R
 import org.mozilla.fenix.components.components
-import org.mozilla.fenix.ext.showToolbar
 import org.mozilla.fenix.theme.FirefoxTheme
 
 class SecretDebugSettingsFragment : Fragment() {
-
-    override fun onResume() {
-        super.onResume()
-
-        showToolbar(getString(R.string.preferences_debug_info))
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

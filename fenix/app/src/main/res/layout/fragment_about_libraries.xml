@@ -11,6 +11,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="org.mozilla.fenix.settings.about.AboutLibrariesFragment">
+
+    <include layout="@layout/navigation_toolbar" />
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

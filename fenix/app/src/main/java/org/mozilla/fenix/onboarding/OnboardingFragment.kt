@@ -30,7 +30,6 @@ import org.mozilla.fenix.R
 import org.mozilla.fenix.components.accounts.FenixFxAEntryPoint
 import org.mozilla.fenix.compose.LinkTextState
 import org.mozilla.fenix.ext.components
-import org.mozilla.fenix.ext.hideToolbar
 import org.mozilla.fenix.ext.nav
 import org.mozilla.fenix.ext.openSetDefaultBrowserOption
 import org.mozilla.fenix.ext.requireComponents
@@ -98,7 +97,6 @@ class OnboardingFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        hideToolbar()
     }
 
     override fun onDestroy() {

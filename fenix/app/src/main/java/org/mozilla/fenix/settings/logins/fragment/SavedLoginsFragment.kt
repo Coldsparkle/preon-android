@@ -37,7 +37,6 @@ import org.mozilla.fenix.databinding.FragmentSavedLoginsBinding
 import org.mozilla.fenix.ext.components
 import org.mozilla.fenix.ext.redirectToReAuth
 import org.mozilla.fenix.ext.settings
-import org.mozilla.fenix.ext.showToolbar
 import org.mozilla.fenix.settings.logins.LoginsAction
 import org.mozilla.fenix.settings.logins.LoginsFragmentStore
 import org.mozilla.fenix.settings.logins.LoginsListState
@@ -199,8 +198,6 @@ class SavedLoginsFragment : SecureFragment(), MenuProvider {
     override fun onPause() {
         toolbarChildContainer.removeAllViews()
         toolbarChildContainer.visibility = View.GONE
-        (activity as HomeActivity).getSupportActionBarAndInflateIfNecessary()
-            .setDisplayShowTitleEnabled(true)
         sortingStrategyMenu.menuController.dismiss()
         sortLoginsMenuRoot.setOnClickListener(null)
 
@@ -226,8 +223,6 @@ class SavedLoginsFragment : SecureFragment(), MenuProvider {
     private fun initToolbar() {
         requireActivity().addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
         showToolbar(getString(R.string.preferences_passwords_saved_logins_2))
-        (activity as HomeActivity).getSupportActionBarAndInflateIfNecessary()
-            .setDisplayShowTitleEnabled(false)
         toolbarChildContainer = initChildContainerFromToolbar()
         sortLoginsMenuRoot = inflateSortLoginsMenuRoot()
         dropDownMenuAnchorView = sortLoginsMenuRoot.findViewById(R.id.drop_down_menu_anchor_view)

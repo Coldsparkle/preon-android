@@ -27,6 +27,9 @@ abstract class BasePreferenceFragment: PreferenceFragmentCompat() {
         view?.findViewById<Toolbar>(R.id.navigationToolbar)?.apply {
             setNavigationIcon(R.drawable.ic_back_button)
             setTitle(title)
+            setNavigationOnClickListener {
+                activity?.onBackPressed()
+            }
         }
     }
 

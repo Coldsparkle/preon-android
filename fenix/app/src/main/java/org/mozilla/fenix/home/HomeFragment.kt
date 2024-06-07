@@ -103,7 +103,6 @@ import org.mozilla.fenix.components.toolbar.navbar.NavbarIntegration
 import org.mozilla.fenix.databinding.FragmentHomeBinding
 import org.mozilla.fenix.ext.components
 import org.mozilla.fenix.ext.containsQueryParameters
-import org.mozilla.fenix.ext.hideToolbar
 import org.mozilla.fenix.ext.nav
 import org.mozilla.fenix.ext.requireComponents
 import org.mozilla.fenix.ext.scaleToBottomOfView
@@ -863,8 +862,6 @@ class HomeFragment : Fragment() {
         if (browsingModeManager.mode == BrowsingMode.Private) {
             activity?.window?.setBackgroundDrawableResource(R.drawable.private_home_background_gradient)
         }
-
-        hideToolbar()
 
         // Whenever a tab is selected its last access timestamp is automatically updated by A-C.
         // However, in the case of resuming the app to the home fragment, we already have an

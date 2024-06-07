@@ -7,7 +7,6 @@ package org.mozilla.fenix.addons
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import kotlinx.coroutines.Dispatchers.IO
@@ -22,12 +21,12 @@ import org.mozilla.fenix.BrowserDirection
 import org.mozilla.fenix.HomeActivity
 import org.mozilla.fenix.R
 import org.mozilla.fenix.databinding.FragmentAddOnDetailsBinding
-import org.mozilla.fenix.ext.showToolbar
+import org.mozilla.fenix.toobar.BaseToolbarFragment
 
 /**
  * A fragment to show the details of an add-on.
  */
-class AddonDetailsFragment : Fragment(R.layout.fragment_add_on_details), AddonDetailsInteractor {
+class AddonDetailsFragment : BaseToolbarFragment(R.layout.fragment_add_on_details), AddonDetailsInteractor {
 
     private val updateAttemptStorage by lazy { UpdateAttemptStorage(requireContext()) }
     private val args by navArgs<AddonDetailsFragmentArgs>()

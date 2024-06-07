@@ -10,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.VisibleForTesting
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
@@ -28,13 +27,13 @@ import org.mozilla.fenix.R
 import org.mozilla.fenix.databinding.FragmentInstalledAddOnDetailsBinding
 import org.mozilla.fenix.ext.components
 import org.mozilla.fenix.ext.runIfFragmentIsAttached
-import org.mozilla.fenix.ext.showToolbar
+import org.mozilla.fenix.toobar.BaseToolbarFragment
 
 /**
  * An activity to show the details of a installed add-on.
  */
 @Suppress("LargeClass", "TooManyFunctions")
-class InstalledAddonDetailsFragment : Fragment() {
+class InstalledAddonDetailsFragment : BaseToolbarFragment() {
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     internal lateinit var addon: Addon
 

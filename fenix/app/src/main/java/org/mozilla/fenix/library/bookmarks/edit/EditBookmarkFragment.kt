@@ -14,8 +14,6 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
@@ -33,14 +31,12 @@ import mozilla.appservices.places.uniffi.PlacesApiException
 import mozilla.components.concept.storage.BookmarkInfo
 import mozilla.components.concept.storage.BookmarkNode
 import mozilla.components.concept.storage.BookmarkNodeType
-import mozilla.components.support.ktx.android.content.getColorFromAttr
 import mozilla.components.support.ktx.android.view.hideKeyboard
 import mozilla.components.support.ktx.android.view.showKeyboard
 import mozilla.components.support.ktx.kotlin.toShortUrl
 import mozilla.components.ui.widgets.withCenterAlignedButtons
 import mozilla.telemetry.glean.private.NoExtras
 import org.mozilla.fenix.GleanMetrics.BookmarksManagement
-import org.mozilla.fenix.NavHostActivity
 import org.mozilla.fenix.R
 import org.mozilla.fenix.components.FenixSnackbar
 import org.mozilla.fenix.components.metrics.MetricsUtils
@@ -50,7 +46,6 @@ import org.mozilla.fenix.ext.getRootView
 import org.mozilla.fenix.ext.nav
 import org.mozilla.fenix.ext.placeCursorAtEnd
 import org.mozilla.fenix.ext.requireComponents
-import org.mozilla.fenix.ext.setToolbarColors
 import org.mozilla.fenix.library.bookmarks.BookmarksSharedViewModel
 import org.mozilla.fenix.library.bookmarks.friendlyRootTitle
 
@@ -72,8 +67,6 @@ class EditBookmarkFragment : Fragment(R.layout.fragment_edit_bookmark), MenuProv
         requireActivity().addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
         _binding = FragmentEditBookmarkBinding.bind(view)
-
-        initToolbar()
 
         viewLifecycleOwner.lifecycleScope.launch(Main) {
             val context = requireContext()
@@ -171,17 +164,6 @@ class EditBookmarkFragment : Fragment(R.layout.fragment_edit_bookmark), MenuProv
                 },
             )
         }
-    }
-
-    private fun initToolbar() {
-        val activity = activity as AppCompatActivity
-        val actionBar = (activity as NavHostActivity).getSupportActionBarAndInflateIfNecessary()
-        val toolbar = activity.findViewById<Toolbar>(R.id.navigationToolbar)
-        toolbar?.setToolbarColors(
-            foreground = activity.getColorFromAttr(R.attr.textPrimary),
-            background = activity.getColorFromAttr(R.attr.layer1),
-        )
-        actionBar.show()
     }
 
     override fun onPause() {

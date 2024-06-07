@@ -28,7 +28,6 @@ import androidx.annotation.CallSuper
 import androidx.annotation.IdRes
 import androidx.annotation.RequiresApi
 import androidx.annotation.VisibleForTesting
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.widget.Toolbar
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
@@ -107,7 +106,6 @@ import org.mozilla.fenix.ext.getIntentSource
 import org.mozilla.fenix.ext.getNavDirections
 import org.mozilla.fenix.ext.hasTopDestination
 import org.mozilla.fenix.ext.nav
-import org.mozilla.fenix.ext.setNavigationIcon
 import org.mozilla.fenix.ext.settings
 import org.mozilla.fenix.extension.WebExtensionPromptFeature
 import org.mozilla.fenix.home.intent.AssistIntentProcessor
@@ -158,8 +156,6 @@ open class HomeActivity : LocaleAwareAppCompatActivity(), NavHostActivity {
 
     private var privateNotificationObserver: PrivateNotificationFeature<PrivateNotificationService>? =
         null
-
-    private var isToolbarInflated = false
 
     private val webExtensionPopupObserver by lazy {
         WebExtensionPopupObserver(components.core.store, ::openPopup)
@@ -882,24 +878,6 @@ open class HomeActivity : LocaleAwareAppCompatActivity(), NavHostActivity {
                 )
             }
         }
-    }
-
-    /**
-     * Returns the [supportActionBar], inflating it if necessary.
-     * Everyone should call this instead of supportActionBar.
-     */
-    final override fun getSupportActionBarAndInflateIfNecessary(): ActionBar {
-        if (!isToolbarInflated) {
-            navigationToolbar = binding.navigationToolbarStub.inflate() as Toolbar
-
-            setSupportActionBar(navigationToolbar)
-            // Add ids to this that we don't want to have a toolbar back button
-            setupNavigationToolbar()
-            setNavigationIcon(R.drawable.ic_back_button)
-
-            isToolbarInflated = true
-        }
-        return supportActionBar!!
     }
 
     @Suppress("SpreadOperator")

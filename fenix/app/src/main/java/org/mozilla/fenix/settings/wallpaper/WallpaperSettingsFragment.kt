@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.ComposeView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.launch
@@ -25,11 +24,11 @@ import org.mozilla.fenix.browser.browsingmode.BrowsingMode
 import org.mozilla.fenix.components.FenixSnackbar
 import org.mozilla.fenix.ext.requireComponents
 import org.mozilla.fenix.ext.settings
-import org.mozilla.fenix.ext.showToolbar
 import org.mozilla.fenix.theme.FirefoxTheme
+import org.mozilla.fenix.toobar.BaseToolbarFragment
 import org.mozilla.fenix.wallpapers.Wallpaper
 
-class WallpaperSettingsFragment : Fragment() {
+class WallpaperSettingsFragment : BaseToolbarFragment() {
     private val appStore by lazy {
         requireComponents.appStore
     }
@@ -140,10 +139,5 @@ class WallpaperSettingsFragment : Fragment() {
         }
 
         view.context.settings().showWallpaperOnboarding = false
-    }
-
-    override fun onResume() {
-        super.onResume()
-        showToolbar(getString(R.string.customize_wallpapers))
     }
 }

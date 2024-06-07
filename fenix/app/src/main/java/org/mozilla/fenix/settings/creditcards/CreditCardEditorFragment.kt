@@ -29,7 +29,6 @@ import org.mozilla.fenix.databinding.FragmentCreditCardEditorBinding
 import org.mozilla.fenix.ext.components
 import org.mozilla.fenix.ext.placeCursorAtEnd
 import org.mozilla.fenix.ext.redirectToReAuth
-import org.mozilla.fenix.ext.showToolbar
 import org.mozilla.fenix.settings.creditcards.controller.DefaultCreditCardEditorController
 import org.mozilla.fenix.settings.creditcards.interactor.CreditCardEditorInteractor
 import org.mozilla.fenix.settings.creditcards.interactor.DefaultCreditCardEditorInteractor

@@ -6,21 +6,17 @@ package org.mozilla.fenix
 
 import android.os.Bundle
 import androidx.annotation.LayoutRes
-import androidx.fragment.app.Fragment
 import org.mozilla.fenix.ext.removeSecure
 import org.mozilla.fenix.ext.secure
+import org.mozilla.fenix.toobar.BaseToolbarFragment
 
 /**
- * A [Fragment] implementation that can be used to secure screens displaying sensitive information
+ * A [BaseToolbarFragment] implementation that can be used to secure screens displaying sensitive information
  * by not allowing taking screenshots of their content.
  *
- * Fragments displaying such screens should extend [SecureFragment] instead of [Fragment] class.
+ * Fragments displaying such screens should extend [SecureFragment] instead of [BaseToolbarFragment] class.
  */
-open class SecureFragment(@LayoutRes contentLayoutId: Int) : Fragment(contentLayoutId) {
-
-    constructor() : this(0) {
-        Fragment()
-    }
+open class SecureFragment(@LayoutRes contentLayoutId: Int = 0) : BaseToolbarFragment(contentLayoutId) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         this.secure()

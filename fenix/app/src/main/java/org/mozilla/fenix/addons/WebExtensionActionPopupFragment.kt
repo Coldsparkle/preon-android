@@ -17,7 +17,6 @@ import mozilla.components.lib.state.ext.consumeFrom
 import org.mozilla.fenix.R
 import org.mozilla.fenix.databinding.FragmentAddOnInternalSettingsBinding
 import org.mozilla.fenix.ext.requireComponents
-import org.mozilla.fenix.ext.showToolbar
 
 /**
  * A fragment to show the web extension action popup with [EngineView].

@@ -10,6 +10,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include
+        app:layout_constraintTop_toTopOf="parent"
+        layout="@layout/navigation_toolbar" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/exceptions"
         android:layout_width="0dp"
@@ -17,7 +21,7 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/navigationToolbar"
         tools:listitem="@layout/fragment_site_permissions_exceptions_item"
         tools:visibility="visible" />
 

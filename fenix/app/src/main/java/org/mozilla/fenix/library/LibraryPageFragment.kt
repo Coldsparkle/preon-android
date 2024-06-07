@@ -5,7 +5,6 @@
 package org.mozilla.fenix.library
 
 import androidx.appcompat.widget.Toolbar
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import mozilla.components.support.ktx.android.content.getColorFromAttr
 import org.mozilla.fenix.HomeActivity
@@ -13,8 +12,9 @@ import org.mozilla.fenix.R
 import org.mozilla.fenix.browser.browsingmode.BrowsingMode
 import org.mozilla.fenix.ext.components
 import org.mozilla.fenix.ext.setToolbarColors
+import org.mozilla.fenix.toobar.BaseToolbarFragment
 
-abstract class LibraryPageFragment<T> : Fragment() {
+abstract class LibraryPageFragment<T> : BaseToolbarFragment() {
 
     abstract val selectedItems: Set<T>
 

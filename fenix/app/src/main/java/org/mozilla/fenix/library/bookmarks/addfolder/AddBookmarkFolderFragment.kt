@@ -11,7 +11,6 @@ import android.view.MenuItem
 import android.view.View
 import android.view.View.GONE
 import androidx.core.view.MenuProvider
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -29,14 +28,14 @@ import org.mozilla.fenix.R
 import org.mozilla.fenix.databinding.FragmentEditBookmarkBinding
 import org.mozilla.fenix.ext.nav
 import org.mozilla.fenix.ext.requireComponents
-import org.mozilla.fenix.ext.showToolbar
 import org.mozilla.fenix.library.bookmarks.BookmarksSharedViewModel
 import org.mozilla.fenix.library.bookmarks.friendlyRootTitle
+import org.mozilla.fenix.toobar.BaseToolbarFragment
 
 /**
  * Menu to create a new bookmark folder.
  */
-class AddBookmarkFolderFragment : Fragment(R.layout.fragment_edit_bookmark), MenuProvider {
+class AddBookmarkFolderFragment : BaseToolbarFragment(R.layout.fragment_edit_bookmark), MenuProvider {
     private var _binding: FragmentEditBookmarkBinding? = null
     private val binding get() = _binding!!
 

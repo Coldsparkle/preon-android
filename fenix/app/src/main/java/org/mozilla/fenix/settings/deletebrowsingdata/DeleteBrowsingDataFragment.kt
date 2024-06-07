@@ -8,7 +8,6 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.CoroutineScope
@@ -27,11 +26,11 @@ import org.mozilla.fenix.databinding.FragmentDeleteBrowsingDataBinding
 import org.mozilla.fenix.ext.requireComponents
 import org.mozilla.fenix.ext.runIfFragmentIsAttached
 import org.mozilla.fenix.ext.settings
-import org.mozilla.fenix.ext.showToolbar
+import org.mozilla.fenix.toobar.BaseToolbarFragment
 import org.mozilla.fenix.utils.Settings
 
 @SuppressWarnings("TooManyFunctions", "LargeClass")
-class DeleteBrowsingDataFragment : Fragment(R.layout.fragment_delete_browsing_data) {
+class DeleteBrowsingDataFragment : BaseToolbarFragment(R.layout.fragment_delete_browsing_data) {
 
     private lateinit var controller: DeleteBrowsingDataController
     private var scope: CoroutineScope? = null

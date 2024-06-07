@@ -19,7 +19,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.RadioButton
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import mozilla.components.feature.sitepermissions.SitePermissionsRules
 import mozilla.components.feature.sitepermissions.SitePermissionsRules.Action.ALLOWED
@@ -29,12 +28,12 @@ import org.mozilla.fenix.R
 import org.mozilla.fenix.databinding.FragmentManageSitePermissionsFeaturePhoneBinding
 import org.mozilla.fenix.ext.components
 import org.mozilla.fenix.ext.settings
-import org.mozilla.fenix.ext.showToolbar
 import org.mozilla.fenix.settings.PhoneFeature
 import org.mozilla.fenix.settings.PhoneFeature.AUTOPLAY_AUDIBLE
 import org.mozilla.fenix.settings.PhoneFeature.AUTOPLAY_INAUDIBLE
 import org.mozilla.fenix.settings.setStartCheckedIndicator
 import org.mozilla.fenix.theme.ThemeManager
+import org.mozilla.fenix.toobar.BaseToolbarFragment
 import org.mozilla.fenix.utils.Settings
 
 const val AUTOPLAY_BLOCK_ALL = 0
@@ -50,7 +49,7 @@ enum class AutoplaySettingMetricsExtraKey {
 }
 
 @SuppressWarnings("TooManyFunctions")
-class SitePermissionsManagePhoneFeatureFragment : Fragment() {
+class SitePermissionsManagePhoneFeatureFragment : BaseToolbarFragment() {
 
     private val args by navArgs<SitePermissionsManagePhoneFeatureFragmentArgs>()
     private val settings by lazy { requireContext().settings() }

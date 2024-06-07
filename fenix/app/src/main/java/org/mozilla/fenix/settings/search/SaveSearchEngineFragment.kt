@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -24,14 +23,14 @@ import org.mozilla.fenix.R
 import org.mozilla.fenix.components.FenixSnackbar
 import org.mozilla.fenix.databinding.FragmentSaveSearchEngineBinding
 import org.mozilla.fenix.ext.requireComponents
-import org.mozilla.fenix.ext.showToolbar
 import org.mozilla.fenix.settings.SupportUtils
+import org.mozilla.fenix.toobar.BaseToolbarFragment
 
 /**
- * A [Fragment] that allows user to add a new search engine.
+ * A [BaseToolbarFragment] that allows user to add a new search engine.
  */
 @SuppressWarnings("LargeClass", "TooManyFunctions")
-class SaveSearchEngineFragment : Fragment(R.layout.fragment_save_search_engine) {
+class SaveSearchEngineFragment : BaseToolbarFragment(R.layout.fragment_save_search_engine) {
 
     private val args by navArgs<SaveSearchEngineFragmentArgs>()
     private val searchEngine by lazy {

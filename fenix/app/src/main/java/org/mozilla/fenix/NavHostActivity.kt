@@ -10,11 +10,4 @@ import androidx.appcompat.app.ActionBar
  * Interface for the main activity in a single-activity architecture.
  * All fragments will be displayed inside this activity.
  */
-interface NavHostActivity {
-
-    /**
-     * Returns the support action bar, inflating it if necessary.
-     * Everyone should call this instead of supportActionBar.
-     */
-    fun getSupportActionBarAndInflateIfNecessary(): ActionBar
-}
+interface NavHostActivity

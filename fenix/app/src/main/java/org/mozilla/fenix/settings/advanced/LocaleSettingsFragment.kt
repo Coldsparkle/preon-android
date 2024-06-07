@@ -14,7 +14,6 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuProvider
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import mozilla.components.lib.state.ext.consumeFrom
 import mozilla.components.support.ktx.android.view.hideKeyboard
@@ -23,9 +22,9 @@ import org.mozilla.fenix.R
 import org.mozilla.fenix.components.StoreProvider
 import org.mozilla.fenix.databinding.FragmentLocaleSettingsBinding
 import org.mozilla.fenix.ext.components
-import org.mozilla.fenix.ext.showToolbar
+import org.mozilla.fenix.toobar.BaseToolbarFragment
 
-class LocaleSettingsFragment : Fragment(), MenuProvider {
+class LocaleSettingsFragment : BaseToolbarFragment(), MenuProvider {
 
     private lateinit var localeSettingsStore: LocaleSettingsStore
     private lateinit var interactor: LocaleSettingsInteractor
@@ -33,10 +32,6 @@ class LocaleSettingsFragment : Fragment(), MenuProvider {
 
     private var _binding: FragmentLocaleSettingsBinding? = null
     private val binding get() = _binding!!
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

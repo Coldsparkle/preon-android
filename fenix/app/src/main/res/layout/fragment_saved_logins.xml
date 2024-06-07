@@ -3,8 +3,16 @@
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/savedLoginsLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="org.mozilla.fenix.settings.logins.fragment.SavedLoginsFragment" />
+    tools:context="org.mozilla.fenix.settings.logins.fragment.SavedLoginsFragment">
+
+    <include layout="@layout/navigation_toolbar" />
+
+    <LinearLayout
+        android:id="@+id/savedLoginsLayout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

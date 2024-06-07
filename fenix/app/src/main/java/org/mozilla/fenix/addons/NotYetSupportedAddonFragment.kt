@@ -8,7 +8,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,7 +16,7 @@ import mozilla.components.feature.addons.ui.UnsupportedAddonsAdapterDelegate
 import org.mozilla.fenix.R
 import org.mozilla.fenix.databinding.FragmentNotYetSupportedAddonsBinding
 import org.mozilla.fenix.ext.components
-import org.mozilla.fenix.ext.showToolbar
+import org.mozilla.fenix.toobar.BaseToolbarFragment
 
 private const val LEARN_MORE_URL =
     "https://support.mozilla.org/kb/add-compatibility-firefox-preview"
@@ -26,7 +25,7 @@ private const val LEARN_MORE_URL =
  * Fragment for displaying and managing add-ons that are not yet supported by the browser.
  */
 class NotYetSupportedAddonFragment :
-    Fragment(R.layout.fragment_not_yet_supported_addons), UnsupportedAddonsAdapterDelegate {
+    BaseToolbarFragment(R.layout.fragment_not_yet_supported_addons), UnsupportedAddonsAdapterDelegate {
 
     private val args by navArgs<NotYetSupportedAddonFragmentArgs>()
     private var unsupportedAddonsAdapter: UnsupportedAddonsAdapter? = null

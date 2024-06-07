@@ -12,7 +12,6 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.MenuProvider
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -27,11 +26,11 @@ import org.mozilla.fenix.R
 import org.mozilla.fenix.databinding.FragmentSelectBookmarkFolderBinding
 import org.mozilla.fenix.ext.components
 import org.mozilla.fenix.ext.nav
-import org.mozilla.fenix.ext.showToolbar
 import org.mozilla.fenix.library.bookmarks.BookmarksSharedViewModel
 import org.mozilla.fenix.library.bookmarks.DesktopFolders
+import org.mozilla.fenix.toobar.BaseToolbarFragment
 
-class SelectBookmarkFolderFragment : Fragment(), MenuProvider {
+class SelectBookmarkFolderFragment : BaseToolbarFragment(), MenuProvider {
     private var _binding: FragmentSelectBookmarkFolderBinding? = null
     private val binding get() = _binding!!
 

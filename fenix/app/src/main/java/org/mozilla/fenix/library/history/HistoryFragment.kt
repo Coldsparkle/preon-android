@@ -42,7 +42,6 @@ import mozilla.components.ui.widgets.withCenterAlignedButtons
 import mozilla.telemetry.glean.private.NoExtras
 import org.mozilla.fenix.BrowserDirection
 import org.mozilla.fenix.HomeActivity
-import org.mozilla.fenix.NavHostActivity
 import org.mozilla.fenix.R
 import org.mozilla.fenix.addons.showSnackBar
 import org.mozilla.fenix.browser.browsingmode.BrowsingMode
@@ -152,6 +151,11 @@ class HistoryFragment : LibraryPageFragment<History>(), UserInteractionHandler, 
         return view
     }
 
+    override fun onResume() {
+        super.onResume()
+        showToolbar(resources.getString(R.string.library_history))
+    }
+
     /**
      * All the current selected items. Individual history entries and entries from a group.
      * When a history group is selected, this will instead contain all the history entries in that group.
@@ -244,12 +248,6 @@ class HistoryFragment : LibraryPageFragment<History>(), UserInteractionHandler, 
                 ContextCompat.getColor(requireContext(), R.color.fx_mobile_icon_color_disabled),
             )
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        (activity as NavHostActivity).getSupportActionBarAndInflateIfNecessary().show()
     }
 
     override fun onCreateMenu(menu: Menu, inflater: MenuInflater) {

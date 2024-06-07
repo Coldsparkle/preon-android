@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
@@ -18,13 +17,13 @@ import org.mozilla.fenix.R
 import org.mozilla.fenix.components.StoreProvider
 import org.mozilla.fenix.databinding.FragmentExceptionsBinding
 import org.mozilla.fenix.ext.requireComponents
-import org.mozilla.fenix.ext.showToolbar
+import org.mozilla.fenix.toobar.BaseToolbarFragment
 
 /**
  * Displays a list of sites that are exempted from saving logins,
  * along with controls to remove the exception.
  */
-class LoginExceptionsFragment : Fragment() {
+class LoginExceptionsFragment : BaseToolbarFragment() {
     private lateinit var exceptionsStore: ExceptionsFragmentStore
     private lateinit var exceptionsView: LoginExceptionsView
     private lateinit var exceptionsInteractor: LoginExceptionsInteractor

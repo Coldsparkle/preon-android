@@ -28,7 +28,6 @@ import org.mozilla.fenix.GleanMetrics.Events
 import org.mozilla.fenix.R
 import org.mozilla.fenix.ext.requireComponents
 import org.mozilla.fenix.ext.settings
-import org.mozilla.fenix.ext.showToolbar
 import org.mozilla.fenix.nimbus.FxNimbus
 import org.mozilla.fenix.theme.FirefoxTheme
 
@@ -38,11 +37,6 @@ import org.mozilla.fenix.theme.FirefoxTheme
 class TranslationSettingsFragment : Fragment(), UserInteractionHandler {
     private val args by navArgs<TranslationSettingsFragmentArgs>()
     private val browserStore: BrowserStore by lazy { requireComponents.core.store }
-
-    override fun onResume() {
-        super.onResume()
-        showToolbar(getString(R.string.translation_settings_toolbar_title))
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

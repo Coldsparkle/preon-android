@@ -10,6 +10,8 @@
     android:layout_margin="16dp"
     android:orientation="vertical">
 
+    <include layout="@layout/navigation_toolbar" />
+
     <ProgressBar
         android:id="@+id/progress_bar_bookmark"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"

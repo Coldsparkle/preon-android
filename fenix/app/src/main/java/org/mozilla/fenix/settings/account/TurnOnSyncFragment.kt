@@ -10,7 +10,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.text.HtmlCompat
-import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -32,9 +31,9 @@ import org.mozilla.fenix.ext.increaseTapArea
 import org.mozilla.fenix.ext.navigateWithBreadcrumb
 import org.mozilla.fenix.ext.requireComponents
 import org.mozilla.fenix.ext.settings
-import org.mozilla.fenix.ext.showToolbar
+import org.mozilla.fenix.toobar.BaseToolbarFragment
 
-class TurnOnSyncFragment : Fragment(), AccountObserver {
+class TurnOnSyncFragment : BaseToolbarFragment(), AccountObserver {
 
     private val args by navArgs<TurnOnSyncFragmentArgs>()
     private lateinit var interactor: DefaultSyncInteractor

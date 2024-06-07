@@ -19,7 +19,6 @@ import org.mozilla.fenix.components.StoreProvider
 import org.mozilla.fenix.databinding.ComponentCreditCardsBinding
 import org.mozilla.fenix.ext.components
 import org.mozilla.fenix.ext.redirectToReAuth
-import org.mozilla.fenix.ext.showToolbar
 import org.mozilla.fenix.settings.autofill.AutofillAction
 import org.mozilla.fenix.settings.autofill.AutofillFragmentState
 import org.mozilla.fenix.settings.autofill.AutofillFragmentStore

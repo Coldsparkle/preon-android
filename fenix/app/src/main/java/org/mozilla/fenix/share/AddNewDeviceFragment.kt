@@ -7,19 +7,18 @@ package org.mozilla.fenix.share
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.Fragment
 import mozilla.components.ui.widgets.withCenterAlignedButtons
 import org.mozilla.fenix.BrowserDirection
 import org.mozilla.fenix.HomeActivity
 import org.mozilla.fenix.R
 import org.mozilla.fenix.databinding.FragmentAddNewDeviceBinding
-import org.mozilla.fenix.ext.showToolbar
 import org.mozilla.fenix.settings.SupportUtils
+import org.mozilla.fenix.toobar.BaseToolbarFragment
 
 /**
  * Fragment to add a new device. Tabs can be shared to devices after they are added.
  */
-class AddNewDeviceFragment : Fragment(R.layout.fragment_add_new_device) {
+class AddNewDeviceFragment : BaseToolbarFragment(R.layout.fragment_add_new_device) {
 
     override fun onResume() {
         super.onResume()

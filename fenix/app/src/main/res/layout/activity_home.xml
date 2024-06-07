@@ -20,13 +20,6 @@
         android:id="@+id/rootContainer"
         tools:context=".HomeActivity">
 
-        <ViewStub
-            android:id="@+id/navigationToolbarStub"
-            android:inflatedId="@id/navigationToolbar"
-            android:layout="@layout/navigation_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="56dp" />
-
         <!--The navGraph is set dynamically in NavGraphProvider -->
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/container"

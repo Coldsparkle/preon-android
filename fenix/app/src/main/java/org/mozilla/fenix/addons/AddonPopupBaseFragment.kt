@@ -6,7 +6,6 @@ package org.mozilla.fenix.addons
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import mozilla.components.browser.state.action.ContentAction
 import mozilla.components.browser.state.action.CustomTabListAction
@@ -21,12 +20,13 @@ import mozilla.components.feature.prompts.PromptFeature
 import mozilla.components.support.base.feature.UserInteractionHandler
 import mozilla.components.support.base.feature.ViewBoundFeatureWrapper
 import org.mozilla.fenix.ext.requireComponents
+import org.mozilla.fenix.toobar.BaseToolbarFragment
 
 /**
  * Provides shared functionality to our fragments for add-on settings and
  * browser/page action popups.
  */
-abstract class AddonPopupBaseFragment : Fragment(), EngineSession.Observer, UserInteractionHandler {
+abstract class AddonPopupBaseFragment : BaseToolbarFragment(), EngineSession.Observer, UserInteractionHandler {
     private val promptsFeature = ViewBoundFeatureWrapper<PromptFeature>()
 
     protected var session: SessionState? = null

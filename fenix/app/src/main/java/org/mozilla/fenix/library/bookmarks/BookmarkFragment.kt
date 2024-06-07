@@ -44,7 +44,6 @@ import mozilla.components.ui.widgets.withCenterAlignedButtons
 import mozilla.telemetry.glean.private.NoExtras
 import org.mozilla.fenix.GleanMetrics.BookmarksManagement
 import org.mozilla.fenix.HomeActivity
-import org.mozilla.fenix.NavHostActivity
 import org.mozilla.fenix.R
 import org.mozilla.fenix.components.FenixSnackbar
 import org.mozilla.fenix.components.StoreProvider
@@ -155,8 +154,6 @@ class BookmarkFragment : LibraryPageFragment<BookmarkNode>(), UserInteractionHan
     override fun onResume() {
         super.onResume()
 
-        (activity as NavHostActivity).getSupportActionBarAndInflateIfNecessary().show()
-
         // Reload bookmarks when returning to this fragment in case they have been edited
         val args by navArgs<BookmarkFragmentArgs>()
         val currentGuid = bookmarkStore.state.tree?.guid
@@ -164,6 +161,7 @@ class BookmarkFragment : LibraryPageFragment<BookmarkNode>(), UserInteractionHan
                 BookmarkRoot.Mobile.id
             }
         loadInitialBookmarkFolder(currentGuid)
+        showToolbar(resources.getString(R.string.library_bookmarks))
     }
 
     private fun loadInitialBookmarkFolder(currentGuid: String) {

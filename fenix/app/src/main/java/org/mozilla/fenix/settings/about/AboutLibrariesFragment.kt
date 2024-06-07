@@ -12,11 +12,10 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.Fragment
 import mozilla.components.ui.widgets.withCenterAlignedButtons
 import org.mozilla.fenix.R
 import org.mozilla.fenix.databinding.FragmentAboutLibrariesBinding
-import org.mozilla.fenix.ext.showToolbar
+import org.mozilla.fenix.toobar.BaseToolbarFragment
 import java.nio.charset.Charset
 import java.util.Locale
 
@@ -34,7 +33,7 @@ import java.util.Locale
  * extract the dependencies and their licenses, and this fragment
  * to show the extracted licenses to the end-user.
  */
-class AboutLibrariesFragment : Fragment(R.layout.fragment_about_libraries) {
+class AboutLibrariesFragment : BaseToolbarFragment(R.layout.fragment_about_libraries) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val binding = FragmentAboutLibrariesBinding.bind(view)

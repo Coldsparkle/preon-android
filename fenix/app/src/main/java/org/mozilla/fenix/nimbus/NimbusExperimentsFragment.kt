@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import org.mozilla.fenix.R
 import org.mozilla.fenix.ext.components
-import org.mozilla.fenix.ext.showToolbar
 import org.mozilla.fenix.nimbus.view.NimbusExperiments
 import org.mozilla.fenix.theme.FirefoxTheme
 
@@ -21,11 +20,6 @@ import org.mozilla.fenix.theme.FirefoxTheme
  * Fragment use for managing Nimbus experiments.
  */
 class NimbusExperimentsFragment : Fragment() {
-
-    override fun onResume() {
-        super.onResume()
-        showToolbar(getString(R.string.preferences_nimbus_experiments))
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

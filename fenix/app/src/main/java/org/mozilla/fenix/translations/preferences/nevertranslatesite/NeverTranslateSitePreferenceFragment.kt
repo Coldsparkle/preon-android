@@ -12,17 +12,13 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import org.mozilla.fenix.R
-import org.mozilla.fenix.ext.showToolbar
 import org.mozilla.fenix.theme.FirefoxTheme
+import org.mozilla.fenix.toobar.BaseToolbarFragment
 
 /**
  * A fragment displaying never translate site items list.
  */
 class NeverTranslateSitePreferenceFragment : Fragment() {
-    override fun onResume() {
-        super.onResume()
-        showToolbar(getString(R.string.never_translate_site_toolbar_title_preference))
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

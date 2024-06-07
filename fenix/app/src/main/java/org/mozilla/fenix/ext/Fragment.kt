@@ -35,16 +35,6 @@ fun Fragment.nav(@IdRes id: Int?, directions: NavDirections, options: NavOptions
 fun Fragment.getPreferenceKey(@StringRes resourceId: Int): String = getString(resourceId)
 
 /**
- * Displays the activity toolbar with the given [title].
- * Throws if the fragment is not attached to an [AppCompatActivity].
- */
-fun Fragment.showToolbar(title: String) {
-    (requireActivity() as AppCompatActivity).title = title
-    activity?.setNavigationIcon(R.drawable.ic_back_button)
-    (activity as NavHostActivity).getSupportActionBarAndInflateIfNecessary().show()
-}
-
-/**
  * Run the [block] only if the [Fragment] is attached.
  *
  * @param block A callback to be executed if the container [Fragment] is attached.
@@ -53,14 +43,6 @@ internal inline fun Fragment.runIfFragmentIsAttached(block: () -> Unit) {
     context?.let {
         block()
     }
-}
-
-/**
- * Hides the activity toolbar.
- * Throws if the fragment is not attached to an [AppCompatActivity].
- */
-fun Fragment.hideToolbar() {
-    (requireActivity() as AppCompatActivity).supportActionBar?.hide()
 }
 
 /**

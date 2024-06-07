@@ -17,7 +17,6 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.view.MenuProvider
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -32,19 +31,19 @@ import org.mozilla.fenix.databinding.FragmentAddLoginBinding
 import org.mozilla.fenix.ext.components
 import org.mozilla.fenix.ext.redirectToReAuth
 import org.mozilla.fenix.ext.settings
-import org.mozilla.fenix.ext.showToolbar
 import org.mozilla.fenix.ext.toEditable
 import org.mozilla.fenix.settings.logins.LoginsFragmentStore
 import org.mozilla.fenix.settings.logins.SavedLogin
 import org.mozilla.fenix.settings.logins.controller.SavedLoginsStorageController
 import org.mozilla.fenix.settings.logins.createInitialLoginsListState
 import org.mozilla.fenix.settings.logins.interactor.AddLoginInteractor
+import org.mozilla.fenix.toobar.BaseToolbarFragment
 
 /**
  * Displays the editable new login information for a single website
  */
 @Suppress("TooManyFunctions", "NestedBlockDepth", "ForbiddenComment")
-class AddLoginFragment : Fragment(R.layout.fragment_add_login), MenuProvider {
+class AddLoginFragment : BaseToolbarFragment(R.layout.fragment_add_login), MenuProvider {
 
     private lateinit var loginsFragmentStore: LoginsFragmentStore
     private lateinit var interactor: AddLoginInteractor
