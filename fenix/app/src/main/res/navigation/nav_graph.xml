@@ -58,57 +58,101 @@
 
     <action
         android:id="@+id/action_global_recently_closed"
-        app:destination="@id/recentlyClosedFragment" />
+        app:destination="@id/recentlyClosedFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"/>
 
     <action
         android:id="@+id/action_global_history_metadata_group"
-        app:destination="@id/historyMetadataGroupFragment" />
+        app:destination="@id/historyMetadataGroupFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"/>
 
     <action
         android:id="@+id/action_global_wallpaperSettingsFragment"
-        app:destination="@id/wallpaperSettingsFragment" />
+        app:destination="@id/wallpaperSettingsFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"/>
 
     <action
         android:id="@+id/action_global_shareFragment"
         app:destination="@id/shareFragment" />
     <action
         android:id="@+id/action_global_turn_on_sync"
-        app:destination="@id/turnOnSyncFragment" />
+        app:destination="@id/turnOnSyncFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"/>
     <action
         android:id="@+id/action_global_searchEngineFragment"
         app:destination="@id/search_engine_graph" />
     <action
         android:id="@+id/action_global_accessibilityFragment"
-        app:destination="@id/accessibilityFragment" />
+        app:destination="@id/accessibilityFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"/>
     <action
         android:id="@+id/action_global_deleteBrowsingDataFragment"
-        app:destination="@id/deleteBrowsingDataFragment" />
+        app:destination="@id/deleteBrowsingDataFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"/>
     <action
         android:id="@+id/action_global_webExtensionActionPopupFragment"
-        app:destination="@id/webExtensionActionPopupFragment" />
+        app:destination="@id/webExtensionActionPopupFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"/>
     <action
         android:id="@+id/action_global_settingsFragment"
         app:destination="@id/settingsFragment"
         app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
         app:popExitAnim="@anim/slide_out_right" />
     <action
         android:id="@+id/action_global_homeSettingsFragment"
         app:destination="@id/homeSettingsFragment"
         app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
         app:popExitAnim="@anim/slide_out_right"/>
     <action
         android:id="@+id/action_global_privateBrowsingFragment"
         app:destination="@id/privateBrowsingFragment" />
     <action
         android:id="@+id/action_global_bookmarkFragment"
-        app:destination="@id/bookmarkFragment" />
+        app:destination="@id/bookmarkFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"/>
     <action
         android:id="@+id/action_global_historyFragment"
-        app:destination="@id/historyFragment" />
+        app:destination="@id/historyFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"/>
 
     <action
         android:id="@+id/action_global_downloadsFragment"
-        app:destination="@id/downloadsFragment" />
+        app:destination="@id/downloadsFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"/>
     <action
         android:id="@+id/action_global_accountProblemFragment"
         app:destination="@id/accountProblemFragment" />
@@ -123,13 +167,25 @@
         app:destination="@id/bookmarkEditFragment" />
     <action
         android:id="@+id/action_global_addonsManagementFragment"
-        app:destination="@id/addons_management_graph" />
+        app:destination="@id/addons_management_graph"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"/>
     <action
         android:id="@+id/action_global_trackingProtectionFragment"
-        app:destination="@id/trackingProtectionFragment" />
+        app:destination="@id/trackingProtectionFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"/>
     <action
         android:id="@+id/action_global_trackingProtectionExceptionsFragment"
-        app:destination="@id/trackingProtectionExceptionsFragment" />
+        app:destination="@id/trackingProtectionExceptionsFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"/>
     <action
         android:id="@+id/action_global_accountSettingsFragment"
         app:destination="@id/accountSettingsFragment"
@@ -289,10 +345,16 @@
             android:id="@+id/action_browserFragment_to_settingsFragment"
             app:destination="@id/settingsFragment"
             app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_browserFragment_to_createShortcutFragment"
-            app:destination="@id/createShortcutFragment" />
+            app:destination="@id/createShortcutFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_browserFragment_to_pwaOnboardingDialogFragment"
             app:destination="@id/pwaOnboardingDialogFragment" />
