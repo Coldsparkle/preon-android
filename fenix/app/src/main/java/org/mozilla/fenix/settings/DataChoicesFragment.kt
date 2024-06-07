@@ -15,7 +15,6 @@ import org.mozilla.fenix.ext.components
 import org.mozilla.fenix.ext.getPreferenceKey
 import org.mozilla.fenix.ext.nav
 import org.mozilla.fenix.ext.settings
-import org.mozilla.fenix.ext.showToolbar
 
 /**
  * Lets the user toggle telemetry on/off.

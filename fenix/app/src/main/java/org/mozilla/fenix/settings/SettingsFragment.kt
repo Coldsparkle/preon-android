@@ -57,7 +57,6 @@ import org.mozilla.fenix.ext.navigateToNotificationsSettings
 import org.mozilla.fenix.ext.openSetDefaultBrowserOption
 import org.mozilla.fenix.ext.requireComponents
 import org.mozilla.fenix.ext.settings
-import org.mozilla.fenix.ext.showToolbar
 import org.mozilla.fenix.nimbus.FxNimbus
 import org.mozilla.fenix.perf.ProfilerViewModel
 import org.mozilla.fenix.settings.account.AccountUiView
@@ -478,7 +477,7 @@ class SettingsFragment : BasePreferenceFragment() {
             }
         }
 
-        preferenceRemoteDebugging?.isVisible = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+        preferenceRemoteDebugging?.isVisible = true
         preferenceRemoteDebugging?.setOnPreferenceChangeListener<Boolean> { preference, newValue ->
             preference.context.settings().preferences.edit()
                 .putBoolean(preference.key, newValue).apply()

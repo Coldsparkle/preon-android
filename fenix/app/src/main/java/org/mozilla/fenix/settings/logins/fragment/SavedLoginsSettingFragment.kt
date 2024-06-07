@@ -9,7 +9,6 @@ import androidx.preference.Preference
 import org.mozilla.fenix.GleanMetrics.Logins
 import org.mozilla.fenix.R
 import org.mozilla.fenix.ext.components
-import org.mozilla.fenix.ext.showToolbar
 import org.mozilla.fenix.settings.BasePreferenceFragment
 import org.mozilla.fenix.settings.RadioButtonPreference
 import org.mozilla.fenix.settings.SharedPreferenceUpdater

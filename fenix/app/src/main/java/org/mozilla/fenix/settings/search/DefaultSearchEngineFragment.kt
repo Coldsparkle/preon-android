@@ -11,7 +11,6 @@ import androidx.preference.Preference
 import mozilla.components.support.ktx.android.view.hideKeyboard
 import org.mozilla.fenix.R
 import org.mozilla.fenix.ext.getPreferenceKey
-import org.mozilla.fenix.ext.showToolbar
 import org.mozilla.fenix.settings.BasePreferenceFragment
 
 /**

@@ -5,6 +5,7 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.Toolbar
 import androidx.preference.PreferenceFragmentCompat
 import org.mozilla.fenix.R
 
@@ -19,6 +20,13 @@ abstract class BasePreferenceFragment: PreferenceFragmentCompat() {
             val theme = requireContext().theme
             theme.resolveAttribute(R.attr.homeBackground, typedValue, true)
             setBackgroundColor(typedValue.data)
+        }
+    }
+
+    fun showToolbar(title: String) {
+        view?.findViewById<Toolbar>(R.id.navigationToolbar)?.apply {
+            setNavigationIcon(R.drawable.ic_back_button)
+            setTitle(title)
         }
     }
 

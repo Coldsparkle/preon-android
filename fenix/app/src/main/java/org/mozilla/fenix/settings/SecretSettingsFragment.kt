@@ -19,7 +19,6 @@ import org.mozilla.fenix.R
 import org.mozilla.fenix.debugsettings.data.DefaultDebugSettingsRepository
 import org.mozilla.fenix.ext.components
 import org.mozilla.fenix.ext.settings
-import org.mozilla.fenix.ext.showToolbar
 import org.mozilla.fenix.GleanMetrics.DebugDrawer as DebugDrawerMetrics
 
 class SecretSettingsFragment : BasePreferenceFragment() {

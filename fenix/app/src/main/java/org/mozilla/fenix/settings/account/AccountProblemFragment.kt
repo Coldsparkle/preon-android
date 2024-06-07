@@ -20,7 +20,6 @@ import org.mozilla.fenix.R
 import org.mozilla.fenix.ext.getPreferenceKey
 import org.mozilla.fenix.ext.nav
 import org.mozilla.fenix.ext.requireComponents
-import org.mozilla.fenix.ext.showToolbar
 import org.mozilla.fenix.settings.BasePreferenceFragment
 
 class AccountProblemFragment : BasePreferenceFragment(), AccountObserver {

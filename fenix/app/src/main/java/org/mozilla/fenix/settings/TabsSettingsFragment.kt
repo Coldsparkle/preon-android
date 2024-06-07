@@ -13,7 +13,6 @@ import org.mozilla.fenix.GleanMetrics.Events
 import org.mozilla.fenix.GleanMetrics.Tabs
 import org.mozilla.fenix.R
 import org.mozilla.fenix.ext.settings
-import org.mozilla.fenix.ext.showToolbar
 import org.mozilla.fenix.utils.view.addToRadioGroup
 
 /**

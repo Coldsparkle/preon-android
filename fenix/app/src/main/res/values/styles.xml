@@ -135,6 +135,12 @@
         <item name="mozac_ic_private_mode_circle_fill_icon_color">@color/fx_mobile_text_color_primary</item>
 
         <item name="tabCounterTintColor">?attr/textPrimary</item>
+
+        <item name="preferenceTheme">@style/PrefsTheme</item>
+    </style>
+
+    <style name="PrefsTheme" parent="PreferenceThemeOverlay">
+        <item name="android:layout">@layout/mozac_fragment_customize_settings</item>
     </style>
 
     <!-- A theme derived from the normal activity theme, but to look and behave like a dialog -->

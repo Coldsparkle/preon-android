@@ -10,7 +10,6 @@ import androidx.preference.Preference
 import androidx.preference.SwitchPreference
 import org.mozilla.fenix.R
 import org.mozilla.fenix.ext.settings
-import org.mozilla.fenix.ext.showToolbar
 import org.mozilla.fenix.settings.BasePreferenceFragment
 import org.mozilla.fenix.settings.SharedPreferenceUpdater
 import org.mozilla.fenix.settings.requirePreference

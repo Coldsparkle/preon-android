@@ -17,7 +17,6 @@ import org.mozilla.fenix.GleanMetrics.PullToRefreshInBrowser
 import org.mozilla.fenix.R
 import org.mozilla.fenix.ext.requireComponents
 import org.mozilla.fenix.ext.settings
-import org.mozilla.fenix.ext.showToolbar
 import org.mozilla.fenix.utils.view.addToRadioGroup
 
 /**

@@ -35,7 +35,6 @@ import org.mozilla.fenix.ext.requireComponents
 import org.mozilla.fenix.ext.runIfFragmentIsAttached
 import org.mozilla.fenix.ext.secure
 import org.mozilla.fenix.ext.settings
-import org.mozilla.fenix.ext.showToolbar
 import org.mozilla.fenix.settings.SharedPreferenceUpdater
 import org.mozilla.fenix.settings.SyncPreferenceView
 import org.mozilla.fenix.settings.biometric.BiometricPromptPreferenceFragment

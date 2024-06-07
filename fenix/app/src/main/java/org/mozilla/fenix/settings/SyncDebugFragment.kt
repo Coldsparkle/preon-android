@@ -10,7 +10,6 @@ import androidx.preference.Preference
 import androidx.preference.Preference.OnPreferenceClickListener
 import org.mozilla.fenix.R
 import org.mozilla.fenix.ext.settings
-import org.mozilla.fenix.ext.showToolbar
 import kotlin.system.exitProcess
 
 /**

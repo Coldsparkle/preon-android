@@ -12,7 +12,6 @@ import org.mozilla.fenix.HomeActivity
 import org.mozilla.fenix.R
 import org.mozilla.fenix.components.PrivateShortcutCreateManager
 import org.mozilla.fenix.ext.settings
-import org.mozilla.fenix.ext.showToolbar
 
 /**
  * Lets the user customize Private browsing options.

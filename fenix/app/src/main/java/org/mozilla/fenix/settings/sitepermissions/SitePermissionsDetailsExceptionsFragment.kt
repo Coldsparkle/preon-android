@@ -23,7 +23,6 @@ import org.mozilla.fenix.R
 import org.mozilla.fenix.ext.components
 import org.mozilla.fenix.ext.requireComponents
 import org.mozilla.fenix.ext.settings
-import org.mozilla.fenix.ext.showToolbar
 import org.mozilla.fenix.settings.BasePreferenceFragment
 import org.mozilla.fenix.settings.PhoneFeature
 import org.mozilla.fenix.settings.PhoneFeature.AUTOPLAY

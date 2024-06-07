@@ -14,7 +14,6 @@ import org.mozilla.fenix.R
 import org.mozilla.fenix.ext.components
 import org.mozilla.fenix.ext.navigateWithBreadcrumb
 import org.mozilla.fenix.ext.settings
-import org.mozilla.fenix.ext.showToolbar
 import org.mozilla.fenix.utils.view.addToRadioGroup
 
 /**

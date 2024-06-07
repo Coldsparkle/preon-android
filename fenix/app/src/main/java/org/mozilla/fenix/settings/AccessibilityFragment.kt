@@ -9,7 +9,6 @@ import androidx.preference.SwitchPreference
 import org.mozilla.fenix.R
 import org.mozilla.fenix.ext.components
 import org.mozilla.fenix.ext.settings
-import org.mozilla.fenix.ext.showToolbar
 
 /**
  * Displays font size controls for accessibility.

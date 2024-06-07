@@ -16,7 +16,6 @@ import org.mozilla.fenix.ext.components
 import org.mozilla.fenix.ext.getPreferenceKey
 import org.mozilla.fenix.ext.navigateWithBreadcrumb
 import org.mozilla.fenix.ext.settings
-import org.mozilla.fenix.ext.showToolbar
 import org.mozilla.fenix.settings.BasePreferenceFragment
 import org.mozilla.fenix.settings.PhoneFeature
 import org.mozilla.fenix.settings.requirePreference
