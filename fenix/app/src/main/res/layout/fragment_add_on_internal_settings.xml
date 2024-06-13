@@ -6,6 +6,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools">
 
     <include layout="@layout/navigation_toolbar" />
@@ -14,6 +15,5 @@
         tools:ignore="Instantiatable"
         android:id="@+id/addonSettingsEngineView"
         android:layout_width="match_parent"
-        android:layout_weight="1"
-        android:layout_height="0dp" />
+        android:layout_height="match_parent" />
 </LinearLayout>
