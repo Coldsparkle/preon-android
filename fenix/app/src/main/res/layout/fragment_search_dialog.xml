@@ -27,36 +27,7 @@
         app:browserToolbarTrackingProtectionAndSecurityIndicatorSeparatorColor="?borderPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <ViewStub
-        android:id="@+id/search_suggestions_hint"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:inflatedId="@id/search_suggestions_hint"
-        android:layout="@layout/search_suggestions_hint"
-        app:layout_constrainedHeight="true"
-        app:layout_constraintBottom_toTopOf="@id/search_hint_bottom_barrier"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar" />
-
-    <View
-        android:id="@+id/search_suggestions_hint_divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="?borderPrimary"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@id/search_suggestions_hint"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/search_hint_bottom_barrier"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="top"
-        app:constraint_referenced_ids="awesome_bar,keyboard_divider"/>
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <org.mozilla.fenix.search.awesomebar.AwesomeBarWrapper
         android:id="@+id/awesome_bar"
@@ -68,10 +39,29 @@
         android:requiresFadingEdge="vertical"
         android:background="?attr/layer1"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/keyboard_divider"
+        app:layout_constraintBottom_toTopOf="@+id/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/search_suggestions_hint" />
+
+    <ViewStub
+        android:id="@+id/search_suggestions_hint"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:inflatedId="@id/search_suggestions_hint"
+        android:layout="@layout/search_suggestions_hint"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toTopOf="@id/search_hint_bottom_barrier"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/search_hint_bottom_barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="top"
+        app:constraint_referenced_ids="awesome_bar,toolbar"/>
 
     <View
         android:id="@+id/fill_link_from_clipboard"
@@ -83,7 +73,7 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintBottom_toTopOf="@id/toolbar"
         tools:visibility="visible" />
 
     <ImageView
@@ -146,11 +136,4 @@
         android:layout_height="1dp"
         android:background="?borderPrimary"
         app:layout_constraintTop_toBottomOf="@id/fill_link_from_clipboard" />
-
-    <View
-        android:id="@+id/keyboard_divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="?borderPrimary"
-        app:layout_constraintBottom_toBottomOf="parent" />
 </org.mozilla.fenix.perf.SearchDialogFragmentConstraintLayout>

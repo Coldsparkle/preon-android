@@ -27,10 +27,6 @@ import androidx.annotation.VisibleForTesting
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDialogFragment
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.constraintlayout.widget.ConstraintProperties.BOTTOM
-import androidx.constraintlayout.widget.ConstraintProperties.PARENT_ID
-import androidx.constraintlayout.widget.ConstraintProperties.TOP
-import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.graphics.drawable.toDrawable
 import androidx.core.net.toUri
 import androidx.core.view.isVisible
@@ -318,8 +314,6 @@ class SearchDialogFragment : AppCompatDialogFragment(), UserInteractionHandler {
                 }
         }
 
-        setupConstraints(view)
-
         // When displayed above browser or home screen, dismisses keyboard when touching scrim area
         when (getPreviousDestination()?.destination?.id) {
             R.id.browserFragment -> {
@@ -466,7 +460,6 @@ class SearchDialogFragment : AppCompatDialogFragment(), UserInteractionHandler {
     private fun hideClipboardSection() {
         binding.fillLinkFromClipboard.isVisible = false
         binding.fillLinkDivider.isVisible = false
-        binding.keyboardDivider.isVisible = false
         binding.clipboardUrl.isVisible = false
         binding.clipboardTitle.isVisible = false
         binding.linkIcon.isVisible = false
@@ -673,36 +666,6 @@ class SearchDialogFragment : AppCompatDialogFragment(), UserInteractionHandler {
         toolbarView.view.requestFocus()
     }
 
-    private fun setupConstraints(view: View) {
-        ConstraintSet().apply {
-            clone(binding.searchWrapper)
-
-            clear(binding.toolbar.id, TOP)
-            connect(binding.toolbar.id, BOTTOM, PARENT_ID, BOTTOM)
-
-            clear(binding.keyboardDivider.id, BOTTOM)
-            connect(binding.keyboardDivider.id, BOTTOM, binding.toolbar.id, TOP)
-
-            clear(binding.awesomeBar.id, TOP)
-            clear(binding.awesomeBar.id, BOTTOM)
-            connect(binding.awesomeBar.id, TOP, binding.searchSuggestionsHint.id, BOTTOM)
-            connect(binding.awesomeBar.id, BOTTOM, binding.keyboardDivider.id, TOP)
-
-            clear(binding.searchSuggestionsHint.id, TOP)
-            clear(binding.searchSuggestionsHint.id, BOTTOM)
-            connect(binding.searchSuggestionsHint.id, TOP, PARENT_ID, TOP)
-            connect(binding.searchSuggestionsHint.id, BOTTOM, binding.searchHintBottomBarrier.id, TOP)
-
-            clear(binding.fillLinkFromClipboard.id, TOP)
-            connect(binding.fillLinkFromClipboard.id, BOTTOM, binding.keyboardDivider.id, TOP)
-
-            clear(binding.fillLinkDivider.id, TOP)
-            connect(binding.fillLinkDivider.id, BOTTOM, binding.fillLinkFromClipboard.id, TOP)
-
-            applyTo(binding.searchWrapper)
-        }
-    }
-
     private fun updateSearchSuggestionsHintVisibility(state: SearchFragmentState) {
         view?.apply {
             val showHint = state.showSearchSuggestionsHint &&
@@ -710,7 +673,6 @@ class SearchDialogFragment : AppCompatDialogFragment(), UserInteractionHandler {
                 state.url != state.query
 
             binding.searchSuggestionsHint.isVisible = showHint
-            binding.searchSuggestionsHintDivider.isVisible = showHint
         }
     }
 
@@ -817,8 +779,6 @@ class SearchDialogFragment : AppCompatDialogFragment(), UserInteractionHandler {
     ) {
         binding.fillLinkFromClipboard.isVisible = shouldShowView
         binding.fillLinkDivider.isVisible = shouldShowView
-        binding.keyboardDivider.isVisible =
-            !(shouldShowView && requireComponents.settings.shouldUseBottomToolbar)
         binding.clipboardTitle.isVisible = shouldShowView
         binding.linkIcon.isVisible = shouldShowView
 
