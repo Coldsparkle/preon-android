@@ -21,7 +21,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewStub
 import android.view.WindowManager
-import android.view.accessibility.AccessibilityEvent
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.result.ActivityResultLauncher
 import androidx.annotation.VisibleForTesting
@@ -511,13 +510,7 @@ class SearchDialogFragment : AppCompatDialogFragment(), UserInteractionHandler {
     }
 
     private fun updateAccessibilityTraversalOrder() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
-            binding.fillLinkFromClipboard.accessibilityTraversalAfter = binding.searchWrapper.id
-        } else {
-            viewLifecycleOwner.lifecycleScope.launch {
-                binding.searchWrapper.sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_FOCUSED)
-            }
-        }
+        binding.fillLinkFromClipboard.accessibilityTraversalAfter = binding.searchWrapper.id
     }
 
     override fun onResume() {
