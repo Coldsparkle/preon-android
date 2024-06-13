@@ -94,7 +94,6 @@ class EditToolbar internal constructor(
     @VisibleForTesting(otherwise = PRIVATE)
     internal val views = EditToolbarViews(
         background = rootView.findViewById(R.id.mozac_browser_toolbar_background),
-        icon = rootView.findViewById(R.id.mozac_browser_toolbar_edit_icon),
         editActionsStart = rootView.findViewById(R.id.mozac_browser_toolbar_edit_actions_start),
         editActionsEnd = rootView.findViewById(R.id.mozac_browser_toolbar_edit_actions_end),
         clear = rootView.findViewById<ImageView>(R.id.mozac_browser_toolbar_clear_view).apply {
@@ -149,10 +148,6 @@ class EditToolbar internal constructor(
 
             views.clear.setColorFilter(value.clear)
 
-            if (value.icon != null) {
-                views.icon.setColorFilter(value.icon)
-            }
-
             views.url.setHintTextColor(value.hint)
             views.url.setTextColor(value.text)
             views.url.autoCompleteBackgroundColor = value.suggestionBackground
@@ -167,20 +162,8 @@ class EditToolbar internal constructor(
         views.background.setImageDrawable(background)
     }
 
-    /**
-     * Sets an icon that will be drawn in front of the URL.
-     */
-    fun setIcon(icon: Drawable, contentDescription: String) {
-        views.icon.setImageDrawable(icon)
-        views.icon.contentDescription = contentDescription
-        views.icon.visibility = View.VISIBLE
-    }
-
-    /**
-     * Sets a click listener on the icon view
-     */
-    fun setIconClickListener(listener: ((View) -> Unit)?) {
-        views.icon.setOnClickListener(listener)
+    fun setUrlEditTextBackground(background: Drawable?) {
+        views.url.background = background
     }
 
     /**
@@ -392,7 +375,6 @@ class EditToolbar internal constructor(
 @Suppress("LongParameterList")
 internal class EditToolbarViews(
     val background: ImageView,
-    val icon: ImageView,
     val editActionsStart: ActionContainer,
     val editActionsEnd: ActionContainer,
     val clear: ImageView,

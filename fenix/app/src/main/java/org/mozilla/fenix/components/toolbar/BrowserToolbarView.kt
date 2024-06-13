@@ -77,12 +77,12 @@ class BrowserToolbarView(
 
                 elevation = resources.getDimension(R.dimen.browser_fragment_toolbar_elevation)
                 if (!isCustomTabSession) {
-                    display.setUrlBackground(
-                        AppCompatResources.getDrawable(
-                            context,
-                            searchUrlBackground,
-                        ),
+                    val background = AppCompatResources.getDrawable(
+                        context,
+                        searchUrlBackground,
                     )
+                    display.setUrlBackground(background)
+                    edit.setUrlEditTextBackground(background)
                 }
 
                 display.onUrlClicked = {
