@@ -685,7 +685,6 @@
     </style>
 
     <style name="SearchDialogStyle">
-        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat</item>
         <item name="android:colorControlNormal">?accentHighContrast</item>
         <item name="android:colorControlActivated">?accentHighContrast</item>
