@@ -350,7 +350,6 @@ class SearchDialogFragment : AppCompatDialogFragment(), UserInteractionHandler {
         binding.fillLinkFromClipboard.setOnClickListener {
             Awesomebar.clipboardSuggestionClicked.record(NoExtras())
             val clipboardUrl = requireContext().components.clipboardHandler.extractURL() ?: ""
-
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 toolbarView.view.edit.updateUrl(clipboardUrl)
                 hideClipboardSection()
@@ -459,9 +458,7 @@ class SearchDialogFragment : AppCompatDialogFragment(), UserInteractionHandler {
 
     private fun hideClipboardSection() {
         binding.fillLinkFromClipboard.isVisible = false
-        binding.fillLinkDivider.isVisible = false
         binding.clipboardUrl.isVisible = false
-        binding.clipboardTitle.isVisible = false
         binding.linkIcon.isVisible = false
     }
 
@@ -766,25 +763,15 @@ class SearchDialogFragment : AppCompatDialogFragment(), UserInteractionHandler {
         shouldShowView: Boolean,
     ) {
         binding.fillLinkFromClipboard.isVisible = shouldShowView
-        binding.fillLinkDivider.isVisible = shouldShowView
-        binding.clipboardTitle.isVisible = shouldShowView
         binding.linkIcon.isVisible = shouldShowView
-
         if (shouldShowView) {
-            val contentDescription = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                "${binding.clipboardTitle.text}."
-            } else {
-                val clipboardUrl = context?.components?.clipboardHandler?.extractURL()
-
-                if (clipboardUrl != null && !((activity as HomeActivity).browsingModeManager.mode.isPrivate)) {
-                    requireComponents.core.engine.speculativeConnect(clipboardUrl)
+            val clipboardUrl = context?.components?.clipboardHandler?.extractURL()?.also {
+                binding.clipboardUrl.text = it
+                if (it.isNotBlank()) {
+                    binding.clipboardUrl.isVisible = true
                 }
-                binding.clipboardUrl.text = clipboardUrl
-                binding.clipboardUrl.isVisible = shouldShowView
-                "${binding.clipboardTitle.text}, ${binding.clipboardUrl.text}."
+                binding.fillLinkFromClipboard.contentDescription = it
             }
-
-            binding.fillLinkFromClipboard.contentDescription = contentDescription
         }
     }
 

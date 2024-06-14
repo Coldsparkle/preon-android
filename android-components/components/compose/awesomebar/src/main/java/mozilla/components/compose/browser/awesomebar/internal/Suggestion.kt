@@ -58,6 +58,7 @@ internal fun Suggestion(
             .defaultMinSize(minHeight = 56.dp)
             .testTag("mozac.awesomebar.suggestion")
             .padding(start = 16.dp, top = 8.dp, bottom = 8.dp, end = 8.dp),
+        verticalAlignment = Alignment.CenterVertically
     ) {
         val icon = suggestion.icon
         if (icon != null) {
@@ -131,8 +132,8 @@ private fun SuggestionIcon(
 ) {
     Box(
         modifier = Modifier
-            .width(30.dp)
-            .height(38.dp),
+            .width(26.dp)
+            .height(34.dp),
     ) {
         Image(
             icon.asImageBitmap(),
@@ -140,8 +141,8 @@ private fun SuggestionIcon(
             modifier = Modifier
                 .padding(top = 8.dp)
                 .clip(RoundedCornerShape(2.dp))
-                .width(24.dp)
-                .height(24.dp),
+                .width(20.dp)
+                .height(20.dp),
             contentScale = ContentScale.Crop,
         )
         if (indicator != null) {
@@ -170,7 +171,7 @@ private fun AutocompleteButton(
         colorFilter = ColorFilter.tint(colors.autocompleteIcon),
         contentDescription = stringResource(R.string.mozac_browser_awesomebar_edit_suggestion),
         modifier = modifier
-            .size(48.dp)
+            .size(20.dp)
             .rotate(
                 if (orientation == AwesomeBarOrientation.BOTTOM) {
                     270f
@@ -179,6 +180,5 @@ private fun AutocompleteButton(
                 },
             )
             .clickable { onAutoComplete() }
-            .padding(12.dp),
     )
 }

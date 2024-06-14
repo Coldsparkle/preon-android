@@ -25,6 +25,7 @@
         app:browserToolbarProgressBarGravity="bottom"
         app:browserToolbarSecureColor="?attr/textPrimary"
         app:browserToolbarTrackingProtectionAndSecurityIndicatorSeparatorColor="?borderPrimary"
+        android:layout_marginHorizontal="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
@@ -40,8 +41,8 @@
         android:background="?attr/layer1"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/toolbar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/toolbar"
+        app:layout_constraintStart_toStartOf="@id/toolbar"
         app:layout_constraintTop_toBottomOf="@id/search_suggestions_hint" />
 
     <ViewStub
@@ -52,8 +53,8 @@
         android:layout="@layout/search_suggestions_hint"
         app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toTopOf="@id/search_hint_bottom_barrier"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/toolbar"
+        app:layout_constraintStart_toStartOf="@id/toolbar"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Barrier
@@ -71,15 +72,15 @@
         android:clickable="true"
         android:focusable="true"
         android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/toolbar"
+        app:layout_constraintStart_toStartOf="@id/toolbar"
         app:layout_constraintBottom_toTopOf="@id/toolbar"
         tools:visibility="visible" />
 
     <ImageView
         android:id="@+id/link_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_marginStart="@dimen/search_fragment_clipboard_item_horizontal_margin"
         android:clickable="false"
         android:focusable="false"
@@ -89,26 +90,6 @@
         app:layout_constraintStart_toStartOf="@+id/fill_link_from_clipboard"
         app:layout_constraintTop_toTopOf="@+id/fill_link_from_clipboard"
         app:srcCompat="@drawable/ic_link"
-        tools:visibility="visible" />
-
-    <TextView
-        android:id="@+id/clipboard_title"
-        style="@style/SearchClipboardTitleStyle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/search_fragment_clipboard_item_title_margin_start"
-        android:layout_marginEnd="@dimen/search_fragment_clipboard_item_horizontal_margin"
-        android:clickable="false"
-        android:focusable="false"
-        android:importantForAccessibility="no"
-        android:text="@string/awesomebar_clipboard_title"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@id/clipboard_url"
-        app:layout_constraintEnd_toEndOf="@+id/fill_link_from_clipboard"
-        app:layout_constraintStart_toEndOf="@id/link_icon"
-        app:layout_constraintTop_toTopOf="@id/fill_link_from_clipboard"
-        app:layout_constraintVertical_chainStyle="packed"
-        tools:text="Title"
         tools:visibility="visible" />
 
     <TextView
@@ -125,15 +106,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/fill_link_from_clipboard"
         app:layout_constraintEnd_toEndOf="@+id/fill_link_from_clipboard"
         app:layout_constraintStart_toEndOf="@id/link_icon"
-        app:layout_constraintTop_toBottomOf="@id/clipboard_title"
+        app:layout_constraintTop_toTopOf="@id/fill_link_from_clipboard"
         app:layout_constraintVertical_chainStyle="packed"
         tools:text="url"
         tools:visibility="visible" />
-
-    <View
-        android:id="@+id/fill_link_divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="?borderPrimary"
-        app:layout_constraintTop_toBottomOf="@id/fill_link_from_clipboard" />
 </org.mozilla.fenix.perf.SearchDialogFragmentConstraintLayout>

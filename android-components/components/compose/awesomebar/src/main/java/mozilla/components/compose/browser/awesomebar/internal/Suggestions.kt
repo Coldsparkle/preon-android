@@ -44,12 +44,12 @@ internal fun Suggestions(
         modifier = Modifier.testTag("mozac.awesomebar.suggestions"),
     ) {
         suggestions.forEach { (group, suggestions) ->
-            val title = group.title
-            if (suggestions.isNotEmpty() && !title.isNullOrEmpty()) {
-                item(ItemKey.SuggestionGroup(group.id)) {
-                    SuggestionGroup(title, colors)
-                }
-            }
+//            val title = group.title
+//            if (suggestions.isNotEmpty() && !title.isNullOrEmpty()) {
+//                item(ItemKey.SuggestionGroup(group.id)) {
+//                    SuggestionGroup(title, colors)
+//                }
+//            }
 
             items(
                 items = suggestions.take(group.limit),
