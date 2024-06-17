@@ -330,10 +330,6 @@ abstract class BaseBrowserFragment :
 
         observeTabSelection(requireComponents.core.store)
 
-        if (!requireComponents.fenixOnboarding.userHasBeenOnboarded()) {
-            observeTabSource(requireComponents.core.store)
-        }
-
         requireContext().accessibilityManager.addAccessibilityStateChangeListener(this)
 
         // DO NOT MOVE ANYTHING BELOW THIS addMarker CALL!
@@ -1301,25 +1297,6 @@ abstract class BaseBrowserFragment :
                 .collect {
                     currentStartDownloadDialog?.dismiss()
                     handleTabSelected(it)
-                }
-        }
-    }
-
-    @VisibleForTesting
-    @Suppress("ComplexCondition")
-    internal fun observeTabSource(store: BrowserStore) {
-        consumeFlow(store) { flow ->
-            flow.mapNotNull { state ->
-                state.selectedTab
-            }
-                .collect {
-                    if (!requireComponents.fenixOnboarding.userHasBeenOnboarded() &&
-                        it.content.loadRequest?.triggeredByRedirect != true &&
-                        it.source !is SessionState.Source.External &&
-                        it.content.url !in onboardingLinksList
-                    ) {
-                        requireComponents.fenixOnboarding.finish()
-                    }
                 }
         }
     }

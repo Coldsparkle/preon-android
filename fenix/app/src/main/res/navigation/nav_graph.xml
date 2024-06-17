@@ -36,21 +36,6 @@
         app:popUpToInclusive="false" />
 
     <action
-        android:id="@+id/action_global_onboarding"
-        app:destination="@id/onboardingFragment"
-        app:popUpTo="@id/startupFragment"
-        app:popUpToInclusive="true" />
-
-    <action
-        android:id="@+id/action_global_home_onboarding_dialog"
-        app:destination="@id/homeOnboardingDialogFragment" />
-
-    <action
-        android:id="@+id/action_global_wallpaper_onboarding_dialog"
-        app:destination="@id/wallpaperOnboardingDialogFragment"
-        app:popUpTo="@id/homeFragment" />
-
-    <action
         android:id="@+id/action_global_search_dialog"
         app:destination="@id/searchDialogFragment"
         app:popUpTo="@id/searchDialogFragment"
@@ -245,16 +230,6 @@
     </fragment>
 
     <fragment
-        android:id="@+id/onboardingFragment"
-        android:name="org.mozilla.fenix.onboarding.OnboardingFragment">
-        <action
-            android:id="@+id/action_home"
-            app:destination="@id/homeFragment"
-            app:popUpTo="@id/onboardingFragment"
-            app:popUpToInclusive="true" />
-    </fragment>
-
-    <fragment
         android:id="@+id/homeFragment"
         android:name="org.mozilla.fenix.home.HomeFragment"
         tools:layout="@layout/fragment_home">
@@ -267,10 +242,6 @@
             android:defaultValue="false"
             app:argType="boolean" />
     </fragment>
-
-    <dialog
-        android:id="@+id/homeOnboardingDialogFragment"
-        android:name="org.mozilla.fenix.onboarding.HomeOnboardingDialogFragment" />
 
     <dialog
         android:id="@+id/researchSurfaceDialogFragment"
@@ -288,10 +259,6 @@
             app:nullable="true"
             app:argType="string" />
     </dialog>
-
-    <dialog
-        android:id="@+id/wallpaperOnboardingDialogFragment"
-        android:name="org.mozilla.fenix.onboarding.WallpaperOnboardingDialogFragment" />
 
     <dialog
         android:id="@+id/searchDialogFragment"

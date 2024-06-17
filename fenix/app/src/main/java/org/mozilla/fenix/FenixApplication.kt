@@ -99,7 +99,6 @@ import org.mozilla.fenix.ext.setCustomEndpointIfAvailable
 import org.mozilla.fenix.ext.settings
 import org.mozilla.fenix.lifecycle.StoreLifecycleObserver
 import org.mozilla.fenix.nimbus.FxNimbus
-import org.mozilla.fenix.onboarding.MARKETING_CHANNEL_ID
 import org.mozilla.fenix.perf.MarkersActivityLifecycleCallbacks
 import org.mozilla.fenix.perf.ProfilerMarkerFactProcessor
 import org.mozilla.fenix.perf.StartupTimeline
@@ -809,9 +808,6 @@ open class FenixApplication : LocaleAwareApplication(), Provider {
 
             val notificationManagerCompat = NotificationManagerCompat.from(applicationContext)
             notificationsAllowed.set(notificationManagerCompat.areNotificationsEnabledSafe())
-            marketingNotificationAllowed.set(
-                notificationManagerCompat.isNotificationChannelEnabled(MARKETING_CHANNEL_ID),
-            )
 
             ramMoreThanThreshold.set(isDeviceRamAboveThreshold)
             deviceTotalRam.set(getDeviceTotalRAM())
@@ -1037,7 +1033,6 @@ open class FenixApplication : LocaleAwareApplication(), Provider {
      */
     internal fun shouldShowPrivacyNotice(): Boolean {
         return Config.channel.isMozillaOnline &&
-            settings().shouldShowPrivacyPopWindow &&
-            !components.fenixOnboarding.userHasBeenOnboarded()
+            settings().shouldShowPrivacyPopWindow
     }
 }

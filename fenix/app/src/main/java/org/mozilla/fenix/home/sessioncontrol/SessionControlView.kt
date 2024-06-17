@@ -20,7 +20,6 @@ import org.mozilla.fenix.ext.shouldShowRecentSyncedTabs
 import org.mozilla.fenix.ext.shouldShowRecentTabs
 import org.mozilla.fenix.home.recentvisits.RecentlyVisitedItem
 import org.mozilla.fenix.messaging.FenixMessageSurfaceId
-import org.mozilla.fenix.onboarding.HomeCFRPresenter
 import org.mozilla.fenix.utils.Settings
 
 // This method got a little complex with the addition of the tab tray feature flag
@@ -167,10 +166,7 @@ class SessionControlView(
                                     context.settings().shouldShowJumpBackInCFR
                                 )
                         ) {
-                            featureRecommended = HomeCFRPresenter(
-                                context = context,
-                                recyclerView = view,
-                            ).show()
+                            featureRecommended = true
                         }
 
                         if (!context.settings().shouldShowJumpBackInCFR &&

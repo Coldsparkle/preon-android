@@ -4,10 +4,16 @@
 
 package org.mozilla.fenix.settings.wallpaper
 
-import org.mozilla.fenix.onboarding.WallpaperOnboardingDialogFragment.Companion.CLASSIC_WALLPAPERS_COUNT
-import org.mozilla.fenix.onboarding.WallpaperOnboardingDialogFragment.Companion.SEASONAL_WALLPAPERS_COUNT
-import org.mozilla.fenix.onboarding.WallpaperOnboardingDialogFragment.Companion.THUMBNAILS_SELECTION_COUNT
 import org.mozilla.fenix.wallpapers.Wallpaper
+
+// The number of wallpaper thumbnails to display.
+const val THUMBNAILS_SELECTION_COUNT = 6
+
+// The desired amount of seasonal wallpapers inside of the selector.
+const val SEASONAL_WALLPAPERS_COUNT = 3
+
+// The desired amount of seasonal wallpapers inside of the selector.
+const val CLASSIC_WALLPAPERS_COUNT = 2
 
 /**
  * The extension function to group wallpapers into the appropriate collections for display.

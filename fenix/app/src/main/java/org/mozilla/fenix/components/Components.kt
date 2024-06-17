@@ -36,7 +36,6 @@ import org.mozilla.fenix.ext.sort
 import org.mozilla.fenix.home.blocklist.BlocklistHandler
 import org.mozilla.fenix.home.blocklist.BlocklistMiddleware
 import org.mozilla.fenix.messaging.state.MessagingMiddleware
-import org.mozilla.fenix.onboarding.FenixOnboarding
 import org.mozilla.fenix.perf.AppStartReasonProvider
 import org.mozilla.fenix.perf.StartupActivityLog
 import org.mozilla.fenix.perf.StartupStateProvider
@@ -166,7 +165,6 @@ class Components(private val context: Context) {
     val strictMode by lazyMonitored { StrictModeManager(Config, this) }
 
     val settings by lazyMonitored { Settings(context) }
-    val fenixOnboarding by lazyMonitored { FenixOnboarding(context) }
 
     val reviewPromptController by lazyMonitored {
         ReviewPromptController(

@@ -110,13 +110,10 @@ import org.mozilla.fenix.home.intent.HomeDeepLinkIntentProcessor
 import org.mozilla.fenix.home.intent.OpenBrowserIntentProcessor
 import org.mozilla.fenix.home.intent.OpenPasswordManagerIntentProcessor
 import org.mozilla.fenix.home.intent.OpenSpecificTabIntentProcessor
-import org.mozilla.fenix.home.intent.ReEngagementIntentProcessor
 import org.mozilla.fenix.home.intent.SpeechProcessingIntentProcessor
 import org.mozilla.fenix.home.intent.StartSearchIntentProcessor
 import org.mozilla.fenix.library.bookmarks.DesktopFolders
 import org.mozilla.fenix.messaging.FenixMessageSurfaceId
-import org.mozilla.fenix.messaging.MessageNotificationWorker
-import org.mozilla.fenix.onboarding.ReEngagementNotificationWorker
 import org.mozilla.fenix.perf.MarkersActivityLifecycleCallbacks
 import org.mozilla.fenix.perf.MarkersFragmentLifecycleCallbacks
 import org.mozilla.fenix.perf.Performance
@@ -194,7 +191,6 @@ open class HomeActivity : LocaleAwareAppCompatActivity(), NavHostActivity {
             OpenBrowserIntentProcessor(this, ::getIntentSessionId),
             OpenSpecificTabIntentProcessor(this),
             OpenPasswordManagerIntentProcessor(),
-            ReEngagementIntentProcessor(this, settings()),
         )
     }
 
@@ -294,35 +290,20 @@ open class HomeActivity : LocaleAwareAppCompatActivity(), NavHostActivity {
             it.start()
         }
 
-        if (settings().shouldShowOnboarding(
-                hasUserBeenOnboarded = components.fenixOnboarding.userHasBeenOnboarded(),
-                isLauncherIntent = intent.toSafeIntent().isLauncherIntent,
-            )
-        ) {
-            // Unless activity is recreated due to config change, navigate to onboarding
-            if (savedInstanceState == null) {
-                navHost.navController.navigate(NavGraphDirections.actionGlobalOnboarding())
-            }
+        lifecycleScope.launch(IO) {
+            showFullscreenMessageIfNeeded(applicationContext)
+        }
+
+        // Unless the activity is recreated, navigate to home first (without rendering it)
+        // to add it to the back stack.
+        if (savedInstanceState == null) {
+            navigateToHome(navHost.navController)
+        }
+
+        if (!shouldStartOnHome() && shouldNavigateToBrowserOnColdStart(savedInstanceState)) {
+            navigateToBrowserOnColdStart()
         } else {
-            lifecycleScope.launch(IO) {
-                showFullscreenMessageIfNeeded(applicationContext)
-            }
-
-            // Unless the activity is recreated, navigate to home first (without rendering it)
-            // to add it to the back stack.
-            if (savedInstanceState == null) {
-                navigateToHome(navHost.navController)
-            }
-
-            if (!shouldStartOnHome() && shouldNavigateToBrowserOnColdStart(savedInstanceState)) {
-                navigateToBrowserOnColdStart()
-            } else {
-                StartOnHome.enterHomeScreen.record(NoExtras())
-            }
-
-            if (settings().showHomeOnboardingDialog && components.fenixOnboarding.userHasBeenOnboarded()) {
-                navHost.navController.navigate(NavGraphDirections.actionGlobalHomeOnboardingDialog())
-            }
+            StartOnHome.enterHomeScreen.record(NoExtras())
         }
 
         Performance.processIntentIfPerformanceTest(intent, this)
@@ -448,8 +429,6 @@ open class HomeActivity : LocaleAwareAppCompatActivity(), NavHostActivity {
 
             GrowthDataWorker.sendActivatedSignalIfNeeded(applicationContext)
             FontEnumerationWorker.sendActivatedSignalIfNeeded(applicationContext)
-            ReEngagementNotificationWorker.setReEngagementNotificationIfNeeded(applicationContext)
-            MessageNotificationWorker.setMessageNotificationWorker(applicationContext)
         }
 
         // This was done in order to refresh search engines when app is running in background

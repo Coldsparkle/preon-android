@@ -12,7 +12,6 @@ import androidx.core.content.ContextCompat
 import mozilla.components.support.base.log.logger.Logger
 import mozilla.components.support.utils.ext.registerReceiverCompat
 import org.mozilla.fenix.ext.components
-import org.mozilla.fenix.onboarding.FenixOnboarding
 import android.provider.Settings as AndroidSettings
 
 /**
@@ -33,7 +32,6 @@ object Performance {
             return
         }
 
-        disableOnboarding(context)
         disableTrackingProtectionPopups(context)
         disableFirstTimePWAPopup(context)
         disableTCPPopup(context)
@@ -71,13 +69,6 @@ object Performance {
             return isPhonePlugged && isAdbEnabled
         }
         return false
-    }
-
-    /**
-     * Bypasses the onboarding screen on launch
-     */
-    private fun disableOnboarding(context: Context) {
-        FenixOnboarding(context).finish()
     }
 
     /**

@@ -53,7 +53,6 @@ import org.mozilla.fenix.ext.nav
 import org.mozilla.fenix.home.HomeFragment
 import org.mozilla.fenix.home.HomeFragmentDirections
 import org.mozilla.fenix.messaging.MessageController
-import org.mozilla.fenix.onboarding.WallpaperOnboardingDialogFragment.Companion.THUMBNAILS_SELECTION_COUNT
 import org.mozilla.fenix.settings.SupportUtils
 import org.mozilla.fenix.utils.Settings
 import org.mozilla.fenix.wallpapers.Wallpaper
@@ -476,23 +475,7 @@ class DefaultSessionControlController(
     }
 
     override fun handleShowWallpapersOnboardingDialog(state: WallpaperState): Boolean {
-        return if (activity.browsingModeManager.mode.isPrivate) {
-            false
-        } else {
-            state.availableWallpapers.filter { wallpaper ->
-                wallpaper.thumbnailFileState == Wallpaper.ImageFileState.Downloaded
-            }.size.let { downloadedCount ->
-                // We only display the dialog if enough thumbnails have been downloaded for it.
-                downloadedCount >= THUMBNAILS_SELECTION_COUNT
-            }.also { showOnboarding ->
-                if (showOnboarding) {
-                    navController.nav(
-                        R.id.homeFragment,
-                        HomeFragmentDirections.actionGlobalWallpaperOnboardingDialog(),
-                    )
-                }
-            }
-        }
+        return false
     }
     override fun handleToggleCollectionExpanded(collection: TabCollection, expand: Boolean) {
         appStore.dispatch(AppAction.CollectionExpanded(collection, expand))
