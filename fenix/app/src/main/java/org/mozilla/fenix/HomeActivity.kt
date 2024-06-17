@@ -26,10 +26,8 @@ import android.view.ViewConfiguration
 import android.view.WindowManager.LayoutParams.FLAG_SECURE
 import androidx.annotation.CallSuper
 import androidx.annotation.IdRes
-import androidx.annotation.RequiresApi
 import androidx.annotation.VisibleForTesting
 import androidx.appcompat.widget.Toolbar
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -39,7 +37,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
@@ -81,7 +78,6 @@ import org.mozilla.experiments.nimbus.initializeTooling
 import org.mozilla.fenix.GleanMetrics.AppIcon
 import org.mozilla.fenix.GleanMetrics.Events
 import org.mozilla.fenix.GleanMetrics.Metrics
-import org.mozilla.fenix.GleanMetrics.SplashScreen
 import org.mozilla.fenix.GleanMetrics.StartOnHome
 import org.mozilla.fenix.addons.ExtensionsProcessDisabledBackgroundController
 import org.mozilla.fenix.addons.ExtensionsProcessDisabledForegroundController
@@ -120,7 +116,6 @@ import org.mozilla.fenix.home.intent.StartSearchIntentProcessor
 import org.mozilla.fenix.library.bookmarks.DesktopFolders
 import org.mozilla.fenix.messaging.FenixMessageSurfaceId
 import org.mozilla.fenix.messaging.MessageNotificationWorker
-import org.mozilla.fenix.nimbus.FxNimbus
 import org.mozilla.fenix.onboarding.ReEngagementNotificationWorker
 import org.mozilla.fenix.perf.MarkersActivityLifecycleCallbacks
 import org.mozilla.fenix.perf.MarkersFragmentLifecycleCallbacks
@@ -223,8 +218,6 @@ open class HomeActivity : LocaleAwareAppCompatActivity(), NavHostActivity {
         components.nimbus.sdk.initializeTooling(applicationContext, intent)
         components.strictMode.attachListenerToDisablePenaltyDeath(supportFragmentManager)
         MarkersFragmentLifecycleCallbacks.register(supportFragmentManager, components.core.engine)
-
-        maybeShowSplashScreen()
 
         // There is disk read violations on some devices such as samsung and pixel for android 9/10
         components.strictMode.resetAfter(StrictMode.allowThreadDiskReads()) {
@@ -410,41 +403,8 @@ open class HomeActivity : LocaleAwareAppCompatActivity(), NavHostActivity {
         StartupTimeline.onActivityCreateEndHome(this) // DO NOT MOVE ANYTHING BELOW HERE.
     }
 
-    private fun maybeShowSplashScreen() {
-        if (components.settings.isFirstSplashScreenShown) {
-            return
-        } else {
-            components.settings.isFirstSplashScreenShown = true
-            // Splash screen compat fails to draw icons on earlier versions.
-            if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.M) {
-                return
-            }
-        }
-
-        if (FxNimbus.features.splashScreen.value().enabled) {
-            val splashScreen = installSplashScreen()
-            var maxDurationReached = false
-            val delay = FxNimbus.features.splashScreen.value().maximumDurationMs.toLong()
-            splashScreen.setKeepOnScreenCondition {
-                val dataFetched = components.settings.nimbusExperimentsFetched
-
-                val keepOnScreen = !maxDurationReached && !dataFetched
-                if (!keepOnScreen) {
-                    SplashScreen.firstLaunchExtended.record(
-                        SplashScreen.FirstLaunchExtendedExtra(dataFetched = dataFetched),
-                    )
-                }
-                keepOnScreen
-            }
-            MainScope().launch {
-                delay(timeMillis = delay)
-                maxDurationReached = true
-            }
-        }
-    }
-
     private fun checkAndExitPiP() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && isInPictureInPictureMode && intent != null) {
+        if (isInPictureInPictureMode && intent != null) {
             // Exit PiP mode
             moveTaskToBack(false)
             startActivity(Intent(this, this::class.java).setFlags(FLAG_ACTIVITY_REORDER_TO_FRONT))
@@ -567,7 +527,6 @@ open class HomeActivity : LocaleAwareAppCompatActivity(), NavHostActivity {
         BrowsersCache.resetAll()
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
     override fun onProvideAssistContent(outContent: AssistContent?) {
         super.onProvideAssistContent(outContent)
         val currentTabUrl = components.core.store.state.selectedTab?.content?.url
@@ -1075,7 +1034,7 @@ open class HomeActivity : LocaleAwareAppCompatActivity(), NavHostActivity {
         // when using the TimePicker. Since the inflater was created for performance monitoring
         // purposes and that we test on new android versions, this means that any difference in
         // inflation will be caught on those devices.
-        if (LAYOUT_INFLATER_SERVICE == name && Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1) {
+        if (LAYOUT_INFLATER_SERVICE == name) {
             if (inflater == null) {
                 inflater = PerformanceInflater(LayoutInflater.from(baseContext), this)
             }
