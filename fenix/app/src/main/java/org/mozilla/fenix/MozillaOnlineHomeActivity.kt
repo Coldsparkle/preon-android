@@ -13,6 +13,7 @@ import org.mozilla.fenix.home.mozonline.showPrivacyPopWindow
  * This activity is specific to the Mozilla Online build and used to display
  * a privacy notice on first run. Once the privacy notice is accepted, and for
  * all subsequent launches, it will simply launch the Fenix [HomeActivity].
+ * TODO mark privacy pop window
  */
 class MozillaOnlineHomeActivity : AppCompatActivity() {
 
