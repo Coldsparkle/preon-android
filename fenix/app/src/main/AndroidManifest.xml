@@ -307,10 +307,6 @@
             android:exported="false"
             android:theme="@style/DialogActivityTheme" />
 
-        <activity
-            android:name=".messaging.NotificationClickedReceiverActivity"
-            android:exported="false" />
-
         <service
             android:name=".autofill.AutofillService"
             android:exported="true"
@@ -353,13 +349,6 @@
                 android:resource="@xml/search_widget_info" />
         </receiver>
 
-        <receiver android:name=".onboarding.WidgetPinnedReceiver"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="org.mozilla.fenix.onboarding.WidgetPinnedReceiver.widgetPinned"/>
-            </intent-filter>
-        </receiver>
-
         <service
             android:name=".session.PrivateNotificationService"
             android:exported="false"
@@ -368,10 +357,6 @@
                 android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
                 android:value="This foreground service allows users to easily remove private tabs from the notification" />
         </service>
-
-        <service
-            android:name=".messaging.NotificationDismissedService"
-            android:exported="false" />
 
         <service
             android:name=".push.FirebasePushService"
