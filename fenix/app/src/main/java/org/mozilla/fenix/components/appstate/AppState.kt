@@ -16,7 +16,6 @@ import org.mozilla.fenix.home.recentsyncedtabs.RecentSyncedTabState
 import org.mozilla.fenix.home.recenttabs.RecentTab
 import org.mozilla.fenix.home.recentvisits.RecentlyVisitedItem
 import org.mozilla.fenix.library.history.PendingDeletionHistory
-import org.mozilla.fenix.messaging.MessagingState
 import org.mozilla.fenix.search.SearchDialogFragment
 import org.mozilla.fenix.wallpapers.WallpaperState
 
@@ -66,7 +65,6 @@ data class AppState(
     val recentTabs: List<RecentTab> = emptyList(),
     val recentSyncedTabState: RecentSyncedTabState = RecentSyncedTabState.None,
     val recentHistory: List<RecentlyVisitedItem> = emptyList(),
-    val messaging: MessagingState = MessagingState(),
     val pendingDeletionHistoryItems: Set<PendingDeletionHistory> = emptySet(),
     val wallpaperState: WallpaperState = WallpaperState.default,
     val standardSnackbarError: StandardSnackbarError? = null,

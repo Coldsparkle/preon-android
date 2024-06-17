@@ -36,7 +36,6 @@ import org.mozilla.fenix.GleanMetrics.Collections
 import org.mozilla.fenix.GleanMetrics.HomeScreen
 import org.mozilla.fenix.GleanMetrics.Pings
 import org.mozilla.fenix.GleanMetrics.Pocket
-import org.mozilla.fenix.GleanMetrics.RecentBookmarks
 import org.mozilla.fenix.GleanMetrics.RecentTabs
 import org.mozilla.fenix.GleanMetrics.TopSites
 import org.mozilla.fenix.HomeActivity
@@ -52,10 +51,8 @@ import org.mozilla.fenix.ext.components
 import org.mozilla.fenix.ext.nav
 import org.mozilla.fenix.home.HomeFragment
 import org.mozilla.fenix.home.HomeFragmentDirections
-import org.mozilla.fenix.messaging.MessageController
 import org.mozilla.fenix.settings.SupportUtils
 import org.mozilla.fenix.utils.Settings
-import org.mozilla.fenix.wallpapers.Wallpaper
 import org.mozilla.fenix.wallpapers.WallpaperState
 import mozilla.components.feature.tab.collections.Tab as ComponentTab
 
@@ -181,7 +178,6 @@ class DefaultSessionControlController(
     private val activity: HomeActivity,
     private val settings: Settings,
     private val engine: Engine,
-    private val messageController: MessageController,
     private val store: BrowserStore,
     private val tabCollectionStorage: TabCollectionStorage,
     private val addTabUseCase: TabsUseCases.AddNewTabUseCase,
@@ -532,11 +528,9 @@ class DefaultSessionControlController(
     }
 
     override fun handleMessageClicked(message: Message) {
-        messageController.onMessagePressed(message)
     }
 
     override fun handleMessageClosed(message: Message) {
-        messageController.onMessageDismissed(message)
     }
 
     override fun handleReportSessionMetrics(state: AppState) {

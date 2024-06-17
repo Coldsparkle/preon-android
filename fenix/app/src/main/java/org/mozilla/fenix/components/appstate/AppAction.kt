@@ -9,8 +9,6 @@ import mozilla.components.feature.tab.collections.TabCollection
 import mozilla.components.feature.top.sites.TopSite
 import mozilla.components.lib.crash.Crash.NativeCodeCrash
 import mozilla.components.lib.state.Action
-import mozilla.components.service.nimbus.messaging.Message
-import mozilla.components.service.nimbus.messaging.MessageSurfaceId
 import org.mozilla.fenix.browser.StandardSnackbarError
 import org.mozilla.fenix.browser.browsingmode.BrowsingMode
 import org.mozilla.fenix.components.AppStore
@@ -20,7 +18,6 @@ import org.mozilla.fenix.home.recentsyncedtabs.RecentSyncedTabState
 import org.mozilla.fenix.home.recenttabs.RecentTab
 import org.mozilla.fenix.home.recentvisits.RecentlyVisitedItem
 import org.mozilla.fenix.library.history.PendingDeletionHistory
-import org.mozilla.fenix.messaging.MessagingState
 import org.mozilla.fenix.search.SearchDialogFragment
 import org.mozilla.fenix.wallpapers.Wallpaper
 
@@ -91,46 +88,6 @@ sealed class AppAction : Action {
      * @property tab The tab that has been selected.
      */
     data class SelectedTabChanged(val tab: TabSessionState) : AppAction()
-
-    /**
-     * [Action]s related to interactions with the Messaging Framework.
-     */
-    sealed class MessagingAction : AppAction() {
-        /**
-         * Restores the [Message] state from the storage.
-         */
-        object Restore : MessagingAction()
-
-        /**
-         * Evaluates if a new messages should be shown to users.
-         */
-        data class Evaluate(val surface: MessageSurfaceId) : MessagingAction()
-
-        /**
-         * Updates [MessagingState.messageToShow] with the given [message].
-         */
-        data class UpdateMessageToShow(val message: Message) : MessagingAction()
-
-        /**
-         * Updates [MessagingState.messageToShow] with the given [message].
-         */
-        data class ConsumeMessageToShow(val surface: MessageSurfaceId) : MessagingAction()
-
-        /**
-         * Updates [MessagingState.messages] with the given [messages].
-         */
-        data class UpdateMessages(val messages: List<Message>) : MessagingAction()
-
-        /**
-         * Indicates the given [message] was clicked.
-         */
-        data class MessageClicked(val message: Message) : MessagingAction()
-
-        /**
-         * Indicates the given [message] was dismissed.
-         */
-        data class MessageDismissed(val message: Message) : MessagingAction()
-    }
 
     /**
      * [Action]s related to interactions with the wallpapers feature.

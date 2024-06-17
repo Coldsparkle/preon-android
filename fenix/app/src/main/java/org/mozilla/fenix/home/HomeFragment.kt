@@ -122,8 +122,6 @@ import org.mozilla.fenix.home.sessioncontrol.viewholders.CollectionHeaderViewHol
 import org.mozilla.fenix.home.toolbar.DefaultToolbarController
 import org.mozilla.fenix.home.toolbar.SearchSelectorMenuBinding
 import org.mozilla.fenix.home.topsites.DefaultTopSitesView
-import org.mozilla.fenix.messaging.DefaultMessageController
-import org.mozilla.fenix.messaging.MessagingFeature
 import org.mozilla.fenix.nimbus.FxNimbus
 import org.mozilla.fenix.perf.MarkersFragmentLifecycleCallbacks
 import org.mozilla.fenix.search.toolbar.DefaultSearchSelectorController
@@ -217,7 +215,6 @@ class HomeFragment : Fragment() {
     private var lastAppliedWallpaperName: String = Wallpaper.defaultName
 
     private val topSitesFeature = ViewBoundFeatureWrapper<TopSitesFeature>()
-    private val messagingFeature = ViewBoundFeatureWrapper<MessagingFeature>()
     private val recentTabsListFeature = ViewBoundFeatureWrapper<RecentTabsListFeature>()
     private val recentSyncedTabFeature = ViewBoundFeatureWrapper<RecentSyncedTabFeature>()
     private val historyMetadataFeature = ViewBoundFeatureWrapper<RecentVisitsFeature>()
@@ -261,16 +258,6 @@ class HomeFragment : Fragment() {
         )
 
         components.appStore.dispatch(AppAction.ModeChange(browsingModeManager.mode))
-
-        if (requireContext().settings().isExperimentationEnabled) {
-            messagingFeature.set(
-                feature = MessagingFeature(
-                    appStore = requireComponents.appStore,
-                ),
-                owner = viewLifecycleOwner,
-                view = binding.root,
-            )
-        }
 
         if (requireContext().settings().showTopSitesFeature) {
             topSitesFeature.set(
@@ -330,11 +317,6 @@ class HomeFragment : Fragment() {
                 activity = activity,
                 settings = components.settings,
                 engine = components.core.engine,
-                messageController = DefaultMessageController(
-                    appStore = components.appStore,
-                    messagingController = components.nimbus.messaging,
-                    homeActivity = activity,
-                ),
                 store = store,
                 tabCollectionStorage = components.core.tabCollectionStorage,
                 addTabUseCase = components.useCases.tabsUseCases.addTab,

@@ -35,7 +35,6 @@ import org.mozilla.fenix.ext.settings
 import org.mozilla.fenix.ext.sort
 import org.mozilla.fenix.home.blocklist.BlocklistHandler
 import org.mozilla.fenix.home.blocklist.BlocklistMiddleware
-import org.mozilla.fenix.messaging.state.MessagingMiddleware
 import org.mozilla.fenix.perf.AppStartReasonProvider
 import org.mozilla.fenix.perf.StartupActivityLog
 import org.mozilla.fenix.perf.StartupStateProvider
@@ -211,9 +210,6 @@ class Components(private val context: Context) {
             ).run { filterState(blocklistHandler) },
             middlewares = listOf(
                 BlocklistMiddleware(blocklistHandler),
-                MessagingMiddleware(
-                    controller = nimbus.messaging,
-                ),
                 MetricsMiddleware(metrics = analytics.metrics),
             ),
         )

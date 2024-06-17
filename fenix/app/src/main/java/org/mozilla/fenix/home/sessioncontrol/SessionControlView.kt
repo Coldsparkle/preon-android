@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import mozilla.components.feature.tab.collections.TabCollection
 import mozilla.components.feature.top.sites.TopSite
-import mozilla.components.service.nimbus.messaging.Message
 import org.mozilla.fenix.browser.browsingmode.BrowsingMode
 import org.mozilla.fenix.components.appstate.AppState
 import org.mozilla.fenix.ext.components
@@ -19,7 +18,6 @@ import org.mozilla.fenix.ext.settings
 import org.mozilla.fenix.ext.shouldShowRecentSyncedTabs
 import org.mozilla.fenix.ext.shouldShowRecentTabs
 import org.mozilla.fenix.home.recentvisits.RecentlyVisitedItem
-import org.mozilla.fenix.messaging.FenixMessageSurfaceId
 import org.mozilla.fenix.utils.Settings
 
 // This method got a little complex with the addition of the tab tray feature flag
@@ -32,7 +30,6 @@ internal fun normalModeAdapterItems(
     collections: List<TabCollection>,
     expandedCollections: Set<Long>,
     showCollectionsPlaceholder: Boolean,
-    nimbusMessageCard: Message? = null,
     showRecentTab: Boolean,
     showRecentSyncedTab: Boolean,
     recentVisits: List<RecentlyVisitedItem>,
@@ -41,10 +38,6 @@ internal fun normalModeAdapterItems(
 
     // Add a synchronous, unconditional and invisible placeholder so home is anchored to the top when created.
     items.add(AdapterItem.TopPlaceholderItem)
-
-    nimbusMessageCard?.let {
-        items.add(AdapterItem.NimbusMessageCard(it))
-    }
 
     if (settings.showTopSitesFeature && topSites.isNotEmpty()) {
         items.add(AdapterItem.TopSites(topSites))
@@ -111,7 +104,6 @@ private fun AppState.toAdapterList(settings: Settings): List<AdapterItem> = when
         collections,
         expandedCollections,
         showCollectionPlaceholder,
-        messaging.messageToShow[FenixMessageSurfaceId.HOMESCREEN],
         shouldShowRecentTabs(settings),
         shouldShowRecentSyncedTabs(),
         recentHistory,

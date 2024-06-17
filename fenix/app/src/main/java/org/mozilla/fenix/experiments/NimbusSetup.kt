@@ -11,13 +11,13 @@ import mozilla.components.service.nimbus.NimbusBuilder
 import mozilla.components.service.nimbus.messaging.FxNimbusMessaging
 import mozilla.components.service.nimbus.messaging.NimbusSystem
 import mozilla.components.support.base.log.logger.Logger
+import org.json.JSONObject
 import org.mozilla.experiments.nimbus.NimbusInterface
 import org.mozilla.experiments.nimbus.internal.NimbusException
 import org.mozilla.fenix.BuildConfig
 import org.mozilla.fenix.R
 import org.mozilla.fenix.ext.components
 import org.mozilla.fenix.ext.settings
-import org.mozilla.fenix.messaging.CustomAttributeProvider
 import org.mozilla.fenix.nimbus.FxNimbus
 import org.mozilla.fenix.utils.Settings
 
@@ -36,7 +36,7 @@ private val logger = Logger("service/Nimbus")
  */
 fun createNimbus(context: Context, urlString: String?): NimbusApi {
     // These values can be used in the JEXL expressions when targeting experiments.
-    val customTargetingAttributes = CustomAttributeProvider.getCustomTargetingAttributes(context)
+    val customTargetingAttributes = JSONObject()
 
     val isAppFirstRun = context.settings().isFirstNimbusRun
     if (isAppFirstRun) {

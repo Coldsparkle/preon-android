@@ -270,7 +270,6 @@ open class FenixApplication : LocaleAwareApplication(), Provider {
 
             restoreBrowserState()
             restoreDownloads()
-            restoreMessaging()
 
             // Just to make sure it is impossible for any application-services pieces
             // to invoke parts of itself that require complete megazord initialization
@@ -540,13 +539,6 @@ open class FenixApplication : LocaleAwareApplication(), Provider {
 
             // Now viaduct (the RustHttp client) is initialized we can ask Nimbus to fetch
             // experiments recipes from the server.
-        }
-    }
-
-    @VisibleForTesting
-    internal fun restoreMessaging() {
-        if (settings().isExperimentationEnabled) {
-            components.appStore.dispatch(AppAction.MessagingAction.Restore)
         }
     }
 

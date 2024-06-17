@@ -35,7 +35,6 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -67,7 +66,6 @@ import mozilla.components.support.ktx.android.content.share
 import mozilla.components.support.ktx.kotlin.isUrl
 import mozilla.components.support.ktx.kotlin.toNormalizedUrl
 import mozilla.components.support.locale.LocaleAwareAppCompatActivity
-import mozilla.components.support.utils.BootUtils
 import mozilla.components.support.utils.BrowsersCache
 import mozilla.components.support.utils.ManufacturerCodes
 import mozilla.components.support.utils.SafeIntent
@@ -84,7 +82,6 @@ import org.mozilla.fenix.addons.ExtensionsProcessDisabledForegroundController
 import org.mozilla.fenix.browser.browsingmode.BrowsingMode
 import org.mozilla.fenix.browser.browsingmode.BrowsingModeManager
 import org.mozilla.fenix.browser.browsingmode.DefaultBrowsingModeManager
-import org.mozilla.fenix.components.appstate.AppAction
 import org.mozilla.fenix.components.metrics.BreadcrumbsRecorder
 import org.mozilla.fenix.components.metrics.GrowthDataWorker
 import org.mozilla.fenix.components.metrics.fonts.FontEnumerationWorker
@@ -92,7 +89,6 @@ import org.mozilla.fenix.customtabs.ExternalAppBrowserActivity
 import org.mozilla.fenix.databinding.ActivityHomeBinding
 import org.mozilla.fenix.debugsettings.data.DefaultDebugSettingsRepository
 import org.mozilla.fenix.debugsettings.ui.FenixOverlay
-import org.mozilla.fenix.experiments.ResearchSurfaceDialogFragment
 import org.mozilla.fenix.ext.alreadyOnDestination
 import org.mozilla.fenix.ext.breadcrumb
 import org.mozilla.fenix.ext.components
@@ -113,7 +109,6 @@ import org.mozilla.fenix.home.intent.OpenSpecificTabIntentProcessor
 import org.mozilla.fenix.home.intent.SpeechProcessingIntentProcessor
 import org.mozilla.fenix.home.intent.StartSearchIntentProcessor
 import org.mozilla.fenix.library.bookmarks.DesktopFolders
-import org.mozilla.fenix.messaging.FenixMessageSurfaceId
 import org.mozilla.fenix.perf.MarkersActivityLifecycleCallbacks
 import org.mozilla.fenix.perf.MarkersFragmentLifecycleCallbacks
 import org.mozilla.fenix.perf.Performance
@@ -288,10 +283,6 @@ open class HomeActivity : LocaleAwareAppCompatActivity(), NavHostActivity {
             PrivateNotificationService::class,
         ).also {
             it.start()
-        }
-
-        lifecycleScope.launch(IO) {
-            showFullscreenMessageIfNeeded(applicationContext)
         }
 
         // Unless the activity is recreated, navigate to home first (without rendering it)
@@ -1115,37 +1106,6 @@ open class HomeActivity : LocaleAwareAppCompatActivity(), NavHostActivity {
     private fun shouldNavigateToBrowserOnColdStart(savedInstanceState: Bundle?): Boolean {
         return isActivityColdStarted(intent, savedInstanceState) &&
             !processIntent(intent)
-    }
-
-    private suspend fun showFullscreenMessageIfNeeded(context: Context) {
-        val messaging = context.components.nimbus.messaging
-        val nextMessage = messaging.getNextMessage(FenixMessageSurfaceId.SURVEY) ?: return
-        val researchSurfaceDialogFragment = ResearchSurfaceDialogFragment.newInstance(
-            keyMessageText = nextMessage.text,
-            keyAcceptButtonText = nextMessage.buttonLabel,
-            keyDismissButtonText = null,
-        )
-
-        researchSurfaceDialogFragment.onAccept = {
-            processIntent(messaging.getIntentForMessage(nextMessage))
-            components.appStore.dispatch(AppAction.MessagingAction.MessageClicked(nextMessage))
-        }
-
-        researchSurfaceDialogFragment.onDismiss = {
-            components.appStore.dispatch(AppAction.MessagingAction.MessageDismissed(nextMessage))
-        }
-
-        lifecycleScope.launch(Main) {
-            researchSurfaceDialogFragment.showNow(
-                supportFragmentManager,
-                ResearchSurfaceDialogFragment.FRAGMENT_TAG,
-            )
-        }
-
-        // Update message as displayed.
-        val currentBootUniqueIdentifier = BootUtils.getBootIdentifier(context)
-
-        messaging.onMessageDisplayed(nextMessage, currentBootUniqueIdentifier)
     }
 
     companion object {

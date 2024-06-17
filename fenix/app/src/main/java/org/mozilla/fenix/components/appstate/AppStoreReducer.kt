@@ -12,7 +12,6 @@ import org.mozilla.fenix.ext.filterOutTab
 import org.mozilla.fenix.home.recentsyncedtabs.RecentSyncedTabState
 import org.mozilla.fenix.home.recentvisits.RecentlyVisitedItem
 import org.mozilla.fenix.home.recentvisits.RecentlyVisitedItem.RecentHistoryGroup
-import org.mozilla.fenix.messaging.state.MessagingReducer
 
 /**
  * Reducer for [AppStore].
@@ -28,9 +27,6 @@ internal object AppStoreReducer {
             state.copy(nonFatalCrashes = state.nonFatalCrashes - action.crash)
         is AppAction.RemoveAllNonFatalCrashes ->
             state.copy(nonFatalCrashes = emptyList())
-
-        is AppAction.MessagingAction -> MessagingReducer.reduce(state, action)
-
         is AppAction.Change -> state.copy(
             collections = action.collections,
             mode = action.mode,
