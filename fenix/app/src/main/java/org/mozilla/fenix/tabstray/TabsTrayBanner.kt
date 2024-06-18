@@ -88,7 +88,6 @@ fun TabsTrayBanner(
     isInDebugMode: Boolean,
     shouldShowTabAutoCloseBanner: Boolean,
     onTabPageIndicatorClicked: (Page) -> Unit,
-    onSaveToCollectionClick: () -> Unit,
     onShareSelectedTabsClick: () -> Unit,
     onShareAllTabsClick: () -> Unit,
     onTabSettingsClick: () -> Unit,
@@ -141,7 +140,6 @@ fun TabsTrayBanner(
                 menuItems = menuItems,
                 selectedTabCount = multiselectMode.selectedTabs.size,
                 onExitSelectModeClick = { tabsTrayStore.dispatch(TabsTrayAction.ExitSelectMode) },
-                onSaveToCollectionsClick = onSaveToCollectionClick,
                 onShareSelectedTabs = onShareSelectedTabsClick,
             )
         } else {
@@ -300,7 +298,6 @@ private fun MultiSelectBanner(
     menuItems: List<MenuItem>,
     selectedTabCount: Int,
     onExitSelectModeClick: () -> Unit,
-    onSaveToCollectionsClick: () -> Unit,
     onShareSelectedTabs: () -> Unit,
 ) {
     var showMenu by remember { mutableStateOf(false) }
@@ -328,20 +325,6 @@ private fun MultiSelectBanner(
         )
 
         Spacer(modifier = Modifier.weight(1.0f))
-
-        IconButton(
-            onClick = onSaveToCollectionsClick,
-            modifier = Modifier.testTag(TabsTrayTestTag.collectionsButton),
-            enabled = selectedTabCount > 0,
-        ) {
-            Icon(
-                painter = painterResource(id = R.drawable.ic_tab_collection),
-                contentDescription = stringResource(
-                    id = R.string.tab_tray_collection_button_multiselect_content_description,
-                ),
-                tint = FirefoxTheme.colors.iconOnColor,
-            )
-        }
 
         IconButton(onClick = onShareSelectedTabs) {
             Icon(
@@ -447,7 +430,6 @@ private fun TabsTrayBannerPreviewRoot(
                 onTabPageIndicatorClicked = { page ->
                     tabsTrayStore.dispatch(TabsTrayAction.PageSelected(page))
                 },
-                onSaveToCollectionClick = {},
                 onShareSelectedTabsClick = {},
                 onShareAllTabsClick = {},
                 onTabSettingsClick = {},

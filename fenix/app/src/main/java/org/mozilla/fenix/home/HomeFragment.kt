@@ -68,7 +68,6 @@ import mozilla.components.concept.storage.FrecencyThresholdOption
 import mozilla.components.concept.sync.AccountObserver
 import mozilla.components.concept.sync.AuthType
 import mozilla.components.concept.sync.OAuthAccount
-import mozilla.components.feature.tab.collections.TabCollection
 import mozilla.components.feature.top.sites.TopSite
 import mozilla.components.feature.top.sites.TopSitesConfig
 import mozilla.components.feature.top.sites.TopSitesFeature
@@ -94,7 +93,6 @@ import org.mozilla.fenix.browser.browsingmode.BrowsingMode
 import org.mozilla.fenix.browser.tabstrip.TabStrip
 import org.mozilla.fenix.components.FenixSnackbar
 import org.mozilla.fenix.components.PrivateShortcutCreateManager
-import org.mozilla.fenix.components.TabCollectionStorage
 import org.mozilla.fenix.components.appstate.AppAction
 import org.mozilla.fenix.components.toolbar.IncompleteRedesignToolbarFeature
 import org.mozilla.fenix.components.toolbar.navbar.BottomToolbarContainerView
@@ -118,7 +116,6 @@ import org.mozilla.fenix.home.recentvisits.controller.DefaultRecentVisitsControl
 import org.mozilla.fenix.home.sessioncontrol.DefaultSessionControlController
 import org.mozilla.fenix.home.sessioncontrol.SessionControlInteractor
 import org.mozilla.fenix.home.sessioncontrol.SessionControlView
-import org.mozilla.fenix.home.sessioncontrol.viewholders.CollectionHeaderViewHolder
 import org.mozilla.fenix.home.toolbar.DefaultToolbarController
 import org.mozilla.fenix.home.toolbar.SearchSelectorMenuBinding
 import org.mozilla.fenix.home.topsites.DefaultTopSitesView
@@ -164,39 +161,6 @@ class HomeFragment : Fragment() {
 
     private val browsingModeManager get() = (activity as HomeActivity).browsingModeManager
 
-    private val collectionStorageObserver = object : TabCollectionStorage.Observer {
-        @SuppressLint("NotifyDataSetChanged")
-        override fun onCollectionRenamed(tabCollection: TabCollection, title: String) {
-            lifecycleScope.launch(Main) {
-                binding.sessionControlRecyclerView.adapter?.notifyDataSetChanged()
-            }
-            showRenamedSnackbar()
-        }
-
-        @SuppressLint("NotifyDataSetChanged")
-        override fun onTabsAdded(tabCollection: TabCollection, sessions: List<TabSessionState>) {
-            view?.let {
-                val message = if (sessions.size == 1) {
-                    R.string.create_collection_tab_saved
-                } else {
-                    R.string.create_collection_tabs_saved
-                }
-
-                lifecycleScope.launch(Main) {
-                    binding.sessionControlRecyclerView.adapter?.notifyDataSetChanged()
-                }
-
-                FenixSnackbar.make(
-                    view = it,
-                    duration = Snackbar.LENGTH_LONG,
-                    isDisplayedWithBrowserToolbar = false,
-                )
-                    .setText(it.context.getString(message))
-                    .setAnchorView(snackbarAnchorView)
-                    .show()
-            }
-        }
-    }
 
     private val store: BrowserStore
         get() = requireComponents.core.store
@@ -318,18 +282,12 @@ class HomeFragment : Fragment() {
                 settings = components.settings,
                 engine = components.core.engine,
                 store = store,
-                tabCollectionStorage = components.core.tabCollectionStorage,
                 addTabUseCase = components.useCases.tabsUseCases.addTab,
-                restoreUseCase = components.useCases.tabsUseCases.restore,
-                reloadUrlUseCase = components.useCases.sessionUseCases.reload,
                 selectTabUseCase = components.useCases.tabsUseCases.selectTab,
                 appStore = components.appStore,
                 navController = findNavController(),
                 viewLifecycleScope = viewLifecycleOwner.lifecycleScope,
-                registerCollectionStorageObserver = ::registerCollectionStorageObserver,
-                removeCollectionWithUndo = ::removeCollectionWithUndo,
                 showUndoSnackbarForTopSite = ::showUndoSnackbarForTopSite,
-                showTabTray = ::openTabsTray,
             ),
             recentTabController = DefaultRecentTabsController(
                 selectTabUseCase = components.useCases.tabsUseCases.selectTab,
@@ -589,7 +547,6 @@ class HomeFragment : Fragment() {
 
         consumeFrom(requireComponents.core.store) {
             tabCounterView?.update(it)
-            showCollectionsPlaceholder(it)
         }
 
         homeViewModel.sessionToDelete?.also {
@@ -611,26 +568,6 @@ class HomeFragment : Fragment() {
 
         if (bundleArgs.getBoolean(FOCUS_ON_ADDRESS_BAR)) {
             sessionControlInteractor.onNavigateSearch()
-        } else if (bundleArgs.getBoolean(SCROLL_TO_COLLECTION)) {
-            MainScope().launch {
-                delay(ANIM_SCROLL_DELAY)
-                val smoothScroller: SmoothScroller =
-                    object : LinearSmoothScroller(sessionControlView!!.view.context) {
-                        override fun getVerticalSnapPreference(): Int {
-                            return SNAP_TO_START
-                        }
-                    }
-                val recyclerView = sessionControlView!!.view
-                val adapter = recyclerView.adapter!!
-                val collectionPosition = IntRange(0, adapter.itemCount - 1).firstOrNull {
-                    adapter.getItemViewType(it) == CollectionHeaderViewHolder.LAYOUT_ID
-                }
-                collectionPosition?.run {
-                    val linearLayoutManager = recyclerView.layoutManager as LinearLayoutManager
-                    smoothScroller.targetPosition = this
-                    linearLayoutManager.startSmoothScroll(smoothScroller)
-                }
-            }
         }
 
         searchSelectorMenuBinding.set(
@@ -771,8 +708,6 @@ class HomeFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        subscribeToTabCollections()
-
         val context = requireContext()
 
         requireComponents.backgroundServices.accountManagerAvailableQueue.runIfReadyOrQueue {
@@ -810,32 +745,8 @@ class HomeFragment : Fragment() {
             recommendPrivateBrowsingShortcut()
         }
 
-        // We only want this observer live just before we navigate away to the collection creation screen
-        requireComponents.core.tabCollectionStorage.unregister(collectionStorageObserver)
-
         lifecycleScope.launch(IO) {
             requireComponents.reviewPromptController.promptReview(requireActivity())
-        }
-    }
-
-    @VisibleForTesting
-    internal fun removeCollectionWithUndo(tabCollection: TabCollection) {
-        val snackbarMessage = getString(R.string.snackbar_collection_deleted)
-
-        lifecycleScope.allowUndo(
-            requireView(),
-            snackbarMessage,
-            getString(R.string.snackbar_deleted_undo),
-            {
-                requireComponents.core.tabCollectionStorage.createCollection(tabCollection)
-            },
-            operation = { },
-            elevation = TOAST_ELEVATION,
-            anchorView = null,
-        )
-
-        lifecycleScope.launch(IO) {
-            requireComponents.core.tabCollectionStorage.removeCollection(tabCollection)
         }
     }
 
@@ -972,52 +883,6 @@ class HomeFragment : Fragment() {
     private fun dismissRecommendPrivateBrowsingShortcut() {
         recommendPrivateBrowsingCFR?.dismiss()
         recommendPrivateBrowsingCFR = null
-    }
-
-    private fun subscribeToTabCollections(): Observer<List<TabCollection>> {
-        return Observer<List<TabCollection>> {
-            requireComponents.core.tabCollectionStorage.cachedTabCollections = it
-            requireComponents.appStore.dispatch(AppAction.CollectionsChange(it))
-        }.also { observer ->
-            requireComponents.core.tabCollectionStorage.getCollections().observe(this, observer)
-        }
-    }
-
-    private fun registerCollectionStorageObserver() {
-        requireComponents.core.tabCollectionStorage.register(collectionStorageObserver, this)
-    }
-
-    private fun showRenamedSnackbar() {
-        view?.let { view ->
-            val string = view.context.getString(R.string.snackbar_collection_renamed)
-            FenixSnackbar.make(
-                view = view,
-                duration = Snackbar.LENGTH_LONG,
-                isDisplayedWithBrowserToolbar = false,
-            )
-                .setText(string)
-                .setAnchorView(snackbarAnchorView)
-                .show()
-        }
-    }
-
-    private fun openTabsTray() {
-        findNavController().nav(
-            R.id.homeFragment,
-            HomeFragmentDirections.actionGlobalTabsTrayFragment(),
-        )
-    }
-
-    private fun showCollectionsPlaceholder(browserState: BrowserState) {
-        val tabCount = if (browsingModeManager.mode.isPrivate) {
-            browserState.privateTabs.size
-        } else {
-            browserState.normalTabs.size
-        }
-
-        // The add_tabs_to_collections_button is added at runtime. We need to search for it in the same way.
-        sessionControlView?.view?.findViewById<MaterialButton>(R.id.add_tabs_to_collections_button)
-            ?.isVisible = tabCount > 0
     }
 
     @VisibleForTesting

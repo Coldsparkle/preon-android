@@ -423,7 +423,6 @@ abstract class BaseBrowserFragment :
                 }
             },
             scope = viewLifecycleOwner.lifecycleScope,
-            tabCollectionStorage = requireComponents.core.tabCollectionStorage,
             topSitesStorage = requireComponents.core.topSitesStorage,
             pinnedSiteStorage = requireComponents.core.pinnedSiteStorage,
             browserStore = store,

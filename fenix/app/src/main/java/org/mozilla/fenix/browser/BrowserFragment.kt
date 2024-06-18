@@ -29,7 +29,6 @@ import mozilla.components.concept.toolbar.Toolbar
 import mozilla.components.feature.app.links.AppLinksUseCases
 import mozilla.components.feature.contextmenu.ContextMenuCandidate
 import mozilla.components.feature.readerview.ReaderViewFeature
-import mozilla.components.feature.tab.collections.TabCollection
 import mozilla.components.feature.tabs.WindowFeature
 import mozilla.components.service.glean.private.NoExtras
 import mozilla.components.support.base.feature.UserInteractionHandler
@@ -38,7 +37,6 @@ import org.mozilla.fenix.GleanMetrics.ReaderMode
 import org.mozilla.fenix.GleanMetrics.Shopping
 import org.mozilla.fenix.R
 import org.mozilla.fenix.components.FenixSnackbar
-import org.mozilla.fenix.components.TabCollectionStorage
 import org.mozilla.fenix.components.appstate.AppAction
 import org.mozilla.fenix.components.toolbar.IncompleteRedesignToolbarFeature
 import org.mozilla.fenix.components.toolbar.ToolbarMenu
@@ -380,7 +378,6 @@ class BrowserFragment : BaseBrowserFragment(), UserInteractionHandler {
             }
         }
 
-        subscribeToTabCollections()
         updateLastBrowseActivity()
     }
 
@@ -397,20 +394,6 @@ class BrowserFragment : BaseBrowserFragment(), UserInteractionHandler {
                 requireComponents.core.historyMetadataService.updateMetadata(it, tab)
             }
         }
-    }
-
-    private fun subscribeToTabCollections() {
-        Observer<List<TabCollection>> {
-            requireComponents.core.tabCollectionStorage.cachedTabCollections = it
-        }.also { observer ->
-            requireComponents.core.tabCollectionStorage.getCollections()
-                .observe(viewLifecycleOwner, observer)
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        requireComponents.core.tabCollectionStorage.register(collectionStorageObserver, this)
     }
 
     override fun onBackPressed(): Boolean {
@@ -447,54 +430,6 @@ class BrowserFragment : BaseBrowserFragment(), UserInteractionHandler {
                         nav(R.id.browserFragment, directions)
                     }
                 }
-            }
-        }
-    }
-
-    private val collectionStorageObserver = object : TabCollectionStorage.Observer {
-        override fun onCollectionCreated(
-            title: String,
-            sessions: List<TabSessionState>,
-            id: Long?,
-        ) {
-            showTabSavedToCollectionSnackbar(sessions.size, true)
-        }
-
-        override fun onTabsAdded(tabCollection: TabCollection, sessions: List<TabSessionState>) {
-            showTabSavedToCollectionSnackbar(sessions.size)
-        }
-
-        private fun showTabSavedToCollectionSnackbar(
-            tabSize: Int,
-            isNewCollection: Boolean = false,
-        ) {
-            view?.let { view ->
-                val messageStringRes = when {
-                    isNewCollection -> {
-                        R.string.create_collection_tabs_saved_new_collection
-                    }
-                    tabSize > 1 -> {
-                        R.string.create_collection_tabs_saved
-                    }
-                    else -> {
-                        R.string.create_collection_tab_saved
-                    }
-                }
-                FenixSnackbar.make(
-                    view = binding.dynamicSnackbarContainer,
-                    duration = Snackbar.LENGTH_SHORT,
-                    isDisplayedWithBrowserToolbar = true,
-                )
-                    .setText(view.context.getString(messageStringRes))
-                    .setAction(requireContext().getString(R.string.create_collection_view)) {
-                        findNavController().navigate(
-                            BrowserFragmentDirections.actionGlobalHome(
-                                focusOnAddressBar = false,
-                                scrollToCollection = true,
-                            ),
-                        )
-                    }
-                    .show()
             }
         }
     }

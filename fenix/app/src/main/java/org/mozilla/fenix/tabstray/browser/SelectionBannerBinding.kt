@@ -90,12 +90,6 @@ class SelectionBannerBinding(
             interactor.onShareSelectedTabs()
         }
 
-        tabsTrayMultiselectItemsBinding.collectMultiSelect.setOnClickListener {
-            if (store.state.mode.selectedTabs.isNotEmpty()) {
-                interactor.onAddSelectedTabsToCollectionClicked()
-            }
-        }
-
         binding.exitMultiSelect.setOnClickListener {
             store.dispatch(ExitSelectMode)
         }

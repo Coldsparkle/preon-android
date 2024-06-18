@@ -28,30 +28,15 @@ internal object AppStoreReducer {
         is AppAction.RemoveAllNonFatalCrashes ->
             state.copy(nonFatalCrashes = emptyList())
         is AppAction.Change -> state.copy(
-            collections = action.collections,
             mode = action.mode,
             topSites = action.topSites,
             recentTabs = action.recentTabs,
             recentHistory = action.recentHistory,
             recentSyncedTabState = action.recentSyncedTabState,
         )
-        is AppAction.CollectionExpanded -> {
-            val newExpandedCollection = state.expandedCollections.toMutableSet()
-
-            if (action.expand) {
-                newExpandedCollection.add(action.collection.id)
-            } else {
-                newExpandedCollection.remove(action.collection.id)
-            }
-
-            state.copy(expandedCollections = newExpandedCollection)
-        }
-        is AppAction.CollectionsChange -> state.copy(collections = action.collections)
         is AppAction.ModeChange -> state.copy(mode = action.mode)
         is AppAction.TopSitesChange -> state.copy(topSites = action.topSites)
-        is AppAction.RemoveCollectionsPlaceholder -> {
-            state.copy(showCollectionPlaceholder = false)
-        }
+
         is AppAction.RecentTabsChange -> {
             state.copy(
                 recentTabs = action.recentTabs,

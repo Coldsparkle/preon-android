@@ -90,8 +90,6 @@ class BlocklistMiddleware(
                 recentHistory = recentHistory.filteredByBlocklist().filterContile(),
                 topSites = topSites,
                 mode = mode,
-                collections = collections,
-                showCollectionPlaceholder = showCollectionPlaceholder,
                 recentSyncedTabState = recentSyncedTabState.filteredByBlocklist().filterContile(),
             )
         }

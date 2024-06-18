@@ -9,7 +9,6 @@ import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import mozilla.components.feature.tab.collections.TabCollection
 import mozilla.components.feature.top.sites.TopSite
 import org.mozilla.fenix.browser.browsingmode.BrowsingMode
 import org.mozilla.fenix.components.appstate.AppState
@@ -27,9 +26,6 @@ import org.mozilla.fenix.utils.Settings
 internal fun normalModeAdapterItems(
     settings: Settings,
     topSites: List<TopSite>,
-    collections: List<TabCollection>,
-    expandedCollections: Set<Long>,
-    showCollectionsPlaceholder: Boolean,
     showRecentTab: Boolean,
     showRecentSyncedTab: Boolean,
     recentVisits: List<RecentlyVisitedItem>,
@@ -56,34 +52,9 @@ internal fun normalModeAdapterItems(
         items.add(AdapterItem.RecentVisitsItems)
     }
 
-    if (collections.isEmpty()) {
-        if (showCollectionsPlaceholder) {
-            items.add(AdapterItem.NoCollectionsMessage)
-        }
-    } else {
-        showCollections(collections, expandedCollections, items)
-    }
-
     items.add(AdapterItem.BottomSpacer)
 
     return items
-}
-
-private fun showCollections(
-    collections: List<TabCollection>,
-    expandedCollections: Set<Long>,
-    items: MutableList<AdapterItem>,
-) {
-    // If the collection is expanded, we want to add all of its tabs beneath it in the adapter
-    items.add(AdapterItem.CollectionHeader)
-    collections.map {
-        AdapterItem.CollectionItem(it, expandedCollections.contains(it.id))
-    }.forEach {
-        items.add(it)
-        if (it.expanded) {
-            items.addAll(collectionTabItems(it.collection))
-        }
-    }
 }
 
 private fun privateModeAdapterItems(
@@ -101,9 +72,6 @@ private fun AppState.toAdapterList(settings: Settings): List<AdapterItem> = when
     BrowsingMode.Normal -> normalModeAdapterItems(
         settings,
         topSites,
-        collections,
-        expandedCollections,
-        showCollectionPlaceholder,
         shouldShowRecentTabs(settings),
         shouldShowRecentSyncedTabs(),
         recentHistory,
@@ -113,11 +81,6 @@ private fun AppState.toAdapterList(settings: Settings): List<AdapterItem> = when
         topSites,
     )
 }
-
-private fun collectionTabItems(collection: TabCollection) =
-    collection.tabs.mapIndexed { index, tab ->
-        AdapterItem.TabInCollectionItem(collection, tab, index == collection.tabs.lastIndex)
-    }
 
 /**
  * Shows a list of Home screen views.

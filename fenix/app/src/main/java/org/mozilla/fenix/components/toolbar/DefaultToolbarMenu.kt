@@ -334,14 +334,6 @@ open class DefaultToolbarMenu(
         },
     )
 
-    private val saveToCollectionItem = BrowserMenuImageText(
-        label = context.getString(R.string.browser_menu_save_to_collection_2),
-        imageResource = R.drawable.ic_tab_collection,
-        iconTintColorResource = primaryTextColor(),
-    ) {
-        onItemTapped.invoke(ToolbarMenu.Item.SaveToCollection)
-    }
-
     private val printPageItem = BrowserMenuImageText(
         label = context.getString(R.string.menu_print),
         imageResource = R.drawable.ic_print,
@@ -427,7 +419,6 @@ open class DefaultToolbarMenu(
                 addToHomeScreenItem.apply { visible = ::canAddToHomescreen },
                 installToHomescreen.apply { visible = ::canInstall },
                 if (shouldShowTopSites) addRemoveTopSitesItem else null,
-                saveToCollectionItem,
                 if (FxNimbus.features.print.value().browserPrintEnabled) printPageItem else null,
                 settingsItem,
                 if (shouldDeleteDataOnQuit) deleteDataOnQuit else null,

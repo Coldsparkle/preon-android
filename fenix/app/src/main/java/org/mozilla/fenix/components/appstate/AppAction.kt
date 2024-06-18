@@ -5,7 +5,6 @@
 package org.mozilla.fenix.components.appstate
 
 import mozilla.components.browser.state.state.TabSessionState
-import mozilla.components.feature.tab.collections.TabCollection
 import mozilla.components.feature.top.sites.TopSite
 import mozilla.components.lib.crash.Crash.NativeCodeCrash
 import mozilla.components.lib.state.Action
@@ -38,18 +37,12 @@ sealed class AppAction : Action {
     data class Change(
         val topSites: List<TopSite>,
         val mode: BrowsingMode,
-        val collections: List<TabCollection>,
-        val showCollectionPlaceholder: Boolean,
         val recentTabs: List<RecentTab>,
         val recentHistory: List<RecentlyVisitedItem>,
         val recentSyncedTabState: RecentSyncedTabState,
     ) :
         AppAction()
 
-    data class CollectionExpanded(val collection: TabCollection, val expand: Boolean) :
-        AppAction()
-
-    data class CollectionsChange(val collections: List<TabCollection>) : AppAction()
     data class ModeChange(val mode: BrowsingMode) : AppAction()
     data class TopSitesChange(val topSites: List<TopSite>) : AppAction()
     data class RecentTabsChange(val recentTabs: List<RecentTab>) : AppAction()
@@ -68,8 +61,6 @@ sealed class AppAction : Action {
      */
     data class UndoPendingDeletionSet(val historyItems: Set<PendingDeletionHistory>) : AppAction()
 
-
-    object RemoveCollectionsPlaceholder : AppAction()
 
     /**
      * Updates the [RecentSyncedTabState] with the given [state].

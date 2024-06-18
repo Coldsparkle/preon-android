@@ -435,13 +435,6 @@ class Core(
     val domainsAutocompleteProvider: BaseDomainAutocompleteProvider get() = lazyDomainsAutocompleteProvider.value
     val sessionAutocompleteProvider: SessionAutocompleteProvider get() = lazySessionAutocompleteProvider.value
 
-    val tabCollectionStorage by lazyMonitored {
-        TabCollectionStorage(
-            context,
-            strictMode,
-        )
-    }
-
     /**
      * A storage component for persisting thumbnail images of tabs.
      */

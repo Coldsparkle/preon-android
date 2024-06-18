@@ -7,7 +7,6 @@ package org.mozilla.fenix.tabstray
 import android.app.Dialog
 import android.content.Context
 import android.content.res.Configuration
-import android.os.Build
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -183,7 +182,6 @@ class TabsTrayFragment : AppCompatDialogFragment() {
             tabsUseCases = requireComponents.useCases.tabsUseCases,
             bookmarksUseCase = requireComponents.useCases.bookmarksUseCases,
             ioDispatcher = Dispatchers.IO,
-            collectionStorage = requireComponents.core.tabCollectionStorage,
             selectTabPosition = ::selectTabPosition,
             dismissTray = ::dismissTabsTray,
             showUndoSnackbarForTab = ::showUndoSnackbarForTab,
@@ -275,7 +273,6 @@ class TabsTrayFragment : AppCompatDialogFragment() {
                         onInactiveTabClick = tabsTrayInteractor::onInactiveTabClicked,
                         onInactiveTabClose = tabsTrayInteractor::onInactiveTabClosed,
                         onSyncedTabClick = tabsTrayInteractor::onSyncedTabClicked,
-                        onSaveToCollectionClick = tabsTrayInteractor::onAddSelectedTabsToCollectionClicked,
                         onShareSelectedTabsClick = tabsTrayInteractor::onShareSelectedTabs,
                         onShareAllTabsClick = {
                             TabsTray.shareAllTabs.record(NoExtras())
@@ -411,10 +408,8 @@ class TabsTrayFragment : AppCompatDialogFragment() {
         if (!requireContext().settings().enableTabsTrayToCompose) {
             val activity = activity as HomeActivity
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
-                fabButtonBinding.newTabButton.accessibilityTraversalAfter =
-                    tabsTrayBinding.tabLayout.id
-            }
+            fabButtonBinding.newTabButton.accessibilityTraversalAfter =
+                tabsTrayBinding.tabLayout.id
 
             setupMenu(navigationInteractor)
             setupPager(
@@ -484,7 +479,6 @@ class TabsTrayFragment : AppCompatDialogFragment() {
                     interactor = tabsTrayInteractor,
                     backgroundView = tabsTrayBinding.topBar,
                     showOnSelectViews = VisibilityModifier(
-                        tabsTrayMultiselectItemsBinding.collectMultiSelect,
                         tabsTrayMultiselectItemsBinding.shareMultiSelect,
                         tabsTrayMultiselectItemsBinding.menuMultiSelect,
                         tabsTrayBinding.multiselectTitle,

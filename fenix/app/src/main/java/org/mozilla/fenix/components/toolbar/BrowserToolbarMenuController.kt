@@ -40,9 +40,7 @@ import org.mozilla.fenix.R
 import org.mozilla.fenix.browser.BrowserAnimator
 import org.mozilla.fenix.browser.BrowserFragmentDirections
 import org.mozilla.fenix.browser.readermode.ReaderModeController
-import org.mozilla.fenix.collections.SaveCollectionStep
 import org.mozilla.fenix.components.FenixSnackbar
-import org.mozilla.fenix.components.TabCollectionStorage
 import org.mozilla.fenix.components.accounts.AccountState
 import org.mozilla.fenix.components.accounts.FenixFxAEntryPoint
 import org.mozilla.fenix.ext.components
@@ -75,7 +73,6 @@ class DefaultBrowserToolbarMenuController(
     private val openInFenixIntent: Intent,
     private val bookmarkTapped: (String, String) -> Unit,
     private val scope: CoroutineScope,
-    private val tabCollectionStorage: TabCollectionStorage,
     private val topSitesStorage: DefaultTopSitesStorage,
     private val pinnedSiteStorage: PinnedSiteStorage,
     private val browserStore: BrowserStore,
@@ -321,27 +318,6 @@ class DefaultBrowserToolbarMenuController(
                     BrowserFragmentDirections.actionGlobalAddonsManagementFragment(),
                 )
             }
-            is ToolbarMenu.Item.SaveToCollection -> {
-                Collections.saveButton.record(
-                    Collections.SaveButtonExtra(
-                        TELEMETRY_BROWSER_IDENTIFIER,
-                    ),
-                )
-
-                currentSession?.let { currentSession ->
-                    val directions =
-                        BrowserFragmentDirections.actionGlobalCollectionCreationFragment(
-                            tabIds = arrayOf(currentSession.id),
-                            selectedTabIds = arrayOf(currentSession.id),
-                            saveCollectionStep = if (tabCollectionStorage.cachedTabCollections.isEmpty()) {
-                                SaveCollectionStep.NameCollection
-                            } else {
-                                SaveCollectionStep.SelectCollection
-                            },
-                        )
-                    navController.nav(R.id.browserFragment, directions)
-                }
-            }
             is ToolbarMenu.Item.PrintContent -> {
                 store.state.selectedTab?.let {
                     store.dispatch(EngineAction.PrintContentAction(it.id))
@@ -473,8 +449,6 @@ class DefaultBrowserToolbarMenuController(
                 Events.browserMenuAction.record(Events.BrowserMenuActionExtra("open_in_regular_tab"))
             is ToolbarMenu.Item.FindInPage ->
                 Events.browserMenuAction.record(Events.BrowserMenuActionExtra("find_in_page"))
-            is ToolbarMenu.Item.SaveToCollection ->
-                Events.browserMenuAction.record(Events.BrowserMenuActionExtra("save_to_collection"))
             is ToolbarMenu.Item.AddToTopSites ->
                 Events.browserMenuAction.record(Events.BrowserMenuActionExtra("add_to_top_sites"))
             is ToolbarMenu.Item.PrintContent ->

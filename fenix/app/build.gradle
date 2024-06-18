@@ -566,7 +566,6 @@ dependencies {
     implementation project(':feature-logins')
     implementation project(':feature-sitepermissions')
     implementation project(':feature-readerview')
-    implementation project(':feature-tab-collections')
     implementation project(':feature-recentlyclosed')
     implementation project(':feature-top-sites')
     implementation project(':feature-share')

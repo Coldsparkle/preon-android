@@ -51,11 +51,6 @@ interface TabsTrayInteractor :
     fun onBookmarkSelectedTabsClicked()
 
     /**
-     * Invoked when the collections button in the multi selection banner is clicked.
-     */
-    fun onAddSelectedTabsToCollectionClicked()
-
-    /**
      * Invoked when the share button in the multi selection banner is clicked.
      */
     fun onShareSelectedTabs()
@@ -143,10 +138,6 @@ class DefaultTabsTrayInteractor(
 
     override fun onBookmarkSelectedTabsClicked() {
         controller.handleBookmarkSelectedTabsClicked()
-    }
-
-    override fun onAddSelectedTabsToCollectionClicked() {
-        controller.handleAddSelectedTabsToCollectionClicked()
     }
 
     override fun onShareSelectedTabs() {

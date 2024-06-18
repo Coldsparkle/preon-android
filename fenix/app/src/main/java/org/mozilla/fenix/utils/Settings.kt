@@ -318,11 +318,6 @@ class Settings(private val appContext: Context) : PreferencesHolder {
         default = false,
     )
 
-    var showCollectionsPlaceholderOnHome by booleanPreference(
-        appContext.getPreferenceKey(R.string.pref_key_show_collections_placeholder_home),
-        default = true,
-    )
-
     val isCrashReportingEnabled: Boolean
         get() = isCrashReportEnabledInBuild &&
             preferences.getBoolean(

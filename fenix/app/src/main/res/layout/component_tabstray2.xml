@@ -65,7 +65,7 @@
         android:textColor="@color/fx_mobile_text_color_oncolor_primary"
         android:importantForAccessibility="no"
         app:layout_constraintBottom_toBottomOf="@id/topBar"
-        app:layout_constraintEnd_toStartOf="@id/collect_multi_select"
+        app:layout_constraintEnd_toStartOf="@id/share_multi_select"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toEndOf="@+id/exit_multi_select"

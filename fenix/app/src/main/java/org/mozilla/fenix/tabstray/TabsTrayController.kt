@@ -12,7 +12,6 @@ import mozilla.components.browser.state.action.DebugAction
 import mozilla.components.browser.state.action.LastAccessAction
 import mozilla.components.browser.state.selector.findTab
 import mozilla.components.browser.state.selector.getNormalOrPrivateTabs
-import mozilla.components.browser.state.selector.normalTabs
 import mozilla.components.browser.state.state.BrowserState
 import mozilla.components.browser.state.state.SessionState
 import mozilla.components.browser.state.state.TabSessionState
@@ -33,10 +32,7 @@ import org.mozilla.fenix.HomeActivity
 import org.mozilla.fenix.R
 import org.mozilla.fenix.browser.browsingmode.BrowsingMode
 import org.mozilla.fenix.browser.browsingmode.BrowsingModeManager
-import org.mozilla.fenix.collections.CollectionsDialog
-import org.mozilla.fenix.collections.show
 import org.mozilla.fenix.components.AppStore
-import org.mozilla.fenix.components.TabCollectionStorage
 import org.mozilla.fenix.components.appstate.AppAction
 import org.mozilla.fenix.components.bookmarks.BookmarksUseCase
 import org.mozilla.fenix.ext.DEFAULT_ACTIVE_DAYS
@@ -45,7 +41,6 @@ import org.mozilla.fenix.home.HomeFragment
 import org.mozilla.fenix.library.bookmarks.BookmarksSharedViewModel
 import org.mozilla.fenix.tabstray.browser.InactiveTabsController
 import org.mozilla.fenix.tabstray.browser.TabsTrayFabController
-import org.mozilla.fenix.tabstray.ext.getTabSessionState
 import org.mozilla.fenix.tabstray.ext.isActiveDownload
 import org.mozilla.fenix.tabstray.ext.isNormalTab
 import org.mozilla.fenix.tabstray.ext.isSelect
@@ -98,11 +93,6 @@ interface TabsTrayController : SyncedTabsController, InactiveTabsController, Tab
      * Bookmarks the current set of selected tabs.
      */
     fun handleBookmarkSelectedTabsClicked()
-
-    /**
-     * Saves the current set of selected tabs to a collection.
-     */
-    fun handleAddSelectedTabsToCollectionClicked()
 
     /**
      * Shares the current set of selected tabs.
@@ -211,7 +201,6 @@ class DefaultTabsTrayController(
     private val tabsUseCases: TabsUseCases,
     private val bookmarksUseCase: BookmarksUseCase,
     private val ioDispatcher: CoroutineContext,
-    private val collectionStorage: TabCollectionStorage,
     private val selectTabPosition: (Int, Boolean) -> Unit,
     private val dismissTray: () -> Unit,
     private val showUndoSnackbarForTab: (Boolean) -> Unit,
@@ -419,48 +408,6 @@ class DefaultTabsTrayController(
         showBookmarkSnackbar(tabs.size)
 
         tabsTrayStore.dispatch(TabsTrayAction.ExitSelectMode)
-    }
-
-    override fun handleAddSelectedTabsToCollectionClicked() {
-        val tabs = tabsTrayStore.state.mode.selectedTabs
-
-        TabsTray.selectedTabsToCollection.record(TabsTray.SelectedTabsToCollectionExtra(tabCount = tabs.size))
-        TabsTray.saveToCollection.record(NoExtras())
-
-        tabsTrayStore.dispatch(TabsTrayAction.ExitSelectMode)
-
-        showCollectionsDialog(tabs)
-    }
-
-    @VisibleForTesting
-    internal fun showCollectionsDialog(tabs: Collection<TabSessionState>) {
-        CollectionsDialog(
-            storage = collectionStorage,
-            sessionList = browserStore.getTabSessionState(tabs),
-            onPositiveButtonClick = { id, isNewCollection ->
-
-                // If collection is null, a new one was created.
-                if (isNewCollection) {
-                    Collections.saved.record(
-                        Collections.SavedExtra(
-                            browserStore.state.normalTabs.size.toString(),
-                            tabs.size.toString(),
-                        ),
-                    )
-                } else {
-                    Collections.tabsAdded.record(
-                        Collections.TabsAddedExtra(
-                            browserStore.state.normalTabs.size.toString(),
-                            tabs.size.toString(),
-                        ),
-                    )
-                }
-                id?.apply {
-                    showCollectionSnackbar(tabs.size, isNewCollection)
-                }
-            },
-            onNegativeButtonClick = {},
-        ).show(activity)
     }
 
     override fun handleShareSelectedTabsClicked() {

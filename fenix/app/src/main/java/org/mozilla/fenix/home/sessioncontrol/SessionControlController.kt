@@ -14,17 +14,12 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import mozilla.components.browser.state.search.SearchEngine
-import mozilla.components.browser.state.selector.getNormalOrPrivateTabs
 import mozilla.components.browser.state.selector.privateTabs
 import mozilla.components.browser.state.state.availableSearchEngines
 import mozilla.components.browser.state.state.searchEngines
 import mozilla.components.browser.state.state.selectedOrDefaultSearchEngine
 import mozilla.components.browser.state.store.BrowserStore
 import mozilla.components.concept.engine.Engine
-import mozilla.components.concept.engine.prompt.ShareData
-import mozilla.components.feature.session.SessionUseCases
-import mozilla.components.feature.tab.collections.TabCollection
-import mozilla.components.feature.tab.collections.ext.invoke
 import mozilla.components.feature.tabs.TabsUseCases
 import mozilla.components.feature.top.sites.TopSite
 import mozilla.components.service.nimbus.messaging.Message
@@ -32,7 +27,6 @@ import mozilla.components.support.ktx.android.view.showKeyboard
 import mozilla.components.ui.widgets.withCenterAlignedButtons
 import mozilla.telemetry.glean.private.NoExtras
 import org.mozilla.fenix.BrowserDirection
-import org.mozilla.fenix.GleanMetrics.Collections
 import org.mozilla.fenix.GleanMetrics.HomeScreen
 import org.mozilla.fenix.GleanMetrics.Pings
 import org.mozilla.fenix.GleanMetrics.Pocket
@@ -41,10 +35,7 @@ import org.mozilla.fenix.GleanMetrics.TopSites
 import org.mozilla.fenix.HomeActivity
 import org.mozilla.fenix.R
 import org.mozilla.fenix.browser.browsingmode.BrowsingMode
-import org.mozilla.fenix.collections.SaveCollectionStep
 import org.mozilla.fenix.components.AppStore
-import org.mozilla.fenix.components.TabCollectionStorage
-import org.mozilla.fenix.components.appstate.AppAction
 import org.mozilla.fenix.components.appstate.AppState
 import org.mozilla.fenix.components.metrics.MetricsUtils
 import org.mozilla.fenix.ext.components
@@ -54,7 +45,6 @@ import org.mozilla.fenix.home.HomeFragmentDirections
 import org.mozilla.fenix.settings.SupportUtils
 import org.mozilla.fenix.utils.Settings
 import org.mozilla.fenix.wallpapers.WallpaperState
-import mozilla.components.feature.tab.collections.Tab as ComponentTab
 
 /**
  * [HomeFragment] controller. An interface that handles the view manipulation of the Tabs triggered
@@ -62,35 +52,6 @@ import mozilla.components.feature.tab.collections.Tab as ComponentTab
  */
 @Suppress("TooManyFunctions")
 interface SessionControlController {
-    /**
-     * @see [CollectionInteractor.onCollectionAddTabTapped]
-     */
-    fun handleCollectionAddTabTapped(collection: TabCollection)
-
-    /**
-     * @see [CollectionInteractor.onCollectionOpenTabClicked]
-     */
-    fun handleCollectionOpenTabClicked(tab: ComponentTab)
-
-    /**
-     * @see [CollectionInteractor.onCollectionOpenTabsTapped]
-     */
-    fun handleCollectionOpenTabsTapped(collection: TabCollection)
-
-    /**
-     * @see [CollectionInteractor.onCollectionRemoveTab]
-     */
-    fun handleCollectionRemoveTab(collection: TabCollection, tab: ComponentTab)
-
-    /**
-     * @see [CollectionInteractor.onCollectionShareTabsClicked]
-     */
-    fun handleCollectionShareTabsClicked(collection: TabCollection)
-
-    /**
-     * @see [CollectionInteractor.onDeleteCollectionTapped]
-     */
-    fun handleDeleteCollectionTapped(collection: TabCollection)
 
     /**
      * @see [TopSiteInteractor.onOpenInPrivateTabClicked]
@@ -106,11 +67,6 @@ interface SessionControlController {
      * @see [TopSiteInteractor.onRemoveTopSiteClicked]
      */
     fun handleRemoveTopSiteClicked(topSite: TopSite)
-
-    /**
-     * @see [CollectionInteractor.onRenameCollectionTapped]
-     */
-    fun handleRenameCollectionTapped(collection: TabCollection)
 
     /**
      * @see [TopSiteInteractor.onSelectTopSite]
@@ -133,19 +89,9 @@ interface SessionControlController {
     fun handleTopSiteLongClicked(topSite: TopSite)
 
     /**
-     * @see [CollectionInteractor.onToggleCollectionExpanded]
-     */
-    fun handleToggleCollectionExpanded(collection: TabCollection, expand: Boolean)
-
-    /**
      * @see [CollectionInteractor.onAddTabsToCollectionTapped]
      */
     fun handleCreateCollection()
-
-    /**
-     * @see [CollectionInteractor.onRemoveCollectionsPlaceholder]
-     */
-    fun handleRemoveCollectionsPlaceholder()
 
     /**
      * @see [MessageCardInteractor.onMessageClicked]
@@ -179,91 +125,13 @@ class DefaultSessionControlController(
     private val settings: Settings,
     private val engine: Engine,
     private val store: BrowserStore,
-    private val tabCollectionStorage: TabCollectionStorage,
     private val addTabUseCase: TabsUseCases.AddNewTabUseCase,
-    private val restoreUseCase: TabsUseCases.RestoreUseCase,
-    private val reloadUrlUseCase: SessionUseCases.ReloadUrlUseCase,
     private val selectTabUseCase: TabsUseCases.SelectTabUseCase,
     private val appStore: AppStore,
     private val navController: NavController,
     private val viewLifecycleScope: CoroutineScope,
-    private val registerCollectionStorageObserver: () -> Unit,
-    private val removeCollectionWithUndo: (tabCollection: TabCollection) -> Unit,
     private val showUndoSnackbarForTopSite: (topSite: TopSite) -> Unit,
-    private val showTabTray: () -> Unit,
 ) : SessionControlController {
-
-    override fun handleCollectionAddTabTapped(collection: TabCollection) {
-        Collections.addTabButton.record(NoExtras())
-        showCollectionCreationFragment(
-            step = SaveCollectionStep.SelectTabs,
-            selectedTabCollectionId = collection.id,
-        )
-    }
-
-    override fun handleCollectionOpenTabClicked(tab: ComponentTab) {
-        restoreUseCase.invoke(
-            activity.filesDir,
-            engine,
-            tab,
-            onTabRestored = {
-                activity.openToBrowser(BrowserDirection.FromHome)
-                selectTabUseCase.invoke(it)
-                reloadUrlUseCase.invoke(it)
-            },
-            onFailure = {
-                activity.openToBrowserAndLoad(
-                    searchTermOrURL = tab.url,
-                    newTab = true,
-                    from = BrowserDirection.FromHome,
-                )
-            },
-        )
-
-        Collections.tabRestored.record(NoExtras())
-    }
-
-    override fun handleCollectionOpenTabsTapped(collection: TabCollection) {
-        restoreUseCase.invoke(
-            activity.filesDir,
-            engine,
-            collection,
-            onFailure = { url ->
-                addTabUseCase.invoke(url)
-            },
-        )
-
-        showTabTray()
-        Collections.allTabsRestored.record(NoExtras())
-    }
-
-    override fun handleCollectionRemoveTab(
-        collection: TabCollection,
-        tab: ComponentTab,
-    ) {
-        Collections.tabRemoved.record(NoExtras())
-
-        if (collection.tabs.size == 1) {
-            removeCollectionWithUndo(collection)
-        } else {
-            viewLifecycleScope.launch {
-                tabCollectionStorage.removeTabFromCollection(collection, tab)
-            }
-        }
-    }
-
-    override fun handleCollectionShareTabsClicked(collection: TabCollection) {
-        showShareFragment(
-            collection.title,
-            collection.tabs.map { ShareData(url = it.url, title = it.title) },
-        )
-        Collections.shared.record(NoExtras())
-    }
-
-    override fun handleDeleteCollectionTapped(collection: TabCollection) {
-        removeCollectionWithUndo(collection)
-        Collections.removed.record(NoExtras())
-    }
 
     override fun handleOpenInPrivateTabClicked(topSite: TopSite) {
         if (topSite is TopSite.Provided) {
@@ -330,14 +198,6 @@ class DefaultSessionControlController(
         }
 
         showUndoSnackbarForTopSite(topSite)
-    }
-
-    override fun handleRenameCollectionTapped(collection: TabCollection) {
-        showCollectionCreationFragment(
-            step = SaveCollectionStep.RenameCollection,
-            selectedTabCollectionId = collection.id,
-        )
-        Collections.renameButton.record(NoExtras())
     }
 
     override fun handleSelectTopSite(topSite: TopSite, position: Int) {
@@ -473,9 +333,6 @@ class DefaultSessionControlController(
     override fun handleShowWallpapersOnboardingDialog(state: WallpaperState): Boolean {
         return false
     }
-    override fun handleToggleCollectionExpanded(collection: TabCollection, expand: Boolean) {
-        appStore.dispatch(AppAction.CollectionExpanded(collection, expand))
-    }
 
     private fun showTabTrayCollectionCreation() {
         val directions = HomeFragmentDirections.actionGlobalTabsTrayFragment(
@@ -484,47 +341,8 @@ class DefaultSessionControlController(
         navController.nav(R.id.homeFragment, directions)
     }
 
-    private fun showCollectionCreationFragment(
-        step: SaveCollectionStep,
-        selectedTabIds: Array<String>? = null,
-        selectedTabCollectionId: Long? = null,
-    ) {
-        if (navController.currentDestination?.id == R.id.collectionCreationFragment) return
-
-        // Only register the observer right before moving to collection creation
-        registerCollectionStorageObserver()
-
-        val tabIds = store.state
-            .getNormalOrPrivateTabs(private = activity.browsingModeManager.mode.isPrivate)
-            .map { session -> session.id }
-            .toList()
-            .toTypedArray()
-        val directions = HomeFragmentDirections.actionGlobalCollectionCreationFragment(
-            tabIds = tabIds,
-            saveCollectionStep = step,
-            selectedTabIds = selectedTabIds,
-            selectedTabCollectionId = selectedTabCollectionId ?: -1,
-        )
-        navController.nav(R.id.homeFragment, directions)
-    }
-
     override fun handleCreateCollection() {
         showTabTrayCollectionCreation()
-    }
-
-    override fun handleRemoveCollectionsPlaceholder() {
-        settings.showCollectionsPlaceholderOnHome = false
-        Collections.placeholderCancel.record()
-        appStore.dispatch(AppAction.RemoveCollectionsPlaceholder)
-    }
-
-    private fun showShareFragment(shareSubject: String, data: List<ShareData>) {
-        val directions = HomeFragmentDirections.actionGlobalShareFragment(
-            sessionId = store.state.selectedTabId,
-            shareSubject = shareSubject,
-            data = data.toTypedArray(),
-        )
-        navController.nav(R.id.homeFragment, directions)
     }
 
     override fun handleMessageClicked(message: Message) {

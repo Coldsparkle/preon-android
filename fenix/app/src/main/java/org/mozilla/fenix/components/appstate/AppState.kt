@@ -4,7 +4,6 @@
 
 package org.mozilla.fenix.components.appstate
 
-import mozilla.components.feature.tab.collections.TabCollection
 import mozilla.components.feature.top.sites.TopSite
 import mozilla.components.lib.crash.Crash.NativeCodeCrash
 import mozilla.components.lib.state.State
@@ -56,12 +55,9 @@ data class AppState(
     val inactiveTabsExpanded: Boolean = false,
     val isSearchDialogVisible: Boolean = false,
     val nonFatalCrashes: List<NativeCodeCrash> = emptyList(),
-    val collections: List<TabCollection> = emptyList(),
-    val expandedCollections: Set<Long> = emptySet(),
     val mode: BrowsingMode = BrowsingMode.Normal,
     val selectedTabId: String? = null,
     val topSites: List<TopSite> = emptyList(),
-    val showCollectionPlaceholder: Boolean = false,
     val recentTabs: List<RecentTab> = emptyList(),
     val recentSyncedTabState: RecentSyncedTabState = RecentSyncedTabState.None,
     val recentHistory: List<RecentlyVisitedItem> = emptyList(),
