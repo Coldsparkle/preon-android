@@ -54,7 +54,7 @@ class DefaultRecentTabsController(
         RecentTabs.recentTabOpened.record(NoExtras())
 
         selectTabUseCase.invoke(tabId)
-        navController.navigate(R.id.browserFragment)
+        navController.navigate(HomeFragmentDirections.actionGlobalBrowser())
     }
 
     override fun handleRecentTabShowAllClicked() {

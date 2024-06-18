@@ -38,6 +38,7 @@ import org.mozilla.fenix.components.bookmarks.BookmarksUseCase
 import org.mozilla.fenix.ext.DEFAULT_ACTIVE_DAYS
 import org.mozilla.fenix.ext.potentialInactiveTabs
 import org.mozilla.fenix.home.HomeFragment
+import org.mozilla.fenix.home.HomeFragmentDirections
 import org.mozilla.fenix.library.bookmarks.BookmarksSharedViewModel
 import org.mozilla.fenix.tabstray.browser.InactiveTabsController
 import org.mozilla.fenix.tabstray.browser.TabsTrayFabController
@@ -268,7 +269,7 @@ class DefaultTabsTrayController(
         if (navController.currentDestination?.id == R.id.browserFragment) {
             return
         } else if (!navController.popBackStack(R.id.browserFragment, false)) {
-            navController.navigate(R.id.browserFragment)
+            navController.navigate(HomeFragmentDirections.actionGlobalBrowser())
         }
     }
 

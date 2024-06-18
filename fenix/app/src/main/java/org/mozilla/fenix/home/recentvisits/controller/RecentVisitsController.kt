@@ -122,7 +122,7 @@ class DefaultRecentVisitsController(
      */
     override fun handleRecentHistoryHighlightClicked(recentHistoryHighlight: RecentHistoryHighlight) {
         selectOrAddTabUseCase.invoke(recentHistoryHighlight.url)
-        navController.navigate(R.id.browserFragment)
+        navController.navigate(HomeFragmentDirections.actionGlobalBrowser())
     }
 
     /**

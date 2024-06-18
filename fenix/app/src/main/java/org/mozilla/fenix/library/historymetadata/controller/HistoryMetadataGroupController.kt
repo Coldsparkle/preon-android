@@ -19,6 +19,7 @@ import org.mozilla.fenix.R
 import org.mozilla.fenix.components.AppStore
 import org.mozilla.fenix.components.appstate.AppAction
 import org.mozilla.fenix.ext.components
+import org.mozilla.fenix.home.HomeFragmentDirections
 import org.mozilla.fenix.library.history.History
 import org.mozilla.fenix.library.history.toPendingDeletionHistory
 import org.mozilla.fenix.library.historymetadata.HistoryMetadataGroupFragment.DeleteAllConfirmationDialogFragment
@@ -108,7 +109,7 @@ class DefaultHistoryMetadataGroupController(
 
     override fun handleOpen(item: History.Metadata) {
         selectOrAddUseCase.invoke(item.url, item.historyMetadataKey)
-        navController.navigate(R.id.browserFragment)
+        navController.navigate(HomeFragmentDirections.actionGlobalBrowser())
         GleanHistory.searchTermGroupOpenTab.record(NoExtras())
     }
 

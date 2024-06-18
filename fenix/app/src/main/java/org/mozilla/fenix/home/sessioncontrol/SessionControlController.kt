@@ -263,7 +263,7 @@ class DefaultSessionControlController(
         } else {
             selectTabUseCase.invoke(existingTabForUrl.id)
         }
-        navController.navigate(R.id.browserFragment)
+        navController.navigate(HomeFragmentDirections.actionGlobalBrowser())
     }
 
     @VisibleForTesting

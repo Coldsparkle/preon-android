@@ -56,7 +56,7 @@ class DefaultRecentSyncedTabController(
     override fun handleRecentSyncedTabClick(tab: RecentSyncedTab) {
         RecentSyncedTabs.recentSyncedTabOpened[tab.deviceType.name.lowercase()].add()
         tabsUseCase.selectOrAddTab(tab.url)
-        navController.navigate(R.id.browserFragment)
+        navController.navigate(HomeFragmentDirections.actionGlobalBrowser())
     }
 
     override fun handleSyncedTabShowAllClicked() {
