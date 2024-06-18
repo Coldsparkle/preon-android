@@ -976,22 +976,24 @@ class GeckoEngineSession(
                     .downloadModel(options.downloadModel).build()
         }
 
-        geckoSession.sessionTranslation!!.translate(fromLanguage, toLanguage, geckoOptions).then({
-            notifyObservers {
-                onTranslateComplete(TranslationOperation.TRANSLATE)
-            }
-            GeckoResult<Void>()
-        }, {
-                throwable ->
-            logger.error("Request for translation failed: ", throwable)
-            notifyObservers {
-                onTranslateException(
-                    TranslationOperation.TRANSLATE,
-                    throwable.intoTranslationError(),
-                )
-            }
-            GeckoResult()
-        })
+        geckoSession.sessionTranslation!!.translate(fromLanguage, toLanguage, geckoOptions).then(
+            {
+                notifyObservers {
+                    onTranslateComplete(TranslationOperation.TRANSLATE)
+                }
+                GeckoResult<Void>()
+            },
+            { throwable ->
+                logger.error("Request for translation failed: ", throwable)
+                notifyObservers {
+                    onTranslateException(
+                        TranslationOperation.TRANSLATE,
+                        throwable.intoTranslationError(),
+                    )
+                }
+                GeckoResult()
+            },
+        )
     }
 
     /**
@@ -1008,19 +1010,21 @@ class GeckoEngineSession(
             return
         }
 
-        geckoSession.sessionTranslation!!.restoreOriginalPage().then({
-            notifyObservers {
-                onTranslateComplete(TranslationOperation.RESTORE)
-            }
-            GeckoResult<Void>()
-        }, {
-                throwable ->
-            logger.error("Request for translation failed: ", throwable)
-            notifyObservers {
-                onTranslateException(TranslationOperation.RESTORE, throwable.intoTranslationError())
-            }
-            GeckoResult()
-        })
+        geckoSession.sessionTranslation!!.restoreOriginalPage().then(
+            {
+                notifyObservers {
+                    onTranslateComplete(TranslationOperation.RESTORE)
+                }
+                GeckoResult<Void>()
+            },
+            { throwable ->
+                logger.error("Request for translation failed: ", throwable)
+                notifyObservers {
+                    onTranslateException(TranslationOperation.RESTORE, throwable.intoTranslationError())
+                }
+                GeckoResult()
+            },
+        )
     }
 
     /**
@@ -1035,23 +1039,24 @@ class GeckoEngineSession(
             return
         }
 
-        geckoSession.sessionTranslation!!.neverTranslateSiteSetting.then({
-                response ->
-            if (response == null) {
-                logger.error("Did not receive a site setting response.")
-                onException(
-                    TranslationError.UnexpectedNull(),
-                )
-                return@then GeckoResult()
-            }
-            onResult(response)
-            GeckoResult<Boolean>()
-        }, {
-                throwable ->
-            logger.error("Request for site translation preference failed: ", throwable)
-            onException(throwable.intoTranslationError())
-            GeckoResult()
-        })
+        geckoSession.sessionTranslation!!.neverTranslateSiteSetting.then(
+            { response ->
+                if (response == null) {
+                    logger.error("Did not receive a site setting response.")
+                    onException(
+                        TranslationError.UnexpectedNull(),
+                    )
+                    return@then GeckoResult()
+                }
+                onResult(response)
+                GeckoResult<Boolean>()
+            },
+            { throwable ->
+                logger.error("Request for site translation preference failed: ", throwable)
+                onException(throwable.intoTranslationError())
+                GeckoResult()
+            },
+        )
     }
 
     /**
@@ -1067,15 +1072,17 @@ class GeckoEngineSession(
             return
         }
 
-        geckoSession.sessionTranslation!!.setNeverTranslateSiteSetting(setting).then({
-            onResult()
-            GeckoResult<Boolean>()
-        }, {
-                throwable ->
-            logger.error("Request for setting site translation preference failed: ", throwable)
-            onException(throwable.intoTranslationError())
-            GeckoResult()
-        })
+        geckoSession.sessionTranslation!!.setNeverTranslateSiteSetting(setting).then(
+            {
+                onResult()
+                GeckoResult<Boolean>()
+            },
+            { throwable ->
+                logger.error("Request for setting site translation preference failed: ", throwable)
+                onException(throwable.intoTranslationError())
+                GeckoResult()
+            },
+        )
     }
 
     /**
@@ -1206,13 +1213,23 @@ class GeckoEngineSession(
         override fun onNewSession(
             session: GeckoSession,
             uri: String,
-        ): GeckoResult<GeckoSession> {
-            val newEngineSession =
-                GeckoEngineSession(runtime, privateMode, defaultSettings, openGeckoSession = false)
-            notifyObservers {
-                onWindowRequest(GeckoWindowRequest(uri, newEngineSession))
-            }
-            return GeckoResult.fromValue(newEngineSession.geckoSession)
+        ): GeckoResult<GeckoSession>? {
+//            val newEngineSession =
+//                GeckoEngineSession(runtime, privateMode, defaultSettings, openGeckoSession = false)
+//            notifyObservers {
+//                onWindowRequest(GeckoWindowRequest(uri, newEngineSession))
+//            }
+//            notifyObservers {
+//                onLoadRequest(
+//                    url = uri,
+//                    triggeredByRedirect = false,
+//                    triggeredByWebContent = true,
+//                )
+//            }
+//            return GeckoResult.fromValue(this@GeckoEngineSession.geckoSession)
+            // we don't want to open new session like pc does, just open uri in current session
+            session.loadUri(uri)
+            return null
         }
 
         override fun onLoadError(
@@ -1752,7 +1769,7 @@ class GeckoEngineSession(
         uri: String? = null,
         title: String? = null,
         screenX: Int = 0,
-        screenY: Int = 0
+        screenY: Int = 0,
     ): HitResult? {
         return when (elementType) {
             GeckoSession.ContentDelegate.ContextElement.TYPE_AUDIO ->
